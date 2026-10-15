@@ -29,4 +29,6 @@ public struct GamePaths: Sendable {
     }
 
     public static let steamAppID = "1086940"
+    /// The Mac game's bundle id (Steam build 4.1.1, Patch 8).
+    public static let bundleIdentifier = "com.larian.bg3"
 }

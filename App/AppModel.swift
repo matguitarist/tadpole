@@ -182,7 +182,7 @@ final class AppModel {
     // MARK: Game
 
     var isGameRunning: Bool {
-        NSWorkspace.shared.runningApplications.contains { $0.localizedName == "Baldur's Gate 3" || $0.bundleIdentifier?.contains("larian") == true }
+        NSWorkspace.shared.runningApplications.contains { $0.bundleIdentifier == GamePaths.bundleIdentifier || $0.localizedName == "Baldur's Gate 3" }
     }
 
     func launchGame() {

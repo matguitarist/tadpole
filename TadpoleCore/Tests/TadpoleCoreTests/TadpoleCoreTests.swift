@@ -85,6 +85,13 @@ import Testing
         #expect(again.version["major"] == "4")
     }
 
+    @Test func rewritesTheGamesOwnFileUnchanged() throws {
+        let settings = try ModSettings.parse(Data(Samples.modSettingsPatch8.utf8))
+        #expect(settings.modEntries.isEmpty)
+        #expect(settings.baseEntries.map(\.name) == ["GustavX"])
+        #expect(settings.lsx() == Samples.modSettingsPatch8 + "\n")
+    }
+
     @Test func keepsTheOldModOrderListInStep() throws {
         var settings = try ModSettings.parse(Data(Samples.modSettingsPatch7.utf8))
         settings.hasModOrder = true
