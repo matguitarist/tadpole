@@ -1,0 +1,67 @@
+# XcodeGen spec — regenerate the Xcode project with:  xcodegen generate
+name: Tadpole
+options:
+  bundleIdPrefix: local.tadpole
+  developmentLanguage: en
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    # String literals in SwiftUI views and String(localized:) go to
+    # App/Localizable.xcstrings.
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    SWIFT_EMIT_LOC_STRINGS: YES
+    MARKETING_VERSION: "0.1"
+    CURRENT_PROJECT_VERSION: "1"
+packages:
+  TadpoleCore:
+    path: TadpoleCore
+targets:
+  Tadpole:
+    type: application
+    platform: macOS
+    sources:
+      - App
+    dependencies:
+      - package: TadpoleCore
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Tadpole
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDevelopmentRegion: en
+        CFBundleLocalizations: [en, fr]
+        LSApplicationCategoryType: public.app-category.games
+        NSHumanReadableCopyright: ""
+        # Let users open/drop mods onto the app icon.
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Mod Archive
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Alternate
+            LSItemContentTypes: [public.zip-archive, public.data]
+    settings:
+      base:
+        PRODUCT_NAME: Tadpole
+        PRODUCT_BUNDLE_IDENTIFIER: local.tadpole
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_IDENTITY: "-"
+        ENABLE_HARDENED_RUNTIME: YES
+        # No App Sandbox: the app manages BG3's folders in ~/Documents.
+        ENABLE_APP_SANDBOX: NO
+        ENABLE_USER_SCRIPT_SANDBOXING: YES
+schemes:
+  Tadpole:
+    build:
+      targets:
+        Tadpole: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - package: TadpoleCore/TadpoleCoreTests
+    archive:
+      config: Release

@@ -1,0 +1,376 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3EBC1DE41E8CD533C56ACB6D /* ModDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */; };
+		69171DB21B19277C2C3F6EB0 /* TadpoleCore in Frameworks */ = {isa = PBXBuildFile; productRef = EBB45E710700B5463F0A3482 /* TadpoleCore */; };
+		6EF5CFC40D58997B66221F5D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B367FD056A0FE67493C5F008 /* Localizable.xcstrings */; };
+		810F32673BC3A3BA313C4D0B /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED628E94AA4479EADA1DFF /* AppModel.swift */; };
+		B6CB902A2D7BF38A18F54F29 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A9B5FE8B11271CEDBDB4B /* InfoPlist.xcstrings */; };
+		D240846B996329B3F045F716 /* TadpoleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */; };
+		F5F83DC1FFC6761A71089164 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE2C10C880751F606816648 /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		14ED628E94AA4479EADA1DFF /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		1C1A9B5FE8B11271CEDBDB4B /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadpoleApp.swift; sourceTree = "<group>"; };
+		63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModDetails.swift; sourceTree = "<group>"; };
+		7FE2C10C880751F606816648 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		84F71A329F8DF8CA9FFAD525 /* Tadpole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadpole.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B367FD056A0FE67493C5F008 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		D7D93916D4D9F61E0D136820 /* TadpoleCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TadpoleCore; path = TadpoleCore; sourceTree = SOURCE_ROOT; };
+		E2536676208960BA56A8528F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		66A2EB6A309387ED50DAA659 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69171DB21B19277C2C3F6EB0 /* TadpoleCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		31634EC7748990C8682F60F5 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				D7D93916D4D9F61E0D136820 /* TadpoleCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		471555BBAAFAC766D22BDFCB = {
+			isa = PBXGroup;
+			children = (
+				E9EA8A4BB9BAAB944036D505 /* App */,
+				31634EC7748990C8682F60F5 /* Packages */,
+				4F7D2B9A059AF76ADEA891F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F7D2B9A059AF76ADEA891F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84F71A329F8DF8CA9FFAD525 /* Tadpole.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E9EA8A4BB9BAAB944036D505 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				14ED628E94AA4479EADA1DFF /* AppModel.swift */,
+				7FE2C10C880751F606816648 /* ContentView.swift */,
+				E2536676208960BA56A8528F /* Info.plist */,
+				1C1A9B5FE8B11271CEDBDB4B /* InfoPlist.xcstrings */,
+				B367FD056A0FE67493C5F008 /* Localizable.xcstrings */,
+				63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */,
+				36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2D6496221D1B54087D6289D0 /* Tadpole */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E21BE1DA619ADA0285793F35 /* Build configuration list for PBXNativeTarget "Tadpole" */;
+			buildPhases = (
+				451A4C82B640AB8DD9485328 /* Sources */,
+				FDF6F577D95C898A9B310168 /* Resources */,
+				66A2EB6A309387ED50DAA659 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tadpole;
+			packageProductDependencies = (
+				EBB45E710700B5463F0A3482 /* TadpoleCore */,
+			);
+			productName = Tadpole;
+			productReference = 84F71A329F8DF8CA9FFAD525 /* Tadpole.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		22B0D281D7222D6D950953DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2D6496221D1B54087D6289D0 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D28D889E351BCDDEE2A6A082 /* Build configuration list for PBXProject "Tadpole" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				fr,
+			);
+			mainGroup = 471555BBAAFAC766D22BDFCB;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4E3BB8D2A2755FF92FD9BFA0 /* XCLocalSwiftPackageReference "TadpoleCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 4F7D2B9A059AF76ADEA891F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2D6496221D1B54087D6289D0 /* Tadpole */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FDF6F577D95C898A9B310168 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6CB902A2D7BF38A18F54F29 /* InfoPlist.xcstrings in Resources */,
+				6EF5CFC40D58997B66221F5D /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		451A4C82B640AB8DD9485328 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				810F32673BC3A3BA313C4D0B /* AppModel.swift in Sources */,
+				F5F83DC1FFC6761A71089164 /* ContentView.swift in Sources */,
+				3EBC1DE41E8CD533C56ACB6D /* ModDetails.swift in Sources */,
+				D240846B996329B3F045F716 /* TadpoleApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		655EEB66ABEAB046DFCD5C83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		6EA321C119ACCA98C48941F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = local.tadpole;
+				PRODUCT_NAME = Tadpole;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		AE6C050A93DE601F8F688236 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = local.tadpole;
+				PRODUCT_NAME = Tadpole;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C40991D7D9B39E9AA6F89250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D28D889E351BCDDEE2A6A082 /* Build configuration list for PBXProject "Tadpole" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				655EEB66ABEAB046DFCD5C83 /* Debug */,
+				C40991D7D9B39E9AA6F89250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E21BE1DA619ADA0285793F35 /* Build configuration list for PBXNativeTarget "Tadpole" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EA321C119ACCA98C48941F0 /* Debug */,
+				AE6C050A93DE601F8F688236 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		4E3BB8D2A2755FF92FD9BFA0 /* XCLocalSwiftPackageReference "TadpoleCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = TadpoleCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EBB45E710700B5463F0A3482 /* TadpoleCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TadpoleCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 22B0D281D7222D6D950953DC /* Project object */;
+}

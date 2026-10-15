@@ -1,0 +1,663 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "": {},
+    "%lld": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
+          }
+        }
+      }
+    },
+    "%lld mods · %lld loaded": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld mods · %2$lld loaded"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld mods · %2$lld chargés"
+          }
+        }
+      }
+    },
+    "%lld requirement issues": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld problèmes de prérequis"
+          }
+        }
+      }
+    },
+    "1 requirement issue": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 problème de prérequis"
+          }
+        }
+      }
+    },
+    "Always Loaded": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toujours chargés"
+          }
+        }
+      }
+    },
+    "by %@": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "par %@"
+          }
+        }
+      }
+    },
+    "Can't Be Read": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illisibles"
+          }
+        }
+      }
+    },
+    "Can't Read the Load Order": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de lire l’ordre de chargement"
+          }
+        }
+      }
+    },
+    "Check Again": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifier à nouveau"
+          }
+        }
+      }
+    },
+    "Choose mods to install (.pak files, or .zip archives from Nexus Mods)": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez les mods à installer (fichiers .pak ou archives .zip de Nexus Mods)"
+          }
+        }
+      }
+    },
+    "Couldn't Install": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installation impossible"
+          }
+        }
+      }
+    },
+    "Couldn't Move to the Trash": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de placer dans la corbeille"
+          }
+        }
+      }
+    },
+    "Couldn't Save the Load Order": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d’enregistrer l’ordre de chargement"
+          }
+        }
+      }
+    },
+    "Details": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Détails"
+          }
+        }
+      }
+    },
+    "Drop .pak files or .zip archives from Nexus Mods on this window, or choose Install Mods…": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déposez des fichiers .pak ou des archives .zip de Nexus Mods sur cette fenêtre, ou choisissez Installer des mods…"
+          }
+        }
+      }
+    },
+    "File": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fichier"
+          }
+        }
+      }
+    },
+    "Folder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dossier"
+          }
+        }
+      }
+    },
+    "Game": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeu"
+          }
+        }
+      }
+    },
+    "Install .pak files or .zip archives (or drop them on the window)": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer des fichiers .pak ou des archives .zip (ou les déposer sur la fenêtre)"
+          }
+        }
+      }
+    },
+    "Install Mods": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer des mods"
+          }
+        }
+      }
+    },
+    "Install Mods…": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer des mods…"
+          }
+        }
+      }
+    },
+    "Installed but not loaded": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installé mais pas chargé"
+          }
+        }
+      }
+    },
+    "Installed, Not Loaded": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installés, non chargés"
+          }
+        }
+      }
+    },
+    "Launch Baldur's Gate 3 through Steam": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lancer Baldur’s Gate 3 via Steam"
+          }
+        }
+      }
+    },
+    "Listed, but its .pak isn't in the Mods folder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listé, mais son .pak n’est pas dans le dossier Mods"
+          }
+        }
+      }
+    },
+    "Load Order": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordre de chargement"
+          }
+        }
+      }
+    },
+    "Loaded": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chargé"
+          }
+        }
+      }
+    },
+    "Loads after this mod: use Order by Requirements": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chargé après ce mod : utilisez Trier selon les prérequis"
+          }
+        }
+      }
+    },
+    "Mods": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mods"
+          }
+        }
+      }
+    },
+    "Move each mod's requirements before it, keeping the rest of the order": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placer les prérequis de chaque mod avant lui, sans changer le reste de l’ordre"
+          }
+        }
+      }
+    },
+    "Move to Trash": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placer dans la corbeille"
+          }
+        }
+      }
+    },
+    "Move to Trash…": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placer dans la corbeille…"
+          }
+        }
+      }
+    },
+    "No .pak file was found in: %@. Mods made of loose files or for the Script Extender can't be installed this way.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun fichier .pak trouvé dans : %@. Les mods faits de fichiers séparés ou pour le Script Extender ne peuvent pas être installés ainsi."
+          }
+        }
+      }
+    },
+    "No mod description inside: the game always loads these. Move one to the Trash to stop it.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans description de mod : le jeu les charge toujours. Placez-en un dans la corbeille pour l’arrêter."
+          }
+        }
+      }
+    },
+    "No mod description inside: the game always loads this file. Move it to the Trash to stop it.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans description de mod : le jeu charge toujours ce fichier. Placez-le dans la corbeille pour l’arrêter."
+          }
+        }
+      }
+    },
+    "No Mod Selected": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun mod sélectionné"
+          }
+        }
+      }
+    },
+    "No Mods Yet": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun mod pour l’instant"
+          }
+        }
+      }
+    },
+    "Not installed": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas installé"
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "Open Mods Folder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le dossier Mods"
+          }
+        }
+      }
+    },
+    "Open the Mods folder in Finder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le dossier Mods dans le Finder"
+          }
+        }
+      }
+    },
+    "Order by Requirements": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trier selon les prérequis"
+          }
+        }
+      }
+    },
+    "Play": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jouer"
+          }
+        }
+      }
+    },
+    "Play Baldur's Gate 3": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jouer à Baldur’s Gate 3"
+          }
+        }
+      }
+    },
+    "Quit Baldur's Gate 3 First": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quittez d’abord Baldur’s Gate 3"
+          }
+        }
+      }
+    },
+    "Read the Mods folder and the load order again": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relire le dossier Mods et l’ordre de chargement"
+          }
+        }
+      }
+    },
+    "Reload": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recharger"
+          }
+        }
+      }
+    },
+    "Remove": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retirer"
+          }
+        }
+      }
+    },
+    "Requires": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nécessite"
+          }
+        }
+      }
+    },
+    "Run Baldur's Gate 3 Once": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lancez Baldur’s Gate 3 une fois"
+          }
+        }
+      }
+    },
+    "Script Extender": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Script Extender"
+          }
+        }
+      }
+    },
+    "Select a mod to see what it needs.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sélectionnez un mod pour voir ce dont il a besoin."
+          }
+        }
+      }
+    },
+    "Show in Finder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher dans le Finder"
+          }
+        }
+      }
+    },
+    "Show or hide mod details": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher ou masquer les détails du mod"
+          }
+        }
+      }
+    },
+    "Some Files Weren't Installed": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certains fichiers n’ont pas été installés"
+          }
+        }
+      }
+    },
+    "Tadpole": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tadpole"
+          }
+        }
+      }
+    },
+    "Tadpole manages the mods in “Documents/Larian Studios/Baldur's Gate 3”. The game creates that folder the first time it runs: start it, reach the main menu, quit, then come back.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tadpole gère les mods dans « Documents/Larian Studios/Baldur’s Gate 3 ». Le jeu crée ce dossier à son premier lancement : lancez-le, allez jusqu’au menu principal, quittez, puis revenez."
+          }
+        }
+      }
+    },
+    "Take it out of the load order": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le retirer de l’ordre de chargement"
+          }
+        }
+      }
+    },
+    "The game rewrites its mod list when it quits, which would undo this change.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le jeu réécrit sa liste de mods en quittant, ce qui annulerait ce changement."
+          }
+        }
+      }
+    },
+    "This mod uses Norbyte's Script Extender, which isn't available on macOS. Its scripted features won't work.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce mod utilise le Script Extender de Norbyte, qui n’existe pas sur macOS. Ses fonctions scriptées ne marcheront pas."
+          }
+        }
+      }
+    },
+    "Turn this mod on to check": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activez ce mod pour vérifier"
+          }
+        }
+      }
+    },
+    "Uses Norbyte's Script Extender, which is only available on Windows. Its scripted features won't work on a Mac; parts that don't need it may still work.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilise le Script Extender de Norbyte, qui n’existe que sur Windows. Ses fonctions scriptées ne marcheront pas sur Mac ; les parties qui n’en ont pas besoin peuvent fonctionner."
+          }
+        }
+      }
+    },
+    "UUID": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UUID"
+          }
+        }
+      }
+    },
+    "Version": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version"
+          }
+        }
+      }
+    },
+    "Mods load from top to bottom; drag to reorder.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les mods se chargent de haut en bas ; faites-les glisser pour changer l’ordre."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
