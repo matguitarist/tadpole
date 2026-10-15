@@ -20,6 +20,19 @@ final class AppModel {
     var message: UserMessage?
     var isInstalling = false
 
+    // Nexus (AppModel+Nexus.swift)
+    var nexusAPIKey: String?
+    var nexusAccount: NexusAccount = .none
+    var downloads: [DownloadItem] = []
+    /// A page to show in the Nexus browser window.
+    var browserRequest: BrowserRequest?
+
+    enum InstallOutcome {
+        case installed([String])
+        case nothingToInstall
+        case failed(String)
+    }
+
     enum Blocker: Equatable {
         case gameNeverRan
         case unreadableSettings(String)
@@ -140,15 +153,17 @@ final class AppModel {
         let panel = NSOpenPanel()
         panel.message = String(localized: "Choose mods to install (.pak files, or .zip archives from Nexus Mods)")
         panel.allowsMultipleSelection = true
-        panel.allowedContentTypes = [.zip, UTType(filenameExtension: "pak") ?? .data]
+        panel.allowedContentTypes = ["pak", "zip", "7z", "rar"].compactMap { UTType(filenameExtension: $0) }
         if panel.runModal() == .OK { install(panel.urls) }
     }
 
-    func install(_ urls: [URL]) {
-        guard !urls.isEmpty else { return }
+    /// Installs .pak files and archives. With `quiet`, problems are only
+    /// returned (downloads show them in their own row).
+    @discardableResult
+    func install(_ urls: [URL], quiet: Bool = false) -> Task<InstallOutcome, Never> {
         isInstalling = true
         let folder = paths.modsFolder
-        Task {
+        return Task {
             defer { isInstalling = false }
             do {
                 let result = try await Task.detached { try ModInstaller.install(urls, into: folder) }.value
@@ -156,13 +171,15 @@ final class AppModel {
                 // New mods are turned on, at the end of the load order.
                 let installed = result.installed.map(PakMod.read)
                 for mod in installed where mod.info != nil { setEnabled(mod, true) }
-                if !result.skipped.isEmpty {
+                if !result.skipped.isEmpty, !quiet {
                     show("Some Files Weren't Installed",
                          String(localized: "No .pak file was found in: \(result.skipped.formatted(.list(type: .and))). Mods made of loose files or for the Script Extender can't be installed this way."))
                 }
                 if let first = installed.first { selection = first.id }
+                return installed.isEmpty ? .nothingToInstall : .installed(installed.map(\.name))
             } catch {
-                show("Couldn't Install", error.localizedDescription)
+                if !quiet { show("Couldn't Install", error.localizedDescription) }
+                return .failed(error.localizedDescription)
             }
         }
     }

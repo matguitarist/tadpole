@@ -4,6 +4,7 @@ import TadpoleCore
 struct ContentView: View {
     @Environment(AppModel.self) private var model
     @State private var showDetails = true
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         @Bindable var model = model
@@ -57,10 +58,11 @@ struct ContentView: View {
                 ContentUnavailableView {
                     Label("No Mods Yet", systemImage: "shippingbox")
                 } description: {
-                    Text("Drop .pak files or .zip archives from Nexus Mods on this window, or choose Install Mods…")
+                    Text("Find mods on Nexus Mods, or drop .pak files and archives (.zip, .7z, .rar) on this window.")
                 } actions: {
-                    Button("Install Mods…") { model.presentInstallPanel() }
+                    Button("Browse Nexus Mods") { openWindow(id: BrowserWindow.id) }
                         .buttonStyle(.borderedProminent)
+                    Button("Install Mods…") { model.presentInstallPanel() }
                 }
             } else {
                 ModList()
@@ -79,8 +81,14 @@ struct ContentView: View {
                 } label: {
                     Label("Install Mods", systemImage: "square.and.arrow.down")
                 }
-                .help("Install .pak files or .zip archives (or drop them on the window)")
+                .help("Install .pak files or archives (or drop them on the window)")
             }
+            Button {
+                openWindow(id: BrowserWindow.id)
+            } label: {
+                Label("Nexus Mods", systemImage: "globe")
+            }
+            .help("Find mods on Nexus Mods and install them")
             Button {
                 model.openModsFolder()
             } label: {

@@ -11,6 +11,7 @@ struct TadpoleApp: App {
                 .frame(minWidth: 820, minHeight: 480)
                 .task {
                     model.load()
+                    model.loadNexusAccount()
                 }
         }
         .commands {
@@ -31,6 +32,31 @@ struct TadpoleApp: App {
                 Button("Play Baldur's Gate 3") { model.launchGame() }
                     .keyboardShortcut("l")
             }
+            CommandGroup(after: .windowArrangement) {
+                OpenNexusButton()
+            }
         }
+
+        Window("Nexus Mods", id: BrowserWindow.id) {
+            BrowserView()
+                .environment(model)
+                .frame(minWidth: 900, minHeight: 600)
+        }
+        .defaultSize(width: 1200, height: 860)
+
+        Settings {
+            SettingsView()
+                .environment(model)
+        }
+    }
+}
+
+/// Opens the Nexus Mods browser window (menus can't read openWindow directly).
+struct OpenNexusButton: View {
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some View {
+        Button("Nexus Mods") { openWindow(id: BrowserWindow.id) }
+            .keyboardShortcut("n", modifiers: [.command, .shift])
     }
 }

@@ -164,4 +164,30 @@ import Testing
         #expect(result.skipped == ["readme.txt"])
         #expect(fm.fileExists(atPath: mods.appending(path: "SomeMod.pak").path(percentEncoded: false)))
     }
+
+    @Test func installsPaksFrom7z() throws {
+        let fm = FileManager.default
+        let root = fm.temporaryDirectory.appending(path: "tadpole-\(UUID().uuidString)")
+        let source = root.appending(path: "Seven")
+        try fm.createDirectory(at: source, withIntermediateDirectories: true)
+        try Data("pak".utf8).write(to: source.appending(path: "Seven.pak"))
+        let archive = root.appending(path: "Seven-1.7z")
+        let tar = Process()
+        tar.executableURL = URL(filePath: "/usr/bin/tar")
+        tar.arguments = ["--format", "7zip", "-cf", archive.path(percentEncoded: false), "-C", root.path(percentEncoded: false), "Seven"]
+        try tar.run(); tar.waitUntilExit()
+
+        let result = try ModInstaller.install([archive], into: root.appending(path: "Mods"))
+        #expect(result.installed.map(\.lastPathComponent) == ["Seven.pak"])
+    }
+}
+
+@Suite struct NexusTests {
+    @Test func readsModManagerLinks() throws {
+        let link = try #require(NXMLink(url: URL(string: "nxm://baldursgate3/mods/141/files/9876?key=abc&expires=1700000000&user_id=42")!))
+        #expect(link.isForBG3 && link.modID == 141 && link.fileID == 9876)
+        #expect(link.key == "abc" && link.expires == "1700000000")
+        #expect(NXMLink(url: URL(string: "nxm://stardewvalley/mods/1/files/2")!)?.isForBG3 == false)
+        #expect(NXMLink(url: URL(string: "nxm://baldursgate3/collections/abc")!) == nil)
+    }
 }

@@ -1,10 +1,14 @@
-// Installs mods: .pak files as they are, and the .pak files inside .zip
-// archives (Nexus downloads), into the Mods folder. An existing file with
+// Installs mods: .pak files as they are, and the .pak files inside
+// archives (Nexus downloads: .zip, .7z, .rar), into the Mods folder. An existing file with
 // the same name is replaced (moved to the Trash).
 
 import Foundation
 
 public enum ModInstaller {
+    /// Archive formats that can be unpacked: zip with ditto, the rest with
+    /// macOS's tar (bsdtar), which also reads 7z and RAR.
+    public static let archiveExtensions: Set<String> = ["zip", "7z", "rar"]
+
     public struct Result: Sendable {
         public var installed: [URL] = []
         /// Archives with no .pak inside (loose files, Script Extender…).
@@ -18,13 +22,14 @@ public enum ModInstaller {
         for source in sources {
             let paks: [URL]
             var work: URL?
-            switch source.pathExtension.lowercased() {
+            let ext = source.pathExtension.lowercased()
+            switch ext {
             case "pak":
                 paks = [source]
-            case "zip":
+            case _ where archiveExtensions.contains(ext):
                 let folder = fm.temporaryDirectory.appending(path: "tadpole-install-\(UUID().uuidString)", directoryHint: .isDirectory)
                 work = folder
-                try unzip(source, to: folder)
+                try unpack(source, to: folder)
                 paks = findPaks(in: folder)
             default:
                 result.skipped.append(source.lastPathComponent)
@@ -54,11 +59,18 @@ public enum ModInstaller {
         return paks.sorted { $0.lastPathComponent < $1.lastPathComponent }
     }
 
-    /// macOS's ditto unpacks zip archives.
-    static func unzip(_ archive: URL, to folder: URL) throws {
+    static func unpack(_ archive: URL, to folder: URL) throws {
+        let source = archive.path(percentEncoded: false)
+        let target = folder.path(percentEncoded: false)
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         let process = Process()
-        process.executableURL = URL(filePath: "/usr/bin/ditto")
-        process.arguments = ["-x", "-k", archive.path(percentEncoded: false), folder.path(percentEncoded: false)]
+        if archive.pathExtension.lowercased() == "zip" {
+            process.executableURL = URL(filePath: "/usr/bin/ditto")
+            process.arguments = ["-x", "-k", source, target]
+        } else {
+            process.executableURL = URL(filePath: "/usr/bin/tar")
+            process.arguments = ["-xf", source, "-C", target]
+        }
         try process.run()
         process.waitUntilExit()
         guard process.terminationStatus == 0 else {

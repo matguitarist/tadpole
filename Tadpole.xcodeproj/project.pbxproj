@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0748C3E5A09F335C1AB6A085 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC5678F2040BBA6B1D3A835 /* Keychain.swift */; };
+		281DB6A04875095CB815B109 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */; };
 		3EBC1DE41E8CD533C56ACB6D /* ModDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */; };
+		44FB3DF4D98632AD329D284C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */; };
 		69171DB21B19277C2C3F6EB0 /* TadpoleCore in Frameworks */ = {isa = PBXBuildFile; productRef = EBB45E710700B5463F0A3482 /* TadpoleCore */; };
 		6EF5CFC40D58997B66221F5D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B367FD056A0FE67493C5F008 /* Localizable.xcstrings */; };
 		810F32673BC3A3BA313C4D0B /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED628E94AA4479EADA1DFF /* AppModel.swift */; };
 		B6CB902A2D7BF38A18F54F29 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A9B5FE8B11271CEDBDB4B /* InfoPlist.xcstrings */; };
+		C612E085EA8CC69FE662C3FE /* AppModel+Nexus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7409FB401E6011ADF7EC422 /* AppModel+Nexus.swift */; };
 		D240846B996329B3F045F716 /* TadpoleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */; };
 		F5F83DC1FFC6761A71089164 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE2C10C880751F606816648 /* ContentView.swift */; };
 /* End PBXBuildFile section */
@@ -20,11 +24,15 @@
 		14ED628E94AA4479EADA1DFF /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		1C1A9B5FE8B11271CEDBDB4B /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadpoleApp.swift; sourceTree = "<group>"; };
+		5CC5678F2040BBA6B1D3A835 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModDetails.swift; sourceTree = "<group>"; };
 		7FE2C10C880751F606816648 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		84F71A329F8DF8CA9FFAD525 /* Tadpole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadpole.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
+		A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A7409FB401E6011ADF7EC422 /* AppModel+Nexus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Nexus.swift"; sourceTree = "<group>"; };
 		B367FD056A0FE67493C5F008 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		D7D93916D4D9F61E0D136820 /* TadpoleCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TadpoleCore; path = TadpoleCore; sourceTree = SOURCE_ROOT; };
+		D7D93916D4D9F61E0D136820 /* TadpoleCore */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TadpoleCore; sourceTree = SOURCE_ROOT; };
 		E2536676208960BA56A8528F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,11 +77,15 @@
 			isa = PBXGroup;
 			children = (
 				14ED628E94AA4479EADA1DFF /* AppModel.swift */,
+				A7409FB401E6011ADF7EC422 /* AppModel+Nexus.swift */,
+				A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */,
 				7FE2C10C880751F606816648 /* ContentView.swift */,
 				E2536676208960BA56A8528F /* Info.plist */,
 				1C1A9B5FE8B11271CEDBDB4B /* InfoPlist.xcstrings */,
+				5CC5678F2040BBA6B1D3A835 /* Keychain.swift */,
 				B367FD056A0FE67493C5F008 /* Localizable.xcstrings */,
 				63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */,
+				A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */,
 				36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */,
 			);
 			path = App;
@@ -156,9 +168,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C612E085EA8CC69FE662C3FE /* AppModel+Nexus.swift in Sources */,
 				810F32673BC3A3BA313C4D0B /* AppModel.swift in Sources */,
+				281DB6A04875095CB815B109 /* BrowserView.swift in Sources */,
 				F5F83DC1FFC6761A71089164 /* ContentView.swift in Sources */,
+				0748C3E5A09F335C1AB6A085 /* Keychain.swift in Sources */,
 				3EBC1DE41E8CD533C56ACB6D /* ModDetails.swift in Sources */,
+				44FB3DF4D98632AD329D284C /* SettingsView.swift in Sources */,
 				D240846B996329B3F045F716 /* TadpoleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
