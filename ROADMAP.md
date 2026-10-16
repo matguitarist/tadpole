@@ -13,7 +13,7 @@ Current version: **0.1** (not published yet).
 - [ ] End-to-end test with a real mod: install it from Nexus with a free
       account, launch the game, check it's loaded, quit, and check the game
       kept it in `modsettings.lsx`.
-- [ ] README: what Tadpole does, installing it (the "Open Anyway" step),
+- [x] README: what Tadpole does, installing it (the "Open Anyway" step),
       screenshots.
 - [ ] Back up the Sparkle key (`generate_keys --account tadpole -x …`) and the
       "Tadpole Self-Signed" certificate.
