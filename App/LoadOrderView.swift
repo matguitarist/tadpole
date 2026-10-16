@@ -11,6 +11,8 @@ struct LoadOrderView: View {
             .safeAreaInset(edge: .top, spacing: 0) {
                 if model.gameIsRunning || !model.pendingEnable.isEmpty {
                     GameRunningBanner()
+                } else if model.scriptExtenderState == .needsReapply {
+                    ScriptExtenderBanner()
                 }
             }
             .navigationTitle("Load Order")
@@ -248,7 +250,9 @@ private struct ModRow: View {
             Spacer()
             if mod.usesScriptExtender {
                 Badge(text: String(localized: "Script Extender"), color: .purple)
-                    .help("This mod uses Norbyte's Script Extender, which isn't available on macOS. Its scripted features won't work.")
+                    .help(model.scriptExtenderIsActive
+                          ? String(localized: "This mod uses the Script Extender, which is installed. Its scripted features work as far as the macOS version supports them.")
+                          : String(localized: "This mod uses Norbyte's Script Extender, which isn't installed. Its scripted features won't work: install the macOS version in Settings → Script Extender."))
             }
             if let update = model.update(forPak: mod.file.lastPathComponent) {
                 Button {
@@ -306,6 +310,32 @@ struct Badge: View {
             .padding(.vertical, 2)
             .background(color.opacity(0.18), in: Capsule())
             .foregroundStyle(color)
+    }
+}
+
+/// The game was updated, which removed the Script Extender from it.
+private struct ScriptExtenderBanner: View {
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: "puzzlepiece.extension.fill").foregroundStyle(.purple)
+            VStack(alignment: .leading, spacing: 1) {
+                Text("The game was updated").font(.headline)
+                Text("The update removed the Script Extender. Tadpole applies it again when you press Play, or now.")
+                    .font(.callout).foregroundStyle(.secondary)
+            }
+            Spacer()
+            if model.scriptExtenderTask != nil {
+                ProgressView().controlSize(.small)
+            } else {
+                Button("Apply Again") { model.reapplyScriptExtender() }
+            }
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 10)
+        .background(.bar)
+        .overlay(alignment: .bottom) { Divider() }
     }
 }
 

@@ -24,6 +24,16 @@
         }
       }
     },
+    "**bg3se-macos** is an independent rebuild of the Script Extender for Macs with Apple silicon. Install it in **Settings → Script Extender**: Tadpole downloads the latest release, checks it, and adds it to the game. Most of the Windows version works, not all of it, and it's unofficial: back up your saves before playing with Script Extender mods." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**bg3se-macos** est une reconstruction indépendante du Script Extender pour les Mac à puce Apple. Installez-le dans **Réglages → Script Extender** : Tadpole télécharge la dernière version, la vérifie et l’ajoute au jeu. La plupart de la version Windows fonctionne, pas tout, et c’est non officiel : sauvegardez vos parties avant de jouer avec des mods Script Extender."
+          }
+        }
+      }
+    },
     "**Browse Nexus** (⌘3): search Baldur's Gate 3 mods and install them." : {
       "localizations" : {
         "fr" : {
@@ -220,16 +230,6 @@
         }
       }
     },
-    "%lld mod updates available…" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld mises à jour de mods disponibles…"
-          }
-        }
-      }
-    },
     "%lld mods" : {
       "localizations" : {
         "fr" : {
@@ -286,6 +286,16 @@
         }
       }
     },
+    "%lld mods need the Script Extender. It's installed, so they should work, as far as the macOS version supports them." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mods ont besoin du Script Extender. Il est installé : ils devraient marcher, dans la mesure où la version macOS les prend en charge."
+          }
+        }
+      }
+    },
     "%lld new mods will be turned on when you quit the game." : {
       "localizations" : {
         "fr" : {
@@ -316,6 +326,16 @@
         }
       }
     },
+    "%lld updates available…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mises à jour disponibles…"
+          }
+        }
+      }
+    },
     "1 mod loaded" : {
       "localizations" : {
         "fr" : {
@@ -336,12 +356,12 @@
         }
       }
     },
-    "1 mod update available…" : {
+    "1 mod needs the Script Extender. It's installed, so it should work, as far as the macOS version supports it." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "1 mise à jour de mod disponible…"
+            "value" : "1 mod a besoin du Script Extender. Il est installé : il devrait marcher, dans la mesure où la version macOS le prend en charge."
           }
         }
       }
@@ -356,12 +376,32 @@
         }
       }
     },
+    "1 update available…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 mise à jour disponible…"
+          }
+        }
+      }
+    },
     "A mod doesn't show up in the game" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Un mod n’apparaît pas dans le jeu"
+          }
+        }
+      }
+    },
+    "About bg3se-macos" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À propos de bg3se-macos"
           }
         }
       }
@@ -462,6 +502,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apparence"
+          }
+        }
+      }
+    },
+    "Apply Again" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réappliquer"
+          }
+        }
+      }
+    },
+    "Apply the Script Extender Again" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réappliquer le Script Extender"
           }
         }
       }
@@ -657,6 +717,16 @@
       }
     },
     "Baldur's Gate 3 not found" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baldur's Gate 3 introuvable"
+          }
+        }
+      }
+    },
+    "Baldur's Gate 3 Not Found" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
@@ -942,6 +1012,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vérifié %@"
+          }
+        }
+      }
+    },
+    "Checking for the latest release…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recherche de la dernière version…"
           }
         }
       }
@@ -1246,6 +1326,16 @@
         }
       }
     },
+    "Downloading the Script Extender %@…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téléchargement du Script Extender %@…"
+          }
+        }
+      }
+    },
     "Downloading… %@" : {
       "localizations" : {
         "fr" : {
@@ -1406,6 +1496,16 @@
         }
       }
     },
+    "For game build %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour le build du jeu %@"
+          }
+        }
+      }
+    },
     "Forward" : {
       "localizations" : {
         "fr" : {
@@ -1452,6 +1552,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jeu"
+          }
+        }
+      }
+    },
+    "Game build" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Build du jeu"
           }
         }
       }
@@ -1526,6 +1636,16 @@
         }
       }
     },
+    "If macOS stops Tadpole from changing the game, turn Tadpole on in **System Settings → Privacy & Security → App Management**." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si macOS empêche Tadpole de modifier le jeu, activez Tadpole dans **Réglages Système → Confidentialité et sécurité → Gestion des apps**."
+          }
+        }
+      }
+    },
     "In the Game" : {
       "localizations" : {
         "fr" : {
@@ -1552,6 +1672,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Installer des fichiers .pak ou des archives (ou les déposer sur la fenêtre)"
+          }
+        }
+      }
+    },
+    "Install %@ with Tadpole" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer %@ avec Tadpole"
           }
         }
       }
@@ -1586,6 +1716,26 @@
         }
       }
     },
+    "Install Script Extender" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer le Script Extender"
+          }
+        }
+      }
+    },
+    "Install the game through Steam first." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installez d’abord le jeu avec Steam."
+          }
+        }
+      }
+    },
     "Installed" : {
       "localizations" : {
         "fr" : {
@@ -1612,6 +1762,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Installé mais pas chargé"
+          }
+        }
+      }
+    },
+    "Installed outside Tadpole" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installé en dehors de Tadpole"
           }
         }
       }
@@ -1646,6 +1806,16 @@
         }
       }
     },
+    "Installing into the game…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installation dans le jeu…"
+          }
+        }
+      }
+    },
     "Installing Mods" : {
       "localizations" : {
         "fr" : {
@@ -1666,12 +1836,32 @@
         }
       }
     },
+    "It's unofficial: made by its own authors, not Norbyte or Larian. Most of the Windows version works, not all of it. Back up your saves before playing with Script Extender mods." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C’est non officiel : fait par ses propres auteurs, pas par Norbyte ni Larian. La plupart de la version Windows fonctionne, pas tout. Sauvegardez vos parties avant de jouer avec des mods Script Extender."
+          }
+        }
+      }
+    },
     "Its Nexus page lists Norbyte's Script Extender (Windows only) as a requirement. Its scripted features won't work on a Mac." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sa page Nexus cite le Script Extender de Norbyte (Windows uniquement) comme prérequis. Ses fonctions scriptées ne marcheront pas sur Mac."
+          }
+        }
+      }
+    },
+    "Its Nexus page lists the Script Extender as a requirement. It's installed." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sa page Nexus cite le Script Extender comme prérequis. Il est installé."
           }
         }
       }
@@ -1732,6 +1922,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Langue"
+          }
+        }
+      }
+    },
+    "Latest Release" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dernière version"
           }
         }
       }
@@ -1886,6 +2086,26 @@
         }
       }
     },
+    "macOS stops apps from changing other apps unless you allow it. Turn on Tadpole in System Settings → Privacy & Security → App Management, then try again." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS empêche les apps de modifier d’autres apps sauf si vous l’autorisez. Activez Tadpole dans Réglages Système → Confidentialité et sécurité → Gestion des apps, puis réessayez."
+          }
+        }
+      }
+    },
+    "Made for game build" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fait pour le build du jeu"
+          }
+        }
+      }
+    },
     "Main Files" : {
       "localizations" : {
         "fr" : {
@@ -1896,12 +2116,22 @@
         }
       }
     },
-    "Many Baldur's Gate 3 mods use Norbyte's **Script Extender**, which only exists for Windows. On a Mac, those mods install and load, but whatever they do through scripts doesn't happen: new spells may do nothing, menus may not appear." : {
+    "Many Baldur's Gate 3 mods use Norbyte's **Script Extender**, which only exists for Windows. Without it, those mods install and load, but whatever they do through scripts doesn't happen: new spells may do nothing, menus may not appear." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beaucoup de mods de Baldur’s Gate 3 utilisent le **Script Extender** de Norbyte, qui n’existe que pour Windows. Sur Mac, ces mods s’installent et se chargent, mais ce qu’ils font par script n’a pas lieu : de nouveaux sorts peuvent ne rien faire, des menus peuvent ne pas apparaître."
+            "value" : "Beaucoup de mods de Baldur's Gate 3 utilisent le **Script Extender** de Norbyte, qui n’existe que sur Windows. Sans lui, ces mods s’installent et se chargent, mais tout ce qu’ils font par des scripts n’a pas lieu : de nouveaux sorts peuvent ne rien faire, des menus peuvent ne pas apparaître."
+          }
+        }
+      }
+    },
+    "Many mods need Norbyte's Script Extender, which only exists for Windows. **bg3se-macos** is an independent rebuild of it for Macs with Apple silicon. Tadpole can install it into the game, keep it up to date, and apply it again after game updates." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beaucoup de mods ont besoin du Script Extender de Norbyte, qui n’existe que sur Windows. **bg3se-macos** en est une reconstruction indépendante pour les Mac à puce Apple. Tadpole peut l’installer dans le jeu, le tenir à jour et le réappliquer après les mises à jour du jeu."
           }
         }
       }
@@ -2152,6 +2382,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A besoin de « %@ », qui a besoin du Script Extender de Norbyte (Windows uniquement). Ses fonctions scriptées ne marcheront pas sur Mac."
+          }
+        }
+      }
+    },
+    "Needs “%@”, which needs the Script Extender. It's installed." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A besoin de « %@ », qui a besoin du Script Extender. Il est installé."
+          }
+        }
+      }
+    },
+    "Needs to be applied again after a game update" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À réappliquer après une mise à jour du jeu"
           }
         }
       }
@@ -2726,6 +2976,16 @@
         }
       }
     },
+    "Published" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Publiée"
+          }
+        }
+      }
+    },
     "Quicksave" : {
       "localizations" : {
         "fr" : {
@@ -2806,6 +3066,26 @@
         }
       }
     },
+    "Release Notes" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes de version"
+          }
+        }
+      }
+    },
+    "Release Notes on GitHub" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes de version sur GitHub"
+          }
+        }
+      }
+    },
     "Reload" : {
       "localizations" : {
         "fr" : {
@@ -2836,12 +3116,42 @@
         }
       }
     },
+    "Remove the Script Extender?" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer le Script Extender ?"
+          }
+        }
+      }
+    },
+    "Remove…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer…"
+          }
+        }
+      }
+    },
     "Removing mods" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supprimer des mods"
+          }
+        }
+      }
+    },
+    "Removing the Script Extender…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suppression du Script Extender…"
           }
         }
       }
@@ -3016,6 +3326,36 @@
         }
       }
     },
+    "Script Extender %@ is available" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Script Extender %@ est disponible"
+          }
+        }
+      }
+    },
+    "Script Extender for macOS" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Extender pour macOS"
+          }
+        }
+      }
+    },
+    "Script Extender Not Installed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Extender non installé"
+          }
+        }
+      }
+    },
     "Script Extender on a Mac" : {
       "localizations" : {
         "fr" : {
@@ -3186,6 +3526,16 @@
         }
       }
     },
+    "Show Script Extender Logs" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher les journaux du Script Extender"
+          }
+        }
+      }
+    },
     "Show this mod's page" : {
       "localizations" : {
         "fr" : {
@@ -3276,6 +3626,26 @@
         }
       }
     },
+    "Status" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "État"
+          }
+        }
+      }
+    },
+    "Steam replaces the game's program when the game updates, which removes the Script Extender. Tadpole notices, and applies it again before you press **Play** (or click **Apply Again** on the Load Order page). **Remove** in Settings puts the game's original program back." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steam remplace le programme du jeu lors des mises à jour, ce qui retire le Script Extender. Tadpole s’en aperçoit et le réapplique avant que vous appuyiez sur **Jouer** (ou cliquez sur **Réappliquer** dans l’ordre de chargement). **Supprimer** dans les réglages remet le programme d’origine du jeu."
+          }
+        }
+      }
+    },
     "Stop" : {
       "localizations" : {
         "fr" : {
@@ -3326,12 +3696,42 @@
         }
       }
     },
+    "Tadpole adds the Script Extender to the game's program and keeps the original next to it. Steam replaces the program when the game updates: Tadpole applies the Script Extender again before you press Play, or from the Load Order page. Remove puts the original back." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole ajoute le Script Extender au programme du jeu et garde l’original à côté. Steam remplace le programme lors des mises à jour du jeu : Tadpole réapplique le Script Extender avant que vous appuyiez sur Jouer, ou depuis l’ordre de chargement. Supprimer remet l’original."
+          }
+        }
+      }
+    },
+    "Tadpole Can't Change the Game" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole ne peut pas modifier le jeu"
+          }
+        }
+      }
+    },
     "Tadpole catches **Mod Manager Download** links only in its own browser, so it doesn't take them from Starseed or another mod manager in Safari or Chrome." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tadpole ne récupère les liens **Mod Manager Download** que dans son propre navigateur : il ne les prend pas à Starseed ni à un autre gestionnaire de mods dans Safari ou Chrome."
+          }
+        }
+      }
+    },
+    "Tadpole checks for new releases with your mod updates and lists them on the **Updates** page. Each release is made for a game build: if it isn't yours, Settings says so, and it may run with some features off until a release supports your build." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole cherche les nouvelles versions avec les mises à jour de vos mods et les affiche dans **Mises à jour**. Chaque version est faite pour un build du jeu : si ce n’est pas le vôtre, les réglages le signalent, et il peut tourner avec certaines fonctions désactivées jusqu’à ce qu’une version prenne en charge votre build."
           }
         }
       }
@@ -3516,12 +3916,42 @@
         }
       }
     },
+    "The game was updated" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jeu a été mis à jour"
+          }
+        }
+      }
+    },
+    "The game's original program is put back. Script Extender mods stay installed, but their scripted features stop working." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le programme d’origine du jeu est remis en place. Les mods Script Extender restent installés, mais leurs fonctions scriptées cessent de marcher."
+          }
+        }
+      }
+    },
     "The Load Order" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "L’ordre de chargement"
+          }
+        }
+      }
+    },
+    "The macOS version" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La version macOS"
           }
         }
       }
@@ -3556,12 +3986,32 @@
         }
       }
     },
+    "The Script Extender is installed into the game, which can't be changed while it runs." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Script Extender s’installe dans le jeu, qui ne peut pas être modifié pendant qu’il tourne."
+          }
+        }
+      }
+    },
     "The tadpole in the menu bar shows the game's version, how many mods load, and the number of mod updates. From it you can play, update your mods, and back up your saves. While it's shown, closing the window keeps Tadpole running so it can keep checking for updates: quit from its menu. Turn it off in **Settings → General**." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le têtard dans la barre des menus affiche la version du jeu, le nombre de mods chargés et le nombre de mises à jour. Depuis son menu, vous pouvez jouer, mettre à jour vos mods et sauvegarder vos parties. Tant qu’il est affiché, fermer la fenêtre laisse Tadpole ouvert pour qu’il continue à vérifier les mises à jour : quittez depuis son menu. Désactivez-le dans **Réglages → Général**."
+          }
+        }
+      }
+    },
+    "The update removed the Script Extender. Tadpole applies it again when you press Play, or now." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La mise à jour a retiré le Script Extender. Tadpole le réapplique quand vous appuyez sur Jouer, ou maintenant."
           }
         }
       }
@@ -3612,6 +4062,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ce mod utilise le Script Extender de Norbyte, qui n’existe pas sur macOS. Ses fonctions scriptées ne marcheront pas."
+          }
+        }
+      }
+    },
+    "This mod uses Norbyte's Script Extender, which isn't installed. Its scripted features won't work: install the macOS version in Settings → Script Extender." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce mod utilise le Script Extender de Norbyte, qui n’est pas installé. Ses fonctions scriptées ne marcheront pas : installez la version macOS dans Réglages → Script Extender."
+          }
+        }
+      }
+    },
+    "This mod uses the Script Extender, which is installed. Its scripted features work as far as the macOS version supports them." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce mod utilise le Script Extender, qui est installé. Ses fonctions scriptées marchent dans la mesure où la version macOS les prend en charge."
           }
         }
       }
@@ -3746,6 +4216,16 @@
         }
       }
     },
+    "Update it from the Updates page." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mettez-le à jour depuis la page Mises à jour."
+          }
+        }
+      }
+    },
     "Update to %@" : {
       "localizations" : {
         "fr" : {
@@ -3776,12 +4256,22 @@
         }
       }
     },
-    "Uses Norbyte's Script Extender, which is only available on Windows. Its scripted features won't work on a Mac; parts that don't need it may still work." : {
+    "Uses Norbyte's Script Extender, which isn't installed. Its scripted features won't work; parts that don't need it may still work. Install the macOS version in Settings → Script Extender." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utilise le Script Extender de Norbyte, qui n’existe que sur Windows. Ses fonctions scriptées ne marcheront pas sur Mac ; les parties qui n’en ont pas besoin peuvent fonctionner."
+            "value" : "Utilise le Script Extender de Norbyte, qui n’est pas installé. Ses fonctions scriptées ne marcheront pas ; les parties qui n’en ont pas besoin peuvent marcher. Installez la version macOS dans Réglages → Script Extender."
+          }
+        }
+      }
+    },
+    "Uses the Script Extender, which is installed. Its scripted features work as far as the macOS version supports them." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilise le Script Extender, qui est installé. Ses fonctions scriptées marchent dans la mesure où la version macOS les prend en charge."
           }
         }
       }
@@ -3822,6 +4312,32 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version %@ disponible"
+          }
+        }
+      }
+    },
+    "Version %@ installed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %@ installée"
+          }
+        }
+      }
+    },
+    "Version %@ was made for game build %@, not yours. It may run in a limited mode, with some features off, until a release supports your build." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Version %1$@ was made for game build %2$@, not yours. It may run in a limited mode, with some features off, until a release supports your build."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La version %@ a été faite pour le build du jeu %@, pas le vôtre. Elle peut tourner en mode limité, avec certaines fonctions désactivées, jusqu’à ce qu’une version prenne en charge votre build."
           }
         }
       }

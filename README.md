@@ -54,8 +54,13 @@ Everything is explained in **Help → Tadpole Help** (⌘?).
   touch the load order (the game rewrites it when it quits); mods installed
   meanwhile are turned on once it quits.
 - **Script Extender.** Many mods use Norbyte's Script Extender, which only
-  exists for Windows. Tadpole marks them: they load on a Mac, but their
-  scripted features don't work.
+  exists for Windows. Tadpole marks them, in your load order and in
+  collections before you install them. It can also install
+  [bg3se-macos](https://github.com/tdimino/bg3se-macos), an independent
+  rebuild for Apple silicon (Settings → Script Extender): it checks each
+  release's SHA-256, keeps it up to date from its GitHub releases, applies it
+  again after game updates, and tells you when a release wasn't made for your
+  game build. It's unofficial and not every feature works yet.
 
 ![Collections from Nexus Mods](docs/screenshots/collections.png)
 

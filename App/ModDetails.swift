@@ -69,9 +69,15 @@ struct ModDetails: View {
                     Text(description).fixedSize(horizontal: false, vertical: true).textSelection(.enabled)
                 }
                 if mod.usesScriptExtender {
-                    Label("Uses Norbyte's Script Extender, which is only available on Windows. Its scripted features won't work on a Mac; parts that don't need it may still work.", systemImage: "exclamationmark.triangle.fill")
-                        .foregroundStyle(.purple)
-                        .fixedSize(horizontal: false, vertical: true)
+                    if model.scriptExtenderIsActive {
+                        Label("Uses the Script Extender, which is installed. Its scripted features work as far as the macOS version supports them.", systemImage: "puzzlepiece.extension.fill")
+                            .foregroundStyle(.purple)
+                            .fixedSize(horizontal: false, vertical: true)
+                    } else {
+                        Label("Uses Norbyte's Script Extender, which isn't installed. Its scripted features won't work; parts that don't need it may still work. Install the macOS version in Settings → Script Extender.", systemImage: "exclamationmark.triangle.fill")
+                            .foregroundStyle(.purple)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 }
                 if let error = mod.error {
                     Label(error, systemImage: "exclamationmark.triangle.fill").foregroundStyle(.orange)

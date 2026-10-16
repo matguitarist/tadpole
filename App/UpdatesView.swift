@@ -31,7 +31,7 @@ struct UpdatesView: View {
 
     @ViewBuilder
     private var content: some View {
-        if model.updates.isEmpty {
+        if model.updates.isEmpty, model.scriptExtenderUpdate == nil {
             ContentUnavailableView {
                 Label(model.updateCheckFailed ? "Couldn't Reach Nexus" : "Everything Is Up to Date",
                       systemImage: model.updateCheckFailed ? "wifi.exclamationmark" : "checkmark.circle")
@@ -50,6 +50,10 @@ struct UpdatesView: View {
             }
         } else {
             List {
+                if let release = model.scriptExtenderUpdate {
+                    Section("Script Extender") { ScriptExtenderUpdateRow(release: release) }
+                }
+                if !model.updates.isEmpty {
                 Section {
                     ForEach(model.updates) { UpdateRow(update: $0) }
                 } footer: {
@@ -59,7 +63,66 @@ struct UpdatesView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
+                }
             }
+        }
+    }
+}
+
+/// A new release of the macOS Script Extender, with its notes.
+private struct ScriptExtenderUpdateRow: View {
+    @Environment(AppModel.self) private var model
+    let release: ScriptExtenderRelease
+    @State private var showNotes = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(alignment: .top, spacing: 10) {
+                Image(systemName: "puzzlepiece.extension.fill")
+                    .font(.title)
+                    .foregroundStyle(.purple)
+                    .frame(width: 80, height: 50)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Script Extender for macOS").font(.headline)
+                    HStack(spacing: 6) {
+                        Text(verbatim: model.scriptExtender?.release.version ?? "").foregroundStyle(.secondary)
+                        Image(systemName: "arrow.right").font(.caption).foregroundStyle(.secondary)
+                        Text(verbatim: release.version).fontWeight(.medium)
+                    }
+                    .font(.callout)
+                    HStack(spacing: 8) {
+                        Text(release.publishedAt, format: .dateTime.year().month().day())
+                        if !release.gameBuilds.isEmpty {
+                            Text("For game build \(release.gameBuilds.joined(separator: ", "))")
+                        }
+                    }
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                }
+                Spacer()
+                if let task = model.scriptExtenderTask {
+                    ProgressView().controlSize(.small).help(task)
+                } else {
+                    Button("Update") { model.installScriptExtender(release) }
+                        .buttonStyle(.borderedProminent)
+                }
+            }
+            if !release.notes.isEmpty {
+                DisclosureGroup(isExpanded: $showNotes) {
+                    Text(LocalizedStringKey(release.notes))  // Markdown from GitHub
+                        .font(.callout)
+                        .textSelection(.enabled)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.top, 4)
+                } label: {
+                    Text("What's New").font(.callout)
+                }
+                .padding(.leading, 90)
+            }
+        }
+        .padding(.vertical, 4)
+        .contextMenu {
+            Link("Release Notes on GitHub", destination: release.pageURL)
         }
     }
 }

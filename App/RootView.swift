@@ -66,7 +66,7 @@ private struct Sidebar: View {
                     .badge(model.enabledMods.count)
                     .tag(SidebarItem.loadOrder)
                 Label("Updates", systemImage: "arrow.down.circle")
-                    .badge(model.updates.count)
+                    .badge(model.updateCount)
                     .tag(SidebarItem.updates)
             }
             Section("Get Mods") {

@@ -177,7 +177,13 @@ struct CollectionSheet: View {
         Group {
             if let revision {
                 let count = revision.mods.filter(needsScriptExtender).count
-                if count > 0 {
+                if count > 0, model.scriptExtenderIsActive {
+                    Label(count == 1
+                          ? String(localized: "1 mod needs the Script Extender. It's installed, so it should work, as far as the macOS version supports it.")
+                          : String(localized: "\(count) mods need the Script Extender. It's installed, so they should work, as far as the macOS version supports them."),
+                          systemImage: "puzzlepiece.extension.fill")
+                        .foregroundStyle(.purple)
+                } else if count > 0 {
                     Label(count == 1
                           ? String(localized: "1 mod needs Norbyte's Script Extender, which only exists on Windows: on a Mac it installs, but its scripted features don't work.")
                           : String(localized: "\(count) mods need Norbyte's Script Extender, which only exists on Windows: on a Mac they install, but their scripted features don't work."),
@@ -260,6 +266,10 @@ struct CollectionSheet: View {
 
     private func scriptExtenderHelp(_ mod: CollectionMod) -> String {
         switch mod.scriptExtender {
+        case .through(let name) where model.scriptExtenderIsActive:
+            String(localized: "Needs “\(name)”, which needs the Script Extender. It's installed.")
+        case .direct where model.scriptExtenderIsActive:
+            String(localized: "Its Nexus page lists the Script Extender as a requirement. It's installed.")
         case .through(let name):
             String(localized: "Needs “\(name)”, which needs Norbyte's Script Extender (Windows only). Its scripted features won't work on a Mac.")
         case .direct:
@@ -275,7 +285,7 @@ struct CollectionSheet: View {
         guard let revision else { return [] }
         let installed = model.installedNexusModIDs
         return revision.mods.filter { (!$0.isOptional || selectedOptional.contains($0.fileID)) && !installed.contains($0.modID) }
-            .filter { !skipScriptExtender || $0.scriptExtender == nil }
+            .filter { !skipScriptExtender || model.scriptExtenderIsActive || $0.scriptExtender == nil }
     }
 
     private var footer: some View {
@@ -285,7 +295,7 @@ struct CollectionSheet: View {
                 dismiss()
             }
             Spacer()
-            if revision?.mods.contains(where: { $0.scriptExtender != nil }) == true {
+            if !model.scriptExtenderIsActive, revision?.mods.contains(where: { $0.scriptExtender != nil }) == true {
                 Toggle("Skip Script Extender mods", isOn: $skipScriptExtender)
                     .toggleStyle(.checkbox)
                     .help("Don't download the mods that need Norbyte's Script Extender: their scripted features can't work on a Mac.")

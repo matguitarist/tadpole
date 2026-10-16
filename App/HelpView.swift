@@ -141,8 +141,14 @@ struct HelpView: View {
             }
 
         case .scriptExtender:
-            HelpText("Many Baldur's Gate 3 mods use Norbyte's **Script Extender**, which only exists for Windows. On a Mac, those mods install and load, but whatever they do through scripts doesn't happen: new spells may do nothing, menus may not appear.")
+            HelpText("Many Baldur's Gate 3 mods use Norbyte's **Script Extender**, which only exists for Windows. Without it, those mods install and load, but whatever they do through scripts doesn't happen: new spells may do nothing, menus may not appear.")
             HelpText("Tadpole marks those mods with a **Script Extender** badge. Mods that only change looks, items, hair, dice or text don't need it and work normally.")
+            HelpSection("The macOS version") {
+                HelpText("**bg3se-macos** is an independent rebuild of the Script Extender for Macs with Apple silicon. Install it in **Settings → Script Extender**: Tadpole downloads the latest release, checks it, and adds it to the game. Most of the Windows version works, not all of it, and it's unofficial: back up your saves before playing with Script Extender mods.")
+                HelpText("Tadpole checks for new releases with your mod updates and lists them on the **Updates** page. Each release is made for a game build: if it isn't yours, Settings says so, and it may run with some features off until a release supports your build.")
+                HelpText("Steam replaces the game's program when the game updates, which removes the Script Extender. Tadpole notices, and applies it again before you press **Play** (or click **Apply Again** on the Load Order page). **Remove** in Settings puts the game's original program back.")
+                HelpText("If macOS stops Tadpole from changing the game, turn Tadpole on in **System Settings → Privacy & Security → App Management**.")
+            }
             HelpText("Before you install a collection, Tadpole lists which of its mods need the Script Extender: the ones whose Nexus page names it as a requirement, and the ones that need such a mod. Tick **Skip Script Extender mods** to leave them out.")
             HelpText("Some authors don't list it. Once a mod is installed, Tadpole looks inside it for Script Extender scripts and marks it too.")
 

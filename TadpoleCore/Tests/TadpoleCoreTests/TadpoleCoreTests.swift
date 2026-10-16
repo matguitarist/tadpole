@@ -342,3 +342,111 @@ import Testing
         #expect(needs[5] == nil)
     }
 }
+
+@Suite struct MachOPatcherTests {
+    /// Builds a universal program and a library with clang, adds the library
+    /// to the program, re-signs it and runs it: the library's constructor
+    /// must run. Then removes it again.
+    @Test func addsAndRemovesALibraryTheProgramLoads() throws {
+        let folder = FileManager.default.temporaryDirectory.appending(path: "machopatch-\(UUID().uuidString)")
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        try "int main(void) { return 0; }".write(to: folder.appending(path: "main.c"), atomically: true, encoding: .utf8)
+        try #"#include <stdio.h>\n__attribute__((constructor)) static void hello(void) { puts("loaded"); }"#
+            .replacingOccurrences(of: "\\n", with: "\n")
+            .write(to: folder.appending(path: "lib.c"), atomically: true, encoding: .utf8)
+        let program = folder.appending(path: "program")
+        try run("/usr/bin/clang", ["-arch", "arm64", "-arch", "x86_64", "-Wl,-headerpad,0x400", "-o", program.path, folder.appending(path: "main.c").path])
+        try run("/usr/bin/clang", ["-arch", "arm64", "-arch", "x86_64", "-dynamiclib", "-o", folder.appending(path: "libbg3se.dylib").path,
+                                   folder.appending(path: "lib.c").path])
+
+        #expect(try !MachOPatcher.links(program, libraryNamed: "libbg3se"))
+        #expect(try run(program.path, []) == "")
+
+        try MachOPatcher.addWeakLibrary("@loader_path/libbg3se.dylib", to: program)
+        try MachOPatcher.addWeakLibrary("@loader_path/libbg3se.dylib", to: program)  // twice: added once
+        #expect(try MachOPatcher.links(program, libraryNamed: "libbg3se"))
+        try run("/usr/bin/codesign", ["--force", "--sign", "-", program.path])
+        #expect(try run(program.path, []) == "loaded\n")
+        // Weak: still runs without the library.
+        try FileManager.default.removeItem(at: folder.appending(path: "libbg3se.dylib"))
+        #expect(try run(program.path, []) == "")
+
+        try MachOPatcher.removeLibrary(named: "libbg3se", from: program)
+        #expect(try !MachOPatcher.links(program, libraryNamed: "libbg3se"))
+        try run("/usr/bin/codesign", ["--force", "--sign", "-", program.path])
+        #expect(try run(program.path, []) == "")
+    }
+
+    /// Installs into a fake game app the way Tadpole does: the program is
+    /// patched and signed outside the app, then runs and loads the library.
+    @Test func installsIntoAGameAppAndRemovesItAgain() throws {
+        let folder = FileManager.default.temporaryDirectory.appending(path: "segame-\(UUID().uuidString)")
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let app = folder.appending(path: "Baldur's Gate 3.app")
+        let macOS = app.appending(path: "Contents/MacOS")
+        try FileManager.default.createDirectory(at: macOS, withIntermediateDirectories: true)
+        try "int main(void) { return 0; }".write(to: folder.appending(path: "main.c"), atomically: true, encoding: .utf8)
+        try "#include <stdio.h>\n__attribute__((constructor)) static void hello(void) { puts(\"loaded\"); }"
+            .write(to: folder.appending(path: "lib.c"), atomically: true, encoding: .utf8)
+        let game = ScriptExtenderMac.Game(app: app)
+        try run("/usr/bin/clang", ["-arch", "arm64", "-arch", "x86_64", "-Wl,-headerpad,0x400", "-o", game.executable.path, folder.appending(path: "main.c").path])
+        let library = folder.appending(path: "libbg3se.dylib")
+        try run("/usr/bin/clang", ["-arch", "arm64", "-dynamiclib", "-o", library.path, folder.appending(path: "lib.c").path])
+        let original = try Data(contentsOf: game.executable)
+
+        try game.install(library: library)
+        #expect(game.isPatched && game.hasLibrary)
+        #expect(try run(game.executable.path, []) == "loaded\n")
+        try game.install(library: library)  // again (an update of the library): still patched once
+        #expect(try run(game.executable.path, []) == "loaded\n")
+
+        try game.uninstall()
+        #expect(!game.isPatched && !game.hasLibrary)
+        #expect(try Data(contentsOf: game.executable) == original)
+        #expect(try FileManager.default.contentsOfDirectory(atPath: macOS.path) == ["Baldur's Gate 3"])
+    }
+
+    @Test func rejectsFilesThatArentPrograms() throws {
+        let file = FileManager.default.temporaryDirectory.appending(path: "notmacho-\(UUID().uuidString)")
+        try Data("hello world, not a program".utf8).write(to: file)
+        defer { try? FileManager.default.removeItem(at: file) }
+        #expect(throws: MachOPatcher.PatchError.notMachO) { try MachOPatcher.addWeakLibrary("x", to: file) }
+    }
+
+    @discardableResult
+    func run(_ tool: String, _ arguments: [String]) throws -> String {
+        let process = Process()
+        process.executableURL = URL(filePath: tool)
+        process.arguments = arguments
+        let output = Pipe()
+        process.standardOutput = output
+        try process.run()
+        let data = output.fileHandleForReading.readDataToEndOfFile()
+        process.waitUntilExit()
+        #expect(process.terminationStatus == 0, "\(tool) failed")
+        return String(decoding: data, as: UTF8.self)
+    }
+}
+
+@Suite struct ScriptExtenderMacTests {
+    func release(_ notes: String) -> ScriptExtenderRelease {
+        ScriptExtenderRelease(version: "0.44.0", publishedAt: .now, pageURL: ScriptExtenderMac.releasesURL, notes: notes,
+                              zipURL: ScriptExtenderMac.releasesURL, checksumURL: nil)
+    }
+
+    @Test func readsTheGameBuildsFromTheNotes() {
+        let notes = "## First release on Baldur's Gate 3 4.1.1.7398727\nVerified live on the current Steam build (4.1.1.7398727, arm64)."
+        #expect(release(notes).gameBuilds == ["4.1.1.7398727"])
+        #expect(release(notes).supports(gameBuild: "4.1.1.7398727") == true)
+        #expect(release(notes).supports(gameBuild: "4.1.1.7631656") == false)
+        #expect(release("Bug fixes. Version 0.44.1").supports(gameBuild: "4.1.1.7631656") == nil)
+    }
+
+    @Test func comparesVersions() {
+        #expect(ScriptExtenderMac.isNewer("0.45.0", than: "0.44.0"))
+        #expect(ScriptExtenderMac.isNewer("0.44.10", than: "0.44.9"))
+        #expect(!ScriptExtenderMac.isNewer("0.44.0", than: "0.44.0"))
+        #expect(ScriptExtenderMac.version(fromTag: "v0.44.0") == "0.44.0")
+    }
+}

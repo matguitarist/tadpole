@@ -67,6 +67,11 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
 - [x] **Script Extender in collections**: mods whose Nexus requirements list
       it (directly or through another mod) are marked before installing, with
       an option to skip them.
+- [x] **Script Extender for macOS**: installs bg3se-macos (tdimino) from its
+      GitHub releases (SHA-256 checked), patches the game the way its
+      install.sh does (backup kept), updates it from the Updates page, applies
+      it again after game updates (banner, and before Play), and warns when a
+      release wasn't made for the game's build.
 - [ ] Download progress and errors in a status bar at the bottom of every page.
 
 ## 0.3: Profiles and saves

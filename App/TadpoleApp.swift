@@ -22,6 +22,7 @@ struct TadpoleApp: App {
                     AppTheme.current.apply()
                     model.load()
                     model.startWatching()
+                    model.refreshScriptExtenderState()
                     model.loadNexusAccount()
                     UNUserNotificationCenter.current().delegate = NotificationDelegate.shared
                     model.startUpdateChecks()

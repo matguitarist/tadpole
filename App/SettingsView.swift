@@ -1,5 +1,5 @@
 // Settings: General (language, theme), Game (where things are), Nexus Mods
-// (API key, downloads).
+// (API key, downloads), Script Extender (ScriptExtenderSettings).
 
 import AppKit
 import SwiftUI
@@ -19,6 +19,9 @@ struct SettingsView: View {
             NexusSettings()
                 .tabItem { Label("Nexus Mods", systemImage: "globe") }
                 .tag("nexus")
+            ScriptExtenderSettings()
+                .tabItem { Label("Script Extender", systemImage: "puzzlepiece.extension") }
+                .tag("scriptExtender")
         }
         .frame(width: 560, height: 520)
     }

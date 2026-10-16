@@ -46,6 +46,14 @@ final class AppModel {
     /// its window can close.
     var browserDone = 0
     var showInspector = true
+    // The Script Extender for macOS (AppModel+ScriptExtender).
+    var scriptExtender = ScriptExtenderRecord.load()
+    var scriptExtenderLatest: ScriptExtenderRelease?
+    var scriptExtenderState = ScriptExtenderState.notInstalled
+    /// What's being done (downloading, installing…), shown in Settings.
+    var scriptExtenderTask: String?
+    var scriptExtenderProgress: Double?
+
     /// Launch work (load, watchers, update checks) has run.
     var hasStarted = false
     var nexusSheet: NexusModRequest?
@@ -144,7 +152,10 @@ final class AppModel {
             MainActor.assumeIsolated { AppModel.shared.gameDidQuit() }
         })
         observers.append(NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: nil, queue: .main) { _ in
-            MainActor.assumeIsolated { AppModel.shared.reloadIfChanged() }
+            MainActor.assumeIsolated {
+                AppModel.shared.reloadIfChanged()
+                AppModel.shared.refreshScriptExtenderState()  // Steam may have updated the game
+            }
         })
     }
 
@@ -342,9 +353,14 @@ final class AppModel {
         NSWorkspace.shared.runningApplications.contains { $0.bundleIdentifier == GamePaths.bundleIdentifier || $0.localizedName == "Baldur's Gate 3" }
     }
 
+    /// Starts the game through Steam; after a game update, the Script
+    /// Extender is applied again first.
     func launchGame() {
-        if let url = URL(string: "steam://rungameid/\(GamePaths.steamAppID)") {
-            NSWorkspace.shared.open(url)
+        Task {
+            await reapplyScriptExtenderIfNeeded()
+            if let url = URL(string: "steam://rungameid/\(GamePaths.steamAppID)") {
+                NSWorkspace.shared.open(url)
+            }
         }
     }
 

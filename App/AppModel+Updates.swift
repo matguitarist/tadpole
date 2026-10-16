@@ -85,6 +85,8 @@ extension AppModel {
         }
         found.sort { $0.modName.localizedStandardCompare($1.modName) == .orderedAscending }
 
+        await checkScriptExtenderRelease(notify: notify)
+
         let previous = Set(updates.map(\.id))
         updates = found
         lastUpdateCheck = .now

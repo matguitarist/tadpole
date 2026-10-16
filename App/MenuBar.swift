@@ -11,11 +11,11 @@ struct MenuBarLabel: View {
     @Environment(AppModel.self) private var model
 
     var body: some View {
-        if model.updates.isEmpty {
+        if model.updateCount == 0 {
             Image("MenuBarIcon")
         } else {
             Label {
-                Text(verbatim: "\(model.updates.count)")
+                Text(verbatim: "\(model.updateCount)")
             } icon: {
                 Image("MenuBarIcon")
             }
@@ -36,15 +36,21 @@ struct MenuBarContent: View {
             model.launchGame()
         }
         .disabled(model.gameIsRunning)
+        if model.scriptExtenderState == .needsReapply {
+            Button("Apply the Script Extender Again") { model.reapplyScriptExtender() }
+                .disabled(model.gameIsRunning || model.scriptExtenderTask != nil)
+        }
         Divider()
 
-        if model.updates.isEmpty {
+        if model.updateCount == 0 {
             Text(model.lastUpdateCheck == nil ? String(localized: "Mod updates not checked yet") : String(localized: "All mods up to date"))
         } else {
-            Button(model.updates.count == 1 ? String(localized: "1 mod update available…") : String(localized: "\(model.updates.count) mod updates available…")) {
+            Button(model.updateCount == 1 ? String(localized: "1 update available…") : String(localized: "\(model.updateCount) updates available…")) {
                 show(.updates)
             }
-            Button("Update All") { model.install(model.updates) }
+            if !model.updates.isEmpty {
+                Button("Update All") { model.install(model.updates) }
+            }
         }
         Button(model.isCheckingUpdates ? String(localized: "Checking…") : String(localized: "Check for Mod Updates")) {
             Task { await model.checkForUpdates() }
