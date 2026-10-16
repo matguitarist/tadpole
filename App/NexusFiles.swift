@@ -35,16 +35,38 @@ struct NexusFileSections: View {
         let order = Dictionary(shown.map { ($0.category, $0.categoryOrder) }, uniquingKeysWith: { first, _ in first })
         let categories = order.keys.sorted { (order[$0] ?? 99, $0) < (order[$1] ?? 99, $1) }
         ForEach(categories, id: \.self) { category in
+            let inCategory = shown.filter { $0.category == category }
+            // Mods split into several files (hair packs 1-4…): all at once.
+            let missing = inCategory.filter { $0.isCurrent && !installed.contains($0.fileId) }
             Section {
-                ForEach(shown.filter { $0.category == category }) { file in
+                ForEach(inCategory) { file in
                     row(file, isInstalled: installed.contains(file.fileId))
                 }
             } header: {
-                Text(nexusCategoryTitle(category))
-                    .font(compact ? .subheadline.bold() : .headline)
-                    .padding(.top, compact ? 4 : 0)
+                HStack {
+                    Text(nexusCategoryTitle(category))
+                        .font(compact ? .subheadline.bold() : .headline)
+                    Spacer()
+                    if missing.count >= 2 {
+                        Button(String(localized: "Install All (\(missing.count))")) { install(missing) }
+                            .controlSize(.small)
+                            .help("Install every file in this section you don't have yet")
+                    }
+                }
+                .padding(.top, compact ? 4 : 0)
             }
         }
+    }
+
+    private func install(_ files: [NexusFile]) {
+        model.installFromNexus(files.map { file in
+            BrowserQueueItem(modID: modID, fileID: file.fileId, title: title(of: file))
+        })
+        onInstall()
+    }
+
+    private func title(of file: NexusFile) -> String {
+        model.nexusMods[modID].map { "\($0.name) – \(file.name)" } ?? file.name
     }
 
     private func row(_ file: NexusFile, isInstalled: Bool) -> some View {
@@ -73,11 +95,7 @@ struct NexusFileSections: View {
                     .foregroundStyle(.green)
                     .help("Installed")
             } else {
-                Button("Install") {
-                    let title = model.nexusMods[modID].map { "\($0.name) – \(file.name)" } ?? file.name
-                    model.installFromNexus([BrowserQueueItem(modID: modID, fileID: file.fileId, title: title)])
-                    onInstall()
-                }
+                Button("Install") { install([file]) }
                 .controlSize(compact ? .small : .regular)
             }
         }

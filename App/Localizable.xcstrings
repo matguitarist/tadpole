@@ -44,12 +44,12 @@
         }
       }
     },
-    "**Browse Nexus** searches Baldur's Gate 3 mods. Open one to see its files, then **Install**. **Open the Nexus Website** shows the full site in Tadpole's own browser, where your sign-in is remembered." : {
+    "**Browse Nexus** searches Baldur's Gate 3 mods. Open one to see its files, then **Install**. Mods split into several files (hair packs 1 to 4, for example) have **Install All** next to the section. **Open the Nexus Website** shows the full site in Tadpole's own browser, where your sign-in is remembered." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Parcourir Nexus** cherche des mods de Baldur’s Gate 3. Ouvrez-en un pour voir ses fichiers, puis **Installer**. **Ouvrir le site de Nexus** affiche le site complet dans le navigateur de Tadpole, où votre connexion est mémorisée."
+            "value" : "**Parcourir Nexus** cherche des mods de Baldur’s Gate 3. Ouvrez-en un pour voir ses fichiers, puis **Installer**. Les mods répartis en plusieurs fichiers (des packs de coiffures 1 à 4, par exemple) ont **Tout installer** à côté de la section. **Ouvrir le site de Nexus** affiche le site complet dans le navigateur de Tadpole, où votre connexion est mémorisée."
           }
         }
       }
@@ -1832,6 +1832,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Installer %lld mods"
+          }
+        }
+      }
+    },
+    "Install All (%lld)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout installer (%lld)"
+          }
+        }
+      }
+    },
+    "Install every file in this section you don't have yet" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer tous les fichiers de cette section que vous n’avez pas encore"
           }
         }
       }

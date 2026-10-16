@@ -122,7 +122,7 @@ struct HelpView: View {
 
         case .nexus:
             HelpSection("Browsing") {
-                HelpText("**Browse Nexus** searches Baldur's Gate 3 mods. Open one to see its files, then **Install**. **Open the Nexus Website** shows the full site in Tadpole's own browser, where your sign-in is remembered.")
+                HelpText("**Browse Nexus** searches Baldur's Gate 3 mods. Open one to see its files, then **Install**. Mods split into several files (hair packs 1 to 4, for example) have **Install All** next to the section. **Open the Nexus Website** shows the full site in Tadpole's own browser, where your sign-in is remembered.")
             }
             HelpSection("Free and Premium accounts") {
                 HelpText("Premium accounts download directly. Free accounts download through the Nexus website: Tadpole opens the file's page, you click **Slow download**, and Tadpole catches the download and installs it. With several mods, the next page opens by itself.")
