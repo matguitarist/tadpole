@@ -11,6 +11,7 @@ struct AppCommands: Commands {
     var body: some Commands {
         CommandGroup(replacing: .appInfo) {
             Button("About Tadpole") { AboutPanel.show() }
+            CheckForUpdatesButton()
         }
         // The items are views: unlike a Commands body, a view body is
         // re-evaluated when the model changes, so titles and enabled states
@@ -21,6 +22,18 @@ struct AppCommands: Commands {
         CommandMenu("Game") { GameMenuItems(model: model) }
         CommandGroup(after: .windowArrangement) { WindowMenuItems() }
         CommandGroup(replacing: .help) { HelpMenuItems() }
+    }
+}
+
+/// Tadpole › Check for Updates… (Sparkle).
+private struct CheckForUpdatesButton: View {
+    private let updater = AppUpdater.shared
+
+    var body: some View {
+        if updater.isConfigured {
+            Button("Check for Updates…") { updater.checkForUpdates() }
+                .disabled(!updater.canCheckForUpdates)
+        }
     }
 }
 
@@ -122,5 +135,7 @@ private struct HelpMenuItems: View {
         Divider()
         Link("Baldur's Gate 3 Mods on Nexus Mods", destination: AppLinks.nexusBG3)
         Link("About the Script Extender (Windows only)", destination: AppLinks.scriptExtender)
+        Divider()
+        Link("Tadpole Release Notes", destination: AppLinks.releases)
     }
 }

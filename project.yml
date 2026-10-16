@@ -18,6 +18,10 @@ settings:
 packages:
   TadpoleCore:
     path: TadpoleCore
+  # Self-updates for the app (see "Releasing updates" in DEVELOPMENT.md).
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    exactVersion: 2.10.0
 targets:
   Tadpole:
     type: application
@@ -26,6 +30,13 @@ targets:
       - App
     dependencies:
       - package: TadpoleCore
+      - package: Sparkle
+    # A self-signed app with the hardened runtime can't load separately
+    # signed frameworks (Sparkle) without this.
+    entitlements:
+      path: App/Tadpole.entitlements
+      properties:
+        com.apple.security.cs.disable-library-validation: true
     info:
       path: App/Info.plist
       properties:
@@ -36,6 +47,13 @@ targets:
         CFBundleLocalizations: [en, fr]
         LSApplicationCategoryType: public.app-category.games
         NSHumanReadableCopyright: ""
+        # App updates (Sparkle): release.sh publishes the zip on GitHub
+        # Releases and the feed (appcast.xml) on the main branch. The key
+        # checks that updates were signed with the private key in the
+        # maintainer's Keychain (account "tadpole", not Starseed's).
+        SUFeedURL: https://raw.githubusercontent.com/matguitarist/tadpole/main/appcast.xml
+        SUPublicEDKey: 0XZj4KuoHQlwlljSQeYII/KHzxyB6MyDs/KMGjlP59A=
+        SUEnableAutomaticChecks: true
         # Let users open/drop mods onto the app icon.
         CFBundleDocumentTypes:
           - CFBundleTypeName: Mod Archive

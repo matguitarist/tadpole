@@ -26,6 +26,7 @@ struct SettingsView: View {
 
 private struct GeneralSettings: View {
     @AppStorage(Preferences.theme) private var theme = AppTheme.system
+    private let updater = AppUpdater.shared
     @State private var language = AppLanguage.current
 
     var body: some View {
@@ -54,6 +55,29 @@ private struct GeneralSettings: View {
                 }
                 .pickerStyle(.segmented)
                 .onChange(of: theme) { _, new in new.apply() }
+            }
+            Section {
+                LabeledContent("Version") {
+                    HStack {
+                        Text(verbatim: "\(AppModel.appVersion) (\(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "?"))")
+                        if updater.isConfigured {
+                            Button("Check Now") { updater.checkForUpdates() }
+                                .disabled(!updater.canCheckForUpdates)
+                        }
+                    }
+                }
+                if updater.isConfigured {
+                    Toggle("Check for updates automatically", isOn: Binding(
+                        get: { updater.automaticallyChecks },
+                        set: { updater.automaticallyChecks = $0 }
+                    ))
+                }
+            } header: {
+                Text("Tadpole Updates")
+            } footer: {
+                Text("Updates show what's new before they install. They're checked against Tadpole's own signing key.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
         }
         .formStyle(.grouped)

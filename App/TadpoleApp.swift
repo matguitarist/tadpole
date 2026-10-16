@@ -3,6 +3,8 @@ import SwiftUI
 @main
 struct TadpoleApp: App {
     @State private var model = AppModel.shared
+    /// Started with the app, so it checks for updates on its schedule.
+    private let appUpdater = AppUpdater.shared
 
     var body: some Scene {
         Window("Tadpole", id: "main") {

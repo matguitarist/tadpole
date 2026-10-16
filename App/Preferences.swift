@@ -116,4 +116,5 @@ enum AboutPanel {
 enum AppLinks {
     static let scriptExtender = URL(string: "https://github.com/Norbyte/bg3se")!
     static let nexusBG3 = URL(string: "https://www.nexusmods.com/baldursgate3")!
+    static let releases = URL(string: "https://github.com/matguitarist/tadpole/releases")!
 }
