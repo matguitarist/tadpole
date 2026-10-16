@@ -3,21 +3,22 @@
     <channel>
         <title>Tadpole</title>
         <item>
-            <title>0.3</title>
-            <pubDate>Fri, 16 Oct 2026 13:59:03 -0400</pubDate>
-            <sparkle:version>4</sparkle:version>
-            <sparkle:shortVersionString>0.3</sparkle:shortVersionString>
+            <title>0.4</title>
+            <pubDate>Fri, 16 Oct 2026 15:08:14 -0400</pubDate>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>0.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[## Profiles, requirements and saves
+            <description sparkle:format="markdown"><![CDATA[## Pictures, undo, and links from your browser
 
-- **Profiles**: named load orders to switch between, one per playthrough or per collection. Your changes are kept in the profile in use. The menu is at the top left of Load Order. Collections can be installed into their own profile.
-- **Requirements from Nexus**: a mod's window and details list what its Nexus page requires. Installing a mod that needs mods you don't have offers to install them along, with the author's notes (some are only needed for part of a mod).
-- **Mods in your saves**: each save shows the mods it was made with, and **Use This Save's Mods** loads exactly those.
-- **Backup before Play**: when your mods changed since the last game, Tadpole backs up your latest save before starting the game (Settings → Game).
-- **Import and export load orders**: share yours, or load a friend's, in BG3 Mod Manager's format or as a modsettings.lsx.
-- **After a game with the Script Extender**: each Script Extender mod shows whether its scripts loaded or had errors, and a notification tells you about errors or a crash. Tadpole also tells you when a Script Extender release supports your game build.
+- **Load order**: each mod's picture from Nexus, a filter by name or author, and **Undo** / **Redo** (⌘Z, ⇧⌘Z) for your changes.
+- **Links from Safari and Chrome**: **Mod Manager Download** links work from your usual browser. With Starseed installed, the two apps pass each other the links for their game (Settings → Nexus Mods).
+- **Updates for mods installed from files**: once linked to Nexus, Tadpole finds which version you have and checks for updates, and tells you when it had to guess.
+- **Endorse and track** mods on Nexus from their window or details.
+- **The game's own mod manager**: mods it installed (mod.io) are marked, and Tadpole warns about folders in the Mods folder, which can make the game reset your load order.
+- **Downloads** show their progress, and any failure, in the bar at the bottom of the window.
+- A **setup assistant** welcomes new users (Help → Setup Assistant… opens it again).
 ]]></description>
-            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.3/Tadpole-0.3.zip" length="5571711" type="application/octet-stream" sparkle:edSignature="aPaaL/m/3xAPX35B8nmJhq2g43VwuFVfCTiteP3pT+hWq7GjsKi6PhmzZC0PaheauTygal7cn/fZjxbBtM2+AQ=="/>
+            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.4/Tadpole-0.4.zip" length="5856823" type="application/octet-stream" sparkle:edSignature="nLcH0oQTRSFqT25GVe6a/EUda3tmLwPXpG6nDTk4DiJXl/ZRmoiU9jhLGorsZN3hPSbtttCx7AYm7st9wT23Ag=="/>
         </item>
     </channel>
 </rss>
