@@ -1,5 +1,7 @@
-// Nexus Mods: the API key and account, and mods downloaded from the in-app
-// browser ("Mod Manager Download" links, or archives downloaded directly).
+// Nexus Mods: the API key and account, and mods downloaded from Nexus.
+// Premium accounts download directly. Free accounts go through the in-app
+// browser: Tadpole opens each file's page, the user clicks "Slow download",
+// and the nxm:// link the site hands over is caught and installed.
 
 import AppKit
 import TadpoleCore
@@ -18,6 +20,10 @@ extension AppModel {
     }
 
     static let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "dev"
+
+    static var originsFile: URL {
+        URL.applicationSupportDirectory.appending(path: "Tadpole/nexus-origins.json")
+    }
 
     var nexusClient: NexusClient { NexusClient(apiKey: nexusAPIKey, appVersion: Self.appVersion) }
 
@@ -63,7 +69,36 @@ extension AppModel {
         }
     }
 
-    // MARK: Downloads
+    // MARK: What's installed
+
+    /// Nexus mods with an installed .pak (from downloads made in Tadpole).
+    var installedNexusModIDs: Set<Int> {
+        origins.installedModIDs(installedPaks: Set(mods.map(\.file.lastPathComponent)))
+    }
+
+    /// The installed .pak files that came from this Nexus mod.
+    func installedFiles(ofNexusMod modID: Int) -> [NexusOrigins.Origin] {
+        let installed = Set(mods.map(\.file.lastPathComponent))
+        return origins.byPak.filter { installed.contains($0.key) && $0.value.modID == modID }.map(\.value)
+    }
+
+    // MARK: Installing from Nexus
+
+    /// Installs Nexus files: Premium downloads them now, free accounts get
+    /// each file's page in the browser, in turn.
+    func installFromNexus(_ files: [BrowserQueueItem]) {
+        guard !files.isEmpty else { return }
+        guard nexusAPIKey != nil else {
+            return show("Nexus API Key Needed", String(localized: "Add your personal Nexus Mods API key in Settings to download mods."))
+        }
+        if nexusAccount.user?.isPremium == true {
+            for file in files { download(modID: file.modID, fileID: file.fileID, title: file.title) }
+        } else {
+            let queued = Set(browserQueue.map(\.fileID))
+            browserQueue += files.filter { !queued.contains($0.fileID) }
+            if let first = browserQueue.first { openNexusBrowser(first.pageURL) }
+        }
+    }
 
     func openNexusBrowser(_ url: URL = NexusClient.homeURL) {
         browserRequest = BrowserRequest(url: url)
@@ -77,23 +112,40 @@ extension AppModel {
         guard link.isForBG3 else {
             return show("Not a Baldur's Gate 3 Mod", String(localized: "This link is for “\(link.gameDomain)”. Only Baldur's Gate 3 mods can be installed here."))
         }
+        let queued = browserQueue.first { $0.fileID == link.fileID }
+        download(modID: link.modID, fileID: link.fileID, title: queued?.title, key: link.key, expires: link.expires)
+        browserQueue.removeAll { $0.fileID == link.fileID }
+        if let next = browserQueue.first { openNexusBrowser(next.pageURL) }
+    }
+
+    func skipQueuedDownload() {
+        guard !browserQueue.isEmpty else { return }
+        browserQueue.removeFirst()
+        if let next = browserQueue.first { openNexusBrowser(next.pageURL) }
+    }
+
+    func cancelDownloadQueue() {
+        browserQueue = []
+    }
+
+    private func download(modID: Int, fileID: Int, title: String?, key: String? = nil, expires: String? = nil) {
         guard nexusAPIKey != nil else {
             return show("Nexus API Key Needed", String(localized: "Add your personal Nexus Mods API key in Settings to download mods."))
         }
-        let item = DownloadItem(title: String(localized: "Nexus mod \(link.modID)"))
+        let item = DownloadItem(title: title ?? String(localized: "Nexus mod \(modID)"))
         downloads.insert(item, at: 0)
         let client = nexusClient
-        Task {
-            if let name = try? await client.modName(link.modID) { item.title = name }
+        if title == nil {
+            Task { if let name = try? await client.modName(modID) { item.title = name } }
         }
         Task {
             do {
-                let url = try await client.downloadURL(for: link)
+                let url = try await client.downloadURL(modID: modID, fileID: fileID, key: key, expires: expires)
                 item.state = .downloading
                 let file = try await FileDownloader.download(url) { fraction in
                     Task { @MainActor in item.progress = fraction }
                 }
-                await installDownloaded(file, item: item)
+                await installDownloaded(file, item: item, origin: NexusOrigins.Origin(modID: modID, fileID: fileID))
             } catch {
                 item.state = .failed(Self.describe(error))
             }
@@ -104,17 +156,24 @@ extension AppModel {
     func installBrowserDownload(_ file: URL) {
         let item = DownloadItem(title: file.lastPathComponent)
         downloads.insert(item, at: 0)
-        Task { await installDownloaded(file, item: item) }
+        Task { await installDownloaded(file, item: item, origin: nil) }
     }
 
-    private func installDownloaded(_ file: URL, item: DownloadItem) async {
+    private func installDownloaded(_ file: URL, item: DownloadItem, origin: NexusOrigins.Origin?) async {
         item.state = .installing
-        let outcome = await install([file]).value
+        let outcome = await install([file], quiet: true).value
         try? FileManager.default.removeItem(at: file.deletingLastPathComponent())
         switch outcome {
-        case .installed(let names): item.state = .installed(names)
-        case .nothingToInstall: item.state = .failed(String(localized: "No .pak file in this download. Mods made of loose files or for the Script Extender can't be installed by Tadpole."))
-        case .failed(let message): item.state = .failed(message)
+        case .installed(let mods):
+            item.state = .installed(mods.map(\.name))
+            if let origin {
+                for mod in mods { origins.byPak[mod.file.lastPathComponent] = origin }
+                try? origins.save(to: Self.originsFile)
+            }
+        case .nothingToInstall:
+            item.state = .failed(String(localized: "No .pak file in this download. Mods made of loose files or for the Script Extender can't be installed by Tadpole."))
+        case .failed(let message):
+            item.state = .failed(message)
         }
     }
 
@@ -146,7 +205,29 @@ struct BrowserRequest: Equatable {
     let url: URL
 }
 
-/// One download from Nexus, shown in the browser window.
+/// A Nexus file to download (free accounts: a page waiting in the browser).
+struct BrowserQueueItem: Identifiable, Equatable {
+    let modID: Int
+    let fileID: Int
+    let title: String
+
+    var id: Int { fileID }
+    var pageURL: URL { NexusClient.modManagerDownloadPageURL(modID: modID, fileID: fileID) }
+}
+
+/// A Nexus mod page shown in a sheet (from Browse, or a collection).
+struct NexusModRequest: Identifiable, Equatable {
+    let modID: Int
+    var preview: NexusMod?
+    var id: Int { modID }
+}
+
+struct CollectionRequest: Identifiable, Equatable {
+    let collection: NexusCollection
+    var id: String { collection.slug }
+}
+
+/// One download from Nexus.
 @MainActor
 @Observable
 final class DownloadItem: Identifiable {

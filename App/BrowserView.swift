@@ -21,6 +21,9 @@ struct BrowserView: View {
             if model.nexusAccount.user == nil {
                 keyBanner
                 Divider()
+            } else if let current = model.browserQueue.first {
+                queueBanner(current)
+                Divider()
             }
             WebViewHost(webView: browser.webView)
                 .overlay(alignment: .top) {
@@ -72,6 +75,27 @@ struct BrowserView: View {
         }
     }
 
+    private func queueBanner(_ current: BrowserQueueItem) -> some View {
+        HStack(spacing: 10) {
+            Image(systemName: "arrow.down.circle.fill")
+                .foregroundStyle(.tint)
+                .font(.title3)
+            VStack(alignment: .leading, spacing: 1) {
+                Text("\(current.title) — \(model.browserQueue.count) left")
+                    .font(.headline)
+                Text("Click **Slow download** below. The next mod opens by itself once each download starts.")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer()
+            Button("Skip") { model.skipQueuedDownload() }
+            Button("Stop", role: .cancel) { model.cancelDownloadQueue() }
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 10)
+        .background(.bar)
+    }
+
     private var keyBanner: some View {
         HStack(spacing: 10) {
             Image(systemName: "key.fill")
@@ -120,7 +144,7 @@ private struct DownloadList: View {
     }
 }
 
-private struct DownloadRow: View {
+struct DownloadRow: View {
     let item: DownloadItem
 
     var body: some View {

@@ -6,7 +6,7 @@ struct TadpoleApp: App {
 
     var body: some Scene {
         Window("Tadpole", id: "main") {
-            ContentView()
+            RootView()
                 .environment(model)
                 .frame(minWidth: 820, minHeight: 480)
                 .task {
@@ -31,6 +31,17 @@ struct TadpoleApp: App {
             CommandMenu("Game") {
                 Button("Play Baldur's Gate 3") { model.launchGame() }
                     .keyboardShortcut("l")
+            }
+            CommandGroup(before: .sidebar) {
+                Button("Load Order") { model.sidebarSelection = .loadOrder }
+                    .keyboardShortcut("1")
+                Button("Browse Nexus") { model.sidebarSelection = .browse }
+                    .keyboardShortcut("2")
+                Button("Collections") { model.sidebarSelection = .collections }
+                    .keyboardShortcut("3")
+                Button("Saves") { model.sidebarSelection = .saves }
+                    .keyboardShortcut("4")
+                Divider()
             }
             CommandGroup(after: .windowArrangement) {
                 OpenNexusButton()

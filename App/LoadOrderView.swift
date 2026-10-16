@@ -1,29 +1,20 @@
 import SwiftUI
 import TadpoleCore
 
-struct ContentView: View {
+/// The mods in the Mods folder and the order they load in.
+struct LoadOrderView: View {
     @Environment(AppModel.self) private var model
     @State private var showDetails = true
-    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         @Bindable var model = model
         content
-            .navigationTitle("Tadpole")
+            .navigationTitle("Load Order")
             .navigationSubtitle(subtitle)
             .toolbar { toolbar }
             .inspector(isPresented: $showDetails) {
                 ModDetails()
                     .inspectorColumnWidth(min: 260, ideal: 300, max: 420)
-            }
-            .dropDestination(for: URL.self) { urls, _ in
-                model.install(urls)
-                return true
-            }
-            .alert(model.message?.title ?? "", isPresented: Binding(get: { model.message != nil }, set: { if !$0 { model.message = nil } }), presenting: model.message) { _ in
-                Button("OK") {}
-            } message: { message in
-                Text(message.body)
             }
     }
 
@@ -60,7 +51,7 @@ struct ContentView: View {
                 } description: {
                     Text("Find mods on Nexus Mods, or drop .pak files and archives (.zip, .7z, .rar) on this window.")
                 } actions: {
-                    Button("Browse Nexus Mods") { openWindow(id: BrowserWindow.id) }
+                    Button("Browse Nexus Mods") { model.sidebarSelection = .browse }
                         .buttonStyle(.borderedProminent)
                     Button("Install Mods…") { model.presentInstallPanel() }
                 }
@@ -83,12 +74,6 @@ struct ContentView: View {
                 }
                 .help("Install .pak files or archives (or drop them on the window)")
             }
-            Button {
-                openWindow(id: BrowserWindow.id)
-            } label: {
-                Label("Nexus Mods", systemImage: "globe")
-            }
-            .help("Find mods on Nexus Mods and install them")
             Button {
                 model.openModsFolder()
             } label: {

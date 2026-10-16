@@ -191,3 +191,70 @@ import Testing
         #expect(NXMLink(url: URL(string: "nxm://baldursgate3/collections/abc")!) == nil)
     }
 }
+
+@Suite struct SaveTests {
+    /// Trimmed from a real Patch 8 save.
+    static let saveInfo = """
+    {
+       "Active Party" : { "Characters" : [
+          { "Classes" : [ { "Main" : "Wizard", "Sub" : "" } ], "Level" : 1, "Origin" : "Generic", "Race" : "Human" },
+          { "Level" : 1, "Origin" : "S_TUT_Lab_TrappedDevourer", "Race" : "Aberration" },
+          { "Classes" : [ { "Main" : "Cleric", "Sub" : "TrickeryDomain" } ], "Level" : 1, "Origin" : "Shadowheart", "Race" : "HighHalfElf" }
+       ] },
+       "Current Level" : "TUT_Avernus_C",
+       "Difficulty" : [ "DifficultyMedium", "RulesetLarian" ],
+       "Game Version" : "4.1.1.4251417",
+       "Platform" : "Steam",
+       "Save Name" : "A Nautiloid in Hell - 1h 10m"
+    }
+    """
+
+    func makeSave(in saves: URL, folder: String = "Mat-32212420020__A Nautiloid in Hell - 1h 10m") throws -> URL {
+        let dir = saves.appending(path: folder)
+        try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        let lsv = try PakBuilder.make([.init(path: "meta.lsf", data: Data(count: 64)),
+                                       .init(path: "SaveInfo.json", data: Data(Self.saveInfo.utf8))])
+        try lsv.write(to: dir.appending(path: "A Nautiloid in Hell - 1h 10m.lsv"))
+        try Data().write(to: dir.appending(path: "A Nautiloid in Hell - 1h 10m.WebP"))
+        return dir
+    }
+
+    @Test func readsSaveInfoFromTheLSV() throws {
+        let saves = FileManager.default.temporaryDirectory.appending(path: "tadpole-\(UUID().uuidString)/Story")
+        try makeSave(in: saves)
+        let save = try #require(SaveGame.scan(saves).first)
+        #expect(save.name == "A Nautiloid in Hell - 1h 10m")
+        #expect(save.picture != nil)
+        #expect(save.info?.currentLevel == "TUT_Avernus_C")
+        #expect(save.info?.difficultyName == "Medium")
+        #expect(save.info?.party.map(\.displayOrigin) == ["Generic", "Shadowheart"])  // the devourer has no class
+        #expect(save.info?.party.first?.isPlayerMade == true)
+    }
+
+    @Test func backsUpAndRestores() throws {
+        let root = FileManager.default.temporaryDirectory.appending(path: "tadpole-\(UUID().uuidString)")
+        let saves = root.appending(path: "Story"), backups = root.appending(path: "Backups")
+        let dir = try makeSave(in: saves)
+        let save = try #require(SaveGame.scan(saves).first)
+        try SaveBackups.backUp(save, into: backups)
+        let backup = try #require(SaveBackups.list(backups).first)
+        #expect(backup.saveName == "A Nautiloid in Hell - 1h 10m")
+        #expect(SaveBackups.wouldReplace(backup, in: saves))
+
+        try FileManager.default.removeItem(at: dir)
+        #expect(!SaveBackups.wouldReplace(backup, in: saves))
+        try SaveBackups.restore(backup, into: saves)
+        #expect(SaveGame.scan(saves).first?.info?.saveName == "A Nautiloid in Hell - 1h 10m")
+    }
+
+    @Test func remembersWhereModsCameFrom() throws {
+        var origins = NexusOrigins()
+        origins.byPak["Hair.pak"] = .init(modID: 213, fileID: 9, version: "1.2")
+        origins.byPak["Gone.pak"] = .init(modID: 5, fileID: 6)
+        let url = FileManager.default.temporaryDirectory.appending(path: "tadpole-\(UUID().uuidString)/nexus.json")
+        try origins.save(to: url)
+        let again = NexusOrigins.load(from: url)
+        #expect(again == origins)
+        #expect(again.installedModIDs(installedPaks: ["Hair.pak"]) == [213])
+    }
+}

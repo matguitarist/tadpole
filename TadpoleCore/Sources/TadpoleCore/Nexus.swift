@@ -85,6 +85,12 @@ public struct NexusClient: Sendable {
         URL(string: "https://www.nexusmods.com/\(gameDomain)/mods/\(modID)")!
     }
 
+    /// The website's files tab with the "Mod Manager Download" flow ready for
+    /// one file. Clicking through it sends an nxm:// link back to us.
+    public static func modManagerDownloadPageURL(modID: Int, fileID: Int) -> URL {
+        URL(string: "https://www.nexusmods.com/\(gameDomain)/mods/\(modID)?tab=files&file_id=\(fileID)&nmm=1")!
+    }
+
     /// Nexus's API policy asks for a consistent Application-Name and the
     /// current Application-Version on every request.
     static let applicationName = "Tadpole"

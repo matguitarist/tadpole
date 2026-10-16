@@ -2,6 +2,26 @@
   "sourceLanguage": "en",
   "strings": {
     "": {},
+    "%@ collections": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ collections"
+          }
+        }
+      }
+    },
+    "%@ mods": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ mods"
+          }
+        }
+      }
+    },
     "%@ · Free account": {
       "localizations": {
         "fr": {
@@ -22,12 +42,38 @@
         }
       }
     },
+    "%@ — %lld left": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ — %2$lld left"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ — encore %lld"
+          }
+        }
+      }
+    },
     "%lld": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld"
+          }
+        }
+      }
+    },
+    "%lld mods": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld mods"
           }
         }
       }
@@ -58,12 +104,32 @@
         }
       }
     },
+    "%lld saves": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld sauvegardes"
+          }
+        }
+      }
+    },
     "1 requirement issue": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "1 problème de prérequis"
+          }
+        }
+      }
+    },
+    "API key": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé d’API"
           }
         }
       }
@@ -98,12 +164,12 @@
         }
       }
     },
-    "API key": {
+    "Archived": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clé d’API"
+            "value": "Archivé"
           }
         }
       }
@@ -118,12 +184,82 @@
         }
       }
     },
+    "Autosave": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarde auto"
+          }
+        }
+      }
+    },
     "Back": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Précédent"
+          }
+        }
+      }
+    },
+    "Back Up": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarder"
+          }
+        }
+      }
+    },
+    "Back Up %lld Saves": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarder %lld parties"
+          }
+        }
+      }
+    },
+    "Back Up All": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout sauvegarder"
+          }
+        }
+      }
+    },
+    "Back Up Selected": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarder la sélection"
+          }
+        }
+      }
+    },
+    "Backups": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copies de sauvegarde"
+          }
+        }
+      }
+    },
+    "Balanced": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Équilibré"
           }
         }
       }
@@ -148,22 +284,42 @@
         }
       }
     },
+    "Barbarian": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barbare"
+          }
+        }
+      }
+    },
+    "Bard": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barde"
+          }
+        }
+      }
+    },
+    "Browse Nexus": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parcourir Nexus"
+          }
+        }
+      }
+    },
     "Browse Nexus Mods": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Parcourir Nexus Mods"
-          }
-        }
-      }
-    },
-    "by %@": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "par %@"
           }
         }
       }
@@ -238,6 +394,66 @@
         }
       }
     },
+    "Cleric": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clerc"
+          }
+        }
+      }
+    },
+    "Click **Slow download** below. The next mod opens by itself once each download starts.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cliquez sur **Slow download** ci-dessous. Le mod suivant s’ouvre tout seul dès que chaque téléchargement démarre."
+          }
+        }
+      }
+    },
+    "Collections": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collections"
+          }
+        }
+      }
+    },
+    "Collections made for Windows often include Script Extender mods: they install, but their scripted features don't work on a Mac.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les collections faites pour Windows contiennent souvent des mods pour le Script Extender : ils s’installent, mais leurs fonctions scriptées ne marchent pas sur Mac."
+          }
+        }
+      }
+    },
+    "Copy saves to “Larian Studios/Tadpole Save Backups” as .zip files": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copier les sauvegardes dans « Larian Studios/Tadpole Save Backups » en fichiers .zip"
+          }
+        }
+      }
+    },
+    "Couldn't Back Up": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de sauvegarder"
+          }
+        }
+      }
+    },
     "Couldn't Install": {
       "localizations": {
         "fr": {
@@ -248,12 +464,52 @@
         }
       }
     },
+    "Couldn't Load Collection": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de charger la collection"
+          }
+        }
+      }
+    },
+    "Couldn't Load Files": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de charger les fichiers"
+          }
+        }
+      }
+    },
     "Couldn't Move to the Trash": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Impossible de placer dans la corbeille"
+          }
+        }
+      }
+    },
+    "Couldn't Reach Nexus": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de joindre Nexus"
+          }
+        }
+      }
+    },
+    "Couldn't Restore": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de restaurer"
           }
         }
       }
@@ -288,6 +544,16 @@
         }
       }
     },
+    "Done": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé"
+          }
+        }
+      }
+    },
     "Download Failed": {
       "localizations": {
         "fr": {
@@ -318,22 +584,52 @@
         }
       }
     },
+    "Druid": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Druide"
+          }
+        }
+      }
+    },
+    "Everything Is Installed": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout est installé"
+          }
+        }
+      }
+    },
+    "Explorer": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explorateur"
+          }
+        }
+      }
+    },
+    "Fighter": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guerrier"
+          }
+        }
+      }
+    },
     "File": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Fichier"
-          }
-        }
-      }
-    },
-    "Find mods on Nexus Mods and install them": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trouver des mods sur Nexus Mods et les installer"
           }
         }
       }
@@ -388,12 +684,72 @@
         }
       }
     },
+    "Game version %@": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version du jeu %@"
+          }
+        }
+      }
+    },
+    "Get Mods": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obtenir des mods"
+          }
+        }
+      }
+    },
     "Hide key": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Masquer la clé"
+          }
+        }
+      }
+    },
+    "Honour": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Honneur"
+          }
+        }
+      }
+    },
+    "In the Game": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans le jeu"
+          }
+        }
+      }
+    },
+    "Install": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer"
+          }
+        }
+      }
+    },
+    "Install %lld Mods": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer %lld mods"
           }
         }
       }
@@ -424,6 +780,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Installer des mods…"
+          }
+        }
+      }
+    },
+    "Installed": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installé"
           }
         }
       }
@@ -468,6 +834,16 @@
         }
       }
     },
+    "Kept in “Documents/Larian Studios/Tadpole Save Backups”.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conservées dans « Documents/Larian Studios/Tadpole Save Backups »."
+          }
+        }
+      }
+    },
     "Keychain error %d": {
       "localizations": {
         "fr": {
@@ -488,12 +864,32 @@
         }
       }
     },
+    "Library": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bibliothèque"
+          }
+        }
+      }
+    },
     "Listed, but its .pak isn't in the Mods folder": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Listé, mais son .pak n’est pas dans le dossier Mods"
+          }
+        }
+      }
+    },
+    "Load More": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher plus"
           }
         }
       }
@@ -528,6 +924,26 @@
         }
       }
     },
+    "Main": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Principal"
+          }
+        }
+      }
+    },
+    "Miscellaneous": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Divers"
+          }
+        }
+      }
+    },
     "Mods": {
       "localizations": {
         "fr": {
@@ -538,12 +954,62 @@
         }
       }
     },
+    "Mods (%lld)": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mods (%lld)"
+          }
+        }
+      }
+    },
     "Mods load from top to bottom; drag to reorder.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Les mods se chargent de haut en bas ; faites-les glisser pour changer l’ordre."
+          }
+        }
+      }
+    },
+    "Monk": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moine"
+          }
+        }
+      }
+    },
+    "Most Downloaded": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les plus téléchargés"
+          }
+        }
+      }
+    },
+    "Most Endorsed": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les plus appréciés"
+          }
+        }
+      }
+    },
+    "Move %lld saves to the Trash?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placer %lld sauvegardes dans la corbeille ?"
           }
         }
       }
@@ -578,6 +1044,16 @@
         }
       }
     },
+    "Move “%@” to the Trash?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placer « %@ » dans la corbeille ?"
+          }
+        }
+      }
+    },
     "Needed to download mods. Sign in to Nexus, open your account's API Keys page, and copy the “Personal API Key” at the bottom. It's stored in your Keychain.": {
       "localizations": {
         "fr": {
@@ -588,32 +1064,22 @@
         }
       }
     },
+    "Newest": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les plus récents"
+          }
+        }
+      }
+    },
     "Nexus API Key Needed": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Clé d’API Nexus nécessaire"
-          }
-        }
-      }
-    },
-    "Nexus didn't return a download link for this file.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nexus n’a renvoyé aucun lien de téléchargement pour ce fichier."
-          }
-        }
-      }
-    },
-    "Nexus mod %lld": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mod Nexus %lld"
           }
         }
       }
@@ -634,6 +1100,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Clé d’API Nexus Mods"
+          }
+        }
+      }
+    },
+    "Nexus didn't return a download link for this file.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nexus n’a renvoyé aucun lien de téléchargement pour ce fichier."
+          }
+        }
+      }
+    },
+    "Nexus mod %lld": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mod Nexus %lld"
           }
         }
       }
@@ -688,26 +1174,6 @@
         }
       }
     },
-    "No mod description inside: the game always loads these. Move one to the Trash to stop it.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sans description de mod : le jeu les charge toujours. Placez-en un dans la corbeille pour l’arrêter."
-          }
-        }
-      }
-    },
-    "No mod description inside: the game always loads this file. Move it to the Trash to stop it.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sans description de mod : le jeu charge toujours ce fichier. Placez-le dans la corbeille pour l’arrêter."
-          }
-        }
-      }
-    },
     "No Mod Selected": {
       "localizations": {
         "fr": {
@@ -724,6 +1190,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aucun mod pour l’instant"
+          }
+        }
+      }
+    },
+    "No Saves Yet": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune sauvegarde pour l’instant"
+          }
+        }
+      }
+    },
+    "No mod description inside: the game always loads these. Move one to the Trash to stop it.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans description de mod : le jeu les charge toujours. Placez-en un dans la corbeille pour l’arrêter."
+          }
+        }
+      }
+    },
+    "No mod description inside: the game always loads this file. Move it to the Trash to stop it.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans description de mod : le jeu charge toujours ce fichier. Placez-le dans la corbeille pour l’arrêter."
           }
         }
       }
@@ -768,12 +1264,12 @@
         }
       }
     },
-    "Open in Default Browser": {
+    "Old version": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ouvrir dans le navigateur par défaut"
+            "value": "Ancienne version"
           }
         }
       }
@@ -798,6 +1294,26 @@
         }
       }
     },
+    "Open Nexus Mods in Tadpole's browser": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir Nexus Mods dans le navigateur de Tadpole"
+          }
+        }
+      }
+    },
+    "Open in Default Browser": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir dans le navigateur par défaut"
+          }
+        }
+      }
+    },
     "Open the Mods folder in Finder": {
       "localizations": {
         "fr": {
@@ -818,6 +1334,26 @@
         }
       }
     },
+    "Open the Nexus Website": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le site de Nexus"
+          }
+        }
+      }
+    },
+    "Open the folder with your save backups": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le dossier de vos copies de sauvegarde"
+          }
+        }
+      }
+    },
     "Open this page in your default browser": {
       "localizations": {
         "fr": {
@@ -828,12 +1364,42 @@
         }
       }
     },
+    "Optional": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optionnel"
+          }
+        }
+      }
+    },
+    "Optional (%lld)": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optionnels (%lld)"
+          }
+        }
+      }
+    },
     "Order by Requirements": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Trier selon les prérequis"
+          }
+        }
+      }
+    },
+    "Paladin": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paladin"
           }
         }
       }
@@ -888,6 +1454,16 @@
         }
       }
     },
+    "Quicksave": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegarde rapide"
+          }
+        }
+      }
+    },
     "Quit Baldur's Gate 3 First": {
       "localizations": {
         "fr": {
@@ -898,12 +1474,42 @@
         }
       }
     },
+    "Ranger": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rôdeur"
+          }
+        }
+      }
+    },
     "Read the Mods folder and the load order again": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Relire le dossier Mods et l’ordre de chargement"
+          }
+        }
+      }
+    },
+    "Read the saves again": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relire les sauvegardes"
+          }
+        }
+      }
+    },
+    "Recently Updated": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mis à jour récemment"
           }
         }
       }
@@ -928,12 +1534,62 @@
         }
       }
     },
+    "Replace": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remplacer"
+          }
+        }
+      }
+    },
+    "Replace “%@”?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remplacer « %@ » ?"
+          }
+        }
+      }
+    },
     "Requires": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Nécessite"
+          }
+        }
+      }
+    },
+    "Restore": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurer"
+          }
+        }
+      }
+    },
+    "Restore saves while the game isn't running, so it sees them.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurez les sauvegardes quand le jeu est fermé, pour qu’il les voie."
+          }
+        }
+      }
+    },
+    "Rogue": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roublard"
           }
         }
       }
@@ -958,12 +1614,52 @@
         }
       }
     },
+    "Saves": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauvegardes"
+          }
+        }
+      }
+    },
+    "Saves appear here once you've played Baldur's Gate 3.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les sauvegardes apparaissent ici une fois que vous avez joué à Baldur’s Gate 3."
+          }
+        }
+      }
+    },
     "Script Extender": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Script Extender"
+          }
+        }
+      }
+    },
+    "Search collections": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher des collections"
+          }
+        }
+      }
+    },
+    "Search mods": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher des mods"
           }
         }
       }
@@ -988,6 +1684,16 @@
         }
       }
     },
+    "Show Backups in Finder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher les copies dans le Finder"
+          }
+        }
+      }
+    },
     "Show in Finder": {
       "localizations": {
         "fr": {
@@ -1008,12 +1714,42 @@
         }
       }
     },
+    "Show old files": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher les anciens fichiers"
+          }
+        }
+      }
+    },
     "Show or hide mod details": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Afficher ou masquer les détails du mod"
+          }
+        }
+      }
+    },
+    "Show this mod's page": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher la page de ce mod"
+          }
+        }
+      }
+    },
+    "Skip": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passer"
           }
         }
       }
@@ -1028,12 +1764,42 @@
         }
       }
     },
+    "Sorcerer": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ensorceleur"
+          }
+        }
+      }
+    },
+    "Sort": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trier"
+          }
+        }
+      }
+    },
     "Stop": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Arrêter"
+          }
+        }
+      }
+    },
+    "Tactician": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tacticien"
           }
         }
       }
@@ -1108,32 +1874,32 @@
         }
       }
     },
+    "This save is still in the game. Restoring puts the backed-up version in its place; the current one goes to the Trash.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette sauvegarde est toujours dans le jeu. La restauration met la copie à sa place ; l’actuelle va dans la corbeille."
+          }
+        }
+      }
+    },
+    "Try Again": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réessayer"
+          }
+        }
+      }
+    },
     "Turn this mod on to check": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Activez ce mod pour vérifier"
-          }
-        }
-      }
-    },
-    "Unsupported Link": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lien non pris en charge"
-          }
-        }
-      }
-    },
-    "Uses Norbyte's Script Extender, which is only available on Windows. Its scripted features won't work on a Mac; parts that don't need it may still work.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Utilise le Script Extender de Norbyte, qui n’existe que sur Windows. Ses fonctions scriptées ne marcheront pas sur Mac ; les parties qui n’en ont pas besoin peuvent fonctionner."
           }
         }
       }
@@ -1148,6 +1914,36 @@
         }
       }
     },
+    "Unsupported Link": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lien non pris en charge"
+          }
+        }
+      }
+    },
+    "Update": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mise à jour"
+          }
+        }
+      }
+    },
+    "Uses Norbyte's Script Extender, which is only available on Windows. Its scripted features won't work on a Mac; parts that don't need it may still work.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilise le Script Extender de Norbyte, qui n’existe que sur Windows. Ses fonctions scriptées ne marcheront pas sur Mac ; les parties qui n’en ont pas besoin peuvent fonctionner."
+          }
+        }
+      }
+    },
     "Version": {
       "localizations": {
         "fr": {
@@ -1158,12 +1954,62 @@
         }
       }
     },
+    "View on Nexus Mods": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voir sur Nexus Mods"
+          }
+        }
+      }
+    },
+    "Warlock": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Occultiste"
+          }
+        }
+      }
+    },
+    "Wizard": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Magicien"
+          }
+        }
+      }
+    },
+    "You can get it back from the Trash in Finder.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous pouvez la récupérer dans la corbeille depuis le Finder."
+          }
+        }
+      }
+    },
     "Your Nexus Mods API key was rejected. Check it in Settings.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Votre clé d’API Nexus Mods a été refusée. Vérifiez-la dans les Réglages."
+          }
+        }
+      }
+    },
+    "by %@": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "par %@"
           }
         }
       }

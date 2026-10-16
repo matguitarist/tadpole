@@ -26,9 +26,20 @@ final class AppModel {
     var downloads: [DownloadItem] = []
     /// A page to show in the Nexus browser window.
     var browserRequest: BrowserRequest?
+    /// Free accounts: Nexus file pages to click "Slow download" on, in turn.
+    var browserQueue: [BrowserQueueItem] = []
+    var origins = NexusOrigins.load(from: AppModel.originsFile)
+    var sidebarSelection: SidebarItem? = .loadOrder
+    var nexusSheet: NexusModRequest?
+    var collectionSheet: CollectionRequest?
+
+    // Saves (AppModel+Saves.swift)
+    var saves: [SaveGame] = []
+    var saveBackups: [SaveBackup] = []
+    var isLoadingSaves = false
 
     enum InstallOutcome {
-        case installed([String])
+        case installed([PakMod])
         case nothingToInstall
         case failed(String)
     }
@@ -176,7 +187,7 @@ final class AppModel {
                          String(localized: "No .pak file was found in: \(result.skipped.formatted(.list(type: .and))). Mods made of loose files or for the Script Extender can't be installed this way."))
                 }
                 if let first = installed.first { selection = first.id }
-                return installed.isEmpty ? .nothingToInstall : .installed(installed.map(\.name))
+                return installed.isEmpty ? .nothingToInstall : .installed(installed)
             } catch {
                 if !quiet { show("Couldn't Install", error.localizedDescription) }
                 return .failed(error.localizedDescription)

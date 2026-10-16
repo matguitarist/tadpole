@@ -22,6 +22,11 @@ public struct GamePaths: Sendable {
 
     public var modsFolder: URL { documents.appending(path: "Mods", directoryHint: .isDirectory) }
     public var modSettings: URL { documents.appending(path: "PlayerProfiles/Public/modsettings.lsx") }
+    public var saves: URL { documents.appending(path: "PlayerProfiles/Public/Savegames/Story", directoryHint: .isDirectory) }
+    /// Next to the game's folder, so they survive reinstalling the game.
+    public var saveBackups: URL {
+        documents.deletingLastPathComponent().appending(path: "Tadpole Save Backups", directoryHint: .isDirectory)
+    }
 
     /// The folder exists once the game has been run.
     public var gameHasRun: Bool {
