@@ -46,6 +46,12 @@ targets:
         CFBundleDevelopmentRegion: en
         CFBundleLocalizations: [en, fr]
         LSApplicationCategoryType: public.app-category.games
+        # "Mod Manager Download" links from the browser; Stardew Valley's go
+        # on to Starseed (NXMRouting).
+        CFBundleURLTypes:
+          - CFBundleURLName: Nexus Mods download link
+            CFBundleURLSchemes: [nxm]
+            CFBundleTypeRole: Viewer
         NSHumanReadableCopyright: ""
         # App updates (Sparkle): release.sh publishes the zip on GitHub
         # Releases and the feed (appcast.xml) on the main branch. The key

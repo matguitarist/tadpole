@@ -152,7 +152,7 @@ struct HelpView: View {
             HelpSection("Free and Premium accounts") {
                 HelpText("Premium accounts download directly. Free accounts download through the Nexus website: Tadpole opens the file's page, you click **Slow download**, and Tadpole catches the download and installs it. With several mods, the next page opens by itself.")
                 HelpText("Once a download starts, the browser closes and the download goes on in the sidebar's **Downloads** list. You can keep the browser open in **Settings → Nexus Mods**.")
-                HelpText("Tadpole catches **Mod Manager Download** links only in its own browser, so it doesn't take them from Starseed or another mod manager in Safari or Chrome.")
+                HelpText("**Mod Manager Download** links work from Safari or Chrome too. If Starseed is installed, the two apps share them: whichever opens a link passes it to the other when it's for the other game. **Settings → Nexus Mods** shows which app opens them.")
             }
             HelpSection("Updates") {
                 HelpText("Tadpole checks Nexus for new versions of the mods it downloaded, at launch and every 6 hours, and notifies you when it finds some. **Updates** lists them with what changed; **Update** or **Update All** installs them. The old .pak goes to the Trash and the mod keeps its place in the load order.")

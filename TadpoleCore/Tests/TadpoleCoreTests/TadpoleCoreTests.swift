@@ -775,3 +775,13 @@ import Testing
         #expect(InstalledFileGuess.normalized(" ") == nil)
     }
 }
+
+@Suite struct NXMRoutingTests {
+    @Test func routesLinksByGame() {
+        #expect(NXMRouting.route(URL(string: "nxm://baldursgate3/mods/125/files/122054?key=a&expires=1")!) == .handle)
+        #expect(NXMRouting.route(URL(string: "nxm://BaldursGate3/collections/abc/revisions/3")!) == .handle)
+        #expect(NXMRouting.route(URL(string: "nxm://stardewvalley/mods/1/files/2")!) == .forward(bundleIdentifier: "local.stardew-mod-manager", appName: "Starseed"))
+        #expect(NXMRouting.route(URL(string: "nxm://skyrimspecialedition/mods/1/files/2")!) == .unsupported(gameDomain: "skyrimspecialedition"))
+        #expect(NXMRouting.route(URL(string: "https://www.nexusmods.com")!) == nil)
+    }
+}

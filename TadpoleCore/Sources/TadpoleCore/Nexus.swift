@@ -320,3 +320,25 @@ public enum FileDownloader {
         }
     }
 }
+
+/// nxm:// links from the browser ("Mod Manager Download"): Tadpole handles
+/// Baldur's Gate 3's, and passes Stardew Valley's to Starseed (which passes
+/// Baldur's Gate 3's back), so either app can be the browser's handler.
+public enum NXMRouting: Equatable, Sendable {
+    case handle
+    /// For another mod manager (its bundle identifier).
+    case forward(bundleIdentifier: String, appName: String)
+    case unsupported(gameDomain: String)
+
+    /// The other apps, by Nexus game domain.
+    public static let otherApps: [String: (bundleIdentifier: String, name: String)] = [
+        "stardewvalley": ("local.stardew-mod-manager", "Starseed"),
+    ]
+
+    public static func route(_ url: URL) -> NXMRouting? {
+        guard url.scheme?.lowercased() == "nxm", let domain = url.host?.lowercased(), !domain.isEmpty else { return nil }
+        if domain == NexusClient.gameDomain { return .handle }
+        if let app = otherApps[domain] { return .forward(bundleIdentifier: app.bundleIdentifier, appName: app.name) }
+        return .unsupported(gameDomain: domain)
+    }
+}

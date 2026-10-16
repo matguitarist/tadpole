@@ -232,6 +232,16 @@ private struct NexusSettings: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
+
+            Section {
+                LinkHandlerRow()
+            } header: {
+                Text("Links from Safari and Chrome")
+            } footer: {
+                Text("“Mod Manager Download” links clicked in your usual browser open in one app. Tadpole and Starseed pass each other the links for their game, so either works for both.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
             Section {
                 Toggle("Check for mod updates at launch and every 6 hours", isOn: $checkModUpdates)
                 Toggle("Notify me when updates are found", isOn: $notifyModUpdates)
@@ -313,5 +323,35 @@ struct NexusAccountStatus: View {
                 .foregroundStyle(.red)
                 .lineLimit(2)
         }
+    }
+}
+
+/// Which app opens nxm:// links from the browser, and making it Tadpole.
+private struct LinkHandlerRow: View {
+    private static let probe = URL(string: "nxm://baldursgate3/mods/1/files/1")!
+    @State private var handler: URL?
+
+    var body: some View {
+        LabeledContent("Opened by") {
+            HStack {
+                if let handler {
+                    Text(verbatim: FileManager.default.displayName(atPath: handler.path(percentEncoded: false)))
+                } else {
+                    Text("No app").foregroundStyle(.secondary)
+                }
+                if handler.flatMap({ Bundle(url: $0)?.bundleIdentifier }) != Bundle.main.bundleIdentifier {
+                    Button("Use Tadpole") {
+                        NSWorkspace.shared.setDefaultApplication(at: Bundle.main.bundleURL, toOpenURLsWithScheme: "nxm") { _ in
+                            Task { @MainActor in refresh() }
+                        }
+                    }
+                }
+            }
+        }
+        .onAppear(perform: refresh)
+    }
+
+    private func refresh() {
+        handler = NSWorkspace.shared.urlForApplication(toOpen: Self.probe)
     }
 }

@@ -236,6 +236,33 @@ extension AppModel {
         }
     }
 
+    /// A link from Safari or Chrome: Baldur's Gate 3's are installed (a
+    /// collection link opens the collection), Stardew Valley's go on to
+    /// Starseed, others are explained.
+    func openNXMFromBrowser(_ url: URL) {
+        switch NXMRouting.route(url) {
+        case .handle:
+            NSApp.activate()
+            let parts = url.path.split(separator: "/")
+            if parts.first == "collections", parts.count >= 2 {
+                collectionSheet = CollectionRequest(collection: NexusCollection(slug: String(parts[1])))
+            } else {
+                handleNXMLink(url)
+            }
+        case .forward(let bundleIdentifier, let appName):
+            guard let app = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleIdentifier) else {
+                NSApp.activate()
+                return show("Not a Baldur's Gate 3 Mod", String(localized: "This link is for \(appName), which isn't installed."))
+            }
+            NSWorkspace.shared.open([url], withApplicationAt: app, configuration: NSWorkspace.OpenConfiguration())
+        case .unsupported(let domain):
+            NSApp.activate()
+            show("Not a Baldur's Gate 3 Mod", String(localized: "This link is for “\(domain)”. Only Baldur's Gate 3 mods can be installed here."))
+        case nil:
+            break
+        }
+    }
+
     /// The download continues in the main window: close the browser
     /// (unless that's turned off in Settings).
     func browserFinished() {

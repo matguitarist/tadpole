@@ -80,6 +80,27 @@ public struct NexusCollection: Identifiable, Hashable, Sendable {
     public var pageURL: URL {
         URL(string: "https://www.nexusmods.com/games/\(NexusClient.gameDomain)/collections/\(slug)")!
     }
+
+    /// A collection known only by its slug (from a link): the rest loads
+    /// with its revision.
+    public init(slug: String) {
+        self.init(slug: slug, name: slug, summary: nil, author: nil, endorsements: nil, totalDownloads: nil,
+                  tileImageURL: nil, latestRevision: nil, modCount: nil, totalSize: nil)
+    }
+
+    init(slug: String, name: String, summary: String?, author: String?, endorsements: Int?, totalDownloads: Int?,
+         tileImageURL: URL?, latestRevision: Int?, modCount: Int?, totalSize: Int64?) {
+        self.slug = slug
+        self.name = name
+        self.summary = summary
+        self.author = author
+        self.endorsements = endorsements
+        self.totalDownloads = totalDownloads
+        self.tileImageURL = tileImageURL
+        self.latestRevision = latestRevision
+        self.modCount = modCount
+        self.totalSize = totalSize
+    }
 }
 
 /// One pinned file in a collection revision.

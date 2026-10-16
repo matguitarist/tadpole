@@ -126,4 +126,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows: Bool) -> Bool {
         true
     }
+
+    /// "Mod Manager Download" links from the browser (nxm://).
+    func application(_ application: NSApplication, open urls: [URL]) {
+        for url in urls { AppModel.shared.openNXMFromBrowser(url) }
+    }
 }
