@@ -85,6 +85,9 @@ private struct ModsMenuItems: View {
         Button("Reload") { model.load() }
             .keyboardShortcut("r")
         Button("Order by Requirements") { model.sortByDependencies() }
+        Menu("Profiles") {
+            ProfileMenuItems(model: model)
+        }
             .disabled(model.enabledMods.count < 2)
         Divider()
         Button("Check for Mod Updates") {

@@ -33,6 +33,10 @@ struct RootView: View {
         .sheet(item: $model.nexusSheet) { NexusModSheet(request: $0) }
         .sheet(item: $model.collectionSheet) { CollectionSheet(request: $0) }
         .sheet(item: $model.linkSheet) { LinkNexusSheet(mod: $0) }
+        .sheet(isPresented: $model.showProfiles) { ManageProfilesSheet() }
+        // From the toolbar or menus; Manage Profiles shows its own.
+        .sheet(item: Binding(get: { model.showProfiles ? nil : model.profileNamePrompt },
+                             set: { model.profileNamePrompt = $0 })) { ProfileNameSheet(prompt: $0) }
         .onChange(of: model.browserRequest) { _, request in
             if request != nil { openWindow(id: BrowserWindow.id) }
         }

@@ -134,6 +134,8 @@ struct CollectionSheet: View {
     @State private var error: String?
     @State private var selectedOptional: Set<Int> = []  // file IDs
     @AppStorage(Preferences.skipScriptExtenderMods) private var skipScriptExtender = false
+    /// Install into a new profile named after the collection.
+    @State private var ownProfile = false
 
     private var collection: NexusCollection { revision?.collection ?? request.collection }
 
@@ -300,16 +302,24 @@ struct CollectionSheet: View {
                     .toggleStyle(.checkbox)
                     .help("Don't download the mods that need Norbyte's Script Extender: their scripted features can't work on a Mac.")
             }
+            Toggle("In a new profile", isOn: $ownProfile)
+                .toggleStyle(.checkbox)
+                .help("Make a profile named after the collection with only its mods, and switch to it. Your current load order stays in its own profile.")
             Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction)
             let missing = toInstall
             let allInstalled = revision?.mods.allSatisfy { $0.isOptional || model.installedNexusModIDs.contains($0.modID) } ?? false
             Button(!missing.isEmpty ? String(localized: "Install \(missing.count) Mods")
+                   : ownProfile ? String(localized: "Make Profile")
                    : allInstalled ? String(localized: "Everything Is Installed") : String(localized: "Nothing to Install")) {
+                if ownProfile, let revision {
+                    let chosen = revision.mods.filter { !$0.isOptional || selectedOptional.contains($0.fileID) }
+                    model.startProfile(forCollection: collection, mods: chosen)
+                }
                 model.installFromNexus(missing.map { BrowserQueueItem(modID: $0.modID, fileID: $0.fileID, title: $0.modName) })
                 dismiss()
             }
             .keyboardShortcut(.defaultAction)
-            .disabled(missing.isEmpty)
+            .disabled(missing.isEmpty && !ownProfile)
         }
     }
 

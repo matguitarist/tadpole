@@ -69,6 +69,13 @@ struct MenuBarContent: View {
         }
         Divider()
 
+        Menu(model.activeProfileName.map { String(localized: "Profile: \($0)") } ?? String(localized: "Profiles")) {
+            ProfileMenuItems(model: model)
+        }
+        .onChange(of: model.showProfiles) { _, show in if show { showMainWindow() } }
+        .onChange(of: model.profileNamePrompt) { _, prompt in if prompt != nil { showMainWindow() } }
+        Divider()
+
         Button("Browse Nexus…") { show(.browse) }
         Button("Collections…") { show(.collections) }
         Button("Back Up All Saves") {

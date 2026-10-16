@@ -4,6 +4,22 @@
     "" : {
 
     },
+    "“%@” lists %lld mods that aren't in the Mods folder: %@. Install them to load them; the profile keeps them." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "“%1$@” lists %2$lld mods that aren't in the Mods folder: %3$@. Install them to load them; the profile keeps them."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "« %@ » liste %lld mods qui ne sont pas dans le dossier Mods : %@. Installez-les pour les charger ; le profil les garde."
+          }
+        }
+      }
+    },
     "“%@” needs other mods" : {
       "localizations" : {
         "fr" : {
@@ -240,6 +256,16 @@
         }
       }
     },
+    "%@ copy" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ copie"
+          }
+        }
+      }
+    },
     "%@ mods" : {
       "localizations" : {
         "fr" : {
@@ -356,6 +382,16 @@
         }
       }
     },
+    "%lld not installed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld non installés"
+          }
+        }
+      }
+    },
     "%lld requirement issues" : {
       "localizations" : {
         "fr" : {
@@ -406,6 +442,16 @@
         }
       }
     },
+    "1 mod" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 mod"
+          }
+        }
+      }
+    },
     "1 mod loaded" : {
       "localizations" : {
         "fr" : {
@@ -432,6 +478,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 mod a besoin du Script Extender. Il est installé : il devrait marcher, dans la mesure où la version macOS le prend en charge."
+          }
+        }
+      }
+    },
+    "1 not installed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 non installé"
           }
         }
       }
@@ -476,6 +532,16 @@
         }
       }
     },
+    "A copy of the load order now. Changes you make next are kept in the new profile." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une copie de l’ordre de chargement actuel. Les changements suivants sont gardés dans le nouveau profil."
+          }
+        }
+      }
+    },
     "A crash report was saved. Open Tadpole to see it." : {
       "localizations" : {
         "fr" : {
@@ -502,6 +568,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La fenêtre et les détails d’un mod listent ce que sa page Nexus exige : une coche verte quand vous l’avez, **Voir** pour ouvrir ceux qui manquent. Quand vous installez un mod qui a besoin de mods que vous n’avez pas, Tadpole les liste, avec les notes de l’auteur, pour les installer en même temps. Décochez ceux que les notes disent facultatifs."
+          }
+        }
+      }
+    },
+    "A profile already has that name." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un profil porte déjà ce nom."
+          }
+        }
+      }
+    },
+    "A profile can list mods you don't have (after deleting one, or from a friend's list): they stay in it, and Tadpole tells you which when you switch. When you install a collection, tick **In a new profile** to give it its own." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un profil peut lister des mods que vous n’avez pas (après en avoir supprimé un, ou d’après la liste d’un ami) : ils y restent, et Tadpole vous dit lesquels quand vous changez de profil. Quand vous installez une collection, cochez **Dans un nouveau profil** pour lui donner le sien."
+          }
+        }
+      }
+    },
+    "A profile is a load order with a name: one per playthrough, one per collection… The menu at the top left of **Load Order** shows the profile in use; pick another to switch. Switching writes that profile's load order; the one you leave keeps yours, so switching back returns to exactly that list." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un profil est un ordre de chargement avec un nom : un par partie, un par collection… Le menu en haut à gauche de **Ordre de chargement** affiche le profil utilisé ; choisissez-en un autre pour changer. Changer écrit l’ordre de chargement de ce profil ; celui que vous quittez garde le vôtre, donc revenir redonne exactement cette liste."
           }
         }
       }
@@ -1136,6 +1232,16 @@
         }
       }
     },
+    "Changes you make (turning mods on and off, the order) are kept in the profile in use. **New Profile…** copies the load order now; **New Empty Profile…** starts with every mod off. **Manage Profiles…** renames, duplicates and deletes them. Mods stay installed whatever the profile." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos changements (activer et désactiver des mods, l’ordre) sont gardés dans le profil utilisé. **Nouveau profil…** copie l’ordre de chargement actuel ; **Nouveau profil vide…** commence avec tous les mods désactivés. **Gérer les profils…** les renomme, les duplique et les supprime. Les mods restent installés quel que soit le profil."
+          }
+        }
+      }
+    },
     "Check Again" : {
       "localizations" : {
         "fr" : {
@@ -1456,6 +1562,16 @@
         }
       }
     },
+    "Couldn't Save Profiles" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’enregistrer les profils"
+          }
+        }
+      }
+    },
     "Couldn't Save the API Key" : {
       "localizations" : {
         "fr" : {
@@ -1476,6 +1592,16 @@
         }
       }
     },
+    "Create" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créer"
+          }
+        }
+      }
+    },
     "Dark" : {
       "localizations" : {
         "fr" : {
@@ -1492,6 +1618,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Débogage"
+          }
+        }
+      }
+    },
+    "Default" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Par défaut"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer"
+          }
+        }
+      }
+    },
+    "Delete “%@”?" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer « %@ » ?"
+          }
+        }
+      }
+    },
+    "Delete…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer…"
           }
         }
       }
@@ -1636,6 +1802,16 @@
         }
       }
     },
+    "Duplicate" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dupliquer"
+          }
+        }
+      }
+    },
     "Each change keeps the previous file as **modsettings.lsx.bak** next to it." : {
       "localizations" : {
         "fr" : {
@@ -1672,6 +1848,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erreurs"
+          }
+        }
+      }
+    },
+    "Every mod is turned off (they stay installed). Turn on the ones this profile should load." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tous les mods sont désactivés (ils restent installés). Activez ceux que ce profil doit charger."
           }
         }
       }
@@ -1826,6 +2012,16 @@
         }
       }
     },
+    "From a collection" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D’une collection"
+          }
+        }
+      }
+    },
     "From files you downloaded" : {
       "localizations" : {
         "fr" : {
@@ -1946,6 +2142,16 @@
         }
       }
     },
+    "Honour run, Modded playthrough…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partie Honneur, Partie moddée…"
+          }
+        }
+      }
+    },
     "If macOS stops Tadpole from changing the game, turn Tadpole on in **System Settings → Privacy & Security → App Management**." : {
       "localizations" : {
         "fr" : {
@@ -1976,12 +2182,32 @@
         }
       }
     },
+    "In a new profile" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans un nouveau profil"
+          }
+        }
+      }
+    },
     "In the Game" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dans le jeu"
+          }
+        }
+      }
+    },
+    "In use" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilisé"
           }
         }
       }
@@ -2642,6 +2868,36 @@
         }
       }
     },
+    "Make a profile named after the collection with only its mods, and switch to it. Your current load order stays in its own profile." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créer un profil au nom de la collection avec seulement ses mods, et l’utiliser. Votre ordre de chargement actuel reste dans son propre profil."
+          }
+        }
+      }
+    },
+    "Make Profile" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créer le profil"
+          }
+        }
+      }
+    },
+    "Manage Profiles…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gérer les profils…"
+          }
+        }
+      }
+    },
     "Many Baldur's Gate 3 mods use Norbyte's **Script Extender**, which only exists for Windows. Without it, those mods install and load, but whatever they do through scripts doesn't happen: new spells may do nothing, menus may not appear." : {
       "localizations" : {
         "fr" : {
@@ -2912,6 +3168,16 @@
         }
       }
     },
+    "Name" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom"
+          }
+        }
+      }
+    },
     "Needed to download mods. Sign in to Nexus, open your account's API Keys page, and copy the “Personal API Key” at the bottom. It's kept in a file only your account can read." : {
       "localizations" : {
         "fr" : {
@@ -2948,6 +3214,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "À réappliquer après une mise à jour du jeu"
+          }
+        }
+      }
+    },
+    "New Empty Profile" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveau profil vide"
+          }
+        }
+      }
+    },
+    "New Empty Profile…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveau profil vide…"
+          }
+        }
+      }
+    },
+    "New Profile" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveau profil"
+          }
+        }
+      }
+    },
+    "New Profile…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveau profil…"
           }
         }
       }
@@ -3312,6 +3618,26 @@
         }
       }
     },
+    "Only the profile is deleted: its mods stay installed." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seul le profil est supprimé : ses mods restent installés."
+          }
+        }
+      }
+    },
+    "Only the profile's name changes." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seul le nom du profil change."
+          }
+        }
+      }
+    },
     "Open" : {
       "localizations" : {
         "fr" : {
@@ -3622,6 +3948,26 @@
         }
       }
     },
+    "Profile: %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profil : %@"
+          }
+        }
+      }
+    },
+    "Profiles" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profils"
+          }
+        }
+      }
+    },
     "Published" : {
       "localizations" : {
         "fr" : {
@@ -3798,6 +4144,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suppression du Script Extender…"
+          }
+        }
+      }
+    },
+    "Rename" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renommer"
+          }
+        }
+      }
+    },
+    "Rename Profile" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renommer le profil"
+          }
+        }
+      }
+    },
+    "Rename…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renommer…"
           }
         }
       }
@@ -4438,6 +4814,16 @@
         }
       }
     },
+    "Some Mods Aren't Installed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certains mods ne sont pas installés"
+          }
+        }
+      }
+    },
     "Sorcerer" : {
       "localizations" : {
         "fr" : {
@@ -4888,6 +5274,26 @@
         }
       }
     },
+    "The profile in use can't be deleted: switch to another first" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le profil utilisé ne peut pas être supprimé : passez d’abord à un autre"
+          }
+        }
+      }
+    },
+    "The profile in use: switch to another load order" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le profil utilisé : passer à un autre ordre de chargement"
+          }
+        }
+      }
+    },
     "The Script Extender also listed %@ as Script Extender mods, by mistake: it matched them to the scripts of %@. They don't use the Script Extender and aren't counted." : {
       "localizations" : {
         "en" : {
@@ -5236,6 +5642,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les mises à jour montrent les nouveautés avant de s’installer. Elles sont vérifiées avec la clé de signature propre à Tadpole."
+          }
+        }
+      }
+    },
+    "Use" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utiliser"
           }
         }
       }

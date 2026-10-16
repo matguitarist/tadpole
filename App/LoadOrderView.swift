@@ -69,6 +69,9 @@ struct LoadOrderView: View {
 
     @ToolbarContentBuilder
     private var toolbar: some ToolbarContent {
+        ToolbarItem(placement: .navigation) {
+            ProfileMenu()
+        }
         ToolbarItemGroup(placement: .primaryAction) {
             if model.isInstalling {
                 ProgressView().controlSize(.small)

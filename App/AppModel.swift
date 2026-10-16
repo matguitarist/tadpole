@@ -56,6 +56,10 @@ final class AppModel {
     var lastScriptLogDate: Date?
     var lastPlayReport: PlayReport?
     private(set) var gameStartedAt: Date?
+    /// Named load orders, one in use (AppModel+Profiles).
+    var profileStore = ProfileStore.load(from: AppModel.profilesFile)
+    var profileNamePrompt: ProfileNamePrompt?
+    var showProfiles = false
     /// Nexus mods' requirements, by mod (AppModel+Requirements).
     var nexusRequirements: [Int: [NexusRequirement]] = [:]
     var scriptExtenderState = ScriptExtenderState.notInstalled
@@ -127,6 +131,9 @@ final class AppModel {
             blocker = .unreadableSettings(error.localizedDescription)
         }
         mods = PakMod.scan(paths.modsFolder)
+        // The game may have changed the load order (it drops mods it can't load).
+        ensureActiveProfile()
+        trackActiveProfile()
     }
 
     /// Reloads if modsettings.lsx or the Mods folder changed since the last
@@ -298,13 +305,15 @@ final class AppModel {
         save(settings)
     }
 
-    private func save(_ new: ModSettings) {
+    /// Writes the load order (and records it in the profile in use).
+    func save(_ new: ModSettings) {
         guard !isGameRunning else {
             return show("Quit Baldur's Gate 3 First", String(localized: "The game rewrites its mod list when it quits, which would undo this change."))
         }
         do {
             try new.write(to: paths.modSettings)
             settings = new
+            trackActiveProfile()
         } catch {
             show("Couldn't Save the Load Order", error.localizedDescription)
         }

@@ -12,6 +12,7 @@
 		1FB1D92914D23D77799C1DEB /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 7981A16453E3F60C895EA775 /* Sparkle */; };
 		281DB6A04875095CB815B109 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */; };
 		325218FC30F98914C997C547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B1E77A4C31B78A5A52EF957 /* Assets.xcassets */; };
+		33311F9622D0B1CE00A9F090 /* AppModel+Profiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB27333159DA9C843DF0FD3 /* AppModel+Profiles.swift */; };
 		3EBC1DE41E8CD533C56ACB6D /* ModDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */; };
 		44FB3DF4D98632AD329D284C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */; };
 		53E4F1BF012EEA3A6155ADC1 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33E80D078054887EDFAC9C9 /* CollectionsView.swift */; };
@@ -35,6 +36,7 @@
 		C7DE3D50457244BD93696B02 /* LoadOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52712E02D25288AD3401FEFB /* LoadOrderView.swift */; };
 		C9D01ED84BDC9B05AC71A206 /* AppCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AAAAE6A42734509344D9B7 /* AppCommands.swift */; };
 		D240846B996329B3F045F716 /* TadpoleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */; };
+		D91E4B84D45D003E872E6A43 /* ProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FCE6388438684079BCF58D /* ProfilesView.swift */; };
 		DEFA51D8F5E45F024256EB31 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAF40FB04F9897722528FBF /* HelpView.swift */; };
 		E689F8C0142837009C6A5AAC /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF049D60674E4F843F145D5 /* RootView.swift */; };
 		E70D74C9814DBBD646224F82 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B782ED5F40424102BB728CA5 /* BrowseView.swift */; };
@@ -57,6 +59,7 @@
 		36AAAAE6A42734509344D9B7 /* AppCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCommands.swift; sourceTree = "<group>"; };
 		3BAF40FB04F9897722528FBF /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		48F4451924A81D4D008C4C91 /* ScriptExtenderLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptExtenderLogView.swift; sourceTree = "<group>"; };
+		4EB27333159DA9C843DF0FD3 /* AppModel+Profiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Profiles.swift"; sourceTree = "<group>"; };
 		52712E02D25288AD3401FEFB /* LoadOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadOrderView.swift; sourceTree = "<group>"; };
 		54342D908BE7F55F92B180AC /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		5B9A7217F6B42E131E1AC649 /* NexusFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusFiles.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 		D7D93916D4D9F61E0D136820 /* TadpoleCore */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TadpoleCore; sourceTree = SOURCE_ROOT; };
 		E2536676208960BA56A8528F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E714D6DED9434A9B7F9D7DAE /* RequirementsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsViews.swift; sourceTree = "<group>"; };
+		E7FCE6388438684079BCF58D /* ProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 				14ED628E94AA4479EADA1DFF /* AppModel.swift */,
 				A7409FB401E6011ADF7EC422 /* AppModel+Nexus.swift */,
 				781B4CEF8667B5CC1BF5A2CF /* AppModel+PlayReport.swift */,
+				4EB27333159DA9C843DF0FD3 /* AppModel+Profiles.swift */,
 				BED19FD627256BC0582B3DB9 /* AppModel+Requirements.swift */,
 				2E9CB159921A67A21F95BBBB /* AppModel+Saves.swift */,
 				73B6D6AF9472BF19AFB575A4 /* AppModel+ScriptExtender.swift */,
@@ -147,6 +152,7 @@
 				5B9A7217F6B42E131E1AC649 /* NexusFiles.swift */,
 				8A9F40E2D996A82221043F75 /* Pictures.swift */,
 				8F8E8142B91713F9E679D936 /* Preferences.swift */,
+				E7FCE6388438684079BCF58D /* ProfilesView.swift */,
 				E714D6DED9434A9B7F9D7DAE /* RequirementsViews.swift */,
 				6FF049D60674E4F843F145D5 /* RootView.swift */,
 				200CC654C7BA034F75D9FAB1 /* SavesView.swift */,
@@ -244,6 +250,7 @@
 				C9D01ED84BDC9B05AC71A206 /* AppCommands.swift in Sources */,
 				C612E085EA8CC69FE662C3FE /* AppModel+Nexus.swift in Sources */,
 				E8AF53F79234B35CB85A8840 /* AppModel+PlayReport.swift in Sources */,
+				33311F9622D0B1CE00A9F090 /* AppModel+Profiles.swift in Sources */,
 				65E810B669DD7311FB02651F /* AppModel+Requirements.swift in Sources */,
 				A43B77CEF63008F2BE7618A0 /* AppModel+Saves.swift in Sources */,
 				95161D86CAF76783DDB28604 /* AppModel+ScriptExtender.swift in Sources */,
@@ -261,6 +268,7 @@
 				B39B519F29FE20F07F8C0404 /* NexusFiles.swift in Sources */,
 				04F020E7053FECCCD87FB2EE /* Pictures.swift in Sources */,
 				EAFB730EED4EBE1AE843F49E /* Preferences.swift in Sources */,
+				D91E4B84D45D003E872E6A43 /* ProfilesView.swift in Sources */,
 				6DF9CD1020C94C26A97B4B44 /* RequirementsViews.swift in Sources */,
 				E689F8C0142837009C6A5AAC /* RootView.swift in Sources */,
 				B226CCA138D7CEBD0397D135 /* SavesView.swift in Sources */,

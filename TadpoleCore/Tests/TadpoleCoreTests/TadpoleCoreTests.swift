@@ -599,3 +599,43 @@ import Testing
         #expect(log.scriptStatus(forFolders: ["CommunityLibrary"]) == .notLoaded)
     }
 }
+
+@Suite struct ProfileTests {
+    func entry(_ id: String) -> ModuleShortDesc { ModuleShortDesc(folder: id, name: id, uuid: id, version64: 1) }
+    func mod(_ id: String) -> ProfileMod { ProfileMod(uuid: id, name: id, folder: id) }
+
+    @Test func keepsModsThatArentInstalledWhereTheyWere() {
+        // The profile had a, b, x (not installed), c; the user moved c first.
+        let saved = [mod("a"), mod("b"), mod("x"), mod("c")]
+        let tracked = ProfileRules.tracked(saved: saved, current: [entry("c"), entry("a"), entry("b")], installed: ["a", "b", "c"])
+        #expect(tracked.map(\.uuid) == ["c", "a", "b", "x"])
+        // Turning b off drops it: it's installed, so the load order decides.
+        let without = ProfileRules.tracked(saved: saved, current: [entry("a"), entry("c")], installed: ["a", "b", "c"])
+        #expect(without.map(\.uuid) == ["a", "x", "c"])
+        // A missing mod listed first stays first.
+        #expect(ProfileRules.tracked(saved: [mod("x"), mod("a")], current: [entry("a")], installed: ["a"]).map(\.uuid) == ["x", "a"])
+    }
+
+    @Test func buildsTheLoadOrderFromInstalledMods() {
+        let profile = LoadOrderProfile(name: "Run 2", mods: [mod("a"), mod("x"), mod("b")])
+        let installed = ["a": ModuleInfo(uuid: "a", name: "A", folder: "A"), "b": ModuleInfo(uuid: "b", name: "B", folder: "B")]
+        let (entries, missing) = ProfileRules.loadOrder(for: profile, installed: installed)
+        #expect(entries.map(\.uuid) == ["a", "b"])
+        #expect(missing.map(\.uuid) == ["x"])
+    }
+
+    @Test func namesRenamesAndRoundTrips() throws {
+        var store = ProfileStore(profiles: [LoadOrderProfile(name: "Default", mods: [mod("a")])], active: "Default")
+        #expect(store.uniqueName("Default") == "Default 2")
+        #expect(store.uniqueName("Honour run") == "Honour run")
+        store.rename("Default", to: "Main")
+        #expect(store.active == "Main")
+        #expect(ProfileRules.matching(store.profiles, current: [entry("a")]) == "Main")
+        let file = FileManager.default.temporaryDirectory.appending(path: "profiles-\(UUID().uuidString).json")
+        defer { try? FileManager.default.removeItem(at: file) }
+        try store.save(to: file)
+        #expect(ProfileStore.load(from: file) == store)
+        store.delete("Main")
+        #expect(store.active == nil && store.profiles.isEmpty)
+    }
+}

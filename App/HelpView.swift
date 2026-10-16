@@ -104,6 +104,11 @@ struct HelpView: View {
             HelpSection("Requirements") {
                 HelpText("Mods can need other mods. A warning badge shows when a requirement is missing, turned off, or loads after the mod that needs it. **Order by Requirements** moves each requirement above the mods that need it, keeping the rest of your order.")
             }
+            HelpSection("Profiles") {
+                HelpText("A profile is a load order with a name: one per playthrough, one per collection… The menu at the top left of **Load Order** shows the profile in use; pick another to switch. Switching writes that profile's load order; the one you leave keeps yours, so switching back returns to exactly that list.")
+                HelpText("Changes you make (turning mods on and off, the order) are kept in the profile in use. **New Profile…** copies the load order now; **New Empty Profile…** starts with every mod off. **Manage Profiles…** renames, duplicates and deletes them. Mods stay installed whatever the profile.")
+                HelpText("A profile can list mods you don't have (after deleting one, or from a friend's list): they stay in it, and Tadpole tells you which when you switch. When you install a collection, tick **In a new profile** to give it its own.")
+            }
             HelpSection("Badges") {
                 HelpBullets([
                     "**Update to …**: Nexus has a newer version. Click it to install the update.",
