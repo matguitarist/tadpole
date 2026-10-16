@@ -3,11 +3,11 @@
 What's next for Tadpole, roughly in order. Bugs come first: they're things
 that work today but can go wrong. Version numbers are targets, not promises.
 
-Current version: **0.1** (not published yet).
+Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/releases/tag/v0.1)).
 
-## Before publishing 0.1
+## Left over from 0.1
 
-- [ ] Create the GitHub repository (`matguitarist/tadpole`), push, and run
+- [x] Create the GitHub repository (`matguitarist/tadpole`), push, and run
       `./release.sh`: Sparkle's feed and the downloads live there.
 - [x] App icon (`design/AppIcon.swift`, `design/make_icons.sh`).
 - [ ] End-to-end test with a real mod: install it from Nexus with a free
@@ -15,8 +15,8 @@ Current version: **0.1** (not published yet).
       kept it in `modsettings.lsx`.
 - [x] README: what Tadpole does, installing it (the "Open Anyway" step),
       screenshots.
-- [ ] Back up the Sparkle key (`generate_keys --account tadpole -x …`) and the
-      "Tadpole Self-Signed" certificate.
+- [x] Back up the Sparkle key (`generate_keys --account tadpole -x …`).
+- [ ] Back up the "Tadpole Self-Signed" certificate (Keychain Access → Export…).
 
 ## Known bugs
 
