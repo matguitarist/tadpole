@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Tadpole</title>
+        <item>
+            <title>0.1</title>
+            <pubDate>Thu, 15 Oct 2026 21:05:18 -0400</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>0.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[## First release
+
+Tadpole manages Baldur's Gate 3 mods on macOS.
+
+- **Load order**: turn mods on and off, drag them into order, and see requirements that are missing or load too late. Changes go straight into the game's own mod list, with a backup of the previous one.
+- **Install** .pak files and .zip, .7z or .rar archives by dropping them on the window.
+- **Browse Nexus** and **Collections**: find mods and collections on Nexus Mods and install them in the app (free and Premium accounts).
+- **Saves**: see your saves with their picture and party, back them up and restore them.
+- Mods that need the Script Extender, which doesn't exist on macOS, are marked.
+- English and French.
+]]></description>
+            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.1/Tadpole-0.1.zip" length="4056155" type="application/octet-stream" sparkle:edSignature="/oSUhHN4Yakhqt2kqW2n/OOdAktm0KJjmWoTeufiEf2DOZSBV+Ecce0r8xzpbmV0KTkgrFmoyYejZvXB3hvdCg=="/>
+        </item>
+    </channel>
+</rss>
