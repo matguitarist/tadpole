@@ -113,18 +113,21 @@ extension AppModel {
         try? origins.save(to: Self.originsFile)
     }
 
-    /// Fetches a Nexus mod's page and files once (forced: again).
+    /// Fetches a Nexus mod's page, files and requirements once (forced: again).
     func loadNexusDetails(_ modID: Int, force: Bool = false) async throws {
         let client = nexusClient
         // Both before storing either: storing the files changes the view,
         // which can cancel the task that's still waiting for the page.
         let needsPage = force || nexusMods[modID] == nil
         let needsFiles = force || nexusFiles[modID] == nil
+        let needsRequirements = force || nexusRequirements[modID] == nil
         async let page = needsPage ? try? client.mod(id: modID) : nil
         async let files = needsFiles ? client.files(forMod: modID) : nil
-        let (fetchedPage, fetchedFiles) = try await (page, files)
+        async let requirements = needsRequirements ? try? client.requirements(forMod: modID) : nil
+        let (fetchedPage, fetchedFiles, fetchedRequirements) = try await (page, files, requirements)
         if let fetchedPage { nexusMods[modID] = fetchedPage }
         if let fetchedFiles { nexusFiles[modID] = fetchedFiles }
+        if let fetchedRequirements { nexusRequirements[modID] = fetchedRequirements }
     }
 
     // MARK: Installing from Nexus

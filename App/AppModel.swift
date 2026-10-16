@@ -50,6 +50,8 @@ final class AppModel {
     // The Script Extender for macOS (AppModel+ScriptExtender).
     var scriptExtender = ScriptExtenderRecord.load()
     var scriptExtenderLatest: ScriptExtenderRelease?
+    /// Nexus mods' requirements, by mod (AppModel+Requirements).
+    var nexusRequirements: [Int: [NexusRequirement]] = [:]
     var scriptExtenderState = ScriptExtenderState.notInstalled
     /// What's being done (downloading, installing…), shown in Settings.
     var scriptExtenderTask: String?

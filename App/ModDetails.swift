@@ -162,6 +162,7 @@ private struct NexusSection: View {
     @Environment(AppModel.self) private var model
     let mod: PakMod
     @State private var error: String?
+    @State private var requirementsPrompt: RequirementsPrompt?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -203,9 +204,11 @@ private struct NexusSection: View {
             .fixedSize()
         }
         .task(id: modID) { await load(modID) }  // the page (picture) and files, whichever is missing
+        NexusRequirementsList(modID: modID, compact: true)
         if let files = model.nexusFiles[modID] {
             if files.contains(where: \.isCurrent) {
-                NexusFileSections(modID: modID, files: files, compact: true)
+                NexusFileSections(modID: modID, files: files, compact: true, onNeedsRequirements: { requirementsPrompt = $0 })
+                    .sheet(item: $requirementsPrompt) { RequirementsSheet(prompt: $0) }
             } else {
                 Text("No current files on Nexus.").font(.callout).foregroundStyle(.secondary)
             }

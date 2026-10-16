@@ -27,6 +27,9 @@ struct NexusFileSections: View {
     var compact = false
     /// Called after Install (the sheet closes itself).
     var onInstall: () -> Void = {}
+    /// Called instead when the mod needs mods you don't have: the container
+    /// shows RequirementsSheet.
+    var onNeedsRequirements: ((RequirementsPrompt) -> Void)?
 
     var body: some View {
         let installed = Set(model.installedFiles(ofNexusMod: modID).map(\.fileID))
@@ -59,10 +62,19 @@ struct NexusFileSections: View {
     }
 
     private func install(_ files: [NexusFile]) {
-        model.installFromNexus(files.map { file in
-            BrowserQueueItem(modID: modID, fileID: file.fileId, title: title(of: file))
-        })
-        onInstall()
+        let items = files.map { BrowserQueueItem(modID: modID, fileID: $0.fileId, title: title(of: $0)) }
+        guard let onNeedsRequirements else {
+            model.installFromNexus(items)
+            return onInstall()
+        }
+        Task {
+            let name = model.nexusMods[modID]?.name ?? files.first?.name ?? ""
+            if let prompt = await model.installCheckingRequirements(modID: modID, modName: name, files: items) {
+                onNeedsRequirements(prompt)
+            } else {
+                onInstall()
+            }
+        }
     }
 
     private func title(of file: NexusFile) -> String {

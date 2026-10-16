@@ -156,6 +156,7 @@ struct NexusModSheet: View {
     @State private var mod: NexusMod?
     @State private var showOldFiles = false
     @State private var error: String?
+    @State private var requirementsPrompt: RequirementsPrompt?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -202,7 +203,13 @@ struct NexusModSheet: View {
             ContentUnavailableView("Couldn't Load Files", systemImage: "exclamationmark.triangle", description: Text(error))
         } else if let files = model.nexusFiles[request.modID] {
             List {
-                NexusFileSections(modID: request.modID, files: files, showOld: showOldFiles, onInstall: { dismiss() })
+                NexusRequirementsList(modID: request.modID)
+                    .padding(.vertical, 4)
+                NexusFileSections(modID: request.modID, files: files, showOld: showOldFiles, onInstall: { dismiss() },
+                                  onNeedsRequirements: { requirementsPrompt = $0 })
+            }
+            .sheet(item: $requirementsPrompt) { prompt in
+                RequirementsSheet(prompt: prompt) { installed in if installed { dismiss() } }
             }
         } else {
             ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -544,3 +544,39 @@ import Testing
         #expect(log.warningCount == 3)
     }
 }
+
+@Suite struct RequirementPlanTests {
+    func nexus(_ id: Int, _ name: String) -> NexusRequirement {
+        NexusRequirement(modId: String(id), modName: name, url: "https://www.nexusmods.com/baldursgate3/mods/\(id)", externalRequirement: false)
+    }
+
+    @Test func findsMissingRequirementsThroughOtherMods() async {
+        let graph: [Int: [NexusRequirement]] = [
+            1: [nexus(2, "Subclass Framework"), nexus(3, "Installed Lib"), nexus(ScriptExtender.nexusModID, "BG3SE")],
+            2: [nexus(4, "Compatibility Framework"), nexus(1, "Back to the mod")],  // a loop
+            3: [nexus(5, "Not followed: 3 is installed")],
+            4: [NexusRequirement(modId: nil, modName: "A tool", url: "https://example.com/tool", externalRequirement: true)],
+        ]
+        let plan = await RequirementPlan.resolve(for: 1, fetch: { graph[$0] ?? [] }, isInstalled: { $0.modId == "3" })
+        #expect(plan.missing.map(\.modName) == ["Compatibility Framework", "Subclass Framework"])
+        #expect(plan.needsScriptExtender)
+        #expect(plan.external.map(\.url) == ["https://example.com/tool"])
+    }
+
+    @Test func nothingMissing() async {
+        let plan = await RequirementPlan.resolve(for: 1, fetch: { _ in [] }, isInstalled: { _ in true })
+        #expect(plan.isEmpty)
+    }
+
+    @Test func picksTheNewestMainFile() {
+        let files = [
+            NexusFile(fileId: 1, name: "Old main", version: "1", category: "MAIN", date: 100, groupId: 1),
+            NexusFile(fileId: 2, name: "Main", version: "2", category: "MAIN", date: 300, groupId: 1),
+            NexusFile(fileId: 3, name: "Optional", version: "3", category: "OPTIONAL", date: 400, groupId: 2),
+            NexusFile(fileId: 4, name: "Archived", version: "4", category: "ARCHIVED", date: 500, groupId: 1),
+        ]
+        #expect(NexusFile.fileToInstall(from: files)?.fileId == 2)
+        #expect(NexusFile.fileToInstall(from: [files[2]])?.fileId == 3)
+        #expect(NexusFile.fileToInstall(from: [files[3]]) == nil)
+    }
+}

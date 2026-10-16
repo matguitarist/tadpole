@@ -4,6 +4,16 @@
     "" : {
 
     },
+    "“%@” needs other mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "« %@ » a besoin d’autres mods"
+          }
+        }
+      }
+    },
     "**Always Loaded**: .pak files without a mod description. The game loads them whatever the load order says; move one to the Trash to stop it." : {
       "localizations" : {
         "fr" : {
@@ -436,6 +446,16 @@
         }
       }
     },
+    "A mod's window and details list what its Nexus page requires: a green check when you have it, **View** to open one you don't. When you install a mod that needs mods you don't have, Tadpole lists them, with the author's notes, so you can install them along. Untick the ones the notes say are optional." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La fenêtre et les détails d’un mod listent ce que sa page Nexus exige : une coche verte quand vous l’avez, **Voir** pour ouvrir ceux qui manquent. Quand vous installez un mod qui a besoin de mods que vous n’avez pas, Tadpole les liste, avec les notes de l’auteur, pour les installer en même temps. Décochez ceux que les notes disent facultatifs."
+          }
+        }
+      }
+    },
     "A Script Extender mod doesn't work" : {
       "localizations" : {
         "fr" : {
@@ -522,6 +542,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toutes les parties"
+          }
+        }
+      }
+    },
+    "Also needs “%@”, from another site." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A aussi besoin de « %@ », sur un autre site."
           }
         }
       }
@@ -1956,6 +1986,16 @@
         }
       }
     },
+    "Install Only This Mod" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer seulement ce mod"
+          }
+        }
+      }
+    },
     "Install Script Extender" : {
       "localizations" : {
         "fr" : {
@@ -1982,6 +2022,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Installez le jeu avec Steam, puis lancez-le une fois."
+          }
+        }
+      }
+    },
+    "Install with %lld Requirements" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer avec %lld prérequis"
+          }
+        }
+      }
+    },
+    "Install with 1 Requirement" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer avec 1 prérequis"
           }
         }
       }
@@ -2106,6 +2166,16 @@
         }
       }
     },
+    "It also needs the Script Extender, which isn't installed." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il a aussi besoin du Script Extender, qui n’est pas installé."
+          }
+        }
+      }
+    },
     "It's unofficial: made by its own authors, not Norbyte or Larian. Most of the Windows version works, not all of it. Back up your saves before playing with Script Extender mods." : {
       "localizations" : {
         "fr" : {
@@ -2132,6 +2202,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sa page Nexus cite le Script Extender comme prérequis. Il est installé."
+          }
+        }
+      }
+    },
+    "Its Nexus page lists these, and you don't have them. Read the notes: some are only needed for part of the mod." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sa page Nexus les liste, et vous ne les avez pas. Lisez les notes : certains ne servent qu’à une partie du mod."
           }
         }
       }
@@ -3082,6 +3162,16 @@
         }
       }
     },
+    "Open" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir"
+          }
+        }
+      }
+    },
     "Open **Script Extender Log** (⌘6) after playing: errors are grouped by mod under **Problems**." : {
       "localizations" : {
         "fr" : {
@@ -3208,6 +3298,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ouvrir le site de Nexus"
+          }
+        }
+      }
+    },
+    "Open this mod to install it" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir ce mod pour l’installer"
           }
         }
       }
@@ -3588,6 +3688,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nécessite"
+          }
+        }
+      }
+    },
+    "Requires on Nexus" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prérequis sur Nexus"
           }
         }
       }
@@ -5022,6 +5132,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La version %@ a été faite pour le build du jeu %@, pas le vôtre. Elle peut tourner en mode limité, avec certaines fonctions désactivées, jusqu’à ce qu’une version prenne en charge votre build."
+          }
+        }
+      }
+    },
+    "View" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir"
           }
         }
       }

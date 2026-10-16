@@ -114,12 +114,15 @@ public struct NexusRequirement: Hashable, Sendable, Decodable {
     public let modName: String?
     public let url: String?
     public let externalRequirement: Bool?
+    /// The author's note ("only for the spells part"…).
+    public let notes: String?
 
-    public init(modId: String?, modName: String?, url: String?, externalRequirement: Bool?) {
+    public init(modId: String?, modName: String?, url: String?, externalRequirement: Bool?, notes: String? = nil) {
         self.modId = modId
         self.modName = modName
         self.url = url
         self.externalRequirement = externalRequirement
+        self.notes = notes
     }
 
     /// Norbyte's Script Extender: its Nexus page (mod 2172) or its GitHub.
@@ -238,6 +241,31 @@ extension NexusClient {
     }
 
     /// A mod's files, main files first and newest first within a section.
+    /// What a mod's Nexus page lists as required: other Nexus mods, or pages
+    /// elsewhere (the Script Extender's GitHub…).
+    public func requirements(forMod modID: Int) async throws -> [NexusRequirement] {
+        struct Response: Decodable {
+            struct Mod: Decodable {
+                struct Requirements: Decodable {
+                    struct Page: Decodable { let nodes: [NexusRequirement] }
+                    let nexusRequirements: Page?
+                }
+                let modRequirements: Requirements?
+            }
+            let mod: Mod
+        }
+        let response: Response = try await graphQL(
+            """
+            query Requirements($modId: ID!, $gameId: ID!) {
+              mod(modId: $modId, gameId: $gameId) {
+                modRequirements { nexusRequirements { nodes { modId modName url externalRequirement notes } } }
+              }
+            }
+            """,
+            variables: ["modId": String(modID), "gameId": String(Self.gameID)])
+        return response.mod.modRequirements?.nexusRequirements?.nodes ?? []
+    }
+
     public func files(forMod modID: Int) async throws -> [NexusFile] {
         struct Response: Decodable { let modFiles: [NexusFile] }
         let response: Response = try await graphQL(
