@@ -4,7 +4,6 @@ import TadpoleCore
 /// The mods in the Mods folder and the order they load in.
 struct LoadOrderView: View {
     @Environment(AppModel.self) private var model
-    @State private var showDetails = true
 
     var body: some View {
         @Bindable var model = model
@@ -12,7 +11,7 @@ struct LoadOrderView: View {
             .navigationTitle("Load Order")
             .navigationSubtitle(subtitle)
             .toolbar { toolbar }
-            .inspector(isPresented: $showDetails) {
+            .inspector(isPresented: $model.showInspector) {
                 ModDetails()
                     .inspectorColumnWidth(min: 260, ideal: 300, max: 420)
             }
@@ -95,7 +94,7 @@ struct LoadOrderView: View {
         }
         ToolbarItem {
             Button {
-                showDetails.toggle()
+                model.showInspector.toggle()
             } label: {
                 Label("Details", systemImage: "sidebar.trailing")
             }

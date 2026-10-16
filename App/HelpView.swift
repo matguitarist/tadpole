@@ -1,0 +1,232 @@
+// The Help window (Help → Tadpole Help): short, task-based topics. Every
+// paragraph is a String Catalog key, so it's translated like the rest of
+// the app; **bold** marks the names of buttons and sections.
+
+import SwiftUI
+
+enum HelpTopic: String, CaseIterable, Identifiable {
+    case gettingStarted, loadOrder, installing, nexus, scriptExtender, saves, troubleshooting, shortcuts
+
+    var id: String { rawValue }
+
+    var title: LocalizedStringKey {
+        switch self {
+        case .gettingStarted: "Getting Started"
+        case .loadOrder: "The Load Order"
+        case .installing: "Installing Mods"
+        case .nexus: "Nexus Mods & Collections"
+        case .scriptExtender: "Script Extender on a Mac"
+        case .saves: "Saves & Backups"
+        case .troubleshooting: "Troubleshooting"
+        case .shortcuts: "Keyboard Shortcuts"
+        }
+    }
+
+    var icon: String {
+        switch self {
+        case .gettingStarted: "flag"
+        case .loadOrder: "list.number"
+        case .installing: "square.and.arrow.down"
+        case .nexus: "globe"
+        case .scriptExtender: "puzzlepiece.extension"
+        case .saves: "archivebox"
+        case .troubleshooting: "wrench.and.screwdriver"
+        case .shortcuts: "keyboard"
+        }
+    }
+}
+
+struct HelpView: View {
+    static let windowID = "help"
+    @State private var selection: HelpTopic? = .gettingStarted
+
+    var body: some View {
+        NavigationSplitView {
+            List(HelpTopic.allCases, selection: $selection) { topic in
+                Label(topic.title, systemImage: topic.icon).tag(topic)
+            }
+            .navigationSplitViewColumnWidth(min: 220, ideal: 240, max: 300)
+        } detail: {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 18) {
+                    let topic = selection ?? .gettingStarted
+                    Label(topic.title, systemImage: topic.icon)
+                        .font(.largeTitle.bold())
+                        .padding(.bottom, 4)
+                    content(for: topic)
+                }
+                .frame(maxWidth: 680, alignment: .leading)
+                .padding(28)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .textSelection(.enabled)
+            }
+            .id(selection)  // start each topic at the top
+        }
+        .navigationTitle("Tadpole Help")
+    }
+
+    @ViewBuilder
+    private func content(for topic: HelpTopic) -> some View {
+        switch topic {
+        case .gettingStarted:
+            HelpText("Tadpole installs Baldur's Gate 3 mods and sets the order they load in. It works with the game's own files in **Documents/Larian Studios/Baldur's Gate 3**, so the game's mod list and Tadpole's are always the same.")
+            HelpSection("Before the first mod") {
+                HelpBullets([
+                    "Run the game once and reach the main menu: that creates the folders Tadpole needs.",
+                    "To download from Nexus Mods inside Tadpole, add your personal API key in **Settings → Nexus Mods** (⌘,).",
+                ])
+            }
+            HelpSection("The pages") {
+                HelpBullets([
+                    "**Load Order** (⌘1): your mods, which ones load, and in what order.",
+                    "**Browse Nexus** (⌘2): search Baldur's Gate 3 mods and install them.",
+                    "**Collections** (⌘3): curated mod packs from Nexus.",
+                    "**Saves** (⌘4): your saves, and backups of them.",
+                ])
+            }
+            HelpSection("Play") {
+                HelpText("**Play** in the toolbar (⌘L) starts the game through Steam. Quit the game before changing your mods: it rewrites its mod list when it quits, which would undo your changes.")
+            }
+
+        case .loadOrder:
+            HelpText("The game loads the mods listed in its load order file, from top to bottom, after its own modules. A mod in the Mods folder that isn't listed doesn't load.")
+            HelpSection("Turning mods on and off") {
+                HelpText("Tick a mod to add it to the end of the load order; untick it to take it out. It stays installed either way, under **Installed, Not Loaded**. Drag mods to change their order.")
+            }
+            HelpSection("Requirements") {
+                HelpText("Mods can need other mods. A warning badge shows when a requirement is missing, turned off, or loads after the mod that needs it. **Order by Requirements** moves each requirement above the mods that need it, keeping the rest of your order.")
+            }
+            HelpSection("Other sections") {
+                HelpBullets([
+                    "**Always Loaded**: .pak files without a mod description. The game loads them whatever the load order says; move one to the Trash to stop it.",
+                    "**Listed, but its .pak isn't in the Mods folder**: a mod you removed by hand. **Remove** takes it out of the load order.",
+                ])
+            }
+            HelpText("Each change keeps the previous file as **modsettings.lsx.bak** next to it.")
+
+        case .installing:
+            HelpSection("From files you downloaded") {
+                HelpText("Drop .pak files or archives (.zip, .7z, .rar) on the window, or use **Install Mods…** (⌘O). Tadpole copies every .pak it finds into the Mods folder and turns the new mods on at the end of the load order. A file with the same name is replaced; the old one goes to the Trash.")
+            }
+            HelpSection("What can't be installed") {
+                HelpText("Tadpole installs mods packaged as .pak files, which is how most Baldur's Gate 3 mods come. Mods made of loose files that go into the game's own folders, and tools for Windows (.dll, .exe), aren't installed: the download list says so.")
+            }
+            HelpSection("Removing mods") {
+                HelpText("Right-click a mod and choose **Move to Trash**. It leaves the load order too. You can restore it from the Trash in Finder.")
+            }
+
+        case .nexus:
+            HelpSection("Browsing") {
+                HelpText("**Browse Nexus** searches Baldur's Gate 3 mods. Open one to see its files, then **Install**. **Open the Nexus Website** shows the full site in Tadpole's own browser, where your sign-in is remembered.")
+            }
+            HelpSection("Free and Premium accounts") {
+                HelpText("Premium accounts download directly. Free accounts download through the Nexus website: Tadpole opens the file's page, you click **Slow download**, and Tadpole catches the download and installs it. With several mods, the next page opens by itself.")
+                HelpText("Once a download starts, the browser closes and the download goes on in the sidebar's **Downloads** list. You can keep the browser open in **Settings → Nexus Mods**.")
+                HelpText("Tadpole catches **Mod Manager Download** links only in its own browser, so it doesn't take them from Starseed or another mod manager in Safari or Chrome.")
+            }
+            HelpSection("Collections") {
+                HelpText("**Collections** lists curated mod packs. A collection shows which of its mods you already have; **Install** downloads the rest. Optional mods are only installed if you tick them.")
+                HelpText("Tadpole knows a mod is installed when it was downloaded through Tadpole. Mods you installed from files show as missing in collections, even if you have them.")
+            }
+
+        case .scriptExtender:
+            HelpText("Many Baldur's Gate 3 mods use Norbyte's **Script Extender**, which only exists for Windows. On a Mac, those mods install and load, but whatever they do through scripts doesn't happen: new spells may do nothing, menus may not appear.")
+            HelpText("Tadpole marks those mods with a **Script Extender** badge. Mods that only change looks, items, hair, dice or text don't need it and work normally.")
+            HelpText("Collections made for Windows often include Script Extender mods and mods that need them. Check a mod's Nexus page before relying on it.")
+
+        case .saves:
+            HelpText("**Saves** lists your saves, newest first, with the game's picture, your party and the difficulty.")
+            HelpSection("Backups") {
+                HelpText("**Back Up All** (or right-click → **Back Up**) copies saves as .zip files to **Documents/Larian Studios/Tadpole Save Backups**. They're kept there until you delete them, even if you reinstall the game.")
+                HelpText("**Restore** puts a backup back in the game. If that save still exists, Tadpole asks first, and the current version goes to the Trash.")
+            }
+            HelpText("Back up before trying new mods: a save made with a mod can need that mod to load.")
+
+        case .troubleshooting:
+            HelpSection("A mod doesn't show up in the game") {
+                HelpBullets([
+                    "Check it's ticked in **Load Order**, and that the game was closed when you made the change.",
+                    "Look for a warning badge: a missing or late requirement can stop a mod from loading.",
+                    "Mods made for an older version of the game can stop working after a game update. Check the mod's Nexus page.",
+                ])
+            }
+            HelpSection("The game reset my mods") {
+                HelpText("The game can remove mods it can't load from its list. Open **Load Order**, tick them again, and check their requirements. The previous file is kept as **modsettings.lsx.bak** (**Settings → Game** shows where).")
+            }
+            HelpSection("Downloads don't start") {
+                HelpText("Check your API key in **Settings → Nexus Mods**. With a free account, sign in once in Tadpole's browser (**Settings → Nexus Mods → Sign In to Nexus…**).")
+            }
+
+        case .shortcuts:
+            HelpShortcuts([
+                ("⌘1 – ⌘4", "Load Order, Browse Nexus, Collections, Saves"),
+                ("⌘O", "Install Mods…"),
+                ("⌘R", "Reload"),
+                ("⇧⌘O", "Open Mods Folder"),
+                ("⇧⌘N", "Nexus Mods browser"),
+                ("⌥⌘I", "Show or hide details"),
+                ("⌘L", "Play Baldur's Gate 3"),
+                ("⌘,", "Settings"),
+                ("⌘?", "Tadpole Help"),
+            ])
+        }
+    }
+}
+
+private struct HelpText: View {
+    let text: LocalizedStringKey
+    init(_ text: LocalizedStringKey) { self.text = text }
+
+    var body: some View {
+        Text(text).fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+private struct HelpSection<Content: View>: View {
+    let title: LocalizedStringKey
+    let content: Content
+
+    init(_ title: LocalizedStringKey, @ViewBuilder content: () -> Content) {
+        self.title = title
+        self.content = content()
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title).font(.title3.bold())
+            content
+        }
+    }
+}
+
+private struct HelpBullets: View {
+    let items: [LocalizedStringKey]
+    init(_ items: [LocalizedStringKey]) { self.items = items }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            ForEach(Array(items.enumerated()), id: \.offset) { _, item in
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                    Text(verbatim: "•")
+                    Text(item).fixedSize(horizontal: false, vertical: true)
+                }
+            }
+        }
+    }
+}
+
+private struct HelpShortcuts: View {
+    let rows: [(keys: String, action: LocalizedStringKey)]
+    init(_ rows: [(String, LocalizedStringKey)]) { self.rows = rows.map { (keys: $0.0, action: $0.1) } }
+
+    var body: some View {
+        Grid(alignment: .leading, horizontalSpacing: 24, verticalSpacing: 8) {
+            ForEach(Array(rows.enumerated()), id: \.offset) { _, row in
+                GridRow {
+                    Text(verbatim: row.keys).font(.body.monospaced()).foregroundStyle(.secondary)
+                    Text(row.action)
+                }
+            }
+        }
+    }
+}

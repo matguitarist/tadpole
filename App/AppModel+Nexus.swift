@@ -115,7 +115,19 @@ extension AppModel {
         let queued = browserQueue.first { $0.fileID == link.fileID }
         download(modID: link.modID, fileID: link.fileID, title: queued?.title, key: link.key, expires: link.expires)
         browserQueue.removeAll { $0.fileID == link.fileID }
-        if let next = browserQueue.first { openNexusBrowser(next.pageURL) }
+        if let next = browserQueue.first {
+            openNexusBrowser(next.pageURL)
+        } else {
+            browserFinished()
+        }
+    }
+
+    /// The download continues in the main window: close the browser
+    /// (unless that's turned off in Settings).
+    func browserFinished() {
+        if UserDefaults.standard.object(forKey: Preferences.closeBrowserAfterDownload) as? Bool ?? true {
+            browserDone += 1
+        }
     }
 
     func skipQueuedDownload() {
@@ -156,6 +168,7 @@ extension AppModel {
     func installBrowserDownload(_ file: URL) {
         let item = DownloadItem(title: file.lastPathComponent)
         downloads.insert(item, at: 0)
+        browserFinished()
         Task { await installDownloaded(file, item: item, origin: nil) }
     }
 

@@ -1,12 +1,141 @@
-// Settings: the Nexus Mods API key.
+// Settings: General (language, theme), Game (where things are), Nexus Mods
+// (API key, downloads).
 
 import AppKit
 import SwiftUI
 import TadpoleCore
 
 struct SettingsView: View {
+    @AppStorage(Preferences.settingsTab) private var tab = "general"  // reopens on the last tab
+
+    var body: some View {
+        TabView(selection: $tab) {
+            GeneralSettings()
+                .tabItem { Label("General", systemImage: "gearshape") }
+                .tag("general")
+            GameSettings()
+                .tabItem { Label("Game", systemImage: "gamecontroller") }
+                .tag("game")
+            NexusSettings()
+                .tabItem { Label("Nexus Mods", systemImage: "globe") }
+                .tag("nexus")
+        }
+        .frame(width: 560, height: 520)
+    }
+}
+
+private struct GeneralSettings: View {
+    @AppStorage(Preferences.theme) private var theme = AppTheme.system
+    @State private var language = AppLanguage.current
+
+    var body: some View {
+        Form {
+            Section("Language") {
+                Picker("Language", selection: $language) {
+                    Text("System (\(AppLanguage.systemName))").tag(AppLanguage.system)
+                    ForEach(AppLanguage.available, id: \.self) { language in
+                        Text(verbatim: language.name).tag(language)
+                    }
+                }
+                .onChange(of: language) { _, new in new.apply() }
+                if language != AppLanguage.atLaunch {
+                    HStack {
+                        Text("The new language applies after a restart.")
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        Button("Restart Now") { AppLanguage.relaunch() }
+                    }
+                }
+            }
+            Section("Appearance") {
+                Picker("Theme", selection: $theme) {
+                    ForEach(AppTheme.allCases, id: \.self) { Text($0.title).tag($0) }
+                }
+                .pickerStyle(.segmented)
+                .onChange(of: theme) { _, new in new.apply() }
+            }
+        }
+        .formStyle(.grouped)
+    }
+}
+
+private struct GameSettings: View {
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        Form {
+            Section("Baldur's Gate 3") {
+                LabeledContent("Game") {
+                    if let app = model.gameApp {
+                        HStack {
+                            Text(model.gameVersion.map { String(localized: "Version \($0)") } ?? app.lastPathComponent)
+                            Button("Show in Finder") { NSWorkspace.shared.activateFileViewerSelecting([app]) }
+                        }
+                    } else {
+                        Text("Not found. Install it with Steam.").foregroundStyle(.secondary)
+                    }
+                }
+                if model.isGameRunning {
+                    Label("The game is running: Tadpole won't change the load order until you quit it.", systemImage: "exclamationmark.triangle.fill")
+                        .foregroundStyle(.orange)
+                }
+            }
+            Section {
+                FolderRow(title: "Mods folder", url: model.paths.modsFolder)
+                FolderRow(title: "Load order file", url: model.paths.modSettings)
+                FolderRow(title: "Saves", url: model.paths.saves)
+                FolderRow(title: "Save backups", url: model.paths.saveBackups)
+            } header: {
+                Text("Folders")
+            } footer: {
+                Text("The game decides where these are; Tadpole works with them where they are. Each change to the load order keeps the previous file as modsettings.lsx.bak.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .formStyle(.grouped)
+    }
+}
+
+private struct FolderRow: View {
+    let title: LocalizedStringKey
+    let url: URL
+
+    var body: some View {
+        LabeledContent(title) {
+            HStack(spacing: 6) {
+                Text(url.path(percentEncoded: false).replacingOccurrences(of: URL.homeDirectory.path(percentEncoded: false), with: "~/"))
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
+                    .truncationMode(.middle)
+                    .textSelection(.enabled)
+                    .multilineTextAlignment(.trailing)
+                Button {
+                    let fm = FileManager.default
+                    if fm.fileExists(atPath: url.path(percentEncoded: false)) {
+                        NSWorkspace.shared.activateFileViewerSelecting([url])
+                    } else if url.hasDirectoryPath {
+                        try? fm.createDirectory(at: url, withIntermediateDirectories: true)
+                        NSWorkspace.shared.open(url)
+                    } else {
+                        NSWorkspace.shared.open(url.deletingLastPathComponent())
+                    }
+                } label: {
+                    Image(systemName: "folder")
+                }
+                .buttonStyle(.borderless)
+                .help("Show in Finder")
+            }
+        }
+    }
+}
+
+private struct NexusSettings: View {
     @Environment(AppModel.self) private var model
     @Environment(\.openWindow) private var openWindow
+    @AppStorage(Preferences.closeBrowserAfterDownload) private var closeBrowserAfterDownload = true
     @State private var keyDraft = ""
     @State private var revealKey = false
     @State private var changingKey = false
@@ -35,25 +164,25 @@ struct SettingsView: View {
                 .foregroundStyle(.secondary)
             }
 
-            if let user = model.nexusAccount.user {
-                Section("Downloads") {
-                    VStack(alignment: .leading, spacing: 8) {
-                        if user.isPremium {
-                            Label("Premium: “Mod Manager Download” installs right away.", systemImage: "bolt.fill")
-                        } else {
-                            Text("Free accounts download through the Nexus website. Sign in once in Tadpole's Nexus browser (the sign-in is remembered), then click **Mod Manager Download** and **Slow download**: the mod installs automatically.")
-                        }
-                        Button("Open Nexus Mods") {
-                            model.openNexusBrowser(user.isPremium ? NexusClient.homeURL : NexusClient.signInURL)
+            Section("Downloads") {
+                if let user = model.nexusAccount.user {
+                    if user.isPremium {
+                        Label("Premium: mods download and install right away.", systemImage: "bolt.fill")
+                    } else {
+                        Text("Free accounts download through the Nexus website. Sign in once in Tadpole's Nexus browser (the sign-in is remembered), then click **Mod Manager Download** and **Slow download**: the mod installs automatically.")
+                        Button("Sign In to Nexus…") {
+                            model.openNexusBrowser(NexusClient.signInURL)
                             openWindow(id: BrowserWindow.id)
                         }
                     }
                 }
+                Toggle("Close the Nexus browser once a download starts", isOn: $closeBrowserAfterDownload)
+                Text("The download and install go on in the main window's sidebar. With several mods to download, the browser stays open until the last one.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
         }
         .formStyle(.grouped)
-        .frame(width: 520)
-        .fixedSize(horizontal: false, vertical: true)
     }
 
     /// The key field, shown until a key works (or while changing it).

@@ -30,6 +30,10 @@ final class AppModel {
     var browserQueue: [BrowserQueueItem] = []
     var origins = NexusOrigins.load(from: AppModel.originsFile)
     var sidebarSelection: SidebarItem? = .loadOrder
+    /// Advances when the browser's work is done (a download started), so
+    /// its window can close.
+    var browserDone = 0
+    var showInspector = true
     var nexusSheet: NexusModRequest?
     var collectionSheet: CollectionRequest?
 
@@ -217,6 +221,15 @@ final class AppModel {
         if let url = URL(string: "steam://rungameid/\(GamePaths.steamAppID)") {
             NSWorkspace.shared.open(url)
         }
+    }
+
+    /// The game's app, wherever Steam put it.
+    var gameApp: URL? {
+        NSWorkspace.shared.urlForApplication(withBundleIdentifier: GamePaths.bundleIdentifier)
+    }
+
+    var gameVersion: String? {
+        gameApp.flatMap { Bundle(url: $0)?.infoDictionary?["CFBundleShortVersionString"] as? String }
     }
 
     func openModsFolder() {

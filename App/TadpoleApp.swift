@@ -10,43 +10,19 @@ struct TadpoleApp: App {
                 .environment(model)
                 .frame(minWidth: 820, minHeight: 480)
                 .task {
+                    AppTheme.current.apply()
                     model.load()
                     model.loadNexusAccount()
                 }
         }
-        .commands {
-            CommandGroup(replacing: .newItem) {
-                Button("Install Mods…") { model.presentInstallPanel() }
-                    .keyboardShortcut("o")
-            }
-            CommandMenu("Mods") {
-                Button("Reload") { model.load() }
-                    .keyboardShortcut("r")
-                Button("Order by Requirements") { model.sortByDependencies() }
-                    .disabled(model.enabledMods.count < 2)
-                Divider()
-                Button("Open Mods Folder") { model.openModsFolder() }
-                    .keyboardShortcut("o", modifiers: [.command, .shift])
-            }
-            CommandMenu("Game") {
-                Button("Play Baldur's Gate 3") { model.launchGame() }
-                    .keyboardShortcut("l")
-            }
-            CommandGroup(before: .sidebar) {
-                Button("Load Order") { model.sidebarSelection = .loadOrder }
-                    .keyboardShortcut("1")
-                Button("Browse Nexus") { model.sidebarSelection = .browse }
-                    .keyboardShortcut("2")
-                Button("Collections") { model.sidebarSelection = .collections }
-                    .keyboardShortcut("3")
-                Button("Saves") { model.sidebarSelection = .saves }
-                    .keyboardShortcut("4")
-                Divider()
-            }
-            CommandGroup(after: .windowArrangement) {
-                OpenNexusButton()
-            }
+        .commands { AppCommands(model: model) }
+
+        Window("Tadpole Help", id: HelpView.windowID) {
+            HelpView()
+                .frame(minWidth: 640, minHeight: 420)
         }
+        .defaultSize(width: 900, height: 620)
+        .commandsRemoved()  // opened from the Help menu, not listed under Window
 
         Window("Nexus Mods", id: BrowserWindow.id) {
             BrowserView()
@@ -54,20 +30,11 @@ struct TadpoleApp: App {
                 .frame(minWidth: 900, minHeight: 600)
         }
         .defaultSize(width: 1200, height: 860)
+        .commandsRemoved()  // Window → Nexus Mods (⇧⌘N) opens it
 
         Settings {
             SettingsView()
                 .environment(model)
         }
-    }
-}
-
-/// Opens the Nexus Mods browser window (menus can't read openWindow directly).
-struct OpenNexusButton: View {
-    @Environment(\.openWindow) private var openWindow
-
-    var body: some View {
-        Button("Nexus Mods") { openWindow(id: BrowserWindow.id) }
-            .keyboardShortcut("n", modifiers: [.command, .shift])
     }
 }

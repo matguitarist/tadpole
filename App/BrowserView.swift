@@ -14,6 +14,7 @@ enum BrowserWindow {
 
 struct BrowserView: View {
     @Environment(AppModel.self) private var model
+    @Environment(\.dismissWindow) private var dismissWindow
     @State private var browser = BrowserController()
 
     var body: some View {
@@ -72,6 +73,15 @@ struct BrowserView: View {
         }
         .onChange(of: model.browserRequest) { _, request in
             if let request { browser.load(request.url) }
+        }
+        .onChange(of: model.browserDone) {
+            // A download started (it goes on in the main window): close,
+            // after a moment so the click visibly did something.
+            Task {
+                try? await Task.sleep(for: .seconds(1.2))
+                guard model.browserQueue.isEmpty else { return }
+                dismissWindow(id: BrowserWindow.id)
+            }
         }
     }
 

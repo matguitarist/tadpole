@@ -33,6 +33,16 @@ extension AppModel {
         }
     }
 
+    /// Every save in the game, read fresh (the Saves page may not have
+    /// been opened yet).
+    func backUpAllSaves() {
+        let paths = paths
+        Task {
+            let all = await Task.detached { SaveGame.scan(paths.saves) }.value
+            backUp(all)
+        }
+    }
+
     func restore(_ backup: SaveBackup) {
         guard !isGameRunning else {
             return show("Quit Baldur's Gate 3 First", String(localized: "Restore saves while the game isn't running, so it sees them."))
