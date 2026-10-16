@@ -3,23 +3,23 @@
     <channel>
         <title>Tadpole</title>
         <item>
-            <title>0.1</title>
-            <pubDate>Thu, 15 Oct 2026 21:05:18 -0400</pubDate>
-            <sparkle:version>1</sparkle:version>
-            <sparkle:shortVersionString>0.1</sparkle:shortVersionString>
+            <title>0.2</title>
+            <pubDate>Fri, 16 Oct 2026 10:06:52 -0400</pubDate>
+            <sparkle:version>2</sparkle:version>
+            <sparkle:shortVersionString>0.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[## First release
+            <description sparkle:format="markdown"><![CDATA[## Updates and the Script Extender
 
-Tadpole manages Baldur's Gate 3 mods on macOS.
-
-- **Load order**: turn mods on and off, drag them into order, and see requirements that are missing or load too late. Changes go straight into the game's own mod list, with a backup of the previous one.
-- **Install** .pak files and .zip, .7z or .rar archives by dropping them on the window.
-- **Browse Nexus** and **Collections**: find mods and collections on Nexus Mods and install them in the app (free and Premium accounts).
-- **Saves**: see your saves with their picture and party, back them up and restore them.
-- Mods that need the Script Extender, which doesn't exist on macOS, are marked.
-- English and French.
+- **Updates**: a new page lists newer versions of your Nexus mods, with what changed. **Update** or **Update All** replaces the old file and keeps the mod's place in the load order. Tadpole checks at launch and every 6 hours, and notifies you.
+- **Script Extender for macOS**: install [bg3se-macos](https://github.com/tdimino/bg3se-macos), an independent rebuild of Norbyte's Script Extender for Apple silicon, from Settings → Script Extender. Tadpole checks the download, keeps it up to date, and applies it again after game updates. It's unofficial, and each release is made for one game build: Tadpole tells you when yours isn't supported yet. Back up your saves first.
+- **Script Extender Log** (⌘6): what the Script Extender loaded and what went wrong, with errors grouped by mod, updating while you play.
+- **Collections** show which mods need the Script Extender before you install them, with an option to skip them.
+- **Mod details** show the mod's picture from Nexus, its status, size, and every file on its Nexus page, main and optional. Mods installed from files can be linked to Nexus with **Find on Nexus…**.
+- **Install All** for mods split into several files.
+- **Menu bar icon** with the game's version, Play, mod updates and downloads. Turn it off in Settings → General.
+- A bar at the bottom of the window shows the game's and the Script Extender's versions.
 ]]></description>
-            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.1/Tadpole-0.1.zip" length="4056155" type="application/octet-stream" sparkle:edSignature="/oSUhHN4Yakhqt2kqW2n/OOdAktm0KJjmWoTeufiEf2DOZSBV+Ecce0r8xzpbmV0KTkgrFmoyYejZvXB3hvdCg=="/>
+            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.2/Tadpole-0.2.zip" length="5028890" type="application/octet-stream" sparkle:edSignature="ttSQVJoOfhxkTX9AhQKo4r4Z5PcgFCGbiT6hWbCWAXADaDUZ9BFWl6DrhGdGjjxUlVKnek+FlujjYbNzvlKMDg=="/>
         </item>
     </channel>
 </rss>
