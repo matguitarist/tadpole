@@ -141,6 +141,7 @@ final class AppModel {
             blocker = .unreadableSettings(error.localizedDescription)
         }
         mods = PakMod.scan(paths.modsFolder)
+        modsSubfolders = readModsSubfolders()
         // The game may have changed the load order (it drops mods it can't load).
         ensureActiveProfile()
         trackActiveProfile()
@@ -234,6 +235,24 @@ final class AppModel {
     /// .pak files without a meta.lsx: the game loads them all the time.
     var overrideMods: [PakMod] { mods.filter { $0.info == nil && $0.error == nil } }
     var unreadableMods: [PakMod] { mods.filter { $0.error != nil } }
+
+    /// Folders inside the Mods folder: the game can reset its load order
+    /// when there are some (BG3 Mod Manager's notes say so too).
+    private(set) var modsSubfolders: [URL] = []
+
+    private func readModsSubfolders() -> [URL] {
+        let items = (try? FileManager.default.contentsOfDirectory(at: paths.modsFolder, includingPropertiesForKeys: [.isDirectoryKey],
+                                                                 options: .skipsHiddenFiles)) ?? []
+        return items.filter { (try? $0.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) == true }
+    }
+
+    /// Installed by the game's own mod manager (mod.io): it has a publish
+    /// handle, in its .pak or in the load order.
+    func isFromModIO(_ mod: PakMod) -> Bool {
+        if let handle = mod.info?.publishHandle, handle != 0 { return true }
+        guard let uuid = mod.info?.uuid else { return false }
+        return settings?.modEntries.contains { $0.uuid == uuid && $0.publishHandle != 0 } ?? false
+    }
 
     /// Mods installed more than once (the same UUID in several .pak files),
     /// by UUID. The game loads only one of them.

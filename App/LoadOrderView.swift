@@ -217,6 +217,27 @@ private struct ModList: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
+            let subfolders = model.modsSubfolders
+            if !subfolders.isEmpty {
+                Section {
+                    ForEach(subfolders, id: \.self) { folder in
+                        HStack {
+                            Image(systemName: "folder").foregroundStyle(.secondary)
+                            Text(verbatim: folder.lastPathComponent)
+                            Spacer()
+                            Button("Show in Finder") { NSWorkspace.shared.activateFileViewerSelecting([folder]) }
+                        }
+                    }
+                } header: {
+                    Label("Folders in the Mods Folder", systemImage: "exclamationmark.triangle.fill")
+                        .foregroundStyle(.orange)
+                } footer: {
+                    Text("Folders here can make the game reset your load order. Move their .pak files out, then the folders away.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
             if !model.unreadableMods.isEmpty {
                 Section("Can't Be Read") {
                     ForEach(model.unreadableMods) { mod in
@@ -272,6 +293,10 @@ private struct ModRow: View {
                 }
             }
             Spacer()
+            if model.isFromModIO(mod) {
+                Badge(text: "mod.io", color: .teal)
+                    .help("Installed by the game's own mod manager (mod.io). Update or remove it there: the game manages its file.")
+            }
             if mod.usesScriptExtender {
                 ScriptExtenderBadge(mod: mod)
             }

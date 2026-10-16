@@ -124,6 +124,11 @@ struct HelpView: View {
                 ])
             }
             HelpText("Each change keeps the previous file as **modsettings.lsx.bak** next to it.")
+            HelpSection("The game's own mod manager") {
+                HelpText("Baldur's Gate 3 has its own mod manager (mod.io) in its main menu. Mods it installs show a **mod.io** badge: Tadpole lists them and you can order them, but update or remove them in the game, which manages their files.")
+                HelpText("The game and Tadpole share the same load order file. Tadpole reads it again when the game quits, so changes made in the game show up. Avoid installing the same mod from both mod.io and Nexus: Tadpole flags it under **Installed Twice**.")
+                HelpText("Keep the Mods folder free of folders: the game can reset the load order when there are some. Tadpole warns about them.")
+            }
 
         case .installing:
             HelpSection("From files you downloaded") {
