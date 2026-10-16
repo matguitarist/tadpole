@@ -580,3 +580,22 @@ import Testing
         #expect(NexusFile.fileToInstall(from: [files[3]]) == nil)
     }
 }
+
+@Suite struct ScriptStatusTests {
+    @Test func findsAModsScriptFolders() {
+        let paths = ["Mods/5eSpells/meta.lsx", "Mods/5eSpells/ScriptExtender/Config.json", "Mods/5eSpells/ScriptExtender/Lua/BootstrapServer.lua",
+                     "Public/5eSpells/Stats/Spells.txt", "Mods/Other/scriptextender/Lua/x.lua"]
+        #expect(PakMod.scriptFolders(in: paths) == ["5eSpells", "Other"])
+    }
+
+    @Test func readsEachModsScriptsFromTheLog() {
+        let log = ScriptExtenderLog("""
+            [2026-10-16 08:00:00.592] [INFO ] [Lua    ] Loaded from PAK: Mods/MCM/ScriptExtender/Lua/BootstrapServer.lua
+            [2026-10-16 08:00:00.629] [INFO ] [Lua    ] Loaded from PAK: Mods/5eSpells/ScriptExtender/Lua/BootstrapServer.lua
+            [2026-10-16 08:01:52.036] [ERROR] [Lua    ] PAK compile error (Mods/MCM/ScriptExtender/Lua/Shared/Settings.lua): oops
+            """)
+        #expect(log.scriptStatus(forFolders: ["5eSpells"]) == .loaded)
+        #expect(log.scriptStatus(forFolders: ["mcm"]) == .errors(1))
+        #expect(log.scriptStatus(forFolders: ["CommunityLibrary"]) == .notLoaded)
+    }
+}

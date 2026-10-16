@@ -249,10 +249,7 @@ private struct ModRow: View {
             }
             Spacer()
             if mod.usesScriptExtender {
-                Badge(text: String(localized: "Script Extender"), color: .purple)
-                    .help(model.scriptExtenderIsActive
-                          ? String(localized: "This mod uses the Script Extender, which is installed. Its scripted features work as far as the macOS version supports them.")
-                          : String(localized: "This mod uses Norbyte's Script Extender, which isn't installed. Its scripted features won't work: install the macOS version in Settings → Script Extender."))
+                ScriptExtenderBadge(mod: mod)
             }
             if let update = model.update(forPak: mod.file.lastPathComponent) {
                 Button {
@@ -296,6 +293,42 @@ private struct MissingRow: View {
                 .help("Take it out of the load order")
         }
         .padding(.vertical, 2)
+    }
+}
+
+/// "Script Extender", with how its scripts did in the last game: loaded
+/// (check), errors (red), or not loaded (gray dash).
+private struct ScriptExtenderBadge: View {
+    @Environment(AppModel.self) private var model
+    let mod: PakMod
+
+    var body: some View {
+        let status = model.scriptExtenderIsActive ? model.scriptStatus(of: mod) : nil
+        HStack(spacing: 3) {
+            switch status {
+            case .loaded: Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
+            case .errors: Image(systemName: "exclamationmark.octagon.fill").foregroundStyle(.red)
+            case .notLoaded: Image(systemName: "minus.circle").foregroundStyle(.secondary)
+            case nil: EmptyView()
+            }
+            Badge(text: String(localized: "Script Extender"), color: .purple)
+        }
+        .font(.caption2)
+        .help(help(status))
+    }
+
+    private func help(_ status: ScriptExtenderLog.ScriptStatus?) -> String {
+        guard model.scriptExtenderIsActive else {
+            return String(localized: "This mod uses Norbyte's Script Extender, which isn't installed. Its scripted features won't work: install the macOS version in Settings → Script Extender.")
+        }
+        switch status {
+        case .loaded: return String(localized: "Its scripts loaded in your last game.")
+        case .errors(let count):
+            return count == 1 ? String(localized: "Its scripts had 1 error in your last game: see Script Extender Log.")
+                              : String(localized: "Its scripts had \(count) errors in your last game: see Script Extender Log.")
+        case .notLoaded: return String(localized: "Its scripts didn't load in your last game. They load once a save is loaded; if you did, see Script Extender Log.")
+        case nil: return String(localized: "This mod uses the Script Extender, which is installed. Its scripted features work as far as the macOS version supports them.")
+        }
     }
 }
 

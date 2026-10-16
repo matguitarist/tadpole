@@ -38,6 +38,7 @@
 		DEFA51D8F5E45F024256EB31 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAF40FB04F9897722528FBF /* HelpView.swift */; };
 		E689F8C0142837009C6A5AAC /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF049D60674E4F843F145D5 /* RootView.swift */; };
 		E70D74C9814DBBD646224F82 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B782ED5F40424102BB728CA5 /* BrowseView.swift */; };
+		E8AF53F79234B35CB85A8840 /* AppModel+PlayReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781B4CEF8667B5CC1BF5A2CF /* AppModel+PlayReport.swift */; };
 		EAFB730EED4EBE1AE843F49E /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E8142B91713F9E679D936 /* Preferences.swift */; };
 		FC9D23C7DEFA664BDE3DC377 /* UpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A95924B5FFC84EF2324C9 /* UpdatesView.swift */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModDetails.swift; sourceTree = "<group>"; };
 		6FF049D60674E4F843F145D5 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		73B6D6AF9472BF19AFB575A4 /* AppModel+ScriptExtender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+ScriptExtender.swift"; sourceTree = "<group>"; };
+		781B4CEF8667B5CC1BF5A2CF /* AppModel+PlayReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+PlayReport.swift"; sourceTree = "<group>"; };
 		84F71A329F8DF8CA9FFAD525 /* Tadpole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadpole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A9F40E2D996A82221043F75 /* Pictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictures.swift; sourceTree = "<group>"; };
 		8F8E8142B91713F9E679D936 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				36AAAAE6A42734509344D9B7 /* AppCommands.swift */,
 				14ED628E94AA4479EADA1DFF /* AppModel.swift */,
 				A7409FB401E6011ADF7EC422 /* AppModel+Nexus.swift */,
+				781B4CEF8667B5CC1BF5A2CF /* AppModel+PlayReport.swift */,
 				BED19FD627256BC0582B3DB9 /* AppModel+Requirements.swift */,
 				2E9CB159921A67A21F95BBBB /* AppModel+Saves.swift */,
 				73B6D6AF9472BF19AFB575A4 /* AppModel+ScriptExtender.swift */,
@@ -240,6 +243,7 @@
 			files = (
 				C9D01ED84BDC9B05AC71A206 /* AppCommands.swift in Sources */,
 				C612E085EA8CC69FE662C3FE /* AppModel+Nexus.swift in Sources */,
+				E8AF53F79234B35CB85A8840 /* AppModel+PlayReport.swift in Sources */,
 				65E810B669DD7311FB02651F /* AppModel+Requirements.swift in Sources */,
 				A43B77CEF63008F2BE7618A0 /* AppModel+Saves.swift in Sources */,
 				95161D86CAF76783DDB28604 /* AppModel+ScriptExtender.swift in Sources */,

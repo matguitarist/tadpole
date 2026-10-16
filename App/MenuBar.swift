@@ -36,6 +36,11 @@ struct MenuBarContent: View {
             model.launchGame()
         }
         .disabled(model.gameIsRunning)
+        if let report = model.lastPlayReport {
+            Button(report.crashFile != nil ? String(localized: "The game crashed: see the log…") : String(localized: "Script Extender errors in the last game…")) {
+                show(.scriptExtenderLog)
+            }
+        }
         if model.scriptExtenderState == .needsReapply {
             Button("Apply the Script Extender Again") { model.reapplyScriptExtender() }
                 .disabled(model.gameIsRunning || model.scriptExtenderTask != nil)

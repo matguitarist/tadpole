@@ -164,6 +164,11 @@ struct HelpView: View {
                 HelpText("Steam replaces the game's program when the game updates, which removes the Script Extender. Tadpole notices, and applies it again before you press **Play** (or click **Apply Again** on the Load Order page). **Remove** in Settings puts the game's original program back.")
                 HelpText("If macOS stops Tadpole from changing the game, turn Tadpole on in **System Settings → Privacy & Security → App Management**.")
             }
+            HelpSection("After a game") {
+                HelpText("When the game quits, Tadpole reads the Script Extender's log. Each Script Extender mod's badge then shows how its scripts did: a green check when they loaded, red when they had errors, a gray dash when they didn't load (they load once a save is loaded).")
+                HelpText("If the Script Extender logged errors, or the game crashed, a notification opens the log, and the menu bar icon's menu says so. Turn the notification off in **Settings → Script Extender**.")
+                HelpText("When a release made for your game build comes out, Tadpole tells you: updating to it ends limited mode.")
+            }
             HelpSection("The log") {
                 HelpText("On a game build the release wasn't made for, an orange **Limited mode** banner at the top lists what's turned off. Mods listed by the Script Extender by mistake (it sometimes matches a mod to another mod's scripts) are noted and not counted.")
                 HelpText("Each time the game runs with it, the Script Extender writes a log, like SMAPI's for Stardew Valley. **Script Extender Log** (⌘6) shows the latest one, updating while you play: which mods it loaded, and errors and warnings grouped by mod. Click a mod or part under **Problems** to see only its warnings and errors (**Show All** goes back); **Sessions** shows earlier games. Attach the log file (**Show in Finder**) when you report a problem to a mod's author.")

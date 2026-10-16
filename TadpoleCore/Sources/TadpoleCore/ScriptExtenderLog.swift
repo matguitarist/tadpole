@@ -62,6 +62,24 @@ public struct ScriptExtenderLog: Sendable {
     public var unsupportedBuild: (detected: String, expected: String)?
     /// What it turned off on this build ("stats system disabled"…).
     public var disabledFeatures: [String] = []
+    /// Script folders whose Lua it loaded ("Loaded from PAK:
+    /// Mods/5eSpells/ScriptExtender/Lua/BootstrapServer.lua" → 5eSpells).
+    public var loadedScriptFolders: Set<String> = []
+
+    /// How a mod's scripts did in this session.
+    public enum ScriptStatus: Equatable, Sendable {
+        case loaded
+        case errors(Int)
+        case notLoaded
+    }
+
+    /// For a mod's script folders (PakMod.scriptFolders).
+    public func scriptStatus(forFolders folders: [String]) -> ScriptStatus {
+        let lowered = Set(folders.map { $0.lowercased() })
+        let errors = entries.count { $0.level == .error && ($0.modFolder.map { lowered.contains($0.lowercased()) } ?? false) }
+        if errors > 0 { return .errors(errors) }
+        return loadedScriptFolders.contains { lowered.contains($0.lowercased()) } ? .loaded : .notLoaded
+    }
 
     public init(_ text: String) {
         var currentBlock: String?
@@ -73,6 +91,7 @@ public struct ScriptExtenderLog: Sendable {
             if let entry = Self.parse(line, number: lineNumber) {
                 entries.append(entry)
                 noteCompatibility(entry)
+                if entry.message.hasPrefix("Loaded from PAK: "), let folder = entry.modFolder { loadedScriptFolders.insert(folder) }
                 // The mod lists are logged as blocks of INFO lines.
                 let message = entry.message
                 if message.hasPrefix("=== ") {

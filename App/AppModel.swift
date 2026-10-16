@@ -50,6 +50,12 @@ final class AppModel {
     // The Script Extender for macOS (AppModel+ScriptExtender).
     var scriptExtender = ScriptExtenderRecord.load()
     var scriptExtenderLatest: ScriptExtenderRelease?
+    /// The latest Script Extender log, and what went wrong in the last game
+    /// (AppModel+PlayReport).
+    var lastScriptLog: ScriptExtenderLog?
+    var lastScriptLogDate: Date?
+    var lastPlayReport: PlayReport?
+    private(set) var gameStartedAt: Date?
     /// Nexus mods' requirements, by mod (AppModel+Requirements).
     var nexusRequirements: [Int: [NexusRequirement]] = [:]
     var scriptExtenderState = ScriptExtenderState.notInstalled
@@ -149,7 +155,10 @@ final class AppModel {
         let workspace = NSWorkspace.shared.notificationCenter
         observers.append(workspace.addObserver(forName: NSWorkspace.didLaunchApplicationNotification, object: nil, queue: .main) { note in
             guard AppModel.isGame(note) else { return }
-            MainActor.assumeIsolated { AppModel.shared.gameIsRunning = true }
+            MainActor.assumeIsolated {
+                AppModel.shared.gameIsRunning = true
+                AppModel.shared.gameStartedAt = .now
+            }
         })
         observers.append(workspace.addObserver(forName: NSWorkspace.didTerminateApplicationNotification, object: nil, queue: .main) { note in
             guard AppModel.isGame(note) else { return }
@@ -173,6 +182,8 @@ final class AppModel {
     /// the mods installed while it ran.
     private func gameDidQuit() {
         gameIsRunning = false
+        let started = gameStartedAt
+        Task { await reportAfterPlaying(startedAt: started) }
         Task {
             try? await Task.sleep(for: .seconds(1))  // let the last writes land
             load()

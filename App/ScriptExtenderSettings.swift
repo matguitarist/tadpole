@@ -6,6 +6,7 @@ import TadpoleCore
 
 struct ScriptExtenderSettings: View {
     @Environment(AppModel.self) private var model
+    @AppStorage(Preferences.reportAfterPlaying) private var reportAfterPlaying = true
 
     var body: some View {
         Form {
@@ -40,6 +41,16 @@ struct ScriptExtenderSettings: View {
                     }
                 }
                 actions
+            }
+
+            Section {
+                Toggle("Notify me about errors and crashes after playing", isOn: $reportAfterPlaying)
+            } header: {
+                Text("After Playing")
+            } footer: {
+                Text("When the game quits, Tadpole reads the Script Extender's log and looks for a crash report. If something went wrong, a notification opens the log.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
 
             Section("Latest Release") {

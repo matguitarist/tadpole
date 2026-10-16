@@ -12,6 +12,7 @@ enum Preferences {
     static let notifyModUpdates = "notifyModUpdates"
     static let skipScriptExtenderMods = "skipScriptExtenderMods"
     static let showMenuBarIcon = "showMenuBarIcon"  // default on
+    static let reportAfterPlaying = "reportAfterPlaying"  // default on
 }
 
 /// Light, dark, or whatever macOS uses.

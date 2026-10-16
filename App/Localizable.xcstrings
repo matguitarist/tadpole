@@ -376,6 +376,26 @@
         }
       }
     },
+    "%lld script errors in your last game." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld erreurs de script pendant votre dernière partie."
+          }
+        }
+      }
+    },
+    "%lld Script Extender errors in your last game" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld erreurs du Script Extender pendant votre dernière partie"
+          }
+        }
+      }
+    },
     "%lld updates available…" : {
       "localizations" : {
         "fr" : {
@@ -426,12 +446,42 @@
         }
       }
     },
+    "1 script error in your last game." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 erreur de script pendant votre dernière partie."
+          }
+        }
+      }
+    },
+    "1 Script Extender error in your last game" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 erreur du Script Extender pendant votre dernière partie"
+          }
+        }
+      }
+    },
     "1 update available…" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 mise à jour disponible…"
+          }
+        }
+      }
+    },
+    "A crash report was saved. Open Tadpole to see it." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un rapport de plantage a été enregistré. Ouvrez Tadpole pour le voir."
           }
         }
       }
@@ -522,6 +572,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajoutez votre clé d’API personnelle Nexus Mods dans les Réglages pour télécharger des mods."
+          }
+        }
+      }
+    },
+    "After a game" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Après une partie"
+          }
+        }
+      }
+    },
+    "After Playing" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Après avoir joué"
           }
         }
       }
@@ -792,6 +862,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Baldur's Gate 3 %@ · En cours"
+          }
+        }
+      }
+    },
+    "Baldur's Gate 3 crashed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baldur's Gate 3 a planté"
           }
         }
       }
@@ -1876,6 +1956,16 @@
         }
       }
     },
+    "If the Script Extender logged errors, or the game crashed, a notification opens the log, and the menu bar icon's menu says so. Turn the notification off in **Settings → Script Extender**." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si le Script Extender a enregistré des erreurs, ou si le jeu a planté, une notification ouvre le journal, et le menu de l’icône de la barre des menus le signale. Désactivez la notification dans **Réglages → Script Extender**."
+          }
+        }
+      }
+    },
     "In **Limited mode**, the release wasn't made for your game build and some features are off. Wait for a release that supports it: Tadpole lists it on **Updates**." : {
       "localizations" : {
         "fr" : {
@@ -2212,6 +2302,56 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sa page Nexus les liste, et vous ne les avez pas. Lisez les notes : certains ne servent qu’à une partie du mod."
+          }
+        }
+      }
+    },
+    "Its scripts didn't load in your last game (they load once a save is loaded)." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ses scripts ne se sont pas chargés pendant votre dernière partie (ils se chargent une fois une sauvegarde chargée)."
+          }
+        }
+      }
+    },
+    "Its scripts didn't load in your last game. They load once a save is loaded; if you did, see Script Extender Log." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ses scripts ne se sont pas chargés pendant votre dernière partie. Ils se chargent une fois une sauvegarde chargée ; si vous l’avez fait, voyez le journal du Script Extender."
+          }
+        }
+      }
+    },
+    "Its scripts had %lld errors in your last game: see Script Extender Log." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ses scripts ont eu %lld erreurs pendant votre dernière partie : voyez le journal du Script Extender."
+          }
+        }
+      }
+    },
+    "Its scripts had 1 error in your last game: see Script Extender Log." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ses scripts ont eu 1 erreur pendant votre dernière partie : voyez le journal du Script Extender."
+          }
+        }
+      }
+    },
+    "Its scripts loaded in your last game." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ses scripts se sont chargés pendant votre dernière partie."
           }
         }
       }
@@ -3112,6 +3252,16 @@
         }
       }
     },
+    "Notify me about errors and crashes after playing" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M’avertir des erreurs et plantages après avoir joué"
+          }
+        }
+      }
+    },
     "Notify me when updates are found" : {
       "localizations" : {
         "fr" : {
@@ -3862,6 +4012,16 @@
         }
       }
     },
+    "Script Extender errors in the last game…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreurs du Script Extender pendant la dernière partie…"
+          }
+        }
+      }
+    },
     "Script Extender for macOS" : {
       "localizations" : {
         "fr" : {
@@ -4118,6 +4278,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher le fichier d’ordre de chargement"
+          }
+        }
+      }
+    },
+    "Show Log" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher le journal"
           }
         }
       }
@@ -4558,6 +4728,16 @@
         }
       }
     },
+    "The game crashed: see the log…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jeu a planté : voir le journal…"
+          }
+        }
+      }
+    },
     "The game decides where these are; Tadpole works with them where they are. Each change to the load order keeps the previous file as modsettings.lsx.bak." : {
       "localizations" : {
         "fr" : {
@@ -4724,6 +4904,16 @@
         }
       }
     },
+    "The Script Extender also logged errors: %@." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Script Extender a aussi enregistré des erreurs : %@."
+          }
+        }
+      }
+    },
     "The Script Extender is installed into the game, which can't be changed while it runs." : {
       "localizations" : {
         "fr" : {
@@ -4740,6 +4930,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le Script Extender est installé."
+          }
+        }
+      }
+    },
+    "The Script Extender supports your game" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Script Extender prend en charge votre jeu"
           }
         }
       }
@@ -5120,6 +5320,22 @@
         }
       }
     },
+    "Version %@ is made for game build %@: update it to leave limited mode." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Version %1$@ is made for game build %2$@: update it to leave limited mode."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La version %@ est faite pour le build du jeu %@ : mettez-la à jour pour quitter le mode limité."
+          }
+        }
+      }
+    },
     "Version %@ was made for game build %@, not yours. It may run in a limited mode, with some features off, until a release supports your build." : {
       "localizations" : {
         "en" : {
@@ -5212,6 +5428,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouveautés"
+          }
+        }
+      }
+    },
+    "When a release made for your game build comes out, Tadpole tells you: updating to it ends limited mode." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quand une version faite pour votre build du jeu sort, Tadpole vous prévient : la mettre à jour met fin au mode limité."
+          }
+        }
+      }
+    },
+    "When the game quits, Tadpole reads the Script Extender's log and looks for a crash report. If something went wrong, a notification opens the log." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quand le jeu se ferme, Tadpole lit le journal du Script Extender et cherche un rapport de plantage. Si quelque chose s’est mal passé, une notification ouvre le journal."
+          }
+        }
+      }
+    },
+    "When the game quits, Tadpole reads the Script Extender's log. Each Script Extender mod's badge then shows how its scripts did: a green check when they loaded, red when they had errors, a gray dash when they didn't load (they load once a save is loaded)." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quand le jeu se ferme, Tadpole lit le journal du Script Extender. Le badge de chaque mod Script Extender montre alors comment ses scripts se sont comportés : une coche verte s’ils se sont chargés, rouge s’ils ont eu des erreurs, un tiret gris s’ils ne se sont pas chargés (ils se chargent une fois une sauvegarde chargée)."
           }
         }
       }

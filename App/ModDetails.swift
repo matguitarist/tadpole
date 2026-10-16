@@ -73,6 +73,22 @@ struct ModDetails: View {
                         Label("Uses the Script Extender, which is installed. Its scripted features work as far as the macOS version supports them.", systemImage: "puzzlepiece.extension.fill")
                             .foregroundStyle(.purple)
                             .fixedSize(horizontal: false, vertical: true)
+                        switch model.scriptStatus(of: mod) {
+                        case .loaded:
+                            Label("Its scripts loaded in your last game.", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
+                        case .errors(let count):
+                            HStack {
+                                Label(count == 1 ? String(localized: "1 script error in your last game.") : String(localized: "\(count) script errors in your last game."),
+                                      systemImage: "exclamationmark.octagon.fill").foregroundStyle(.red)
+                                Button("Show Log") { model.sidebarSelection = .scriptExtenderLog }.controlSize(.small)
+                            }
+                        case .notLoaded:
+                            Label("Its scripts didn't load in your last game (they load once a save is loaded).", systemImage: "minus.circle")
+                                .foregroundStyle(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        case nil:
+                            EmptyView()
+                        }
                     } else {
                         Label("Uses Norbyte's Script Extender, which isn't installed. Its scripted features won't work; parts that don't need it may still work. Install the macOS version in Settings → Script Extender.", systemImage: "exclamationmark.triangle.fill")
                             .foregroundStyle(.purple)
@@ -183,6 +199,8 @@ private struct NexusSection: View {
     @ViewBuilder
     private func linked(_ modID: Int) -> some View {
         let page = model.nexusMods[modID]
+        NexusRequirementsList(modID: modID, compact: true)
+            .padding(.bottom, 4)
         HStack(alignment: .firstTextBaseline) {
             VStack(alignment: .leading, spacing: 1) {
                 Text("Files on Nexus").font(.headline)
@@ -204,7 +222,6 @@ private struct NexusSection: View {
             .fixedSize()
         }
         .task(id: modID) { await load(modID) }  // the page (picture) and files, whichever is missing
-        NexusRequirementsList(modID: modID, compact: true)
         if let files = model.nexusFiles[modID] {
             if files.contains(where: \.isCurrent) {
                 NexusFileSections(modID: modID, files: files, compact: true, onNeedsRequirements: { requirementsPrompt = $0 })

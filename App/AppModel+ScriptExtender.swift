@@ -95,7 +95,15 @@ extension AppModel {
         guard let latest = try? await ScriptExtenderMac.latestRelease() else { return }
         let wasKnown = scriptExtenderUpdate?.version == latest.version
         scriptExtenderLatest = latest
-        if notify, !wasKnown, let update = scriptExtenderUpdate { UpdateNotifications.postScriptExtender(update) }
+        guard notify, !wasKnown, let update = scriptExtenderUpdate else { return }
+        // Better news than "an update": it's made for the game's build, and
+        // the installed one isn't.
+        if let build = scriptExtenderGame?.build, update.supports(gameBuild: build) == true,
+           scriptExtender?.release.supports(gameBuild: build) != true {
+            UpdateNotifications.postScriptExtenderSupportsBuild(update, build: build)
+        } else {
+            UpdateNotifications.postScriptExtender(update)
+        }
     }
 
     /// Downloads and installs a release (the latest by default), or applies

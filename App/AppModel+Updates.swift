@@ -143,9 +143,12 @@ enum UpdateNotifications {
 final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Sendable {
     static let shared = NotificationDelegate()
 
+    /// Opens what the notification is about: the log after a game, else
+    /// Updates.
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        let target = response.notification.request.content.userInfo["open"] as? String
         await MainActor.run {
-            AppModel.shared.sidebarSelection = .updates
+            AppModel.shared.sidebarSelection = target == "scriptExtenderLog" ? .scriptExtenderLog : .updates
             NSApp.activate()
         }
     }
