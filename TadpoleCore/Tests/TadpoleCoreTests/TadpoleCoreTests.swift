@@ -639,3 +639,111 @@ import Testing
         #expect(store.active == nil && store.profiles.isEmpty)
     }
 }
+
+@Suite struct LSFTests {
+    /// A minimal uncompressed LSF v7 file: MetaData › ModuleSettings › Mods ›
+    /// two ModuleShortDesc (the base game's and a mod).
+    static func metaFile() -> Data {
+        var names: [String] = []
+        func nameIndex(_ name: String) -> UInt32 {
+            if let index = names.firstIndex(of: name) { return UInt32(index) }  // one bucket: index = position
+            names.append(name)
+            return UInt32(names.count - 1)
+        }
+        func le32(_ value: UInt32) -> Data { withUnsafeBytes(of: value.littleEndian) { Data($0) } }
+        func le16(_ value: UInt16) -> Data { withUnsafeBytes(of: value.littleEndian) { Data($0) } }
+
+        var nodes = Data(), attributes = Data(), values = Data()
+        var nodeCount: Int32 = 0
+        func node(_ name: String, parent: Int32) -> Int32 {
+            nodes += le32(nameIndex(name)) + le32(UInt32(bitPattern: -1)) + le32(UInt32(bitPattern: parent))
+            defer { nodeCount += 1 }
+            return nodeCount
+        }
+        func string(_ name: String, _ value: String, node: Int32, type: UInt32 = 22) {
+            let bytes = Data(value.utf8) + Data([0])
+            attributes += le32(nameIndex(name)) + le32(type | UInt32(bytes.count) << 6) + le32(UInt32(bitPattern: node))
+            values += bytes
+        }
+        func int64(_ name: String, _ value: Int64, node: Int32) {
+            attributes += le32(nameIndex(name)) + le32(32 | 8 << 6) + le32(UInt32(bitPattern: node))
+            values += withUnsafeBytes(of: value.littleEndian) { Data($0) }
+        }
+        let root = node("MetaData", parent: -1)
+        let meta = node("MetaData", parent: root)
+        let settings = node("ModuleSettings", parent: meta)
+        let mods = node("Mods", parent: settings)
+        let base = node("ModuleShortDesc", parent: mods)
+        string("Name", "GustavX", node: base)
+        string("UUID", "cb555efe-2d9e-131f-8195-a89329d218ea", node: base)
+        let mod = node("ModuleShortDesc", parent: mods)
+        string("Name", "5eSpells", node: mod, type: 23)
+        string("Folder", "5eSpells", node: mod)
+        string("UUID", "fb5f528d-4d48-4bf2-a668-2274d3cfba96", node: mod)
+        int64("Version64", 36029797018963968, node: mod)
+        _ = node("ClientData", parent: meta)
+
+        var strings = le32(1) + le16(UInt16(names.count))
+        for name in names { strings += le16(UInt16(name.utf8.count)) + Data(name.utf8) }
+        var file = Data("LSOF".utf8) + le32(7) + Data(count: 8)
+        for section in [strings, Data(), nodes, attributes, values] { file += le32(UInt32(section.count)) + le32(0) }
+        file += Data([0, 0]) + le16(0) + le32(0)  // no compression; V2 nodes
+        return file + strings + nodes + attributes + values
+    }
+
+    @Test func readsASavesMods() throws {
+        let mods = try SaveGame.mods(inMeta: Self.metaFile())
+        #expect(mods.map(\.name) == ["5eSpells"])  // the game's own module left out
+        #expect(mods.first?.uuid == "fb5f528d-4d48-4bf2-a668-2274d3cfba96")
+        #expect(mods.first?.folder == "5eSpells")
+        #expect(mods.first?.version64 == 36029797018963968)
+    }
+
+    @Test func rejectsOtherFiles() {
+        #expect(throws: LSFDocument.ReadError.notLSF) { try LSFDocument(data: Data("<?xml".utf8)) }
+    }
+
+    @Test func decodesLZ4FramesLikeTheGameWrites() throws {
+        // Two blocks: one stored, one compressed (by Apple's LZ4 encoder) that
+        // refers back into the first.
+        let first = Data("Baldur's Gate 3 mod list: ".utf8)
+        let second = Data(String(repeating: "GustavX Shared ", count: 40).utf8)
+        let compressed = try LZ4.compress(second)
+        func le32(_ value: UInt32) -> Data { withUnsafeBytes(of: value.littleEndian) { Data($0) } }
+        var frame = le32(0x184D_2204) + Data([0x40, 0x40, 0x00])  // version 1, no checksums; header checksum unchecked
+        frame += le32(UInt32(first.count) | 0x8000_0000) + first
+        frame += le32(UInt32(compressed.count)) + compressed
+        frame += le32(0)
+        #expect(try LZ4Frame.decompress(frame, size: first.count + second.count) == first + second)
+    }
+}
+
+@Suite struct LoadOrderFileTests {
+    @Test func readsBG3ModManagerExports() throws {
+        let json = #"{"Order":[{"UUID":"28ac9ce2-2aba-8cda-b3b5-6e922f71b6b8","Name":"GustavDev"},{"UUID":"FB5F528D-4D48-4BF2-A668-2274D3CFBA96","Name":"5eSpells"},{"UUID":"abc","Name":"MCM"}]}"#
+        let mods = try LoadOrderFile.read(Data(json.utf8))
+        #expect(mods.map(\.name) == ["5eSpells", "MCM"])
+        #expect(mods.first?.uuid == "fb5f528d-4d48-4bf2-a668-2274d3cfba96")
+    }
+
+    @Test func roundTripsItsOwnExport() throws {
+        let mods = [ProfileMod(uuid: "a", name: "First", folder: "F"), ProfileMod(uuid: "b", name: "Second", folder: "S")]
+        #expect(try LoadOrderFile.read(LoadOrderFile.write(mods, name: "Run 2")) == mods)
+    }
+
+    @Test func readsModsettings() throws {
+        let lsx = """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <save><version major="4" minor="8" revision="0" build="10"/><region id="ModuleSettings"><node id="root"><children><node id="Mods"><children>
+            <node id="ModuleShortDesc"><attribute id="Folder" type="LSString" value="GustavX"/><attribute id="MD5" type="LSString" value=""/><attribute id="Name" type="LSString" value="GustavX"/><attribute id="PublishHandle" type="uint64" value="0"/><attribute id="UUID" type="guid" value="cb555efe-2d9e-131f-8195-a89329d218ea"/><attribute id="Version64" type="int64" value="1"/></node>
+            <node id="ModuleShortDesc"><attribute id="Folder" type="LSString" value="5eSpells"/><attribute id="MD5" type="LSString" value=""/><attribute id="Name" type="LSString" value="5eSpells"/><attribute id="PublishHandle" type="uint64" value="0"/><attribute id="UUID" type="guid" value="fb5f528d-4d48-4bf2-a668-2274d3cfba96"/><attribute id="Version64" type="int64" value="1"/></node>
+            </children></node></children></node></region></save>
+            """
+        #expect(try LoadOrderFile.read(Data(lsx.utf8)).map(\.name) == ["5eSpells"])
+    }
+
+    @Test func rejectsOtherFiles() {
+        #expect(throws: LoadOrderFile.ReadError.notALoadOrder) { try LoadOrderFile.read(Data(#"{"hello":"world"}"#.utf8)) }
+        #expect(throws: LoadOrderFile.ReadError.notALoadOrder) { try LoadOrderFile.read(Data("not a load order".utf8)) }
+    }
+}

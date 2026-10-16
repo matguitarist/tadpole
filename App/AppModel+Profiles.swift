@@ -1,8 +1,9 @@
 // Profiles (TadpoleCore/Profiles): one is always in use and follows the
 // load order; switching writes another profile's load order.
 
-import Foundation
+import AppKit
 import TadpoleCore
+import UniformTypeIdentifiers
 
 extension AppModel {
     /// Test copies (TADPOLE_BG3_DOCUMENTS) keep theirs next to their folder.
@@ -15,7 +16,7 @@ extension AppModel {
 
     var activeProfileName: String? { profileStore.active }
 
-    private func persistProfiles() {
+    func persistProfiles() {
         do {
             try profileStore.save(to: Self.profilesFile)
         } catch {
@@ -108,6 +109,28 @@ extension AppModel {
         persistProfiles()
     }
 
+    /// The mods a save was made with that aren't installed.
+    func missingMods(of save: SaveGame) -> [ModuleShortDesc] {
+        let installed = Set(mods.compactMap { $0.info?.uuid })
+        return (save.mods ?? []).filter { !installed.contains($0.uuid) }
+    }
+
+    /// Loads exactly the mods a save was made with, in its order: through a
+    /// profile named after the save (reused if it exists), so the load order
+    /// before stays in its own profile.
+    func useMods(of save: SaveGame) {
+        guard let saveMods = save.mods else { return }
+        guard !isGameRunning else {
+            return show("Quit Baldur's Gate 3 First", String(localized: "The game rewrites its mod list when it quits, which would undo this change."))
+        }
+        let name = String(localized: "Save: \(save.name)")
+        profileStore.upsert(LoadOrderProfile(name: name, mods: saveMods.map(ProfileMod.init)))
+        if profileStore.active == name {
+            profileStore.active = nil  // switch again to apply it
+        }
+        switchProfile(to: name)
+    }
+
     /// Installing a collection into its own profile: a new empty one with the
     /// collection's name, then the collection's mods you already have are
     /// turned on (the downloads turn on the rest as they arrive).
@@ -119,5 +142,40 @@ extension AppModel {
             origins.byPak[mod.file.lastPathComponent].map { wanted.contains($0.modID) } ?? false
         }
         enable(installed)
+    }
+
+    // MARK: Sharing load orders
+
+    /// Saves the profile in use as a .json file BG3 Mod Manager reads too.
+    func exportLoadOrder() {
+        guard let profile = profileStore.activeProfile else { return }
+        let panel = NSSavePanel()
+        panel.nameFieldStringValue = profile.name + ".json"
+        panel.allowedContentTypes = [.json]
+        panel.message = String(localized: "The load order of “\(profile.name)”, for BG3 Mod Manager or another Tadpole.")
+        guard panel.runModal() == .OK, let url = panel.url else { return }
+        do {
+            try LoadOrderFile.write(profile.mods, name: profile.name).write(to: url, options: .atomic)
+        } catch {
+            show("Couldn't Export the Load Order", error.localizedDescription)
+        }
+    }
+
+    /// Reads a shared load order (.json or modsettings.lsx) into a new profile
+    /// named after the file, and switches to it.
+    func importLoadOrder() {
+        let panel = NSOpenPanel()
+        panel.allowedContentTypes = [.json, UTType(filenameExtension: "lsx") ?? .xml, .xml]
+        panel.message = String(localized: "A load order from BG3 Mod Manager, Tadpole, or a modsettings.lsx file.")
+        guard panel.runModal() == .OK, let url = panel.url else { return }
+        do {
+            let imported = try LoadOrderFile.read(Data(contentsOf: url))
+            let name = profileStore.uniqueName(url.deletingPathExtension().lastPathComponent)
+            profileStore.upsert(LoadOrderProfile(name: name, mods: imported))
+            persistProfiles()
+            switchProfile(to: name)
+        } catch {
+            show("Couldn't Import the Load Order", error.localizedDescription)
+        }
     }
 }

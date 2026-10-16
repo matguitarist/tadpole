@@ -54,6 +54,9 @@ struct ProfileMenuItems: View {
         Button("New Profile…") { model.profileNamePrompt = .new(empty: false) }
         Button("New Empty Profile…") { model.profileNamePrompt = .new(empty: true) }
         Button("Manage Profiles…") { model.showProfiles = true }
+        Divider()
+        Button("Import Load Order…") { model.importLoadOrder() }
+        Button("Export Load Order…") { model.exportLoadOrder() }
     }
 }
 

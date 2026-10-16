@@ -13,6 +13,7 @@ enum Preferences {
     static let skipScriptExtenderMods = "skipScriptExtenderMods"
     static let showMenuBarIcon = "showMenuBarIcon"  // default on
     static let reportAfterPlaying = "reportAfterPlaying"  // default on
+    static let backupBeforePlay = "backupBeforePlay"  // default on
 }
 
 /// Light, dark, or whatever macOS uses.

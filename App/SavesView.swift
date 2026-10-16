@@ -5,6 +5,7 @@ import TadpoleCore
 /// The game's saves, newest first, and their backups.
 struct SavesView: View {
     @Environment(AppModel.self) private var model
+    @State private var modsSheet: SaveGame?
     @State private var selection: Set<URL> = []
     @State private var pendingTrash: [SaveGame] = []
     @State private var pendingRestore: SaveBackup?
@@ -13,6 +14,7 @@ struct SavesView: View {
 
     var body: some View {
         content
+            .sheet(item: $modsSheet) { SaveModsSheet(save: $0) }
             .navigationTitle("Saves")
             .navigationSubtitle(model.saves.isEmpty ? "" : String(localized: "\(model.saves.count) saves"))
             .toolbar {
@@ -97,6 +99,11 @@ struct SavesView: View {
         Button(targets.count == 1 ? String(localized: "Back Up") : String(localized: "Back Up \(targets.count) Saves")) { model.backUp(targets) }
         Button("Show in Finder") { NSWorkspace.shared.activateFileViewerSelecting(targets.map(\.folder)) }
         Divider()
+        Button("Show Mods…") { modsSheet = save }
+            .disabled(save.mods == nil)
+        Button("Use This Save's Mods") { model.useMods(of: save) }
+            .disabled(save.mods == nil || targets.count > 1)
+        Divider()
         Button("Move to Trash…", role: .destructive) { pendingTrash = targets }
     }
 
@@ -110,6 +117,7 @@ struct SavesView: View {
 }
 
 private struct SaveRow: View {
+    @Environment(AppModel.self) private var model
     let save: SaveGame
     @State private var picture: NSImage?
 
@@ -131,6 +139,14 @@ private struct SaveRow: View {
                     if save.isAutosave { Badge(text: String(localized: "Autosave"), color: .secondary) }
                     if save.isQuicksave { Badge(text: String(localized: "Quicksave"), color: .secondary) }
                     if let difficulty = save.info?.difficultyName { Badge(text: Self.difficultyTitle(difficulty), color: .accentColor) }
+                    if let mods = save.mods, !mods.isEmpty {
+                        let missing = model.missingMods(of: save).count
+                        Badge(text: mods.count == 1 ? String(localized: "1 mod") : String(localized: "\(mods.count) mods"),
+                              color: missing > 0 ? .orange : .green)
+                            .help(missing > 0
+                                  ? String(localized: "Made with \(mods.count) mods; \(missing) aren't installed. Right-click → Show Mods.")
+                                  : String(localized: "Made with \(mods.count) mods, all installed. Right-click → Use This Save's Mods to load them."))
+                    }
                 }
                 Text(save.date, format: .dateTime.weekday().day().month().year().hour().minute())
                     .font(.callout)
@@ -211,6 +227,65 @@ private struct BackupRow: View {
                 .font(.caption)
                 .foregroundStyle(.tertiary)
             Button("Restore", action: restore)
+        }
+    }
+}
+
+/// The mods a save was made with: installed and loaded, installed but off,
+/// or missing; and a button to load exactly those.
+private struct SaveModsSheet: View {
+    @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    let save: SaveGame
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Mods in “\(save.name)”").font(.title3.bold())
+            let mods = save.mods ?? []
+            if mods.isEmpty {
+                Text("This save was made without mods.").foregroundStyle(.secondary)
+            } else {
+                Text("The mods it was made with, in their load order. A save made with a mod can need it to load.")
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                List(Array(mods.enumerated()), id: \.offset) { index, mod in
+                    HStack {
+                        Text("\(index + 1)").monospacedDigit().foregroundStyle(.secondary).frame(width: 24, alignment: .trailing)
+                        Text(verbatim: mod.name)
+                        Spacer()
+                        status(mod)
+                    }
+                }
+                .listStyle(.inset)
+                .frame(minHeight: 200)
+            }
+            HStack {
+                Spacer()
+                Button("Close") { dismiss() }.keyboardShortcut(.cancelAction)
+                if !mods.isEmpty {
+                    Button("Use These Mods") {
+                        model.useMods(of: save)
+                        dismiss()
+                    }
+                    .keyboardShortcut(.defaultAction)
+                    .help("Make a profile with exactly this load order and switch to it")
+                }
+            }
+        }
+        .padding()
+        .frame(width: 480)
+    }
+
+    @ViewBuilder
+    private func status(_ mod: ModuleShortDesc) -> some View {
+        let installed = Set(model.mods.compactMap { $0.info?.uuid })
+        let loaded = Set(model.settings?.modEntries.map(\.uuid) ?? [])
+        if !installed.contains(mod.uuid) {
+            Label("Not installed", systemImage: "xmark.circle").foregroundStyle(.orange)
+        } else if loaded.contains(mod.uuid) {
+            Label("Loaded", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
+        } else {
+            Label("Installed, not loaded", systemImage: "circle").foregroundStyle(.secondary)
         }
     }
 }

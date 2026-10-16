@@ -100,6 +100,16 @@
         }
       }
     },
+    "**Import Load Order…** (in the profile menu) reads a list shared by a friend: a .json file from BG3 Mod Manager or Tadpole, or a modsettings.lsx file. It becomes a profile you switch to. **Export Load Order…** saves the profile in use as a .json file BG3 Mod Manager reads too." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Importer un ordre de chargement…** (dans le menu des profils) lit une liste partagée par un ami : un fichier .json de BG3 Mod Manager ou de Tadpole, ou un fichier modsettings.lsx. Elle devient un profil vers lequel vous basculez. **Exporter l’ordre de chargement…** enregistre le profil utilisé en fichier .json que BG3 Mod Manager lit aussi."
+          }
+        }
+      }
+    },
     "**Listed, but its .pak isn't in the Mods folder**: a mod you removed by hand. **Remove** takes it out of the load order." : {
       "localizations" : {
         "fr" : {
@@ -552,6 +562,16 @@
         }
       }
     },
+    "A load order from BG3 Mod Manager, Tadpole, or a modsettings.lsx file." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un ordre de chargement de BG3 Mod Manager, de Tadpole, ou un fichier modsettings.lsx."
+          }
+        }
+      }
+    },
     "A mod doesn't show up in the game" : {
       "localizations" : {
         "fr" : {
@@ -598,6 +618,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Un profil est un ordre de chargement avec un nom : un par partie, un par collection… Le menu en haut à gauche de **Ordre de chargement** affiche le profil utilisé ; choisissez-en un autre pour changer. Changer écrit l’ordre de chargement de ce profil ; celui que vous quittez garde le vôtre, donc revenir redonne exactement cette liste."
+          }
+        }
+      }
+    },
+    "A save made with mods shows how many, in green when you have them all, orange when some are missing. Right-click → **Show Mods…** lists them, in the load order the save was made with; **Use This Save's Mods** makes a profile with exactly that load order and switches to it, so the save loads with the mods it needs." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une sauvegarde faite avec des mods indique combien, en vert quand vous les avez tous, en orange quand certains manquent. Clic droit → **Afficher les mods…** les liste, dans l’ordre de chargement de la sauvegarde ; **Utiliser les mods de cette sauvegarde** crée un profil avec exactement cet ordre de chargement et l’utilise, pour que la sauvegarde se charge avec les mods dont elle a besoin."
           }
         }
       }
@@ -882,12 +912,22 @@
         }
       }
     },
-    "Back up before trying new mods: a save made with a mod can need that mod to load." : {
+    "Back up before trying new mods: a save made with a mod can need that mod to load. When you press **Play** and your mods changed since the last game, Tadpole backs up your latest save first (**Settings → Game** turns it off)." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Faites une copie avant d’essayer de nouveaux mods : une sauvegarde faite avec un mod peut en avoir besoin pour se charger."
+            "value" : "Sauvegardez avant d’essayer de nouveaux mods : une sauvegarde faite avec un mod peut en avoir besoin pour se charger. Quand vous appuyez sur **Jouer** et que vos mods ont changé depuis la dernière partie, Tadpole sauvegarde d’abord votre dernière sauvegarde (**Réglages → Jeu** le désactive)."
+          }
+        }
+      }
+    },
+    "Back up my latest save before playing with different mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarder ma dernière sauvegarde avant de jouer avec d’autres mods"
           }
         }
       }
@@ -1452,6 +1492,16 @@
         }
       }
     },
+    "Close" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fermer"
+          }
+        }
+      }
+    },
     "Close the Nexus browser once a download starts" : {
       "localizations" : {
         "fr" : {
@@ -1498,6 +1548,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible de sauvegarder"
+          }
+        }
+      }
+    },
+    "Couldn't Export the Load Order" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’exporter l’ordre de chargement"
+          }
+        }
+      }
+    },
+    "Couldn't Import the Load Order" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’importer l’ordre de chargement"
           }
         }
       }
@@ -1892,6 +1962,16 @@
         }
       }
     },
+    "Export Load Order…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporter l’ordre de chargement…"
+          }
+        }
+      }
+    },
     "Fighter" : {
       "localizations" : {
         "fr" : {
@@ -2168,6 +2248,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Si le Script Extender a enregistré des erreurs, ou si le jeu a planté, une notification ouvre le journal, et le menu de l’icône de la barre des menus le signale. Désactivez la notification dans **Réglages → Script Extender**."
+          }
+        }
+      }
+    },
+    "Import Load Order…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importer un ordre de chargement…"
           }
         }
       }
@@ -2858,6 +2948,32 @@
         }
       }
     },
+    "Made with %lld mods, all installed. Right-click → Use This Save's Mods to load them." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faite avec %lld mods, tous installés. Clic droit → Utiliser les mods de cette sauvegarde pour les charger."
+          }
+        }
+      }
+    },
+    "Made with %lld mods; %lld aren't installed. Right-click → Show Mods." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Made with %1$lld mods; %2$lld aren't installed. Right-click → Show Mods."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faite avec %lld mods ; %lld ne sont pas installés. Clic droit → Afficher les mods."
+          }
+        }
+      }
+    },
     "Main Files" : {
       "localizations" : {
         "fr" : {
@@ -2874,6 +2990,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Créer un profil au nom de la collection avec seulement ses mods, et l’utiliser. Votre ordre de chargement actuel reste dans son propre profil."
+          }
+        }
+      }
+    },
+    "Make a profile with exactly this load order and switch to it" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créer un profil avec exactement cet ordre de chargement et l’utiliser"
           }
         }
       }
@@ -3044,6 +3170,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dossier Mods"
+          }
+        }
+      }
+    },
+    "Mods in “%@”" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mods de « %@ »"
+          }
+        }
+      }
+    },
+    "Mods in a save" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les mods d’une sauvegarde"
           }
         }
       }
@@ -4318,6 +4464,16 @@
         }
       }
     },
+    "Save: %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarde : %@"
+          }
+        }
+      }
+    },
     "Saves" : {
       "localizations" : {
         "fr" : {
@@ -4664,6 +4820,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher le journal"
+          }
+        }
+      }
+    },
+    "Show Mods…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher les mods…"
           }
         }
       }
@@ -5224,6 +5390,16 @@
         }
       }
     },
+    "The load order of “%@”, for BG3 Mod Manager or another Tadpole." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’ordre de chargement de « %@ », pour BG3 Mod Manager ou un autre Tadpole."
+          }
+        }
+      }
+    },
     "The log" : {
       "localizations" : {
         "fr" : {
@@ -5250,6 +5426,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "L’icône de la barre des menus"
+          }
+        }
+      }
+    },
+    "The mods it was made with, in their load order. A save made with a mod can need it to load." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les mods avec lesquels elle a été faite, dans leur ordre de chargement. Une sauvegarde faite avec un mod peut en avoir besoin pour se charger."
           }
         }
       }
@@ -5476,6 +5662,16 @@
         }
       }
     },
+    "This save was made without mods." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette sauvegarde a été faite sans mods."
+          }
+        }
+      }
+    },
     "Tick a mod to add it to the end of the load order; untick it to take it out. It stays installed either way, under **Installed, Not Loaded**. Drag mods to change their order." : {
       "localizations" : {
         "fr" : {
@@ -5652,6 +5848,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Utiliser"
+          }
+        }
+      }
+    },
+    "Use These Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utiliser ces mods"
+          }
+        }
+      }
+    },
+    "Use This Save's Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utiliser les mods de cette sauvegarde"
           }
         }
       }
@@ -5878,6 +6094,16 @@
         }
       }
     },
+    "When you press Play and your mods changed since the last game, Tadpole first copies your latest save to Tadpole Save Backups: a save made with other mods can stop loading." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quand vous appuyez sur Jouer et que vos mods ont changé depuis la dernière partie, Tadpole copie d’abord votre dernière sauvegarde dans Tadpole Save Backups : une sauvegarde faite avec d’autres mods peut ne plus se charger."
+          }
+        }
+      }
+    },
     "With the menu bar icon, closing the window keeps Tadpole running so it can keep checking for mod updates. Quit from the icon's menu." : {
       "localizations" : {
         "fr" : {
@@ -5904,6 +6130,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous pouvez la récupérer dans la corbeille depuis le Finder."
+          }
+        }
+      }
+    },
+    "Your latest save couldn't be backed up before playing: %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre dernière sauvegarde n’a pas pu être copiée avant de jouer : %@"
           }
         }
       }

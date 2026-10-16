@@ -1,7 +1,7 @@
 // BG3 saves: one folder per save in PlayerProfiles/Public/Savegames/Story,
 // holding <name>.lsv (an LSPK package, like a .pak) and <name>.WebP (the
-// picture). The .lsv carries SaveInfo.json: the party, the area, the
-// difficulty and the game version.
+// picture). The .lsv carries SaveInfo.json (the party, the area, the
+// difficulty and the game version) and meta.lsf (the mods it was made with).
 //
 // Backups are zips of save folders, kept next to the game's folder in
 // "Larian Studios/Tadpole Save Backups".
@@ -63,6 +63,9 @@ public struct SaveGame: Sendable, Identifiable, Hashable {
     public let date: Date
     public let size: Int64
     public let info: SaveInfo?
+    /// The mods the save was made with, in their load order (the game's own
+    /// modules left out). nil when meta.lsf couldn't be read.
+    public var mods: [ModuleShortDesc]? = nil
 
     public var id: URL { folder }
     /// The save's own name (the folder is "<player>-<number>__<name>").
@@ -84,12 +87,30 @@ public struct SaveGame: Sendable, Identifiable, Hashable {
         let values = try? lsv.resourceValues(forKeys: [.contentModificationDateKey, .fileSizeKey])
         let picture = files.first { $0.pathExtension.lowercased() == "webp" }
         var info: SaveInfo?
-        if let pak = try? PakArchive(url: lsv), let entry = pak.entry(matching: { $0 == "SaveInfo.json" }),
-           let data = try? pak.data(for: entry) {
-            info = try? JSONDecoder().decode(SaveInfo.self, from: data)
+        var mods: [ModuleShortDesc]?
+        if let pak = try? PakArchive(url: lsv) {
+            if let entry = pak.entry(matching: { $0 == "SaveInfo.json" }), let data = try? pak.data(for: entry) {
+                info = try? JSONDecoder().decode(SaveInfo.self, from: data)
+            }
+            if let entry = pak.entry(matching: { $0 == "meta.lsf" }), let data = try? pak.data(for: entry) {
+                mods = try? Self.mods(inMeta: data)
+            }
         }
         return SaveGame(folder: folder, file: lsv, picture: picture, date: values?.contentModificationDate ?? .distantPast,
-                        size: Int64(values?.fileSize ?? 0), info: info)
+                        size: Int64(values?.fileSize ?? 0), info: info, mods: mods)
+    }
+
+    /// meta.lsf's MetaData › ModuleSettings › Mods › ModuleShortDesc nodes.
+    static func mods(inMeta data: Data) throws -> [ModuleShortDesc] {
+        let document = try LSFDocument(data: data)
+        return document.nodes.compactMap { node -> ModuleShortDesc? in
+            guard node.name == "ModuleShortDesc", let parent = node.parent, document.nodes[parent].name == "Mods",
+                  let uuid = node.string("UUID"), let name = node.string("Name") else { return nil }
+            let entry = ModuleShortDesc(folder: node.string("Folder") ?? "", md5: node.string("MD5") ?? "", name: name,
+                                        uuid: uuid, version64: node.integer("Version64") ?? 0)
+            guard !ModSettings.baseModuleUUIDs.contains(entry.uuid), !ModRules.gameModuleNames.contains(entry.name) else { return nil }
+            return entry
+        }
     }
 }
 

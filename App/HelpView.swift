@@ -107,6 +107,7 @@ struct HelpView: View {
             HelpSection("Profiles") {
                 HelpText("A profile is a load order with a name: one per playthrough, one per collection… The menu at the top left of **Load Order** shows the profile in use; pick another to switch. Switching writes that profile's load order; the one you leave keeps yours, so switching back returns to exactly that list.")
                 HelpText("Changes you make (turning mods on and off, the order) are kept in the profile in use. **New Profile…** copies the load order now; **New Empty Profile…** starts with every mod off. **Manage Profiles…** renames, duplicates and deletes them. Mods stay installed whatever the profile.")
+                HelpText("**Import Load Order…** (in the profile menu) reads a list shared by a friend: a .json file from BG3 Mod Manager or Tadpole, or a modsettings.lsx file. It becomes a profile you switch to. **Export Load Order…** saves the profile in use as a .json file BG3 Mod Manager reads too.")
                 HelpText("A profile can list mods you don't have (after deleting one, or from a friend's list): they stay in it, and Tadpole tells you which when you switch. When you install a collection, tick **In a new profile** to give it its own.")
             }
             HelpSection("Badges") {
@@ -183,11 +184,14 @@ struct HelpView: View {
 
         case .saves:
             HelpText("**Saves** lists your saves, newest first, with the game's picture, your party and the difficulty.")
+            HelpSection("Mods in a save") {
+                HelpText("A save made with mods shows how many, in green when you have them all, orange when some are missing. Right-click → **Show Mods…** lists them, in the load order the save was made with; **Use This Save's Mods** makes a profile with exactly that load order and switches to it, so the save loads with the mods it needs.")
+            }
             HelpSection("Backups") {
                 HelpText("**Back Up All** (or right-click → **Back Up**) copies saves as .zip files to **Documents/Larian Studios/Tadpole Save Backups**. They're kept there until you delete them, even if you reinstall the game.")
                 HelpText("**Restore** puts a backup back in the game. If that save still exists, Tadpole asks first, and the current version goes to the Trash.")
             }
-            HelpText("Back up before trying new mods: a save made with a mod can need that mod to load.")
+            HelpText("Back up before trying new mods: a save made with a mod can need that mod to load. When you press **Play** and your mods changed since the last game, Tadpole backs up your latest save first (**Settings → Game** turns it off).")
 
         case .troubleshooting:
             HelpSection("A mod doesn't show up in the game") {

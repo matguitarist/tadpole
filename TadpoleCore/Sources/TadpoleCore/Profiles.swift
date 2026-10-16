@@ -42,6 +42,9 @@ public struct ProfileStore: Codable, Equatable, Sendable {
     public var profiles: [LoadOrderProfile] = []
     /// The profile in use.
     public var active: String?
+    /// The load order when the game was last started from Tadpole
+    /// (fingerprint): a save backup is made before Play when it changed.
+    public var lastPlayedMods: String?
 
     public init(profiles: [LoadOrderProfile] = [], active: String? = nil) {
         self.profiles = profiles
@@ -120,6 +123,12 @@ public enum ProfileRules {
             if let info = installed[mod.uuid] { entries.append(ModuleShortDesc(info)) } else { missing.append(mod) }
         }
         return (entries, missing)
+    }
+
+    /// "uuid@version" of each mod, in order: changes when mods are turned on
+    /// or off, reordered or updated.
+    public static func fingerprint(_ entries: [ModuleShortDesc]) -> String {
+        entries.map { "\($0.uuid)@\($0.version64)" }.joined(separator: ",")
     }
 
     /// The profile whose mods are exactly these, in this order.

@@ -59,6 +59,8 @@ final class AppModel {
     /// Named load orders, one in use (AppModel+Profiles).
     var profileStore = ProfileStore.load(from: AppModel.profilesFile)
     var profileNamePrompt: ProfileNamePrompt?
+    /// When Play last backed up the latest save (mods had changed).
+    var lastAutoBackup: Date?
     var showProfiles = false
     /// Nexus mods' requirements, by mod (AppModel+Requirements).
     var nexusRequirements: [Int: [NexusRequirement]] = [:]
@@ -383,6 +385,9 @@ final class AppModel {
     func launchGame() {
         Task {
             await reapplyScriptExtenderIfNeeded()
+            await backUpLatestSaveIfModsChanged()
+            // Test copies (TADPOLE_SKIP_LAUNCH=1) don't start the real game.
+            guard ProcessInfo.processInfo.environment["TADPOLE_SKIP_LAUNCH"] == nil else { return }
             if let url = URL(string: "steam://rungameid/\(GamePaths.steamAppID)") {
                 NSWorkspace.shared.open(url)
             }

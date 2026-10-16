@@ -99,6 +99,7 @@ private struct GeneralSettings: View {
 
 private struct GameSettings: View {
     @Environment(AppModel.self) private var model
+    @AppStorage(Preferences.backupBeforePlay) private var backupBeforePlay = true
 
     var body: some View {
         Form {
@@ -117,6 +118,15 @@ private struct GameSettings: View {
                     Label("The game is running: Tadpole won't change the load order until you quit it.", systemImage: "exclamationmark.triangle.fill")
                         .foregroundStyle(.orange)
                 }
+            }
+            Section {
+                Toggle("Back up my latest save before playing with different mods", isOn: $backupBeforePlay)
+            } header: {
+                Text("Saves")
+            } footer: {
+                Text("When you press Play and your mods changed since the last game, Tadpole first copies your latest save to Tadpole Save Backups: a save made with other mods can stop loading.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
             Section {
                 FolderRow(title: "Mods folder", url: model.paths.modsFolder)

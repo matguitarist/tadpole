@@ -33,6 +33,31 @@ extension AppModel {
         }
     }
 
+    /// Before Play: when the load order changed since the last game started
+    /// from Tadpole, the latest save is backed up first (a save made with
+    /// different mods can stop loading). Settings → General turns it off.
+    func backUpLatestSaveIfModsChanged() async {
+        guard let settings else { return }
+        let fingerprint = ProfileRules.fingerprint(settings.modEntries)
+        defer {
+            profileStore.lastPlayedMods = fingerprint
+            try? profileStore.save(to: Self.profilesFile)
+        }
+        guard fingerprint != profileStore.lastPlayedMods,
+              UserDefaults.standard.object(forKey: Preferences.backupBeforePlay) as? Bool ?? true else { return }
+        let paths = paths
+        do {
+            let backup = try await Task.detached { () -> URL? in
+                guard let latest = SaveGame.scan(paths.saves).first else { return nil }
+                return try SaveBackups.backUp(latest, into: paths.saveBackups)
+            }.value
+            if backup != nil { lastAutoBackup = .now }
+        } catch {
+            show("Couldn't Back Up", String(localized: "Your latest save couldn't be backed up before playing: \(error.localizedDescription)"))
+        }
+        loadSaves()
+    }
+
     /// Every save in the game, read fresh (the Saves page may not have
     /// been opened yet).
     func backUpAllSaves() {
