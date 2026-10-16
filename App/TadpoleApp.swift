@@ -19,6 +19,13 @@ struct TadpoleApp: App {
                     // the menu bar icon keeps the app running.
                     guard !model.hasStarted else { return model.load() }
                     model.hasStarted = true
+                    if !UserDefaults.standard.bool(forKey: Preferences.setupCompleted) {
+                        if model.wasFreshInstall {
+                            model.showSetupAssistant = true
+                        } else {
+                            UserDefaults.standard.set(true, forKey: Preferences.setupCompleted)  // set up before it existed
+                        }
+                    }
                     AppTheme.current.apply()
                     model.load()
                     model.startWatching()

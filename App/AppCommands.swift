@@ -148,9 +148,11 @@ private struct HelpMenuItems: View {
     var body: some View {
         Button("Tadpole Help") { openWindow(id: HelpView.windowID) }
             .keyboardShortcut("?", modifiers: .command)
+        Button("Setup Assistant…") { AppModel.shared.showSetupAssistant = true }
         Divider()
         Link("Baldur's Gate 3 Mods on Nexus Mods", destination: AppLinks.nexusBG3)
-        Link("About the Script Extender (Windows only)", destination: AppLinks.scriptExtender)
+        Link("About the Script Extender", destination: AppLinks.scriptExtender)
+        Link("About bg3se-macos (the Script Extender for Macs)", destination: ScriptExtenderMac.projectURL)
         Divider()
         Link("Tadpole Release Notes", destination: AppLinks.releases)
     }

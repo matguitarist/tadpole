@@ -15,6 +15,7 @@ enum Preferences {
     static let reportAfterPlaying = "reportAfterPlaying"  // default on
     static let backupBeforePlay = "backupBeforePlay"  // default on
     static let showModPictures = "showModPictures"  // default on
+    static let setupCompleted = "setupCompleted"  // the setup assistant was finished or skipped
 }
 
 /// Light, dark, or whatever macOS uses.

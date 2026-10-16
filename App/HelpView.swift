@@ -70,6 +70,7 @@ struct HelpView: View {
         switch topic {
         case .gettingStarted:
             HelpText("Tadpole installs Baldur's Gate 3 mods and sets the order they load in. It works with the game's own files in **Documents/Larian Studios/Baldur's Gate 3**, so the game's mod list and Tadpole's are always the same.")
+            HelpText("**Help → Setup Assistant…** walks through the game check, your Nexus key, the Script Extender and the main options again.")
             HelpSection("Before the first mod") {
                 HelpBullets([
                     "Run the game once and reach the main menu: that creates the folders Tadpole needs.",

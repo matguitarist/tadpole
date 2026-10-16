@@ -82,6 +82,13 @@ final class AppModel {
     var scriptExtenderTask: String?
     var scriptExtenderProgress: Double?
 
+    /// The first-run setup assistant (SetupAssistant.swift).
+    var showSetupAssistant = false
+    /// No Tadpole files yet when the app started: a new install, which gets
+    /// the setup assistant (existing users don't).
+    @ObservationIgnored let wasFreshInstall = !FileManager.default.fileExists(atPath: AppModel.profilesFile.path(percentEncoded: false))
+        && !FileManager.default.fileExists(atPath: AppModel.originsFile.path(percentEncoded: false))
+
     /// Launch work (load, watchers, update checks) has run.
     var hasStarted = false
     var nexusSheet: NexusModRequest?

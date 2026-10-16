@@ -17,6 +17,7 @@
 		44FB3DF4D98632AD329D284C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */; };
 		53E4F1BF012EEA3A6155ADC1 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33E80D078054887EDFAC9C9 /* CollectionsView.swift */; };
 		5C215760DDDC2E75D01BF36C /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54342D908BE7F55F92B180AC /* MenuBar.swift */; };
+		5FA851D45F5C574FF4D72ADD /* SetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E5A6578E7CC8040AF03A3 /* SetupAssistant.swift */; };
 		65E810B669DD7311FB02651F /* AppModel+Requirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED19FD627256BC0582B3DB9 /* AppModel+Requirements.swift */; };
 		69171DB21B19277C2C3F6EB0 /* TadpoleCore in Frameworks */ = {isa = PBXBuildFile; productRef = EBB45E710700B5463F0A3482 /* TadpoleCore */; };
 		6BE89967EAAD84EFD37CF73C /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A14F14F59621F35B8ACBFBE /* AppUpdater.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		00361286CF9CA21383A4CF1E /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		0D4E5A6578E7CC8040AF03A3 /* SetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupAssistant.swift; sourceTree = "<group>"; };
 		147A95924B5FFC84EF2324C9 /* UpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesView.swift; sourceTree = "<group>"; };
 		14ED628E94AA4479EADA1DFF /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		15455984FAE55A6E7C5B4CC5 /* AppModel+Updates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Updates.swift"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				48F4451924A81D4D008C4C91 /* ScriptExtenderLogView.swift */,
 				168391B24282BA83A1A6F2BC /* ScriptExtenderSettings.swift */,
 				A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */,
+				0D4E5A6578E7CC8040AF03A3 /* SetupAssistant.swift */,
 				00361286CF9CA21383A4CF1E /* StatusBar.swift */,
 				C88DE7BB747321F48EAE48F0 /* Tadpole.entitlements */,
 				36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */,
@@ -275,6 +278,7 @@
 				A8C842707202500EBE58095C /* ScriptExtenderLogView.swift in Sources */,
 				9866CB54B977050F40B310AE /* ScriptExtenderSettings.swift in Sources */,
 				44FB3DF4D98632AD329D284C /* SettingsView.swift in Sources */,
+				5FA851D45F5C574FF4D72ADD /* SetupAssistant.swift in Sources */,
 				AC261FAF5B0E1064B0B5F4D2 /* StatusBar.swift in Sources */,
 				D240846B996329B3F045F716 /* TadpoleApp.swift in Sources */,
 				FC9D23C7DEFA664BDE3DC377 /* UpdatesView.swift in Sources */,

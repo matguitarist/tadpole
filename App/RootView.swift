@@ -34,6 +34,7 @@ struct RootView: View {
         .sheet(item: $model.collectionSheet) { CollectionSheet(request: $0) }
         .sheet(item: $model.linkSheet) { LinkNexusSheet(mod: $0) }
         .sheet(isPresented: $model.showProfiles) { ManageProfilesSheet() }
+        .sheet(isPresented: $model.showSetupAssistant) { SetupAssistant() }
         // From the toolbar or menus; Manage Profiles shows its own.
         .sheet(item: Binding(get: { model.showProfiles ? nil : model.profileNamePrompt },
                              set: { model.profileNamePrompt = $0 })) { ProfileNameSheet(prompt: $0) }
