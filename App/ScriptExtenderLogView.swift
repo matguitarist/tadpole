@@ -68,6 +68,8 @@ struct ScriptExtenderLogView: View {
     @State private var levels: Set<ScriptExtenderLog.Level> = [.info, .warn, .error]
     @State private var module: String?
     @State private var searchText = ""
+    /// A problem chip that's on: only its warnings and errors are shown.
+    @State private var problem: ScriptExtenderLog.ProblemGroup?
     @State private var follow = true
     @AppStorage("hideRepeatedLogLines") private var hideRepeated = true
     /// Messages logged more than this many times are noise ("Lua context
@@ -122,6 +124,7 @@ struct ScriptExtenderLogView: View {
         // (its date first).
         .task(id: chosenFile) {
             loadedDate = nil
+            problem = nil
             while !Task.isCancelled {
                 await reloadIfChanged()
                 try? await Task.sleep(for: .seconds(2))
@@ -191,21 +194,15 @@ struct ScriptExtenderLogView: View {
     }
 
     /// One chip per mod (or part of the Script Extender) with problems;
-    /// clicking one searches for it.
+    /// clicking one shows only its warnings and errors (again: everything).
     private func problems(_ groups: [ScriptExtenderLog.ProblemGroup]) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
                 Text("Problems:").font(.callout).foregroundStyle(.secondary)
                 ForEach(groups) { group in
+                    let isOn = problem?.id == group.id
                     Button {
-                        if group.isMod {
-                            searchText = "Mods/\(group.source)/"
-                            module = nil
-                        } else {
-                            searchText = ""
-                            module = group.source
-                        }
-                        levels.formUnion([.warn, .error])
+                        problem = isOn ? nil : group
                     } label: {
                         HStack(spacing: 4) {
                             Image(systemName: group.isMod ? "shippingbox" : "gearshape")
@@ -216,7 +213,9 @@ struct ScriptExtenderLogView: View {
                         .font(.callout)
                     }
                     .buttonStyle(.bordered)
-                    .help(group.first.message)
+                    .tint(isOn ? .accentColor : nil)
+                    .background(isOn ? Color.accentColor.opacity(0.25) : .clear, in: RoundedRectangle(cornerRadius: 6))
+                    .help(isOn ? String(localized: "Show all lines again") : group.first.message)
                 }
             }
             .padding(.horizontal, 14)
@@ -263,6 +262,20 @@ struct ScriptExtenderLogView: View {
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 6)
+            .disabled(problem != nil)  // a problem chip decides what's shown
+            if let problem {
+                HStack {
+                    Image(systemName: "line.3.horizontal.decrease.circle.fill").foregroundStyle(Color.accentColor)
+                    Text("Showing the \(shown.count) warnings and errors from \(problem.source).")
+                    Spacer()
+                    Button("Show All") { self.problem = nil }
+                        .controlSize(.small)
+                }
+                .font(.callout)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 6)
+                .background(Color.accentColor.opacity(0.08))
+            }
             Divider()
             ScrollViewReader { proxy in
                 List(shown) { entry in
@@ -270,7 +283,15 @@ struct ScriptExtenderLogView: View {
                 }
                 .listStyle(.plain)
                 .onChange(of: shown.last?.id) { _, last in
-                    if follow, let last { proxy.scrollTo(last, anchor: .bottom) }
+                    if follow, problem == nil, let last { proxy.scrollTo(last, anchor: .bottom) }
+                }
+                .onChange(of: problem) { _, problem in
+                    // The first problem, or back to the end.
+                    if problem != nil, let first = shown.first?.id {
+                        proxy.scrollTo(first, anchor: .top)
+                    } else if let last = shown.last?.id {
+                        proxy.scrollTo(last, anchor: .bottom)
+                    }
                 }
                 .onAppear {
                     if follow, let last = shown.last?.id { proxy.scrollTo(last, anchor: .bottom) }
@@ -281,6 +302,14 @@ struct ScriptExtenderLogView: View {
 
     private func filtered(_ log: ScriptExtenderLog) -> [ScriptExtenderLog.Entry] {
         let query = searchText.trimmingCharacters(in: .whitespaces)
+        if let problem {
+            // The same grouping as the chips' counts.
+            return log.entries.filter { entry in
+                entry.level >= .warn
+                    && (problem.isMod ? entry.modFolder == problem.source : entry.modFolder == nil && entry.module == problem.source)
+                    && (query.isEmpty || entry.message.localizedCaseInsensitiveContains(query))
+            }
+        }
         var counts: [String: Int] = [:]
         if hideRepeated {
             for entry in log.entries where entry.level < .warn { counts[entry.message, default: 0] += 1 }

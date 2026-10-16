@@ -151,7 +151,7 @@ struct HelpView: View {
                 HelpText("If macOS stops Tadpole from changing the game, turn Tadpole on in **System Settings → Privacy & Security → App Management**.")
             }
             HelpSection("The log") {
-                HelpText("Each time the game runs with it, the Script Extender writes a log, like SMAPI's for Stardew Valley. **Script Extender Log** (⌘6) shows the latest one, updating while you play: which mods it loaded, and errors and warnings grouped by mod. Click a mod under **Problems** to see its lines; **Sessions** shows earlier games. Attach the log file (**Show in Finder**) when you report a problem to a mod's author.")
+                HelpText("Each time the game runs with it, the Script Extender writes a log, like SMAPI's for Stardew Valley. **Script Extender Log** (⌘6) shows the latest one, updating while you play: which mods it loaded, and errors and warnings grouped by mod. Click a mod or part under **Problems** to see only its warnings and errors (**Show All** goes back); **Sessions** shows earlier games. Attach the log file (**Show in Finder**) when you report a problem to a mod's author.")
             }
             HelpText("The bar at the bottom of the window shows the game's version and the Script Extender's: green when all is well, yellow when it needs something (an update, applying again after a game update, or a release made for another game build).")
             HelpText("Before you install a collection, Tadpole lists which of its mods need the Script Extender: the ones whose Nexus page names it as a requirement, and the ones that need such a mod. Tick **Skip Script Extender mods** to leave them out.")

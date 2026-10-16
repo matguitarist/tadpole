@@ -1466,12 +1466,12 @@
         }
       }
     },
-    "Each time the game runs with it, the Script Extender writes a log, like SMAPI's for Stardew Valley. **Script Extender Log** (⌘6) shows the latest one, updating while you play: which mods it loaded, and errors and warnings grouped by mod. Click a mod under **Problems** to see its lines; **Sessions** shows earlier games. Attach the log file (**Show in Finder**) when you report a problem to a mod's author." : {
+    "Each time the game runs with it, the Script Extender writes a log, like SMAPI's for Stardew Valley. **Script Extender Log** (⌘6) shows the latest one, updating while you play: which mods it loaded, and errors and warnings grouped by mod. Click a mod or part under **Problems** to see only its warnings and errors (**Show All** goes back); **Sessions** shows earlier games. Attach the log file (**Show in Finder**) when you report a problem to a mod's author." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chaque fois que le jeu tourne avec lui, le Script Extender écrit un journal, comme celui de SMAPI pour Stardew Valley. **Journal du Script Extender** (⌘6) affiche le dernier, mis à jour pendant que vous jouez : les mods qu’il a chargés, et les erreurs et avertissements regroupés par mod. Cliquez sur un mod sous **Problèmes** pour voir ses lignes ; **Sessions** affiche les parties précédentes. Joignez le fichier du journal (**Afficher dans le Finder**) quand vous signalez un problème à l’auteur d’un mod."
+            "value" : "Chaque fois que le jeu tourne avec lui, le Script Extender écrit un journal, comme celui de SMAPI pour Stardew Valley. **Journal du Script Extender** (⌘6) affiche le dernier, mis à jour pendant que vous jouez : les mods qu’il a chargés, et les erreurs et avertissements regroupés par mod. Cliquez sur un mod ou une partie sous **Problèmes** pour ne voir que ses avertissements et erreurs (**Tout afficher** revient en arrière) ; **Sessions** affiche les parties précédentes. Joignez le fichier du journal (**Afficher dans le Finder**) quand vous signalez un problème à l’auteur d’un mod."
           }
         }
       }
@@ -3822,6 +3822,26 @@
         }
       }
     },
+    "Show All" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout afficher"
+          }
+        }
+      }
+    },
+    "Show all lines again" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher de nouveau toutes les lignes"
+          }
+        }
+      }
+    },
     "Show Backups in Finder" : {
       "localizations" : {
         "fr" : {
@@ -3948,6 +3968,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher la page de ce mod"
+          }
+        }
+      }
+    },
+    "Showing the %lld warnings and errors from %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Showing the %1$lld warnings and errors from %2$@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affichage des %lld avertissements et erreurs de %@."
           }
         }
       }
