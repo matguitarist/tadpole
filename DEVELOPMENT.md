@@ -30,6 +30,10 @@ xcodebuild -project Tadpole.xcodeproj -scheme Tadpole build
 cd TadpoleCore && swift test
 ```
 
+`./build_app.sh` makes a Release `dist/Tadpole.app`, signed with a
+self-signed certificate when the Keychain has one ("Tadpole Self-Signed",
+or Starseed's), so macOS asks for Keychain access once.
+
 ## How BG3 mods work on macOS
 
 - Mods are `.pak` files in `~/Documents/Larian Studios/Baldur's Gate 3/Mods`.
