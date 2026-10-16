@@ -13,8 +13,8 @@ settings:
     # App/Localizable.xcstrings.
     LOCALIZATION_PREFERS_STRING_CATALOGS: YES
     SWIFT_EMIT_LOC_STRINGS: YES
-    MARKETING_VERSION: "0.3"
-    CURRENT_PROJECT_VERSION: "4"
+    MARKETING_VERSION: "0.4"
+    CURRENT_PROJECT_VERSION: "5"
 packages:
   TadpoleCore:
     path: TadpoleCore

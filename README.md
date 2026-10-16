@@ -38,9 +38,10 @@ Everything is explained in **Help → Tadpole Help** (⌘?).
 
 ### Your mods
 
-- **Load order.** Turn mods on and off and drag them into order. Tadpole
-  edits the game's own mod list (`modsettings.lsx`) and keeps the previous
-  one as a backup.
+- **Load order.** Turn mods on and off and drag them into order, with each
+  mod's picture from Nexus, a filter, and undo. Tadpole edits the game's own
+  mod list (`modsettings.lsx`) and keeps the previous one as a backup. Mods
+  from the game's own mod manager (mod.io) are marked.
 - **Profiles.** Named load orders to switch between: one per playthrough,
   one per collection. Your changes are kept in the profile in use. Import a
   friend's load order (BG3 Mod Manager's .json, or a modsettings.lsx) and
@@ -61,12 +62,16 @@ Everything is explained in **Help → Tadpole Help** (⌘?).
 ### Nexus Mods
 
 - **Browse and install** mods without leaving the app, with free or Premium
-  accounts. Mods split into several files get **Install All**.
+  accounts. Mods split into several files get **Install All**. Endorse and
+  track mods. **Mod Manager Download** links from Safari or Chrome work too,
+  shared with [Starseed](https://github.com/matguitarist/starseed) for
+  Stardew Valley.
 - **Collections.** See which of a collection's mods you already have, and
   install the rest, in their own profile if you like.
 - **Updates.** Tadpole checks Nexus for new versions of your mods at launch
-  and every 6 hours, notifies you, and shows what changed. **Update All**
-  replaces the old files and keeps each mod's place in the load order.
+  and every 6 hours (also mods you installed from files and linked),
+  notifies you, and shows what changed. **Update All** replaces the old
+  files and keeps each mod's place in the load order.
 
 ![A collection, with the mods that need the Script Extender marked](docs/screenshots/collections.png)
 
@@ -102,7 +107,9 @@ tells you about errors or a crash.
 - **Menu bar icon** with the game's version, **Play**, mod updates and
   downloads.
 - A bar at the bottom of the window shows the game's and the Script
-  Extender's versions, with a button when something needs doing.
+  Extender's versions, with a button when something needs doing, and
+  downloads in progress.
+- A setup assistant on first launch.
 - In English and French.
 
 ![Browsing Baldur's Gate 3 mods on Nexus](docs/screenshots/browse.png)
