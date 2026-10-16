@@ -192,6 +192,8 @@ struct NexusModSheet: View {
                 if let summary = shown?.summary {
                     Text(summary.strippingNexusMarkup).font(.callout).lineLimit(4)
                 }
+                EndorseTrackButtons(modID: request.modID, version: shown?.version)
+                    .padding(.top, 2)
             }
             Spacer(minLength: 0)
         }

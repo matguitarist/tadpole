@@ -65,6 +65,11 @@ final class AppModel {
     private(set) var undoStack: [[ModuleShortDesc]] = []
     private(set) var redoStack: [[ModuleShortDesc]] = []
     @ObservationIgnored private var isUndoing = false
+    /// Your Nexus endorsements and tracked mods, loaded once per key when
+    /// Endorse/Track buttons first appear.
+    var endorsements: [Int: NexusClient.EndorsementStatus] = [:]
+    var trackedMods: Set<Int> = []
+    @ObservationIgnored var accountListsLoaded = false
     /// Download failures dismissed from the status bar.
     var dismissedDownloadFailures: Set<UUID> = []
     /// When Play last backed up the latest save (mods had changed).

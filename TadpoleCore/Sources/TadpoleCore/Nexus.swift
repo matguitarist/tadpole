@@ -165,6 +165,77 @@ public struct NexusClient: Sendable {
         return try JSONDecoder().decode(T.self, from: data)
     }
 
+    // MARK: Endorsements and tracking (as Starseed)
+
+    public enum EndorsementStatus: String, Sendable {
+        case endorsed = "Endorsed"
+        case abstained = "Abstained"
+        case undecided = "Undecided"
+    }
+
+    /// Your endorsements of Baldur's Gate 3 mods, by mod number.
+    public func endorsements() async throws -> [Int: EndorsementStatus] {
+        struct Item: Decodable { let mod_id: Int; let domain_name: String; let status: String }
+        let items: [Item] = try await get("user/endorsements.json")
+        var result: [Int: EndorsementStatus] = [:]
+        for item in items where item.domain_name == Self.gameDomain {
+            result[item.mod_id] = EndorsementStatus(rawValue: item.status) ?? .undecided
+        }
+        return result
+    }
+
+    /// Baldur's Gate 3 mods you track on Nexus (notified of their updates).
+    public func trackedMods() async throws -> Set<Int> {
+        struct Item: Decodable { let mod_id: Int; let domain_name: String }
+        let items: [Item] = try await get("user/tracked_mods.json")
+        return Set(items.filter { $0.domain_name == Self.gameDomain }.map(\.mod_id))
+    }
+
+    /// Nexus only accepts endorsements for mods you've downloaded (and not
+    /// right away); its error message says which.
+    public func endorse(modID: Int, version: String?) async throws {
+        try await send("POST", "games/\(Self.gameDomain)/mods/\(modID)/endorse.json", json: version.map { ["Version": $0] } ?? [:])
+    }
+
+    public func abstain(modID: Int, version: String?) async throws {
+        try await send("POST", "games/\(Self.gameDomain)/mods/\(modID)/abstain.json", json: version.map { ["Version": $0] } ?? [:])
+    }
+
+    public func track(modID: Int) async throws {
+        try await send("POST", "user/tracked_mods.json", query: [URLQueryItem(name: "domain_name", value: Self.gameDomain)], form: ["mod_id": String(modID)])
+    }
+
+    public func untrack(modID: Int) async throws {
+        try await send("DELETE", "user/tracked_mods.json", query: [URLQueryItem(name: "domain_name", value: Self.gameDomain)], form: ["mod_id": String(modID)])
+    }
+
+    /// One REST call that changes something; `form` goes URL-encoded, `json`
+    /// as a JSON body.
+    private func send(_ method: String, _ path: String, query: [URLQueryItem] = [],
+                      form: [String: String]? = nil, json: [String: String]? = nil) async throws {
+        guard let apiKey else { throw NexusError.noAPIKey }
+        var url = Self.restBaseURL.appending(path: path)
+        if !query.isEmpty { url.append(queryItems: query) }
+        var request = URLRequest(url: url)
+        request.httpMethod = method
+        request.setValue(Self.applicationName, forHTTPHeaderField: "Application-Name")
+        request.setValue(appVersion, forHTTPHeaderField: "Application-Version")
+        request.setValue("Tadpole-macOS/\(appVersion)", forHTTPHeaderField: "User-Agent")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(apiKey, forHTTPHeaderField: "apikey")
+        if let form {
+            var components = URLComponents()
+            components.queryItems = form.map { URLQueryItem(name: $0.key, value: $0.value) }
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.httpBody = Data((components.percentEncodedQuery ?? "").utf8)
+        } else if let json {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = try JSONSerialization.data(withJSONObject: json)
+        }
+        let (data, response) = try await session.data(for: request)
+        try Self.checkStatus(response, data: data)
+    }
+
     static func checkStatus(_ response: URLResponse, data: Data) throws {
         guard let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) else { return }
         struct Message: Decodable { let message: String? }

@@ -94,6 +94,58 @@ extension AppModel {
         return origins.byPak.filter { installed.contains($0.key) && $0.value.modID == modID }.map(\.value)
     }
 
+    // MARK: Endorse & track (as Starseed)
+
+    func loadNexusAccountLists() async {
+        guard nexusAccount.user != nil, !accountListsLoaded else { return }
+        accountListsLoaded = true
+        let client = nexusClient
+        async let endorsed = try? client.endorsements()
+        async let tracked = try? client.trackedMods()
+        if let value = await endorsed { endorsements = value }
+        if let value = await tracked { trackedMods = value }
+    }
+
+    func setEndorsed(_ endorsed: Bool, modID: Int, version: String?) {
+        Task {
+            do {
+                if endorsed {
+                    try await nexusClient.endorse(modID: modID, version: version)
+                    endorsements[modID] = .endorsed
+                } else {
+                    try await nexusClient.abstain(modID: modID, version: version)
+                    endorsements[modID] = .abstained
+                }
+            } catch {
+                show(endorsed ? "Couldn't Endorse" : "Couldn't Remove Endorsement", Self.friendlyNexusMessage(Self.describe(error)))
+            }
+        }
+    }
+
+    func setTracked(_ tracked: Bool, modID: Int) {
+        Task {
+            do {
+                if tracked {
+                    try await nexusClient.track(modID: modID)
+                    trackedMods.insert(modID)
+                } else {
+                    try await nexusClient.untrack(modID: modID)
+                    trackedMods.remove(modID)
+                }
+            } catch {
+                show("Couldn't Change Tracking", Self.friendlyNexusMessage(Self.describe(error)))
+            }
+        }
+    }
+
+    /// Nexus answers with codes like "NOT_DOWNLOADED_MOD"; explain them.
+    static func friendlyNexusMessage(_ message: String) -> String {
+        if message.contains("NOT_DOWNLOADED_MOD") { return String(localized: "Nexus only lets you endorse mods you've downloaded with this account.") }
+        if message.contains("TOO_SOON_AFTER_DOWNLOAD") { return String(localized: "Nexus asks you to try a mod for a little while before endorsing it. Try again later.") }
+        if message.contains("IS_OWN_MOD") { return String(localized: "You can't endorse your own mod.") }
+        return message
+    }
+
     // MARK: Links between installed mods and Nexus
 
     /// The Nexus mod an installed .pak came from (downloaded in Tadpole, or

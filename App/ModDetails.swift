@@ -65,6 +65,9 @@ struct ModDetails: View {
                     }
                 }
                 .font(.callout)
+                if let modID {
+                    EndorseTrackButtons(modID: modID, version: page?.version)
+                }
 
                 if let description = mod.info?.description.nonEmpty ?? page?.summary?.strippingNexusMarkup.nonEmpty {
                     Text(description).fixedSize(horizontal: false, vertical: true).textSelection(.enabled)

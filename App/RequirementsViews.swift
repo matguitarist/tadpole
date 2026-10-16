@@ -165,3 +165,34 @@ struct RequirementsSheet: View {
         .onAppear { chosen = Set(prompt.plan.missing.compactMap(\.nexusModID)) }
     }
 }
+
+/// Endorse and Track buttons for a Nexus mod (with an API key).
+struct EndorseTrackButtons: View {
+    @Environment(AppModel.self) private var model
+    let modID: Int
+    var version: String? = nil
+
+    var body: some View {
+        if model.nexusAccount.user != nil {
+            let endorsed = model.endorsements[modID] == .endorsed
+            let tracked = model.trackedMods.contains(modID)
+            HStack(spacing: 6) {
+                Button {
+                    model.setEndorsed(!endorsed, modID: modID, version: version)
+                } label: {
+                    Label(endorsed ? "Endorsed" : "Endorse", systemImage: endorsed ? "hand.thumbsup.fill" : "hand.thumbsup")
+                }
+                .tint(endorsed ? .green : nil)
+                .help(endorsed ? "You endorsed this mod. Click to withdraw it." : "Thank the author by endorsing this mod on Nexus")
+                Button {
+                    model.setTracked(!tracked, modID: modID)
+                } label: {
+                    Label(tracked ? "Tracking" : "Track", systemImage: tracked ? "bell.fill" : "bell")
+                }
+                .help(tracked ? "Nexus notifies you about this mod. Click to stop." : "Get Nexus notifications when this mod is updated")
+            }
+            .controlSize(.small)
+            .task { await model.loadNexusAccountLists() }
+        }
+    }
+}
