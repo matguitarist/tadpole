@@ -156,7 +156,7 @@ struct HelpView: View {
             }
             HelpSection("Updates") {
                 HelpText("Tadpole checks Nexus for new versions of the mods it downloaded, at launch and every 6 hours, and notifies you when it finds some. **Updates** lists them with what changed; **Update** or **Update All** installs them. The old .pak goes to the Trash and the mod keeps its place in the load order.")
-                HelpText("Mods installed from files, or linked by hand, can't be checked: Tadpole doesn't know which version you have. Install them from Nexus once. Checking works without an API key; installing updates needs one.")
+                HelpText("Mods installed from files need a link to Nexus first (**Find on Nexus…** in their details). For those, Tadpole finds which file you have from the version inside the .pak, or else guesses it from when you installed it, and says so on **Updates**. Checking works without an API key; installing updates needs one.")
             }
             HelpSection("Endorse and track") {
                 HelpText("With your API key, a mod's window and details have **Endorse** (thank its author; Nexus only accepts it for mods you downloaded, after trying them a little) and **Track** (Nexus notifies you about its updates).")
