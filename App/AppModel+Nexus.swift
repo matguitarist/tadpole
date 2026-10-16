@@ -39,7 +39,7 @@ extension AppModel {
         guard ProcessInfo.processInfo.environment["TADPOLE_SKIP_KEYCHAIN"] == nil else { return }
         nexusAccount = .checking
         Task {
-            nexusAPIKey = await Task.detached { NexusKeyStore.read() }.value
+            nexusAPIKey = await Task.detached { Keychain.readNexusAPIKey() }.value
             await validateNexusKey()
         }
     }
@@ -48,7 +48,7 @@ extension AppModel {
         let trimmed = key.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
         do {
-            try NexusKeyStore.save(trimmed)
+            try Keychain.saveNexusAPIKey(trimmed)
         } catch {
             show("Couldn't Save the API Key", error.localizedDescription)
             return
@@ -58,7 +58,7 @@ extension AppModel {
     }
 
     func removeNexusAPIKey() {
-        NexusKeyStore.delete()
+        Keychain.deleteNexusAPIKey()
         nexusAPIKey = nil
         nexusAccount = .none
     }

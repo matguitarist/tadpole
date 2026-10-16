@@ -61,9 +61,6 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
       page and offer to install the missing ones in the same step.
 - [x] Notification when updates are found (checked at launch and every 6
       hours).
-- [x] **No more Keychain prompts**: the Nexus API key moved to a private file
-      (the Keychain asked again after every build, without an Apple
-      Developer ID).
 - [ ] Updates for mods linked by hand (which file is installed isn't known).
 - [ ] Download progress and errors in a status bar at the bottom of every page.
 

@@ -1484,6 +1484,16 @@
         }
       }
     },
+    "Keychain error %d": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreur du trousseau %d"
+          }
+        }
+      }
+    },
     "Keyboard Shortcuts": {
       "localizations": {
         "fr": {
