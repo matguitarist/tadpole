@@ -30,6 +30,7 @@ struct SettingsView: View {
 private struct GeneralSettings: View {
     @AppStorage(Preferences.theme) private var theme = AppTheme.system
     @AppStorage(Preferences.showMenuBarIcon) private var showMenuBarIcon = true
+    @AppStorage(Preferences.showModPictures) private var showModPictures = true
     private let updater = AppUpdater.shared
     @State private var language = AppLanguage.current
 
@@ -59,6 +60,7 @@ private struct GeneralSettings: View {
                 }
                 .pickerStyle(.segmented)
                 .onChange(of: theme) { _, new in new.apply() }
+                Toggle("Show mod pictures from Nexus", isOn: $showModPictures)
             }
             Section {
                 Toggle("Show icon in the menu bar", isOn: $showMenuBarIcon)

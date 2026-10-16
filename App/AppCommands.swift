@@ -17,6 +17,7 @@ struct AppCommands: Commands {
         // re-evaluated when the model changes, so titles and enabled states
         // stay current.
         CommandGroup(replacing: .newItem) { FileMenuItems(model: model) }
+        CommandGroup(replacing: .undoRedo) { UndoMenuItems(model: model) }
         CommandGroup(before: .sidebar) { ViewMenuItems(model: model) }
         CommandMenu("Mods") { ModsMenuItems(model: model) }
         CommandMenu("Game") { GameMenuItems(model: model) }
@@ -152,5 +153,32 @@ private struct HelpMenuItems: View {
         Link("About the Script Extender (Windows only)", destination: AppLinks.scriptExtender)
         Divider()
         Link("Tadpole Release Notes", destination: AppLinks.releases)
+    }
+}
+
+/// Undo and Redo: the load order's, unless a text field is being edited
+/// (then its own, through the responder chain).
+private struct UndoMenuItems: View {
+    let model: AppModel
+
+    private var editingText: Bool { NSApp.keyWindow?.firstResponder is NSText }
+
+    var body: some View {
+        Button(model.canUndo ? String(localized: "Undo Load Order Change") : String(localized: "Undo")) {
+            if editingText {
+                NSApp.sendAction(Selector(("undo:")), to: nil, from: nil)
+            } else {
+                model.undo()
+            }
+        }
+        .keyboardShortcut("z")
+        Button(model.canRedo ? String(localized: "Redo Load Order Change") : String(localized: "Redo")) {
+            if editingText {
+                NSApp.sendAction(Selector(("redo:")), to: nil, from: nil)
+            } else {
+                model.redo()
+            }
+        }
+        .keyboardShortcut("z", modifiers: [.command, .shift])
     }
 }

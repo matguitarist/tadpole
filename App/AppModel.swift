@@ -59,6 +59,12 @@ final class AppModel {
     /// Named load orders, one in use (AppModel+Profiles).
     var profileStore = ProfileStore.load(from: AppModel.profilesFile)
     var profileNamePrompt: ProfileNamePrompt?
+    /// The Load Order page's search (name or author).
+    var loadOrderFilter = ""
+    /// Earlier load orders, for Undo (newest last), and undone ones for Redo.
+    private(set) var undoStack: [[ModuleShortDesc]] = []
+    private(set) var redoStack: [[ModuleShortDesc]] = []
+    @ObservationIgnored private var isUndoing = false
     /// Download failures dismissed from the status bar.
     var dismissedDownloadFailures: Set<UUID> = []
     /// When Play last backed up the latest save (mods had changed).
@@ -138,6 +144,7 @@ final class AppModel {
         // The game may have changed the load order (it drops mods it can't load).
         ensureActiveProfile()
         trackActiveProfile()
+        Task { await loadInstalledNexusPages() }
     }
 
     /// Reloads if modsettings.lsx or the Mods folder changed since the last
@@ -315,12 +322,55 @@ final class AppModel {
             return show("Quit Baldur's Gate 3 First", String(localized: "The game rewrites its mod list when it quits, which would undo this change."))
         }
         do {
+            let previous = settings?.modEntries
             try new.write(to: paths.modSettings)
             settings = new
+            if !isUndoing, let previous, previous != new.modEntries {
+                undoStack.append(previous)
+                if undoStack.count > 50 { undoStack.removeFirst() }
+                redoStack = []
+            }
             trackActiveProfile()
         } catch {
             show("Couldn't Save the Load Order", error.localizedDescription)
         }
+    }
+
+    // MARK: Undo
+
+    var canUndo: Bool { !undoStack.isEmpty }
+
+    /// After switching profiles: undoing would write the old profile's load
+    /// order into the new one.
+    func clearUndoHistory() {
+        undoStack = []
+        redoStack = []
+    }
+    var canRedo: Bool { !redoStack.isEmpty }
+
+    /// Puts the previous load order back (the mods stay installed).
+    func undo() {
+        guard let previous = undoStack.last, var settings else { return }
+        let current = settings.modEntries
+        settings.setEnabledMods(previous)
+        isUndoing = true
+        save(settings)
+        isUndoing = false
+        guard self.settings?.modEntries == previous else { return }  // refused (the game runs)
+        undoStack.removeLast()
+        redoStack.append(current)
+    }
+
+    func redo() {
+        guard let next = redoStack.last, var settings else { return }
+        let current = settings.modEntries
+        settings.setEnabledMods(next)
+        isUndoing = true
+        save(settings)
+        isUndoing = false
+        guard self.settings?.modEntries == next else { return }
+        redoStack.removeLast()
+        undoStack.append(current)
     }
 
     // MARK: Installing and removing

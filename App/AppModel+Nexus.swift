@@ -113,6 +113,19 @@ extension AppModel {
         try? origins.save(to: Self.originsFile)
     }
 
+    /// The Nexus pages (pictures, names) of installed mods linked to Nexus,
+    /// a few at a time: for the load order's pictures.
+    func loadInstalledNexusPages() async {
+        let ids = Array(Set(mods.compactMap { nexusOrigin(of: $0)?.modID })).filter { nexusMods[$0] == nil }.sorted()
+        let client = nexusClient
+        for start in stride(from: 0, to: ids.count, by: 4) {
+            await withTaskGroup(of: NexusMod?.self) { group in
+                for id in ids[start..<min(start + 4, ids.count)] { group.addTask { try? await client.mod(id: id) } }
+                for await page in group { if let page { nexusMods[page.modId] = page } }
+            }
+        }
+    }
+
     /// Fetches a Nexus mod's page, files and requirements once (forced: again).
     func loadNexusDetails(_ modID: Int, force: Bool = false) async throws {
         let client = nexusClient

@@ -17,6 +17,7 @@ struct LoadOrderView: View {
             }
             .navigationTitle("Load Order")
             .navigationSubtitle(subtitle)
+            .searchable(text: $model.loadOrderFilter, placement: .toolbar, prompt: Text("Filter by name or author"))
             .toolbar { toolbar }
             .inspector(isPresented: $model.showInspector) {
                 ModDetails()
@@ -116,6 +117,20 @@ struct LoadOrderView: View {
 private struct ModList: View {
     @Environment(AppModel.self) private var model
 
+    private var query: String { model.loadOrderFilter.trimmingCharacters(in: .whitespaces) }
+    private var isFiltering: Bool { !query.isEmpty }
+
+    private func matches(_ mod: PakMod) -> Bool {
+        guard isFiltering else { return true }
+        return mod.name.localizedCaseInsensitiveContains(query) || (mod.info?.author.localizedCaseInsensitiveContains(query) ?? false)
+            || mod.file.lastPathComponent.localizedCaseInsensitiveContains(query)
+    }
+
+    private func matches(_ row: AppModel.LoadOrderEntry) -> Bool {
+        if let mod = row.mod { return matches(mod) }
+        return !isFiltering || row.entry.name.localizedCaseInsensitiveContains(query)
+    }
+
     var body: some View {
         @Bindable var model = model
         let problems = model.problems
@@ -153,7 +168,7 @@ private struct ModList: View {
                 }
             }
             Section {
-                ForEach(Array(model.loadOrder.enumerated()), id: \.element.id) { index, row in
+                ForEach(Array(model.loadOrder.enumerated()).filter { matches($0.element) }, id: \.element.id) { index, row in
                     if let mod = row.mod {
                         ModRow(mod: mod, position: index + 1, isOn: true, problems: problems[row.id] ?? [])
                             .tag(mod.id)
@@ -162,7 +177,8 @@ private struct ModList: View {
                             .tag(row.id)
                     }
                 }
-                .onMove { model.move(fromOffsets: $0, toOffset: $1) }
+                // Moving rows of a filtered list would move the wrong ones.
+                .onMove(perform: isFiltering ? nil : { model.move(fromOffsets: $0, toOffset: $1) })
             } header: {
                 HStack {
                     Text("Load Order")
@@ -182,14 +198,14 @@ private struct ModList: View {
             }
             if !model.disabledMods.isEmpty {
                 Section("Installed, Not Loaded") {
-                    ForEach(model.disabledMods) { mod in
+                    ForEach(model.disabledMods.filter { matches($0) }) { mod in
                         ModRow(mod: mod, position: nil, isOn: false, problems: []).tag(mod.id)
                     }
                 }
             }
             if !model.overrideMods.isEmpty {
                 Section {
-                    ForEach(model.overrideMods) { mod in
+                    ForEach(model.overrideMods.filter { matches($0) }) { mod in
                         ModRow(mod: mod, position: nil, isOn: nil, problems: []).tag(mod.id)
                     }
                 } header: {
@@ -214,6 +230,7 @@ private struct ModList: View {
 
 private struct ModRow: View {
     @Environment(AppModel.self) private var model
+    @AppStorage(Preferences.showModPictures) private var showModPictures = true
     let mod: PakMod
     let position: Int?
     /// nil: can't be turned on or off.
@@ -236,6 +253,10 @@ private struct ModRow: View {
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
                     .frame(width: 22, alignment: .trailing)
+            }
+            if showModPictures {
+                ModThumbnail(url: model.nexusOrigin(of: mod).flatMap { model.nexusMods[$0.modID]?.thumbnailURL })
+                    .frame(width: 48, height: 30)
             }
             VStack(alignment: .leading, spacing: 1) {
                 HStack(spacing: 6) {

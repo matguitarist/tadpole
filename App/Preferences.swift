@@ -14,6 +14,7 @@ enum Preferences {
     static let showMenuBarIcon = "showMenuBarIcon"  // default on
     static let reportAfterPlaying = "reportAfterPlaying"  // default on
     static let backupBeforePlay = "backupBeforePlay"  // default on
+    static let showModPictures = "showModPictures"  // default on
 }
 
 /// Light, dark, or whatever macOS uses.

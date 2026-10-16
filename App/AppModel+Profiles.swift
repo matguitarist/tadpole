@@ -64,6 +64,7 @@ extension AppModel {
         persistProfiles()
         settings.setEnabledMods(entries)
         save(settings)
+        clearUndoHistory()
         if !missing.isEmpty {
             show("Some Mods Aren't Installed",
                  String(localized: "“\(name)” lists \(missing.count) mods that aren't in the Mods folder: \(missing.map(\.name).formatted(.list(type: .and))). Install them to load them; the profile keeps them."))
@@ -85,6 +86,7 @@ extension AppModel {
         if empty, !settings.modEntries.isEmpty {
             settings.setEnabledMods([])
             save(settings)
+            clearUndoHistory()
         }
     }
 

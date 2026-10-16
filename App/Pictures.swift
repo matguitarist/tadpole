@@ -69,3 +69,29 @@ struct ShapedPicture: View {
         }
     }
 }
+
+/// A mod's small picture in a list row (cached); a puzzle piece meanwhile and
+/// for mods without one.
+struct ModThumbnail: View {
+    let url: URL?
+    @State private var image: NSImage?
+
+    var body: some View {
+        // An overlay takes the frame's size, so wide pictures are cropped.
+        RoundedRectangle(cornerRadius: 4)
+            .fill(.quaternary.opacity(0.5))
+            .overlay {
+                if let image {
+                    Image(nsImage: image).resizable().aspectRatio(contentMode: .fill)
+                } else {
+                    Image(systemName: "puzzlepiece.extension").foregroundStyle(.tertiary).imageScale(.small)
+                }
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 4))
+            .task(id: url) {
+                guard let url else { image = nil; return }
+                image = ImageCache.shared.cached(url)
+                if image == nil { image = await ImageCache.shared.image(for: url) }
+            }
+    }
+}

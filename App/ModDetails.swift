@@ -4,6 +4,7 @@ import TadpoleCore
 /// The panel at the right: the selected mod's description and requirements.
 struct ModDetails: View {
     @Environment(AppModel.self) private var model
+    @AppStorage(Preferences.showModPictures) private var showModPictures = true
 
     var body: some View {
         if let mod = model.mods.first(where: { $0.id == model.selection }) {
@@ -18,7 +19,7 @@ struct ModDetails: View {
         let page = modID.flatMap { model.nexusMods[$0] }
         return ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                if let url = page?.pictureURL ?? page?.thumbnailURL {
+                if showModPictures, let url = page?.pictureURL ?? page?.thumbnailURL {
                     ShapedPicture(url: url)
                 }
                 VStack(alignment: .leading, spacing: 4) {
