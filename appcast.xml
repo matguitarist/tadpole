@@ -3,20 +3,21 @@
     <channel>
         <title>Tadpole</title>
         <item>
-            <title>0.2.1</title>
-            <pubDate>Fri, 16 Oct 2026 12:50:40 -0400</pubDate>
-            <sparkle:version>3</sparkle:version>
-            <sparkle:shortVersionString>0.2.1</sparkle:shortVersionString>
+            <title>0.3</title>
+            <pubDate>Fri, 16 Oct 2026 13:59:03 -0400</pubDate>
+            <sparkle:version>4</sparkle:version>
+            <sparkle:shortVersionString>0.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[## A clearer Script Extender log
+            <description sparkle:format="markdown"><![CDATA[## Profiles, requirements and saves
 
-- Each part of the Script Extender (Lua, Osiris, Stats…) has its own color in the log.
-- On a game build the Script Extender wasn't made for, an orange **Limited mode** banner says which features are turned off. Warnings the Script Extender writes as ordinary lines now count as warnings.
-- Mods the Script Extender lists by mistake (it sometimes matches a mod to another mod's scripts) are noted and no longer counted as Script Extender mods.
-- Clicking a mod or part under **Problems** shows exactly its warnings and errors, with **Show All** to go back.
-- Help covers the bar at the bottom, badges, mod details, and what to do when a Script Extender mod doesn't work.
+- **Profiles**: named load orders to switch between, one per playthrough or per collection. Your changes are kept in the profile in use. The menu is at the top left of Load Order. Collections can be installed into their own profile.
+- **Requirements from Nexus**: a mod's window and details list what its Nexus page requires. Installing a mod that needs mods you don't have offers to install them along, with the author's notes (some are only needed for part of a mod).
+- **Mods in your saves**: each save shows the mods it was made with, and **Use This Save's Mods** loads exactly those.
+- **Backup before Play**: when your mods changed since the last game, Tadpole backs up your latest save before starting the game (Settings → Game).
+- **Import and export load orders**: share yours, or load a friend's, in BG3 Mod Manager's format or as a modsettings.lsx.
+- **After a game with the Script Extender**: each Script Extender mod shows whether its scripts loaded or had errors, and a notification tells you about errors or a crash. Tadpole also tells you when a Script Extender release supports your game build.
 ]]></description>
-            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.2.1/Tadpole-0.2.1.zip" length="5098597" type="application/octet-stream" sparkle:edSignature="4booDjDhFUn/Ex/O1egS84ZuWgvO2l9CT42vVWo6bKr7dy5Vg5wdHAxz8pjuEQUNHdBPy5ad1Yr+HoPrLGAYCg=="/>
+            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.3/Tadpole-0.3.zip" length="5571711" type="application/octet-stream" sparkle:edSignature="aPaaL/m/3xAPX35B8nmJhq2g43VwuFVfCTiteP3pT+hWq7GjsKi6PhmzZC0PaheauTygal7cn/fZjxbBtM2+AQ=="/>
         </item>
     </channel>
 </rss>
