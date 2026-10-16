@@ -38,7 +38,11 @@ if [ -z "$LOCAL_PREFIX" ]; then
 fi
 
 echo "==> Releasing Tadpole $VERSION (build $BUILD)"
-REQUIRE_SIGNING=1 ./build_app.sh
+# With a Developer ID, the app and the disk image are notarized by Apple, so
+# macOS opens them without asking ("Open Anyway"); a release can't skip it.
+NOTARIZE=""
+if [[ "$(./signing_identity.sh)" == "Developer ID Application:"* && -z "$LOCAL_PREFIX" ]]; then NOTARIZE=1; fi
+REQUIRE_SIGNING=1 NOTARIZE=$NOTARIZE ./build_app.sh
 
 # Only the new zip in the folder: the feed lists the latest version, which
 # is all Sparkle needs.
@@ -62,7 +66,11 @@ fi
 # ".../releases/latest/download/Tadpole.dmg" link working. It's made after
 # the appcast so generate_appcast only sees the zip.
 DMG="releases/Tadpole.dmg"
-./make_dmg.sh "$DMG"
+NOTARIZED=$NOTARIZE ./make_dmg.sh "$DMG"
+if [[ -n "$NOTARIZE" ]]; then
+    codesign --force --timestamp --sign "$(./signing_identity.sh)" "$DMG"
+    ./notarize.sh "$DMG"
+fi
 
 git push origin HEAD
 gh release create "$TAG" "$DMG" "$ZIP" --repo "$REPO" --title "Tadpole $VERSION" --notes-file "$NOTES"
