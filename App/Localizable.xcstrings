@@ -2176,6 +2176,22 @@
         }
       }
     },
+    "Limited mode: this release was made for game build %@, and yours is %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Limited mode: this release was made for game build %1$@, and yours is %2$@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode limité : cette version a été faite pour le build du jeu %@, et le vôtre est %@."
+          }
+        }
+      }
+    },
     "Link" : {
       "localizations" : {
         "fr" : {
@@ -4416,6 +4432,22 @@
         }
       }
     },
+    "The Script Extender also listed %@ as Script Extender mods, by mistake: it matched them to the scripts of %@. They don't use the Script Extender and aren't counted." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The Script Extender also listed %1$@ as Script Extender mods, by mistake: it matched them to the scripts of %2$@. They don't use the Script Extender and aren't counted."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Script Extender a aussi listé %@ comme mods Script Extender, par erreur : il les a associés aux scripts de %@. Ils n’utilisent pas le Script Extender et ne sont pas comptés."
+          }
+        }
+      }
+    },
     "The Script Extender is installed into the game, which can't be changed while it runs." : {
       "localizations" : {
         "fr" : {
@@ -4608,6 +4640,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activez ce mod pour vérifier"
+          }
+        }
+      }
+    },
+    "Turned off: %@. Mods that use these won't fully work until a release supports your build." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Désactivé : %@. Les mods qui s’en servent ne marcheront pas complètement tant qu’une version ne prendra pas en charge votre build."
           }
         }
       }

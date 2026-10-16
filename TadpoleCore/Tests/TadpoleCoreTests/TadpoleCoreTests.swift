@@ -499,3 +499,48 @@ import Testing
         #expect(groups.last?.warnings == 1)
     }
 }
+
+@Suite struct ScriptExtenderLogCompatibilityTests {
+    /// Lines from a real session on a game build v0.44.0 doesn't support.
+    static let sample = """
+        === BG3SE-macOS v0.44.0 ===
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ] === Enabled Mods ===
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ]   [1] GustavX (base game)
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ]   [2] DFHairPack
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ]   [3] AutoSnapPack
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ]   [4] 5eSpells
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ]   [5] Mod Configuration Menu
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ] === Scanning for SE Mods ===
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ] SE dir for 'DFHairPack' resolved via PAK filename: 5eSpells
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ] Found SE mod DFHairPack in PAK: /Users/me/Mods/5eSpells.pak (dir: 5eSpells)
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ]   [SE] DFHairPack
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ] SE dir for 'AutoSnapPack' resolved via PAK filename: 5eSpells
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ]   [SE] AutoSnapPack
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ]   [SE] 5eSpells
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ] SE dir for 'Mod Configuration Menu' resolved via PAK filename: MCM
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ]   [SE] Mod Configuration Menu
+        [2026-10-16 11:29:48.310] [INFO ] [Mod    ] ============================
+        [2026-10-16 11:29:48.323] [INFO ] [Core   ] [WARN] ============================================
+        [2026-10-16 11:29:48.323] [INFO ] [Core   ] [WARN] GAME VERSION MISMATCH DETECTED
+        [2026-10-16 11:29:48.323] [INFO ] [Core   ] [WARN] Detected: 4.1.1.7631656 | Expected: 4.1.1.7398727
+        [2026-10-16 11:29:48.323] [INFO ] [Core   ] [WARN] ============================================
+        [2026-10-16 11:29:48.327] [INFO ] [Stats  ] No verified RPGStats slot for this game version — stats system disabled (fail closed)
+        [2026-10-16 11:29:48.327] [INFO ] [Core   ] [Level] WARN: level_mgr_ptr not available for this BG3 version — Level API disabled
+        [2026-10-16 11:29:48.327] [INFO ] [Core   ] LOCA: No offset-table row for this game version — localization disabled
+        """
+
+    @Test func spotsModsGivenAnotherModsScripts() {
+        let log = ScriptExtenderLog(Self.sample)
+        #expect(log.misattributed == ["DFHairPack": "5eSpells", "AutoSnapPack": "5eSpells"])
+        #expect(log.scriptExtenderMods == ["5eSpells", "Mod Configuration Menu"])  // MCM's own folder is fine
+    }
+
+    @Test func readsTheUnsupportedBuildAndWhatsOff() {
+        let log = ScriptExtenderLog(Self.sample)
+        #expect(log.unsupportedBuild?.detected == "4.1.1.7631656")
+        #expect(log.unsupportedBuild?.expected == "4.1.1.7398727")
+        #expect(log.disabledFeatures == ["Stats (Ext.Stats)", "Level API (Ext.Level)", "Localization (Ext.Loca)"])
+        // Warnings written at INFO level count, the ==== frames don't.
+        #expect(log.warningCount == 3)
+    }
+}

@@ -72,7 +72,7 @@
 		B782ED5F40424102BB728CA5 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
 		C88DE7BB747321F48EAE48F0 /* Tadpole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tadpole.entitlements; sourceTree = "<group>"; };
 		D33E80D078054887EDFAC9C9 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
-		D7D93916D4D9F61E0D136820 /* TadpoleCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TadpoleCore; path = TadpoleCore; sourceTree = SOURCE_ROOT; };
+		D7D93916D4D9F61E0D136820 /* TadpoleCore */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TadpoleCore; sourceTree = SOURCE_ROOT; };
 		E2536676208960BA56A8528F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

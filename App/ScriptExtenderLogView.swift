@@ -35,6 +35,27 @@ extension ScriptExtenderLog.Level {
     }
 }
 
+/// A color per part of the Script Extender, so lines from the same part
+/// are easy to follow.
+func scriptExtenderModuleColor(_ module: String) -> Color {
+    switch module {
+    case "Lua": .blue
+    case "Mod": .green
+    case "Osiris": .purple
+    case "Entity": .teal
+    case "Stats": .orange
+    case "Core": .gray
+    case "Console": .indigo
+    case "Hooks": .pink
+    case "Events": .mint
+    case "Net": .cyan
+    case "Timer": .brown
+    case "Persist": .yellow
+    case "Game": .red
+    default: .secondary
+    }
+}
+
 struct ScriptExtenderLogView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.openSettings) private var openSettings
@@ -58,6 +79,8 @@ struct ScriptExtenderLogView: View {
             if let log {
                 VStack(spacing: 0) {
                     header(log)
+                    if let build = log.unsupportedBuild { limitedModeBanner(log, build: build) }
+                    if !log.misattributed.isEmpty { misattributedNote(log) }
                     let groups = log.problemGroups
                     if !groups.isEmpty { problems(groups) }
                     Divider()
@@ -126,6 +149,40 @@ struct ScriptExtenderLogView: View {
         .padding(.vertical, 10)
     }
 
+    /// The game build isn't one this release supports: what's off.
+    private func limitedModeBanner(_ log: ScriptExtenderLog, build: (detected: String, expected: String)) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Label("Limited mode: this release was made for game build \(build.expected), and yours is \(build.detected).", systemImage: "exclamationmark.triangle.fill")
+                .font(.callout.weight(.medium))
+                .foregroundStyle(.orange)
+            if !log.disabledFeatures.isEmpty {
+                Text("Turned off: \(log.disabledFeatures.formatted(.list(type: .and))). Mods that use these won't fully work until a release supports your build.")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(10)
+        .background(.orange.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
+        .padding(.horizontal, 14)
+        .padding(.bottom, 8)
+    }
+
+    /// The Script Extender listed mods with another mod's scripts.
+    private func misattributedNote(_ log: ScriptExtenderLog) -> some View {
+        let pairs = log.misattributed.sorted { $0.key < $1.key }
+        return Label {
+            Text("The Script Extender also listed \(pairs.map(\.key).formatted(.list(type: .and))) as Script Extender mods, by mistake: it matched them to the scripts of \(Set(pairs.map(\.value)).sorted().formatted(.list(type: .and))). They don't use the Script Extender and aren't counted.")
+        } icon: {
+            Image(systemName: "info.circle")
+        }
+        .font(.callout)
+        .foregroundStyle(.secondary)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 14)
+        .padding(.bottom, 8)
+    }
+
     private func stat(_ count: Int, _ label: LocalizedStringKey, color: Color) -> some View {
         VStack(spacing: 0) {
             Text(count, format: .number).font(.title3.bold()).foregroundStyle(color).monospacedDigit()
@@ -182,8 +239,13 @@ struct ScriptExtenderLogView: View {
                 Picker("Part", selection: $module) {
                     Text("All Parts").tag(String?.none)
                     Divider()
-                    ForEach(Array(Set(log.entries.map(\.module))).filter { !$0.isEmpty }.sorted(), id: \.self) {
-                        Text(verbatim: $0).tag(String?.some($0))
+                    ForEach(Array(Set(log.entries.map(\.module))).filter { !$0.isEmpty }.sorted(), id: \.self) { part in
+                        Label {
+                            Text(verbatim: part)
+                        } icon: {
+                            Image(systemName: "circle.fill").foregroundStyle(scriptExtenderModuleColor(part))
+                        }
+                        .tag(String?.some(part))
                     }
                 }
                 .fixedSize()
@@ -286,8 +348,12 @@ private struct EntryRow: View {
                 .foregroundStyle(entry.level.color)
                 .frame(width: 14)
             Text(verbatim: entry.module)
-                .foregroundStyle(.secondary)
-                .frame(width: 58, alignment: .leading)
+                .font(.system(.caption, design: .monospaced).weight(.medium))
+                .foregroundStyle(scriptExtenderModuleColor(entry.module))
+                .padding(.horizontal, 5)
+                .padding(.vertical, 1)
+                .background(scriptExtenderModuleColor(entry.module).opacity(0.15), in: RoundedRectangle(cornerRadius: 4))
+                .frame(width: 70, alignment: .leading)
             Text(verbatim: entry.message)
                 .foregroundStyle(entry.level == .debug ? .secondary : entry.level.color)
                 .textSelection(.enabled)

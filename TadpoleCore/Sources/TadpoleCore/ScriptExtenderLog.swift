@@ -48,23 +48,39 @@ public struct ScriptExtenderLog: Sendable {
     public var entries: [Entry] = []
     /// From the "=== Enabled Mods ===" block.
     public var enabledMods: [String] = []
-    /// Mods the Script Extender found Lua scripts in ("[SE] name").
+    /// Mods the Script Extender found Lua scripts in ("[SE] name"), without
+    /// the ones it matched to another mod's scripts (see `misattributed`).
     public var scriptExtenderMods: [String] = []
+    /// Mods the Script Extender listed with another mod's scripts: when it
+    /// can't find a mod's folder by name, it falls back to the folder of a
+    /// .pak it finds ("SE dir for 'DFHairPack' resolved via PAK filename:
+    /// 5eSpells"), so a hair pack shows up with 5eSpells' scripts. Mod name
+    /// → the mod whose scripts they really are.
+    public var misattributed: [String: String] = [:]
+    /// The game build when the Script Extender doesn't support it: it runs
+    /// with features off ("GAME VERSION MISMATCH").
+    public var unsupportedBuild: (detected: String, expected: String)?
+    /// What it turned off on this build ("stats system disabled"…).
+    public var disabledFeatures: [String] = []
 
     public init(_ text: String) {
         var currentBlock: String?
+        var resolvedFolders: [String: String] = [:]
         var lineNumber = 0
         for rawLine in text.split(separator: "\n", omittingEmptySubsequences: false) {
             lineNumber += 1
             let line = rawLine.hasSuffix("\r") ? rawLine.dropLast() : rawLine
             if let entry = Self.parse(line, number: lineNumber) {
                 entries.append(entry)
+                noteCompatibility(entry)
                 // The mod lists are logged as blocks of INFO lines.
                 let message = entry.message
                 if message.hasPrefix("=== ") {
                     currentBlock = message.contains("Enabled Mods") ? "enabled" : message.contains("SE Mods") ? "se" : nil
                 } else if currentBlock == "enabled", let name = Self.listItem(message, marker: "]") {
                     if !name.hasSuffix("(base game)") { enabledMods.append(name) }
+                } else if currentBlock == "se", let resolved = Self.resolvedViaPak(message) {
+                    resolvedFolders[resolved.mod] = resolved.folder
                 } else if currentBlock == "se", message.hasPrefix("  [SE] ") {
                     let name = message.dropFirst(7).components(separatedBy: " (from").first ?? ""
                     if !name.isEmpty, !scriptExtenderMods.contains(name) { scriptExtenderMods.append(name) }
@@ -77,6 +93,53 @@ public struct ScriptExtenderLog: Sendable {
             } else if !line.isEmpty, !line.hasPrefix("===="), !entries.isEmpty, !line.hasPrefix("Log ") {
                 entries[entries.count - 1].message += "\n" + line  // a message on several lines
             }
+        }
+        findMisattributions(resolvedFolders)
+    }
+
+    /// A mod resolved to a folder that another listed mod also uses (as its
+    /// own name, or resolved the same way) got that mod's scripts by mistake.
+    /// One mod alone resolved to a differently named folder ("Mod
+    /// Configuration Menu" → MCM) is fine.
+    mutating func findMisattributions(_ resolvedFolders: [String: String]) {
+        for (mod, folder) in resolvedFolders {
+            let owners = scriptExtenderMods.filter { $0.caseInsensitiveCompare(folder) == .orderedSame }
+            let sharers = resolvedFolders.filter { $0.key != mod && $0.value.caseInsensitiveCompare(folder) == .orderedSame }
+            if !owners.isEmpty || !sharers.isEmpty { misattributed[mod] = owners.first ?? folder }
+        }
+        scriptExtenderMods.removeAll { misattributed[$0] != nil }
+    }
+
+    /// "SE dir for 'DFHairPack' resolved via PAK filename: 5eSpells", for a
+    /// mod whose name isn't the folder's.
+    static func resolvedViaPak(_ message: String) -> (mod: String, folder: String)? {
+        guard message.hasPrefix("SE dir for '"), let range = message.range(of: "' resolved via PAK filename: ") else { return nil }
+        let mod = String(message[message.index(message.startIndex, offsetBy: 12)..<range.lowerBound])
+        let folder = String(message[range.upperBound...]).trimmingCharacters(in: .whitespaces)
+        return mod.caseInsensitiveCompare(folder) == .orderedSame ? nil : (mod, folder)
+    }
+
+    /// Features the Script Extender turns off on a game build it doesn't
+    /// support, by what its log says (INFO lines and above).
+    static let knownFeatures: [(match: String, name: String)] = [
+        ("stats system disabled", "Stats (Ext.Stats)"),
+        ("prototype manager features disabled", "Prototype managers"),
+        ("Ext.StaticData in degraded mode", "Static data (Ext.StaticData)"),
+        ("Level API disabled", "Level API (Ext.Level)"),
+        ("localization disabled", "Localization (Ext.Loca)"),
+        ("Functor hooks SKIPPED", "Spell and status functors"),
+    ]
+
+    private mutating func noteCompatibility(_ entry: Entry) {
+        let message = entry.message
+        // "[WARN] Detected: 4.1.1.7631656 | Expected: 4.1.1.7398727"
+        if let range = message.range(of: "Detected: "), let expected = message.range(of: " | Expected: ") {
+            unsupportedBuild = (String(message[range.upperBound..<expected.lowerBound]),
+                                String(message[expected.upperBound...]).trimmingCharacters(in: .whitespaces))
+        }
+        guard entry.level >= .info else { return }
+        for feature in Self.knownFeatures where message.localizedCaseInsensitiveContains(feature.match) {
+            if !disabledFeatures.contains(feature.name) { disabledFeatures.append(feature.name) }
         }
     }
 
@@ -101,7 +164,17 @@ public struct ScriptExtenderLog: Sendable {
         }
         let message = rest.hasPrefix(" ") ? String(rest.dropFirst()) : String(rest)
         let time = stamp.split(separator: " ").last.map(String.init) ?? String(stamp)
-        return Entry(id: number, time: time, level: level, module: module, message: message)
+        // Some warnings and errors are written at INFO level with the real
+        // level in the message: "[WARN] …", "[Level] WARN: …".
+        var effective = level
+        if level < .warn {
+            if message.hasPrefix("[ERROR]") || message.contains("] ERROR: ") { effective = .error }
+            else if message.hasPrefix("[WARN]") || message.contains("] WARN: ") {
+                // Not the "[WARN] =====" lines framing a warning.
+                if !message.dropFirst(6).allSatisfy({ $0 == "=" || $0 == " " }) { effective = .warn }
+            }
+        }
+        return Entry(id: number, time: time, level: effective, module: module, message: message)
     }
 
     /// "  [3] Tav's Hairpack" → "Tav's Hairpack"
