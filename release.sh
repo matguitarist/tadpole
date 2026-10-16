@@ -72,4 +72,16 @@ cp "$STAGING/appcast.xml" appcast.xml
 git add appcast.xml
 git commit -m "Update appcast for $VERSION"
 git push origin HEAD
-echo "==> Done: https://github.com/$REPO/releases/tag/$TAG"
+
+# raw.githubusercontent.com caches the feed for up to 5 minutes: until it
+# serves the new version, "Check for Updates" still finds nothing.
+FEED="https://raw.githubusercontent.com/$REPO/main/appcast.xml"
+echo "==> Waiting for the public feed to list build $BUILD (GitHub caches it up to 5 minutes)"
+for _ in $(seq 1 40); do
+    if curl -fsS "$FEED" | grep -q "<sparkle:version>$BUILD</sparkle:version>"; then
+        echo "==> Done: https://github.com/$REPO/releases/tag/$TAG (users can update now)"
+        exit 0
+    fi
+    sleep 15
+done
+echo "==> Released, but the feed still serves the old version after 10 minutes: check $FEED" >&2
