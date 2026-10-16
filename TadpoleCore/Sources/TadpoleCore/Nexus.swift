@@ -85,6 +85,21 @@ public struct NexusClient: Sendable {
         URL(string: "https://www.nexusmods.com/\(gameDomain)/mods/\(modID)")!
     }
 
+    /// The Nexus mod number in a pasted link or number:
+    /// "https://www.nexusmods.com/baldursgate3/mods/141?tab=files",
+    /// "nexusmods.com/baldursgate3/mods/141", "#141" or "141". Links to other
+    /// games don't count.
+    public static func modID(fromLinkOrNumber text: String) -> Int? {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if let match = trimmed.wholeMatch(of: /#?(\d{1,7})/) {
+            return Int(match.1)
+        }
+        guard let match = trimmed.firstMatch(of: /nexusmods\.com\/(?:games\/)?([A-Za-z0-9]+)\/mods\/(\d+)/.ignoresCase()),
+              match.1.lowercased() == gameDomain
+        else { return nil }
+        return Int(match.2)
+    }
+
     /// The website's files tab with the "Mod Manager Download" flow ready for
     /// one file. Clicking through it sends an nxm:// link back to us.
     public static func modManagerDownloadPageURL(modID: Int, fileID: Int) -> URL {

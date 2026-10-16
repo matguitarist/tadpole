@@ -154,7 +154,6 @@ struct NexusModSheet: View {
     @Environment(\.dismiss) private var dismiss
     let request: NexusModRequest
     @State private var mod: NexusMod?
-    @State private var files: [NexusFile] = []
     @State private var showOldFiles = false
     @State private var error: String?
 
@@ -201,70 +200,23 @@ struct NexusModSheet: View {
     private var fileList: some View {
         if let error {
             ContentUnavailableView("Couldn't Load Files", systemImage: "exclamationmark.triangle", description: Text(error))
-        } else if files.isEmpty {
-            ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity)
-        } else {
-            let installed = Set(model.installedFiles(ofNexusMod: request.modID).map(\.fileID))
+        } else if let files = model.nexusFiles[request.modID] {
             List {
-                ForEach(files.filter { showOldFiles || $0.isCurrent }) { file in
-                    HStack(alignment: .top, spacing: 10) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            HStack(spacing: 6) {
-                                Text(file.name).fontWeight(.medium)
-                                if let version = file.version, !version.isEmpty {
-                                    Text(version).font(.caption).foregroundStyle(.secondary)
-                                }
-                                Badge(text: categoryTitle(file.category), color: file.category == "MAIN" ? .accentColor : .secondary)
-                            }
-                            if let description = file.description, !description.isEmpty {
-                                Text(description.strippingNexusMarkup).font(.caption).foregroundStyle(.secondary).lineLimit(3)
-                            }
-                            HStack(spacing: 10) {
-                                Text(file.uploadedAt, format: .dateTime.year().month().day())
-                                if let bytes = file.byteCount { Text(bytes, format: .byteCount(style: .file)) }
-                            }
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        }
-                        Spacer()
-                        if installed.contains(file.fileId) {
-                            Label("Installed", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
-                        } else {
-                            Button("Install") {
-                                model.installFromNexus([BrowserQueueItem(modID: request.modID, fileID: file.fileId,
-                                                                         title: (mod ?? request.preview)?.name ?? file.name)])
-                                dismiss()
-                            }
-                        }
-                    }
-                    .padding(.vertical, 3)
-                }
+                NexusFileSections(modID: request.modID, files: files, showOld: showOldFiles, onInstall: { dismiss() })
             }
-        }
-    }
-
-    private func categoryTitle(_ category: String) -> String {
-        switch category {
-        case "MAIN": String(localized: "Main")
-        case "OPTIONAL": String(localized: "Optional")
-        case "UPDATE": String(localized: "Update")
-        case "MISCELLANEOUS": String(localized: "Miscellaneous")
-        case "OLD_VERSION": String(localized: "Old version")
-        case "ARCHIVED": String(localized: "Archived")
-        default: category.capitalized
+        } else {
+            ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 
     private func load() async {
-        let client = model.nexusClient
         do {
-            async let details = client.mod(id: request.modID)
-            async let list = client.files(forMod: request.modID)
-            files = try await list
-            mod = try? await details
-            if !files.contains(where: \.isCurrent) { showOldFiles = true }
+            try await model.loadNexusDetails(request.modID)
+            mod = model.nexusMods[request.modID]
+            if model.nexusFiles[request.modID]?.contains(where: \.isCurrent) == false { showOldFiles = true }
         } catch {
             self.error = AppModel.describe(error)
         }
     }
+
 }

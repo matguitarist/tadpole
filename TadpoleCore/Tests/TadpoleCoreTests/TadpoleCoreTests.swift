@@ -190,6 +190,15 @@ import Testing
         #expect(NXMLink(url: URL(string: "nxm://stardewvalley/mods/1/files/2")!)?.isForBG3 == false)
         #expect(NXMLink(url: URL(string: "nxm://baldursgate3/collections/abc")!) == nil)
     }
+
+    @Test func readsModNumbersFromLinks() {
+        #expect(NexusClient.modID(fromLinkOrNumber: "https://www.nexusmods.com/baldursgate3/mods/141?tab=files") == 141)
+        #expect(NexusClient.modID(fromLinkOrNumber: " nexusmods.com/games/baldursgate3/mods/213 ") == 213)
+        #expect(NexusClient.modID(fromLinkOrNumber: "#366") == 366)
+        #expect(NexusClient.modID(fromLinkOrNumber: "366") == 366)
+        #expect(NexusClient.modID(fromLinkOrNumber: "https://www.nexusmods.com/stardewvalley/mods/1915") == nil)
+        #expect(NexusClient.modID(fromLinkOrNumber: "hair mod") == nil)
+    }
 }
 
 @Suite struct SaveTests {

@@ -47,6 +47,11 @@ final class AppModel {
     var browserDone = 0
     var showInspector = true
     var nexusSheet: NexusModRequest?
+    /// An installed mod to link to its Nexus page (sheet).
+    var linkSheet: PakMod?
+    /// Nexus pages and file lists already fetched, by mod number.
+    var nexusMods: [Int: NexusMod] = [:]
+    var nexusFiles: [Int: [NexusFile]] = [:]
     var collectionSheet: CollectionRequest?
 
     // Saves (AppModel+Saves.swift)

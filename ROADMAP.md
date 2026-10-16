@@ -37,9 +37,9 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
       rate limit. Download a few at a time.
 - [x] **The install spinner stops too early** when several installs overlap
       (one shared `isInstalling` flag). Count running installs instead.
-- [ ] **Mods installed from files show as missing in collections and on Nexus
-      pages.** Tadpole only knows the Nexus origin of mods it downloaded. Match
-      the others by name or UUID, or let the user link a mod to its Nexus page.
+- [x] **Mods installed from files show as missing in collections and on Nexus
+      pages.** Tadpole only knows the Nexus origin of mods it downloaded; the
+      others can now be linked by hand (**Find on Nexus…**).
 - [x] Downloads can't be cancelled. (The list is still lost when the app quits.)
 - [ ] Script Extender detection is a guess (a `ScriptExtender/` folder inside
       the .pak). Also check the `meta.lsx` requirements and the Nexus
@@ -48,6 +48,11 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
 
 ## 0.2: Keeping mods up to date
 
+- [x] **Link installed mods to Nexus**: downloads are linked automatically;
+      **Find on Nexus…** searches by name or takes a pasted link.
+- [x] **Optional files for installed mods**: the details panel lists the
+      mod's Nexus files by category (main, optional, miscellaneous), with
+      **Install** for the ones you don't have.
 - [ ] **Updates page**: compare installed mods with their latest Nexus
       version (needs the Nexus origin, see above), with **Update** and
       **Update All**, and the mod's changelog from Nexus.

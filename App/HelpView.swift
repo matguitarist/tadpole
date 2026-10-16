@@ -124,9 +124,12 @@ struct HelpView: View {
                 HelpText("Once a download starts, the browser closes and the download goes on in the sidebar's **Downloads** list. You can keep the browser open in **Settings → Nexus Mods**.")
                 HelpText("Tadpole catches **Mod Manager Download** links only in its own browser, so it doesn't take them from Starseed or another mod manager in Safari or Chrome.")
             }
+            HelpSection("Optional files") {
+                HelpText("Select an installed mod: its details show its Nexus page and every current file there, main and optional, with **Install** next to the ones you don't have.")
+            }
             HelpSection("Collections") {
                 HelpText("**Collections** lists curated mod packs. A collection shows which of its mods you already have; **Install** downloads the rest. Optional mods are only installed if you tick them.")
-                HelpText("Tadpole knows a mod is installed when it was downloaded through Tadpole. Mods you installed from files show as missing in collections, even if you have them.")
+                HelpText("Tadpole knows which Nexus mod an installed mod comes from when it was downloaded through Tadpole. For mods you installed from files, select the mod and click **Find on Nexus…** in its details: once linked, it counts as installed in collections.")
             }
 
         case .scriptExtender:

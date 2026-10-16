@@ -174,6 +174,7 @@ public enum SaveBackups {
 public struct NexusOrigins: Sendable, Codable, Equatable {
     public struct Origin: Sendable, Codable, Hashable {
         public let modID: Int
+        /// 0 when the mod was linked by hand: which file it came from isn't known.
         public let fileID: Int
         public let version: String?
 

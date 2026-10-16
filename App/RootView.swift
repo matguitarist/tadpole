@@ -27,6 +27,7 @@ struct RootView: View {
         }
         .sheet(item: $model.nexusSheet) { NexusModSheet(request: $0) }
         .sheet(item: $model.collectionSheet) { CollectionSheet(request: $0) }
+        .sheet(item: $model.linkSheet) { LinkNexusSheet(mod: $0) }
         .onChange(of: model.browserRequest) { _, request in
             if request != nil { openWindow(id: BrowserWindow.id) }
         }

@@ -21,8 +21,13 @@ extension AppModel {
 
     static let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "dev"
 
+    /// Test copies (TADPOLE_BG3_DOCUMENTS) keep theirs next to their game
+    /// folder, not in the real one.
     static var originsFile: URL {
-        URL.applicationSupportDirectory.appending(path: "Tadpole/nexus-origins.json")
+        if let override = ProcessInfo.processInfo.environment["TADPOLE_BG3_DOCUMENTS"], !override.isEmpty {
+            return URL(filePath: override).deletingLastPathComponent().appending(path: "tadpole-nexus-origins.json")
+        }
+        return URL.applicationSupportDirectory.appending(path: "Tadpole/nexus-origins.json")
     }
 
     var nexusClient: NexusClient { NexusClient(apiKey: nexusAPIKey, appVersion: Self.appVersion) }
@@ -82,6 +87,39 @@ extension AppModel {
     func installedFiles(ofNexusMod modID: Int) -> [NexusOrigins.Origin] {
         let installed = Set(mods.map(\.file.lastPathComponent))
         return origins.byPak.filter { installed.contains($0.key) && $0.value.modID == modID }.map(\.value)
+    }
+
+    // MARK: Links between installed mods and Nexus
+
+    /// The Nexus mod an installed .pak came from (downloaded in Tadpole, or
+    /// linked by hand).
+    func nexusOrigin(of mod: PakMod) -> NexusOrigins.Origin? {
+        origins.byPak[mod.file.lastPathComponent]
+    }
+
+    /// Links an installed mod to a Nexus mod page (which file isn't known).
+    func link(_ mod: PakMod, toNexusMod modID: Int) {
+        origins.byPak[mod.file.lastPathComponent] = NexusOrigins.Origin(modID: modID, fileID: 0)
+        try? origins.save(to: Self.originsFile)
+    }
+
+    func unlink(_ mod: PakMod) {
+        origins.byPak[mod.file.lastPathComponent] = nil
+        try? origins.save(to: Self.originsFile)
+    }
+
+    /// Fetches a Nexus mod's page and files once (forced: again).
+    func loadNexusDetails(_ modID: Int, force: Bool = false) async throws {
+        let client = nexusClient
+        // Both before storing either: storing the files changes the view,
+        // which can cancel the task that's still waiting for the page.
+        let needsPage = force || nexusMods[modID] == nil
+        let needsFiles = force || nexusFiles[modID] == nil
+        async let page = needsPage ? try? client.mod(id: modID) : nil
+        async let files = needsFiles ? client.files(forMod: modID) : nil
+        let (fetchedPage, fetchedFiles) = try await (page, files)
+        if let fetchedPage { nexusMods[modID] = fetchedPage }
+        if let fetchedFiles { nexusFiles[modID] = fetchedFiles }
     }
 
     // MARK: Installing from Nexus
