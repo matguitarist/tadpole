@@ -41,9 +41,12 @@ Everything is explained in **Help → Tadpole Help** (⌘?).
 - **Load order.** Turn mods on and off and drag them into order. Tadpole
   edits the game's own mod list (`modsettings.lsx`) and keeps the previous
   one as a backup.
+- **Profiles.** Named load orders to switch between: one per playthrough,
+  one per collection. Your changes are kept in the profile in use.
 - **Requirements.** Warns when a mod needs another mod that's missing,
   turned off or loading too late, and fixes the order with **Order by
-  Requirements**.
+  Requirements**. Installing from Nexus offers the mods a mod's page says it
+  needs, with the author's notes.
 - **Mod details.** Each mod's picture from Nexus, its version, size and
   requirements, and every file on its Nexus page, main and optional, with
   **Install** next to the ones you don't have.
@@ -58,7 +61,7 @@ Everything is explained in **Help → Tadpole Help** (⌘?).
 - **Browse and install** mods without leaving the app, with free or Premium
   accounts. Mods split into several files get **Install All**.
 - **Collections.** See which of a collection's mods you already have, and
-  install the rest.
+  install the rest, in their own profile if you like.
 - **Updates.** Tadpole checks Nexus for new versions of your mods at launch
   and every 6 hours, notifies you, and shows what changed. **Update All**
   replaces the old files and keeps each mod's place in the load order.
@@ -82,7 +85,9 @@ yet: back up your saves before playing with Script Extender mods.
 
 Its log has its own page, like SMAPI's for Stardew Valley: what loaded,
 errors and warnings grouped by mod, what's turned off on your game build,
-with filters and search, updated live while you play.
+with filters and search, updated live while you play. After each game, each
+Script Extender mod shows whether its scripts loaded, and a notification
+tells you about errors or a crash.
 
 ![The Script Extender's log](docs/screenshots/script-extender-log.png)
 
