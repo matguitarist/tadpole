@@ -11,3 +11,7 @@ xcuserdata/
 
 # macOS
 .DS_Store
+
+# Maintainer notes, kept locally
+ROADMAP.md
+DEVELOPMENT.md

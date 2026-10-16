@@ -144,6 +144,26 @@
         }
       }
     },
+    "**Script Extender**: the mod uses the Script Extender (see **Script Extender on a Mac**)." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Script Extender** : le mod utilise le Script Extender (voir **Le Script Extender sur Mac**)."
+          }
+        }
+      }
+    },
+    "**Update to …**: Nexus has a newer version. Click it to install the update." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Passer à …** : Nexus a une version plus récente. Cliquez dessus pour installer la mise à jour."
+          }
+        }
+      }
+    },
     "**Updates** (⌘2): new versions of your mods on Nexus, with what changed." : {
       "localizations" : {
         "fr" : {
@@ -416,6 +436,26 @@
         }
       }
     },
+    "A Script Extender mod doesn't work" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un mod Script Extender ne marche pas"
+          }
+        }
+      }
+    },
+    "A warning sign: a requirement is missing, turned off, or loads too late." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un signe d’avertissement : un prérequis manque, est désactivé ou se charge trop tard."
+          }
+        }
+      }
+    },
     "About bg3se-macos" : {
       "localizations" : {
         "fr" : {
@@ -676,6 +716,16 @@
         }
       }
     },
+    "Badges" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Badges"
+          }
+        }
+      }
+    },
     "Balanced" : {
       "localizations" : {
         "fr" : {
@@ -816,12 +866,22 @@
         }
       }
     },
-    "Before you install a collection, Tadpole lists which of its mods need the Script Extender: the ones whose Nexus page names it as a requirement, and the ones that need such a mod. Tick **Skip Script Extender mods** to leave them out." : {
+    "Before you install a collection, Tadpole lists which of its mods need the Script Extender: the ones whose Nexus page names it as a requirement, and the ones that need such a mod. Without the Script Extender installed, tick **Skip Script Extender mods** to leave them out." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avant d’installer une collection, Tadpole indique lesquels de ses mods ont besoin du Script Extender : ceux dont la page Nexus le cite comme prérequis, et ceux qui ont besoin d’un tel mod. Cochez **Ignorer les mods Script Extender** pour les laisser de côté."
+            "value" : "Avant d’installer une collection, Tadpole indique lesquels de ses mods ont besoin du Script Extender : ceux dont la page Nexus le cite comme prérequis, et ceux qui ont besoin d’un tel mod. Sans le Script Extender installé, cochez **Ignorer les mods Script Extender** pour les laisser de côté."
+          }
+        }
+      }
+    },
+    "Below, **Files on Nexus** lists every current file on its Nexus page, main and optional, with **Install** next to the ones you don't have, and **Install All** when several are missing." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En dessous, **Fichiers sur Nexus** liste chaque fichier actuel de sa page Nexus, principaux et optionnels, avec **Installer** à côté de ceux que vous n’avez pas, et **Tout installer** quand il en manque plusieurs."
           }
         }
       }
@@ -1052,6 +1112,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vérifier maintenant"
+          }
+        }
+      }
+    },
+    "Check the bar at the bottom of the window: the Script Extender must be installed, and applied again after a game update (**Apply Again**)." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regardez la barre en bas de la fenêtre : le Script Extender doit être installé, et réappliqué après une mise à jour du jeu (**Réappliquer**)."
           }
         }
       }
@@ -1776,6 +1846,16 @@
         }
       }
     },
+    "In **Limited mode**, the release wasn't made for your game build and some features are off. Wait for a release that supports it: Tadpole lists it on **Updates**." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En **Mode limité**, la version n’a pas été faite pour votre build du jeu et certaines fonctions sont désactivées. Attendez une version qui le prend en charge : Tadpole l’affiche dans **Mises à jour**."
+          }
+        }
+      }
+    },
     "In the Game" : {
       "localizations" : {
         "fr" : {
@@ -2002,6 +2082,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Installer des mods"
+          }
+        }
+      }
+    },
+    "Installing the Script Extender changes the game's program, which macOS only allows if you let it. Turn Tadpole on in **System Settings → Privacy & Security → App Management**, then try again." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer le Script Extender modifie le programme du jeu, ce que macOS n’autorise que si vous le permettez. Activez Tadpole dans **Réglages Système → Confidentialité et sécurité → Gestion des apps**, puis réessayez."
           }
         }
       }
@@ -2368,6 +2458,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Divers"
+          }
+        }
+      }
+    },
+    "Mod details" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Détails d’un mod"
           }
         }
       }
@@ -2962,12 +3062,32 @@
         }
       }
     },
+    "On a game build the release wasn't made for, an orange **Limited mode** banner at the top lists what's turned off. Mods listed by the Script Extender by mistake (it sometimes matches a mod to another mod's scripts) are noted and not counted." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sur un build du jeu pour lequel la version n’a pas été faite, un bandeau orange **Mode limité** en haut liste ce qui est désactivé. Les mods listés par erreur par le Script Extender (il associe parfois un mod aux scripts d’un autre) sont signalés et ne sont pas comptés."
+          }
+        }
+      }
+    },
     "Once a download starts, the browser closes and the download goes on in the sidebar's **Downloads** list. You can keep the browser open in **Settings → Nexus Mods**." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dès qu’un téléchargement démarre, le navigateur se ferme et le téléchargement continue dans la liste **Téléchargements** de la barre latérale. Vous pouvez garder le navigateur ouvert dans **Réglages → Nexus Mods**."
+          }
+        }
+      }
+    },
+    "Open **Script Extender Log** (⌘6) after playing: errors are grouped by mod under **Problems**." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrez **Journal du Script Extender** (⌘6) après avoir joué : les erreurs sont regroupées par mod sous **Problèmes**."
           }
         }
       }
@@ -3108,16 +3228,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Optionnels (%lld)"
-          }
-        }
-      }
-    },
-    "Optional files" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fichiers optionnels"
           }
         }
       }
@@ -3772,12 +3882,12 @@
         }
       }
     },
-    "Select an installed mod: its details show its Nexus page and every current file there, main and optional, with **Install** next to the ones you don't have." : {
+    "Select an installed mod to see its picture from Nexus, whether it loads, its version, size and requirements, and a notice with **Update** when there's a newer version." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélectionnez un mod installé : ses détails montrent sa page Nexus et tous ses fichiers actuels, principaux et optionnels, avec **Installer** à côté de ceux que vous n’avez pas."
+            "value" : "Sélectionnez un mod installé pour voir son image sur Nexus, s’il se charge, sa version, sa taille et ses prérequis, et un avis avec **Mettre à jour** quand une version plus récente existe."
           }
         }
       }
@@ -4158,6 +4268,16 @@
         }
       }
     },
+    "Tadpole can't change the game" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole ne peut pas modifier le jeu"
+          }
+        }
+      }
+    },
     "Tadpole Can't Change the Game" : {
       "localizations" : {
         "fr" : {
@@ -4288,12 +4408,22 @@
         }
       }
     },
-    "The bar at the bottom of the window shows the game's version and the Script Extender's: green when all is well, yellow when it needs something (an update, applying again after a game update, or a release made for another game build)." : {
+    "The bar at the bottom" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La barre en bas de la fenêtre affiche la version du jeu et celle du Script Extender : vert quand tout va bien, jaune quand il faut faire quelque chose (une mise à jour, le réappliquer après une mise à jour du jeu, ou une version faite pour un autre build du jeu)."
+            "value" : "La barre du bas"
+          }
+        }
+      }
+    },
+    "The bar at the bottom of the window shows the game's version and the Script Extender's: green when all is well, yellow when it needs something (an update, applying again after a game update, or a release made for another game build), with a button to do it." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La barre en bas de la fenêtre affiche la version du jeu et celle du Script Extender : vert quand tout va bien, jaune quand il faut faire quelque chose (une mise à jour, le réappliquer après une mise à jour du jeu, ou une version faite pour un autre build du jeu), avec un bouton pour le faire."
           }
         }
       }

@@ -89,6 +89,9 @@ struct HelpView: View {
             HelpSection("Play") {
                 HelpText("**Play** in the toolbar (⌘L) starts the game through Steam. Quit the game before changing your mods: it rewrites its mod list when it quits, which would undo your changes.")
             }
+            HelpSection("The bar at the bottom") {
+                HelpText("The bar at the bottom of the window shows the game's version and the Script Extender's: green when all is well, yellow when it needs something (an update, applying again after a game update, or a release made for another game build), with a button to do it.")
+            }
             HelpSection("The menu bar icon") {
                 HelpText("The tadpole in the menu bar shows the game's version, how many mods load, and the number of mod updates. From it you can play, update your mods, and back up your saves. While it's shown, closing the window keeps Tadpole running so it can keep checking for updates: quit from its menu. Turn it off in **Settings → General**.")
             }
@@ -100,6 +103,13 @@ struct HelpView: View {
             }
             HelpSection("Requirements") {
                 HelpText("Mods can need other mods. A warning badge shows when a requirement is missing, turned off, or loads after the mod that needs it. **Order by Requirements** moves each requirement above the mods that need it, keeping the rest of your order.")
+            }
+            HelpSection("Badges") {
+                HelpBullets([
+                    "**Update to …**: Nexus has a newer version. Click it to install the update.",
+                    "**Script Extender**: the mod uses the Script Extender (see **Script Extender on a Mac**).",
+                    "A warning sign: a requirement is missing, turned off, or loads too late.",
+                ])
             }
             HelpSection("Other sections") {
                 HelpBullets([
@@ -133,8 +143,9 @@ struct HelpView: View {
                 HelpText("Tadpole checks Nexus for new versions of the mods it downloaded, at launch and every 6 hours, and notifies you when it finds some. **Updates** lists them with what changed; **Update** or **Update All** installs them. The old .pak goes to the Trash and the mod keeps its place in the load order.")
                 HelpText("Mods installed from files, or linked by hand, can't be checked: Tadpole doesn't know which version you have. Install them from Nexus once. Checking works without an API key; installing updates needs one.")
             }
-            HelpSection("Optional files") {
-                HelpText("Select an installed mod: its details show its Nexus page and every current file there, main and optional, with **Install** next to the ones you don't have.")
+            HelpSection("Mod details") {
+                HelpText("Select an installed mod to see its picture from Nexus, whether it loads, its version, size and requirements, and a notice with **Update** when there's a newer version.")
+                HelpText("Below, **Files on Nexus** lists every current file on its Nexus page, main and optional, with **Install** next to the ones you don't have, and **Install All** when several are missing.")
             }
             HelpSection("Collections") {
                 HelpText("**Collections** lists curated mod packs. A collection shows which of its mods you already have; **Install** downloads the rest. Optional mods are only installed if you tick them.")
@@ -151,10 +162,10 @@ struct HelpView: View {
                 HelpText("If macOS stops Tadpole from changing the game, turn Tadpole on in **System Settings → Privacy & Security → App Management**.")
             }
             HelpSection("The log") {
+                HelpText("On a game build the release wasn't made for, an orange **Limited mode** banner at the top lists what's turned off. Mods listed by the Script Extender by mistake (it sometimes matches a mod to another mod's scripts) are noted and not counted.")
                 HelpText("Each time the game runs with it, the Script Extender writes a log, like SMAPI's for Stardew Valley. **Script Extender Log** (⌘6) shows the latest one, updating while you play: which mods it loaded, and errors and warnings grouped by mod. Click a mod or part under **Problems** to see only its warnings and errors (**Show All** goes back); **Sessions** shows earlier games. Attach the log file (**Show in Finder**) when you report a problem to a mod's author.")
             }
-            HelpText("The bar at the bottom of the window shows the game's version and the Script Extender's: green when all is well, yellow when it needs something (an update, applying again after a game update, or a release made for another game build).")
-            HelpText("Before you install a collection, Tadpole lists which of its mods need the Script Extender: the ones whose Nexus page names it as a requirement, and the ones that need such a mod. Tick **Skip Script Extender mods** to leave them out.")
+            HelpText("Before you install a collection, Tadpole lists which of its mods need the Script Extender: the ones whose Nexus page names it as a requirement, and the ones that need such a mod. Without the Script Extender installed, tick **Skip Script Extender mods** to leave them out.")
             HelpText("Some authors don't list it. Once a mod is installed, Tadpole looks inside it for Script Extender scripts and marks it too.")
 
         case .saves:
@@ -175,6 +186,16 @@ struct HelpView: View {
             }
             HelpSection("The game reset my mods") {
                 HelpText("The game can remove mods it can't load from its list. Open **Load Order**, tick them again, and check their requirements. The previous file is kept as **modsettings.lsx.bak** (**Settings → Game** shows where).")
+            }
+            HelpSection("A Script Extender mod doesn't work") {
+                HelpBullets([
+                    "Check the bar at the bottom of the window: the Script Extender must be installed, and applied again after a game update (**Apply Again**).",
+                    "Open **Script Extender Log** (⌘6) after playing: errors are grouped by mod under **Problems**.",
+                    "In **Limited mode**, the release wasn't made for your game build and some features are off. Wait for a release that supports it: Tadpole lists it on **Updates**.",
+                ])
+            }
+            HelpSection("Tadpole can't change the game") {
+                HelpText("Installing the Script Extender changes the game's program, which macOS only allows if you let it. Turn Tadpole on in **System Settings → Privacy & Security → App Management**, then try again.")
             }
             HelpSection("Downloads don't start") {
                 HelpText("Check your API key in **Settings → Nexus Mods**. With a free account, sign in once in Tadpole's browser (**Settings → Nexus Mods → Sign In to Nexus…**).")

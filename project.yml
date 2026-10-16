@@ -18,7 +18,7 @@ settings:
 packages:
   TadpoleCore:
     path: TadpoleCore
-  # Self-updates for the app (see "Releasing updates" in DEVELOPMENT.md).
+  # Self-updates for the app (release.sh publishes them).
   Sparkle:
     url: https://github.com/sparkle-project/Sparkle
     exactVersion: 2.10.0
