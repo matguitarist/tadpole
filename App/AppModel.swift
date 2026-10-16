@@ -59,6 +59,8 @@ final class AppModel {
     /// Named load orders, one in use (AppModel+Profiles).
     var profileStore = ProfileStore.load(from: AppModel.profilesFile)
     var profileNamePrompt: ProfileNamePrompt?
+    /// Download failures dismissed from the status bar.
+    var dismissedDownloadFailures: Set<UUID> = []
     /// When Play last backed up the latest save (mods had changed).
     var lastAutoBackup: Date?
     var showProfiles = false

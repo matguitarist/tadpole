@@ -24,12 +24,62 @@ struct StatusBar: View {
                 }
             }
             Spacer(minLength: 0)
+            DownloadsIndicator()
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 5)
         .frame(maxWidth: .infinity, minHeight: 30)
         .background(.bar)
         .overlay(alignment: .top) { Divider() }
+    }
+}
+
+/// Downloads in progress (with overall progress), or the latest one that
+/// failed, until dismissed.
+private struct DownloadsIndicator: View {
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        let active = model.downloads.filter { !$0.isFinished }
+        let failed = model.downloads.filter { item in
+            if case .failed = item.state { return !model.dismissedDownloadFailures.contains(item.id) }
+            return false
+        }
+        if !active.isEmpty {
+            HStack(spacing: 8) {
+                ProgressView(value: overallProgress(active)).progressViewStyle(.linear).frame(width: 110)
+                Text(active.count == 1 ? String(localized: "Downloading “\(active[0].title)”")
+                                       : String(localized: "Downloading \(active.count) mods"))
+                    .font(.callout).foregroundStyle(.secondary).lineLimit(1)
+            }
+            .help(active.map(\.title).joined(separator: "\n"))
+        } else if let last = failed.last, case .failed(let reason) = last.state {
+            HStack(spacing: 6) {
+                Image(systemName: "exclamationmark.triangle.fill").foregroundStyle(.orange)
+                Text(failed.count == 1 ? String(localized: "Couldn't install “\(last.title)”")
+                                       : String(localized: "\(failed.count) downloads failed"))
+                    .font(.callout).foregroundStyle(.secondary).lineLimit(1)
+                Button {
+                    model.dismissedDownloadFailures.formUnion(failed.map(\.id))
+                } label: {
+                    Image(systemName: "xmark").foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                .help("Dismiss")
+            }
+            .help(reason)
+        } else if model.isInstalling {
+            HStack(spacing: 8) {
+                ProgressView().controlSize(.small)
+                Text("Installing…").font(.callout).foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    /// Downloaded share of what's running (waiting ones count as 0).
+    private func overallProgress(_ active: [DownloadItem]) -> Double {
+        guard !active.isEmpty else { return 0 }
+        return active.reduce(0) { $0 + ($1.state == .installing ? 1 : $1.progress) } / Double(active.count)
     }
 }
 

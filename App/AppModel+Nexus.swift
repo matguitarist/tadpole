@@ -339,6 +339,8 @@ final class DownloadItem: Identifiable {
         self.title = title
     }
 
+    var isInstalled: Bool { if case .installed = self.state { true } else { false } }
+
     var isFinished: Bool {
         switch state {
         case .installed, .failed, .cancelled: true
