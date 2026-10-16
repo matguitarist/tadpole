@@ -3,7 +3,7 @@
 What's next for Tadpole, roughly in order. Bugs come first: they're things
 that work today but can go wrong. Version numbers are targets, not promises.
 
-Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/releases/tag/v0.1)).
+Current version: **0.2** ([released](https://github.com/matguitarist/tadpole/releases/tag/v0.2)).
 
 ## Left over from 0.1
 
@@ -46,7 +46,7 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
       requirements list.
 - [ ] Multi-part .pak files (`_1.pak`, `_2.pak`) can't be read.
 
-## 0.2: Keeping mods up to date
+## 0.2: Keeping mods up to date (released)
 
 - [x] **Link installed mods to Nexus**: downloads are linked automatically;
       **Find on Nexus…** searches by name or takes a pasted link.
@@ -57,11 +57,8 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
       (Nexus file groups), with **Update** and **Update All** and each
       version's changelog. The old .pak goes to the Trash; the mod keeps its
       place in the load order.
-- [ ] **Requirements from Nexus**: list a mod's required mods from its Nexus
-      page and offer to install the missing ones in the same step.
 - [x] Notification when updates are found (checked at launch and every 6
       hours).
-- [ ] Updates for mods linked by hand (which file is installed isn't known).
 - [x] **Menu bar icon**: game version, mods loaded, Play, mod updates and
       downloads; closing the window keeps Tadpole running (Settings → General).
 - [x] **Script Extender in collections**: mods whose Nexus requirements list
@@ -78,9 +75,13 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
 - [x] **Script Extender Log** page (⌘6), like Starseed's SMAPI log:
       session summary, problems grouped by mod, level and part filters,
       search, repeated lines hidden, earlier sessions, follows the game live.
-- [ ] Download progress and errors in the status bar.
 
 ## 0.3: Profiles and saves
+
+- [ ] **Requirements from Nexus**: list a mod's required mods from its Nexus
+      page and offer to install the missing ones in the same step.
+- [ ] Updates for mods linked by hand (which file is installed isn't known).
+- [ ] Download progress and errors in the status bar.
 
 - [ ] **Profiles**: named load orders to switch between (e.g. one per
       playthrough). Installing a collection can make a profile.
@@ -97,7 +98,7 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
 - [ ] Coexistence with the game's own mod manager (mod.io, since Patch 7):
       check that mods it installs show up correctly, and that Tadpole and the
       game don't undo each other's changes.
-- [ ] Mod pictures from Nexus in the load order and the details panel.
+- [ ] Mod pictures from Nexus in the load order (the details panel has them).
 - [ ] Filter the load order by name or author; undo (⌘Z) for load-order
       changes.
 - [ ] Catch "Mod Manager Download" clicks from Safari or Chrome (the `nxm:`
@@ -115,3 +116,8 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
   badges; install .pak and .zip/.7z/.rar; Nexus browsing, collections and
   downloads (free and Premium); saves with backups; Help, Settings, menus;
   Sparkle updates with Tadpole's own keys.
+- 0.2: Updates page with changelogs and notifications; optional files and
+  linking mods to Nexus; Script Extender for macOS (install, update, apply
+  again after game updates) and its log; Script Extender mods marked in
+  collections; Install All; menu bar icon; status bar; details panel with
+  Nexus pictures.
