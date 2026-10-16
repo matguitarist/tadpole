@@ -59,6 +59,8 @@ Everything is explained in **Help → Tadpole Help** (⌘?).
   touch the load order (the game rewrites it when it quits); mods installed
   meanwhile are turned on once it quits.
 
+![Profiles: named load orders to switch between](docs/screenshots/profiles.png)
+
 ### Nexus Mods
 
 - **Browse and install** mods without leaving the app, with free or Premium
