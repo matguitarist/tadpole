@@ -46,6 +46,8 @@ final class AppModel {
     /// its window can close.
     var browserDone = 0
     var showInspector = true
+    /// Launch work (load, watchers, update checks) has run.
+    var hasStarted = false
     var nexusSheet: NexusModRequest?
     /// An installed mod to link to its Nexus page (sheet).
     var linkSheet: PakMod?

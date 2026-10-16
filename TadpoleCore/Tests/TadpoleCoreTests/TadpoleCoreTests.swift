@@ -313,3 +313,32 @@ import Testing
         #expect(NexusUpdate.find(installedFileID: 10, in: [file(10, "1.0", "MAIN", date: 100), file(11, "1.1", "ARCHIVED", date: 200)]) == nil)
     }
 }
+
+@Suite struct ScriptExtenderTests {
+    func nexus(_ id: Int, _ name: String) -> NexusRequirement {
+        NexusRequirement(modId: String(id), modName: name, url: "https://www.nexusmods.com/baldursgate3/mods/\(id)", externalRequirement: false)
+    }
+
+    @Test func recognizesTheScriptExtenderHoweverItIsListed() {
+        #expect(nexus(2172, "Baldur's Gate 3 Script Extender (BG3SE)").isScriptExtender)
+        #expect(NexusRequirement(modId: "0", modName: "Script Extender", url: "https://github.com/Norbyte/bg3se/releases", externalRequirement: true).isScriptExtender)
+        #expect(NexusRequirement(modId: nil, modName: "Norbyte's Script Extender", url: "", externalRequirement: true).isScriptExtender)
+        #expect(!nexus(9162, "Mod Configuration Menu").isScriptExtender)
+        #expect(!NexusRequirement(modId: "2172", modName: "Some page", url: "https://example.com", externalRequirement: true).isScriptExtender)
+    }
+
+    @Test func followsRequirementsThroughOtherMods() {
+        let needs = ScriptExtender.needs(requirements: [
+            1: [nexus(2172, "BG3SE")],              // needs it
+            2: [nexus(1, "Framework")],              // through 1
+            3: [nexus(2, "Subclass")],               // through 2, then 1
+            4: [nexus(50, "Not in the collection")], // unknown: not flagged
+            5: [],
+        ])
+        #expect(needs[1] == .direct)
+        #expect(needs[2] == .through("Framework"))
+        #expect(needs[3] == .through("Subclass"))
+        #expect(needs[4] == nil)
+        #expect(needs[5] == nil)
+    }
+}

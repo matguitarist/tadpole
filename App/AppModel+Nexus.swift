@@ -83,6 +83,11 @@ extension AppModel {
         origins.installedModIDs(installedPaks: Set(mods.map(\.file.lastPathComponent)))
     }
 
+    /// Nexus mods whose installed .pak ships Script Extender scripts.
+    var installedScriptExtenderModIDs: Set<Int> {
+        Set(mods.filter(\.usesScriptExtender).compactMap { origins.byPak[$0.file.lastPathComponent]?.modID })
+    }
+
     /// The installed .pak files that came from this Nexus mod.
     func installedFiles(ofNexusMod modID: Int) -> [NexusOrigins.Origin] {
         let installed = Set(mods.map(\.file.lastPathComponent))

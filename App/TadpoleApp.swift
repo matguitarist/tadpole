@@ -3,7 +3,9 @@ import UserNotifications
 
 @main
 struct TadpoleApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @State private var model = AppModel.shared
+    @AppStorage(Preferences.showMenuBarIcon) private var showMenuBarIcon = true
     /// Started with the app, so it checks for updates on its schedule.
     private let appUpdater = AppUpdater.shared
 
@@ -13,6 +15,10 @@ struct TadpoleApp: App {
                 .environment(model)
                 .frame(minWidth: 820, minHeight: 480)
                 .task {
+                    // Once: the window can be closed and reopened while
+                    // the menu bar icon keeps the app running.
+                    guard !model.hasStarted else { return model.load() }
+                    model.hasStarted = true
                     AppTheme.current.apply()
                     model.load()
                     model.startWatching()
@@ -37,6 +43,14 @@ struct TadpoleApp: App {
         }
         .defaultSize(width: 1200, height: 860)
         .commandsRemoved()  // Window → Nexus Mods (⇧⌘N) opens it
+
+        MenuBarExtra(isInserted: $showMenuBarIcon) {
+            MenuBarContent()
+                .environment(model)
+        } label: {
+            MenuBarLabel()
+                .environment(model)
+        }
 
         Settings {
             SettingsView()

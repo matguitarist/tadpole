@@ -14,6 +14,7 @@
 		3EBC1DE41E8CD533C56ACB6D /* ModDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */; };
 		44FB3DF4D98632AD329D284C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */; };
 		53E4F1BF012EEA3A6155ADC1 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33E80D078054887EDFAC9C9 /* CollectionsView.swift */; };
+		5C215760DDDC2E75D01BF36C /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54342D908BE7F55F92B180AC /* MenuBar.swift */; };
 		69171DB21B19277C2C3F6EB0 /* TadpoleCore in Frameworks */ = {isa = PBXBuildFile; productRef = EBB45E710700B5463F0A3482 /* TadpoleCore */; };
 		6BE89967EAAD84EFD37CF73C /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A14F14F59621F35B8ACBFBE /* AppUpdater.swift */; };
 		6EF5CFC40D58997B66221F5D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B367FD056A0FE67493C5F008 /* Localizable.xcstrings */; };
@@ -46,6 +47,7 @@
 		36AAAAE6A42734509344D9B7 /* AppCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCommands.swift; sourceTree = "<group>"; };
 		3BAF40FB04F9897722528FBF /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		52712E02D25288AD3401FEFB /* LoadOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadOrderView.swift; sourceTree = "<group>"; };
+		54342D908BE7F55F92B180AC /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		5B9A7217F6B42E131E1AC649 /* NexusFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusFiles.swift; sourceTree = "<group>"; };
 		5CC5678F2040BBA6B1D3A835 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModDetails.swift; sourceTree = "<group>"; };
@@ -60,7 +62,7 @@
 		B782ED5F40424102BB728CA5 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
 		C88DE7BB747321F48EAE48F0 /* Tadpole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tadpole.entitlements; sourceTree = "<group>"; };
 		D33E80D078054887EDFAC9C9 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
-		D7D93916D4D9F61E0D136820 /* TadpoleCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TadpoleCore; path = TadpoleCore; sourceTree = SOURCE_ROOT; };
+		D7D93916D4D9F61E0D136820 /* TadpoleCore */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TadpoleCore; sourceTree = SOURCE_ROOT; };
 		E2536676208960BA56A8528F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,7 @@
 				5CC5678F2040BBA6B1D3A835 /* Keychain.swift */,
 				52712E02D25288AD3401FEFB /* LoadOrderView.swift */,
 				B367FD056A0FE67493C5F008 /* Localizable.xcstrings */,
+				54342D908BE7F55F92B180AC /* MenuBar.swift */,
 				63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */,
 				5B9A7217F6B42E131E1AC649 /* NexusFiles.swift */,
 				8F8E8142B91713F9E679D936 /* Preferences.swift */,
@@ -226,6 +229,7 @@
 				DEFA51D8F5E45F024256EB31 /* HelpView.swift in Sources */,
 				0748C3E5A09F335C1AB6A085 /* Keychain.swift in Sources */,
 				C7DE3D50457244BD93696B02 /* LoadOrderView.swift in Sources */,
+				5C215760DDDC2E75D01BF36C /* MenuBar.swift in Sources */,
 				3EBC1DE41E8CD533C56ACB6D /* ModDetails.swift in Sources */,
 				B39B519F29FE20F07F8C0404 /* NexusFiles.swift in Sources */,
 				EAFB730EED4EBE1AE843F49E /* Preferences.swift in Sources */,

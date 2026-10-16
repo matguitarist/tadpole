@@ -88,6 +88,9 @@ struct HelpView: View {
             HelpSection("Play") {
                 HelpText("**Play** in the toolbar (⌘L) starts the game through Steam. Quit the game before changing your mods: it rewrites its mod list when it quits, which would undo your changes.")
             }
+            HelpSection("The menu bar icon") {
+                HelpText("The tadpole in the menu bar shows the game's version, how many mods load, and the number of mod updates. From it you can play, update your mods, and back up your saves. While it's shown, closing the window keeps Tadpole running so it can keep checking for updates: quit from its menu. Turn it off in **Settings → General**.")
+            }
 
         case .loadOrder:
             HelpText("The game loads the mods listed in its load order file, from top to bottom, after its own modules. A mod in the Mods folder that isn't listed doesn't load.")
@@ -140,7 +143,8 @@ struct HelpView: View {
         case .scriptExtender:
             HelpText("Many Baldur's Gate 3 mods use Norbyte's **Script Extender**, which only exists for Windows. On a Mac, those mods install and load, but whatever they do through scripts doesn't happen: new spells may do nothing, menus may not appear.")
             HelpText("Tadpole marks those mods with a **Script Extender** badge. Mods that only change looks, items, hair, dice or text don't need it and work normally.")
-            HelpText("Collections made for Windows often include Script Extender mods and mods that need them. Check a mod's Nexus page before relying on it.")
+            HelpText("Before you install a collection, Tadpole lists which of its mods need the Script Extender: the ones whose Nexus page names it as a requirement, and the ones that need such a mod. Tick **Skip Script Extender mods** to leave them out.")
+            HelpText("Some authors don't list it. Once a mod is installed, Tadpole looks inside it for Script Extender scripts and marks it too.")
 
         case .saves:
             HelpText("**Saves** lists your saves, newest first, with the game's picture, your party and the difficulty.")

@@ -10,6 +10,8 @@ enum Preferences {
     static let settingsTab = "settingsTab"
     static let checkModUpdates = "checkModUpdates"
     static let notifyModUpdates = "notifyModUpdates"
+    static let skipScriptExtenderMods = "skipScriptExtenderMods"
+    static let showMenuBarIcon = "showMenuBarIcon"  // default on
 }
 
 /// Light, dark, or whatever macOS uses.

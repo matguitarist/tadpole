@@ -133,6 +133,7 @@ struct CollectionSheet: View {
     @State private var revision: CollectionRevision?
     @State private var error: String?
     @State private var selectedOptional: Set<Int> = []  // file IDs
+    @AppStorage(Preferences.skipScriptExtenderMods) private var skipScriptExtender = false
 
     private var collection: NexusCollection { revision?.collection ?? request.collection }
 
@@ -159,13 +160,40 @@ struct CollectionSheet: View {
                     Text(summary.strippingNexusMarkup).font(.callout).lineLimit(3)
                 }
                 CollectionStats(collection: collection)
-                Text("Collections made for Windows often include Script Extender mods: they install, but their scripted features don't work on a Mac.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
+                scriptExtenderSummary
             }
             Spacer(minLength: 0)
         }
+    }
+
+    /// Mods that need the Script Extender: listed on Nexus, or found in
+    /// their installed .pak.
+    private func needsScriptExtender(_ mod: CollectionMod) -> Bool {
+        mod.scriptExtender != nil || model.installedScriptExtenderModIDs.contains(mod.modID)
+    }
+
+    @ViewBuilder
+    private var scriptExtenderSummary: some View {
+        Group {
+            if let revision {
+                let count = revision.mods.filter(needsScriptExtender).count
+                if count > 0 {
+                    Label(count == 1
+                          ? String(localized: "1 mod needs Norbyte's Script Extender, which only exists on Windows: on a Mac it installs, but its scripted features don't work.")
+                          : String(localized: "\(count) mods need Norbyte's Script Extender, which only exists on Windows: on a Mac they install, but their scripted features don't work."),
+                          systemImage: "exclamationmark.triangle.fill")
+                        .foregroundStyle(.purple)
+                } else {
+                    Label("No mod here lists the Script Extender as a requirement, so this collection should work on a Mac. A few mods use it without saying so: Tadpole marks them once they're installed.",
+                          systemImage: "checkmark.seal")
+                        .foregroundStyle(.secondary)
+                }
+            } else if error == nil {
+                Text("Checking which mods need the Script Extender…").foregroundStyle(.secondary)
+            }
+        }
+        .font(.caption)
+        .fixedSize(horizontal: false, vertical: true)
     }
 
     @ViewBuilder
@@ -213,6 +241,10 @@ struct CollectionSheet: View {
                 .lineLimit(1)
             }
             Spacer()
+            if needsScriptExtender(mod) {
+                Badge(text: String(localized: "Script Extender"), color: .purple)
+                    .help(scriptExtenderHelp(mod))
+            }
             if isInstalled {
                 Image(systemName: "checkmark.circle.fill").foregroundStyle(.green).help("Installed")
             }
@@ -226,12 +258,24 @@ struct CollectionSheet: View {
         }
     }
 
+    private func scriptExtenderHelp(_ mod: CollectionMod) -> String {
+        switch mod.scriptExtender {
+        case .through(let name):
+            String(localized: "Needs “\(name)”, which needs Norbyte's Script Extender (Windows only). Its scripted features won't work on a Mac.")
+        case .direct:
+            String(localized: "Its Nexus page lists Norbyte's Script Extender (Windows only) as a requirement. Its scripted features won't work on a Mac.")
+        case nil:
+            String(localized: "This mod uses Norbyte's Script Extender, which isn't available on macOS. Its scripted features won't work.")
+        }
+    }
+
     /// Mods to download: required ones and ticked optional ones that
-    /// aren't installed yet.
+    /// aren't installed yet, without Script Extender ones if asked.
     private var toInstall: [CollectionMod] {
         guard let revision else { return [] }
         let installed = model.installedNexusModIDs
         return revision.mods.filter { (!$0.isOptional || selectedOptional.contains($0.fileID)) && !installed.contains($0.modID) }
+            .filter { !skipScriptExtender || $0.scriptExtender == nil }
     }
 
     private var footer: some View {
@@ -241,9 +285,16 @@ struct CollectionSheet: View {
                 dismiss()
             }
             Spacer()
+            if revision?.mods.contains(where: { $0.scriptExtender != nil }) == true {
+                Toggle("Skip Script Extender mods", isOn: $skipScriptExtender)
+                    .toggleStyle(.checkbox)
+                    .help("Don't download the mods that need Norbyte's Script Extender: their scripted features can't work on a Mac.")
+            }
             Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction)
             let missing = toInstall
-            Button(missing.isEmpty ? String(localized: "Everything Is Installed") : String(localized: "Install \(missing.count) Mods")) {
+            let allInstalled = revision?.mods.allSatisfy { $0.isOptional || model.installedNexusModIDs.contains($0.modID) } ?? false
+            Button(!missing.isEmpty ? String(localized: "Install \(missing.count) Mods")
+                   : allInstalled ? String(localized: "Everything Is Installed") : String(localized: "Nothing to Install")) {
                 model.installFromNexus(missing.map { BrowserQueueItem(modID: $0.modID, fileID: $0.fileID, title: $0.modName) })
                 dismiss()
             }

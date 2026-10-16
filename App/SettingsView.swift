@@ -26,6 +26,7 @@ struct SettingsView: View {
 
 private struct GeneralSettings: View {
     @AppStorage(Preferences.theme) private var theme = AppTheme.system
+    @AppStorage(Preferences.showMenuBarIcon) private var showMenuBarIcon = true
     private let updater = AppUpdater.shared
     @State private var language = AppLanguage.current
 
@@ -55,6 +56,15 @@ private struct GeneralSettings: View {
                 }
                 .pickerStyle(.segmented)
                 .onChange(of: theme) { _, new in new.apply() }
+            }
+            Section {
+                Toggle("Show icon in the menu bar", isOn: $showMenuBarIcon)
+            } header: {
+                Text("Menu Bar")
+            } footer: {
+                Text("With the menu bar icon, closing the window keeps Tadpole running so it can keep checking for mod updates. Quit from the icon's menu.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
             Section {
                 LabeledContent("Version") {

@@ -91,8 +91,72 @@ public struct CollectionMod: Identifiable, Hashable, Sendable {
     public let version: String?
     public let isOptional: Bool
     public let sizeKB: Int?
+    /// Whether the mod's Nexus page lists Norbyte's Script Extender as a
+    /// requirement, directly or through another mod of the collection.
+    public internal(set) var scriptExtender: ScriptExtenderNeed?
 
     public var id: Int { fileID }
+}
+
+/// Why a mod needs the Script Extender, from the requirements its author
+/// lists on Nexus. Authors don't always list it, so a mod without one may
+/// still use it; installed mods are checked for its scripts (PakMod).
+public enum ScriptExtenderNeed: Hashable, Sendable {
+    case direct
+    /// Requires another mod that needs it (that mod's name).
+    case through(String)
+}
+
+/// A requirement listed on a mod's Nexus page: another Nexus mod, or a page
+/// elsewhere (the Script Extender is usually listed as its GitHub page).
+public struct NexusRequirement: Hashable, Sendable, Decodable {
+    public let modId: String?
+    public let modName: String?
+    public let url: String?
+    public let externalRequirement: Bool?
+
+    public init(modId: String?, modName: String?, url: String?, externalRequirement: Bool?) {
+        self.modId = modId
+        self.modName = modName
+        self.url = url
+        self.externalRequirement = externalRequirement
+    }
+
+    /// Norbyte's Script Extender: its Nexus page (mod 2172) or its GitHub.
+    public var isScriptExtender: Bool {
+        if modId == String(ScriptExtender.nexusModID) && externalRequirement != true { return true }
+        if let url, url.localizedCaseInsensitiveContains("bg3se") { return true }
+        return externalRequirement == true && (modName ?? "").localizedCaseInsensitiveContains("script extender")
+    }
+
+    /// The Nexus mod this points to, when it's one.
+    public var nexusModID: Int? { externalRequirement == true ? nil : modId.flatMap { Int($0) } }
+}
+
+public enum ScriptExtender {
+    /// "Baldur's Gate 3 Script Extender (BG3SE)" on Nexus.
+    public static let nexusModID = 2172
+
+    /// For each mod, whether it needs the Script Extender: it lists it, or
+    /// it lists a mod of `requirements` that does (followed through chains).
+    public static func needs(requirements: [Int: [NexusRequirement]]) -> [Int: ScriptExtenderNeed] {
+        var result: [Int: ScriptExtenderNeed] = [:]
+        for (modID, required) in requirements where required.contains(where: \.isScriptExtender) {
+            result[modID] = .direct
+        }
+        // Spread to mods that require those, until nothing changes.
+        var changed = true
+        while changed {
+            changed = false
+            for (modID, required) in requirements.sorted(by: { $0.key < $1.key }) where result[modID] == nil {
+                if let through = required.first(where: { $0.nexusModID.map { result[$0] != nil } ?? false }) {
+                    result[modID] = .through(through.modName ?? "Mod \(through.modId ?? "")")
+                    changed = true
+                }
+            }
+        }
+        return result
+    }
 }
 
 public struct CollectionRevision: Sendable {
@@ -218,7 +282,15 @@ extension NexusClient {
             struct Revision: Decodable {
                 struct ModFile: Decodable {
                     struct File: Decodable {
-                        struct Mod: Decodable { let name: String?; let modId: Int }
+                        struct Mod: Decodable {
+                            struct Requirements: Decodable {
+                                struct Page: Decodable { let nodes: [NexusRequirement] }
+                                let nexusRequirements: Page?
+                            }
+                            let name: String?
+                            let modId: Int
+                            let modRequirements: Requirements?
+                        }
                         let name: String?
                         let modId: Int?
                         let size: Int?
@@ -243,17 +315,23 @@ extension NexusClient {
               collectionRevision(slug: $slug, revision: $revision, domainName: $domainName) {
                 revisionNumber
                 collection { \(CollectionNode.fields) }
-                modFiles { fileId optional version file { name modId size mod { name modId } } }
+                modFiles { fileId optional version file { name modId size mod { name modId modRequirements { nexusRequirements { nodes { modId modName url externalRequirement } } } } } }
               }
             }
             """,
             variables: variables)
         let revision = response.collectionRevision
-        let mods = revision.modFiles.compactMap { entry -> CollectionMod? in
+        var mods = revision.modFiles.compactMap { entry -> CollectionMod? in
             guard let file = entry.file, let modID = file.mod?.modId ?? file.modId else { return nil }
             return CollectionMod(modID: modID, fileID: entry.fileId, modName: file.mod?.name ?? file.name ?? "Mod \(modID)",
                                  fileName: file.name ?? "", version: entry.version, isOptional: entry.optional, sizeKB: file.size)
         }
+        var requirements: [Int: [NexusRequirement]] = [:]
+        for entry in revision.modFiles {
+            if let mod = entry.file?.mod { requirements[mod.modId] = mod.modRequirements?.nexusRequirements?.nodes ?? [] }
+        }
+        let needs = ScriptExtender.needs(requirements: requirements)
+        for index in mods.indices { mods[index].scriptExtender = needs[mods[index].modID] }
         return CollectionRevision(collection: revision.collection.model, revisionNumber: revision.revisionNumber, mods: mods)
     }
 

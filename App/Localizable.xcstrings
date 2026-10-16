@@ -1,3539 +1,3841 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "": {},
-    "**Always Loaded**: .pak files without a mod description. The game loads them whatever the load order says; move one to the Trash to stop it.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Toujours chargés** : des fichiers .pak sans description de mod. Le jeu les charge quoi que dise l’ordre de chargement ; placez-en un dans la corbeille pour l’arrêter."
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "**Always Loaded**: .pak files without a mod description. The game loads them whatever the load order says; move one to the Trash to stop it." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Toujours chargés** : des fichiers .pak sans description de mod. Le jeu les charge quoi que dise l’ordre de chargement ; placez-en un dans la corbeille pour l’arrêter."
           }
         }
       }
     },
-    "**Back Up All** (or right-click → **Back Up**) copies saves as .zip files to **Documents/Larian Studios/Tadpole Save Backups**. They're kept there until you delete them, even if you reinstall the game.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Tout sauvegarder** (ou clic droit → **Sauvegarder**) copie les sauvegardes en fichiers .zip dans **Documents/Larian Studios/Tadpole Save Backups**. Elles y restent jusqu’à ce que vous les supprimiez, même si vous réinstallez le jeu."
+    "**Back Up All** (or right-click → **Back Up**) copies saves as .zip files to **Documents/Larian Studios/Tadpole Save Backups**. They're kept there until you delete them, even if you reinstall the game." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Tout sauvegarder** (ou clic droit → **Sauvegarder**) copie les sauvegardes en fichiers .zip dans **Documents/Larian Studios/Tadpole Save Backups**. Elles y restent jusqu’à ce que vous les supprimiez, même si vous réinstallez le jeu."
           }
         }
       }
     },
-    "**Browse Nexus** (⌘3): search Baldur's Gate 3 mods and install them.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Parcourir Nexus** (⌘3) : cherchez des mods de Baldur’s Gate 3 et installez-les."
+    "**Browse Nexus** (⌘3): search Baldur's Gate 3 mods and install them." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Parcourir Nexus** (⌘3) : cherchez des mods de Baldur’s Gate 3 et installez-les."
           }
         }
       }
     },
-    "**Browse Nexus** searches Baldur's Gate 3 mods. Open one to see its files, then **Install**. **Open the Nexus Website** shows the full site in Tadpole's own browser, where your sign-in is remembered.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Parcourir Nexus** cherche des mods de Baldur’s Gate 3. Ouvrez-en un pour voir ses fichiers, puis **Installer**. **Ouvrir le site de Nexus** affiche le site complet dans le navigateur de Tadpole, où votre connexion est mémorisée."
+    "**Browse Nexus** searches Baldur's Gate 3 mods. Open one to see its files, then **Install**. **Open the Nexus Website** shows the full site in Tadpole's own browser, where your sign-in is remembered." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Parcourir Nexus** cherche des mods de Baldur’s Gate 3. Ouvrez-en un pour voir ses fichiers, puis **Installer**. **Ouvrir le site de Nexus** affiche le site complet dans le navigateur de Tadpole, où votre connexion est mémorisée."
           }
         }
       }
     },
-    "**Collections** (⌘4): curated mod packs from Nexus.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Collections** (⌘4) : des ensembles de mods choisis, sur Nexus."
+    "**Collections** (⌘4): curated mod packs from Nexus." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Collections** (⌘4) : des ensembles de mods choisis, sur Nexus."
           }
         }
       }
     },
-    "**Collections** lists curated mod packs. A collection shows which of its mods you already have; **Install** downloads the rest. Optional mods are only installed if you tick them.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Collections** liste des ensembles de mods choisis. Une collection montre lesquels de ses mods vous avez déjà ; **Installer** télécharge le reste. Les mods optionnels ne sont installés que si vous les cochez."
+    "**Collections** lists curated mod packs. A collection shows which of its mods you already have; **Install** downloads the rest. Optional mods are only installed if you tick them." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Collections** liste des ensembles de mods choisis. Une collection montre lesquels de ses mods vous avez déjà ; **Installer** télécharge le reste. Les mods optionnels ne sont installés que si vous les cochez."
           }
         }
       }
     },
-    "**Listed, but its .pak isn't in the Mods folder**: a mod you removed by hand. **Remove** takes it out of the load order.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Listé, mais son .pak n’est pas dans le dossier Mods** : un mod que vous avez supprimé à la main. **Retirer** l’enlève de l’ordre de chargement."
+    "**Listed, but its .pak isn't in the Mods folder**: a mod you removed by hand. **Remove** takes it out of the load order." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Listé, mais son .pak n’est pas dans le dossier Mods** : un mod que vous avez supprimé à la main. **Retirer** l’enlève de l’ordre de chargement."
           }
         }
       }
     },
-    "**Load Order** (⌘1): your mods, which ones load, and in what order.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Ordre de chargement** (⌘1) : vos mods, lesquels sont chargés, et dans quel ordre."
+    "**Load Order** (⌘1): your mods, which ones load, and in what order." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Ordre de chargement** (⌘1) : vos mods, lesquels sont chargés, et dans quel ordre."
           }
         }
       }
     },
-    "**Play** in the toolbar (⌘L) starts the game through Steam. Quit the game before changing your mods: it rewrites its mod list when it quits, which would undo your changes.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Jouer** dans la barre d’outils (⌘L) lance le jeu par Steam. Quittez le jeu avant de changer vos mods : il réécrit sa liste de mods en quittant, ce qui annulerait vos changements."
+    "**Play** in the toolbar (⌘L) starts the game through Steam. Quit the game before changing your mods: it rewrites its mod list when it quits, which would undo your changes." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Jouer** dans la barre d’outils (⌘L) lance le jeu par Steam. Quittez le jeu avant de changer vos mods : il réécrit sa liste de mods en quittant, ce qui annulerait vos changements."
           }
         }
       }
     },
-    "**Restore** puts a backup back in the game. If that save still exists, Tadpole asks first, and the current version goes to the Trash.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Restaurer** remet une copie dans le jeu. Si cette sauvegarde existe encore, Tadpole demande d’abord, et la version actuelle va dans la corbeille."
+    "**Restore** puts a backup back in the game. If that save still exists, Tadpole asks first, and the current version goes to the Trash." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Restaurer** remet une copie dans le jeu. Si cette sauvegarde existe encore, Tadpole demande d’abord, et la version actuelle va dans la corbeille."
           }
         }
       }
     },
-    "**Saves** (⌘5): your saves, and backups of them.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Sauvegardes** (⌘5) : vos sauvegardes, et leurs copies."
+    "**Saves** (⌘5): your saves, and backups of them." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Sauvegardes** (⌘5) : vos sauvegardes, et leurs copies."
           }
         }
       }
     },
-    "**Saves** lists your saves, newest first, with the game's picture, your party and the difficulty.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Sauvegardes** liste vos parties, les plus récentes d’abord, avec l’image du jeu, votre groupe et la difficulté."
+    "**Saves** lists your saves, newest first, with the game's picture, your party and the difficulty." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Sauvegardes** liste vos parties, les plus récentes d’abord, avec l’image du jeu, votre groupe et la difficulté."
           }
         }
       }
     },
-    "**Updates** (⌘2): new versions of your mods on Nexus, with what changed.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Mises à jour** (⌘2) : les nouvelles versions de vos mods sur Nexus, avec leurs nouveautés."
+    "**Updates** (⌘2): new versions of your mods on Nexus, with what changed." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Mises à jour** (⌘2) : les nouvelles versions de vos mods sur Nexus, avec leurs nouveautés."
           }
         }
       }
     },
-    "%@ — %lld left": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$@ — %2$lld left"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ — encore %lld"
-          }
-        }
-      }
-    },
-    "%@ · Free account": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ · Compte gratuit"
-          }
-        }
-      }
-    },
-    "%@ · Premium": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ · Premium"
-          }
-        }
-      }
-    },
-    "%@ collections": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ collections"
-          }
-        }
-      }
-    },
-    "%@ mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ mods"
-          }
-        }
-      }
-    },
-    "%lld": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld"
-          }
-        }
-      }
-    },
-    "%lld mod updates available": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld mises à jour de mods disponibles"
-          }
-        }
-      }
-    },
-    "%lld mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld mods"
-          }
-        }
-      }
-    },
-    "%lld mods · %lld loaded": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$lld mods · %2$lld loaded"
+    "%@ — %lld left" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ — %2$lld left"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld mods · %2$lld chargés"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ — encore %lld"
           }
         }
       }
     },
-    "%lld mods can't be checked: Tadpole only knows the version of mods downloaded through it. Install them from Nexus once to get their updates.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld mods ne peuvent pas être vérifiés : Tadpole ne connaît la version que des mods téléchargés par lui. Installez-les une fois depuis Nexus pour recevoir leurs mises à jour."
+    "%@ · Free account" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · Compte gratuit"
           }
         }
       }
     },
-    "%lld new mods will be turned on when you quit the game.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld nouveaux mods seront activés quand vous quitterez le jeu."
+    "%@ · Premium" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · Premium"
           }
         }
       }
     },
-    "%lld requirement issues": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld problèmes de prérequis"
+    "%@ collections" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ collections"
           }
         }
       }
     },
-    "%lld saves": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld sauvegardes"
+    "%@ mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ mods"
           }
         }
       }
     },
-    "1 requirement issue": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1 problème de prérequis"
+    "%lld" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
           }
         }
       }
     },
-    "A mod doesn't show up in the game": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Un mod n’apparaît pas dans le jeu"
+    "%lld mod updates available" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mises à jour de mods disponibles"
           }
         }
       }
     },
-    "About Tadpole": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "À propos de Tadpole"
+    "%lld mod updates available…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mises à jour de mods disponibles…"
           }
         }
       }
     },
-    "About the Script Extender (Windows only)": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "À propos du Script Extender (Windows seulement)"
+    "%lld mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mods"
           }
         }
       }
     },
-    "Add your Nexus API key to install mods from here": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ajoutez votre clé d’API Nexus pour installer des mods d’ici"
+    "%lld mods · %lld loaded" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld mods · %2$lld loaded"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld mods · %2$lld chargés"
+          }
+        }
+      }
+    },
+    "%lld mods can't be checked: Tadpole only knows the version of mods downloaded through it. Install them from Nexus once to get their updates." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mods ne peuvent pas être vérifiés : Tadpole ne connaît la version que des mods téléchargés par lui. Installez-les une fois depuis Nexus pour recevoir leurs mises à jour."
+          }
+        }
+      }
+    },
+    "%lld mods loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mods chargés"
+          }
+        }
+      }
+    },
+    "%lld mods need Norbyte's Script Extender, which only exists on Windows: on a Mac they install, but their scripted features don't work." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mods ont besoin du Script Extender de Norbyte, qui n’existe que sur Windows : sur Mac, ils s’installent, mais leurs fonctions scriptées ne marchent pas."
+          }
+        }
+      }
+    },
+    "%lld new mods will be turned on when you quit the game." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld nouveaux mods seront activés quand vous quitterez le jeu."
+          }
+        }
+      }
+    },
+    "%lld requirement issues" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld problèmes de prérequis"
+          }
+        }
+      }
+    },
+    "%lld saves" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld sauvegardes"
+          }
+        }
+      }
+    },
+    "1 mod loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 mod chargé"
+          }
+        }
+      }
+    },
+    "1 mod needs Norbyte's Script Extender, which only exists on Windows: on a Mac it installs, but its scripted features don't work." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 mod a besoin du Script Extender de Norbyte, qui n’existe que sur Windows : sur Mac, il s’installe, mais ses fonctions scriptées ne marchent pas."
+          }
+        }
+      }
+    },
+    "1 mod update available…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 mise à jour de mod disponible…"
+          }
+        }
+      }
+    },
+    "1 requirement issue" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 problème de prérequis"
+          }
+        }
+      }
+    },
+    "A mod doesn't show up in the game" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un mod n’apparaît pas dans le jeu"
+          }
+        }
+      }
+    },
+    "About Tadpole" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À propos de Tadpole"
+          }
+        }
+      }
+    },
+    "About the Script Extender (Windows only)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À propos du Script Extender (Windows seulement)"
+          }
+        }
+      }
+    },
+    "Add your Nexus API key to install mods from here" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez votre clé d’API Nexus pour installer des mods d’ici"
+          }
+        }
+      }
+    },
+    "Add your personal Nexus Mods API key in Settings to download mods." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez votre clé d’API personnelle Nexus Mods dans les Réglages pour télécharger des mods."
+          }
+        }
+      }
+    },
+    "All mods up to date" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tous les mods sont à jour"
+          }
+        }
+      }
+    },
+    "Always Loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toujours chargés"
+          }
+        }
+      }
+    },
+    "An update for %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une mise à jour pour %@"
+          }
+        }
+      }
+    },
+    "API key" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé d’API"
+          }
+        }
+      }
+    },
+    "Appearance" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apparence"
+          }
+        }
+      }
+    },
+    "Archived" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archivé"
+          }
+        }
+      }
+    },
+    "Asking Nexus…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demande à Nexus…"
+          }
+        }
+      }
+    },
+    "Autosave" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarde auto"
+          }
+        }
+      }
+    },
+    "Back" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Précédent"
+          }
+        }
+      }
+    },
+    "Back Up" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarder"
+          }
+        }
+      }
+    },
+    "Back Up %lld Saves" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarder %lld parties"
+          }
+        }
+      }
+    },
+    "Back Up All" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout sauvegarder"
+          }
+        }
+      }
+    },
+    "Back Up All Saves" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarder toutes les parties"
+          }
+        }
+      }
+    },
+    "Back up before trying new mods: a save made with a mod can need that mod to load." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faites une copie avant d’essayer de nouveaux mods : une sauvegarde faite avec un mod peut en avoir besoin pour se charger."
+          }
+        }
+      }
+    },
+    "Back Up Selected" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarder la sélection"
+          }
+        }
+      }
+    },
+    "Backups" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copies de sauvegarde"
+          }
+        }
+      }
+    },
+    "Balanced" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Équilibré"
+          }
+        }
+      }
+    },
+    "Baldur's Gate 3" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baldur’s Gate 3"
+          }
+        }
+      }
+    },
+    "Baldur's Gate 3 %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baldur's Gate 3 %@"
+          }
+        }
+      }
+    },
+    "Baldur's Gate 3 is running" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baldur’s Gate 3 est lancé"
+          }
+        }
+      }
+    },
+    "Baldur's Gate 3 Is Running" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baldur's Gate 3 est lancé"
+          }
+        }
+      }
+    },
+    "Baldur's Gate 3 mods on Nexus" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les mods de Baldur’s Gate 3 sur Nexus"
+          }
+        }
+      }
+    },
+    "Baldur's Gate 3 Mods on Nexus Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les mods de Baldur’s Gate 3 sur Nexus Mods"
+          }
         }
       }
     },
-    "Add your personal Nexus Mods API key in Settings to download mods.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ajoutez votre clé d’API personnelle Nexus Mods dans les Réglages pour télécharger des mods."
+    "Baldur's Gate 3 not found" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baldur's Gate 3 introuvable"
           }
         }
       }
     },
-    "Always Loaded": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toujours chargés"
+    "Baldur's Gate 3 on Nexus" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baldur’s Gate 3 sur Nexus"
           }
         }
       }
     },
-    "An update for %@": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Une mise à jour pour %@"
+    "Barbarian" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barbare"
           }
         }
       }
     },
-    "API key": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clé d’API"
+    "Bard" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barde"
           }
         }
       }
     },
-    "Appearance": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apparence"
+    "Before the first mod" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avant le premier mod"
           }
         }
       }
     },
-    "Archived": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Archivé"
+    "Before you install a collection, Tadpole lists which of its mods need the Script Extender: the ones whose Nexus page names it as a requirement, and the ones that need such a mod. Tick **Skip Script Extender mods** to leave them out." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avant d’installer une collection, Tadpole indique lesquels de ses mods ont besoin du Script Extender : ceux dont la page Nexus le cite comme prérequis, et ceux qui ont besoin d’un tel mod. Cochez **Ignorer les mods Script Extender** pour les laisser de côté."
           }
         }
       }
     },
-    "Asking Nexus…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Demande à Nexus…"
+    "Browse Nexus" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parcourir Nexus"
           }
         }
       }
     },
-    "Autosave": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sauvegarde auto"
+    "Browse Nexus Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parcourir Nexus Mods"
           }
         }
       }
     },
-    "Back": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Précédent"
+    "Browse Nexus…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parcourir Nexus…"
           }
         }
       }
     },
-    "Back Up": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sauvegarder"
+    "Browsing" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parcourir"
           }
         }
       }
     },
-    "Back Up %lld Saves": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sauvegarder %lld parties"
+    "by %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "par %@"
           }
         }
       }
     },
-    "Back Up All": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tout sauvegarder"
+    "Can't Be Read" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Illisibles"
           }
         }
       }
     },
-    "Back Up All Saves": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sauvegarder toutes les parties"
+    "Can't Read the Load Order" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de lire l’ordre de chargement"
           }
         }
       }
     },
-    "Back up before trying new mods: a save made with a mod can need that mod to load.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faites une copie avant d’essayer de nouveaux mods : une sauvegarde faite avec un mod peut en avoir besoin pour se charger."
+    "Cancel" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
           }
         }
       }
     },
-    "Back Up Selected": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sauvegarder la sélection"
+    "Cancel this download" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler ce téléchargement"
           }
         }
       }
     },
-    "Backups": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copies de sauvegarde"
+    "Cancelled" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annulé"
           }
         }
       }
     },
-    "Balanced": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Équilibré"
+    "Change Key…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changer de clé…"
           }
         }
       }
     },
-    "Baldur's Gate 3": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Baldur’s Gate 3"
+    "Check Again" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vérifier à nouveau"
           }
         }
       }
     },
-    "Baldur's Gate 3 is running": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Baldur’s Gate 3 est lancé"
+    "Check for mod updates" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher des mises à jour de mods"
           }
         }
       }
     },
-    "Baldur's Gate 3 mods on Nexus": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les mods de Baldur’s Gate 3 sur Nexus"
+    "Check for Mod Updates" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher des mises à jour de mods"
           }
         }
       }
     },
-    "Baldur's Gate 3 Mods on Nexus Mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les mods de Baldur’s Gate 3 sur Nexus Mods"
+    "Check for mod updates at launch and every 6 hours" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher des mises à jour de mods au lancement et toutes les 6 heures"
           }
         }
       }
     },
-    "Baldur's Gate 3 on Nexus": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Baldur’s Gate 3 sur Nexus"
+    "Check for updates automatically" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher les mises à jour automatiquement"
           }
         }
       }
     },
-    "Barbarian": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Barbare"
+    "Check for Updates…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher des mises à jour…"
           }
         }
       }
     },
-    "Bard": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Barde"
+    "Check it's ticked in **Load Order**, and that the game was closed when you made the change." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vérifiez qu’il est coché dans **Ordre de chargement**, et que le jeu était fermé quand vous avez fait le changement."
           }
         }
       }
     },
-    "Before the first mod": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Avant le premier mod"
+    "Check Nexus for new versions of your mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chercher sur Nexus de nouvelles versions de vos mods"
           }
         }
       }
     },
-    "Browse Nexus": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Parcourir Nexus"
+    "Check Now" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vérifier maintenant"
           }
         }
       }
     },
-    "Browse Nexus Mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Parcourir Nexus Mods"
+    "Check your API key in **Settings → Nexus Mods**. With a free account, sign in once in Tadpole's browser (**Settings → Nexus Mods → Sign In to Nexus…**)." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vérifiez votre clé d’API dans **Réglages → Nexus Mods**. Avec un compte gratuit, connectez-vous une fois dans le navigateur de Tadpole (**Réglages → Nexus Mods → Se connecter à Nexus…**)."
           }
         }
       }
     },
-    "Browsing": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Parcourir"
+    "Checked %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vérifié %@"
           }
         }
       }
     },
-    "by %@": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "par %@"
+    "Checking Nexus…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vérification sur Nexus…"
           }
         }
       }
     },
-    "Can't Be Read": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Illisibles"
+    "Checking uses Nexus's public information and works without an API key; installing updates needs one." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La vérification utilise les informations publiques de Nexus et fonctionne sans clé d’API ; l’installation des mises à jour en demande une."
           }
         }
       }
     },
-    "Can't Read the Load Order": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Impossible de lire l’ordre de chargement"
+    "Checking which mods need the Script Extender…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recherche des mods qui ont besoin du Script Extender…"
           }
         }
       }
     },
-    "Cancel": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Annuler"
+    "Checking…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vérification…"
           }
         }
       }
     },
-    "Cancel this download": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Annuler ce téléchargement"
+    "Choose mods to install (.pak files, or .zip archives from Nexus Mods)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez les mods à installer (fichiers .pak ou archives .zip de Nexus Mods)"
           }
         }
       }
     },
-    "Cancelled": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Annulé"
+    "Clear" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effacer"
           }
         }
       }
     },
-    "Change Key…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Changer de clé…"
+    "Cleric" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clerc"
           }
         }
       }
     },
-    "Check Again": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vérifier à nouveau"
+    "Click **Slow download** below. The next mod opens by itself once each download starts." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cliquez sur **Slow download** ci-dessous. Le mod suivant s’ouvre tout seul dès que chaque téléchargement démarre."
           }
         }
       }
     },
-    "Check for mod updates": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechercher des mises à jour de mods"
+    "Close the Nexus browser once a download starts" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fermer le navigateur Nexus dès qu’un téléchargement démarre"
           }
         }
       }
     },
-    "Check for Mod Updates": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechercher des mises à jour de mods"
+    "Collections" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collections"
           }
         }
       }
     },
-    "Check for mod updates at launch and every 6 hours": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechercher des mises à jour de mods au lancement et toutes les 6 heures"
+    "Collections…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collections…"
           }
         }
       }
     },
-    "Check for updates automatically": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechercher les mises à jour automatiquement"
+    "Copy saves to “Larian Studios/Tadpole Save Backups” as .zip files" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copier les sauvegardes dans « Larian Studios/Tadpole Save Backups » en fichiers .zip"
           }
         }
       }
     },
-    "Check for Updates…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechercher des mises à jour…"
+    "Couldn't Back Up" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de sauvegarder"
           }
         }
       }
     },
-    "Check it's ticked in **Load Order**, and that the game was closed when you made the change.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vérifiez qu’il est coché dans **Ordre de chargement**, et que le jeu était fermé quand vous avez fait le changement."
+    "Couldn't Install" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installation impossible"
           }
         }
       }
     },
-    "Check Nexus for new versions of your mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Chercher sur Nexus de nouvelles versions de vos mods"
+    "Couldn't Load Collection" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de charger la collection"
           }
         }
       }
     },
-    "Check Now": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vérifier maintenant"
+    "Couldn't Load Files" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de charger les fichiers"
           }
         }
       }
     },
-    "Check your API key in **Settings → Nexus Mods**. With a free account, sign in once in Tadpole's browser (**Settings → Nexus Mods → Sign In to Nexus…**).": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vérifiez votre clé d’API dans **Réglages → Nexus Mods**. Avec un compte gratuit, connectez-vous une fois dans le navigateur de Tadpole (**Réglages → Nexus Mods → Se connecter à Nexus…**)."
+    "Couldn't Move to the Trash" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de placer dans la corbeille"
           }
         }
       }
     },
-    "Checked %@": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vérifié %@"
+    "Couldn't Reach Nexus" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de joindre Nexus"
           }
         }
       }
     },
-    "Checking Nexus…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vérification sur Nexus…"
+    "Couldn't Restore" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de restaurer"
           }
         }
       }
     },
-    "Checking uses Nexus's public information and works without an API key; installing updates needs one.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La vérification utilise les informations publiques de Nexus et fonctionne sans clé d’API ; l’installation des mises à jour en demande une."
+    "Couldn't Save the API Key" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’enregistrer la clé d’API"
           }
         }
       }
     },
-    "Choose mods to install (.pak files, or .zip archives from Nexus Mods)": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Choisissez les mods à installer (fichiers .pak ou archives .zip de Nexus Mods)"
+    "Couldn't Save the Load Order" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’enregistrer l’ordre de chargement"
           }
         }
       }
     },
-    "Clear": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Effacer"
+    "Dark" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sombre"
           }
         }
       }
     },
-    "Cleric": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clerc"
+    "Details" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Détails"
           }
         }
       }
     },
-    "Click **Slow download** below. The next mod opens by itself once each download starts.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cliquez sur **Slow download** ci-dessous. Le mod suivant s’ouvre tout seul dès que chaque téléchargement démarre."
+    "Don't download the mods that need Norbyte's Script Extender: their scripted features can't work on a Mac." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne pas télécharger les mods qui ont besoin du Script Extender de Norbyte : leurs fonctions scriptées ne peuvent pas marcher sur Mac."
           }
         }
       }
     },
-    "Close the Nexus browser once a download starts": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fermer le navigateur Nexus dès qu’un téléchargement démarre"
+    "Done" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminé"
           }
         }
       }
     },
-    "Collections": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Collections"
+    "Download and install every update" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Télécharger et installer toutes les mises à jour"
           }
         }
       }
     },
-    "Collections made for Windows often include Script Extender mods and mods that need them. Check a mod's Nexus page before relying on it.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les collections faites pour Windows contiennent souvent des mods pour le Script Extender et des mods qui en dépendent. Vérifiez la page Nexus d’un mod avant de compter dessus."
+    "Download and install the new version from Nexus" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Télécharger et installer la nouvelle version depuis Nexus"
           }
         }
       }
     },
-    "Collections made for Windows often include Script Extender mods: they install, but their scripted features don't work on a Mac.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les collections faites pour Windows contiennent souvent des mods pour le Script Extender : ils s’installent, mais leurs fonctions scriptées ne marchent pas sur Mac."
+    "Download Failed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec du téléchargement"
           }
         }
       }
     },
-    "Copy saves to “Larian Studios/Tadpole Save Backups” as .zip files": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copier les sauvegardes dans « Larian Studios/Tadpole Save Backups » en fichiers .zip"
+    "Downloading %lld mods…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téléchargement de %lld mods…"
           }
         }
       }
     },
-    "Couldn't Back Up": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Impossible de sauvegarder"
+    "Downloading 1 mod…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téléchargement de 1 mod…"
           }
         }
       }
     },
-    "Couldn't Install": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installation impossible"
+    "Downloading… %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téléchargement… %@"
           }
         }
       }
     },
-    "Couldn't Load Collection": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Impossible de charger la collection"
+    "Downloads" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téléchargements"
           }
         }
       }
     },
-    "Couldn't Load Files": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Impossible de charger les fichiers"
+    "Downloads don't start" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les téléchargements ne démarrent pas"
           }
         }
       }
     },
-    "Couldn't Move to the Trash": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Impossible de placer dans la corbeille"
+    "Drop .pak files or archives (.zip, .7z, .rar) on the window, or use **Install Mods…** (⌘O). Tadpole copies every .pak it finds into the Mods folder and turns the new mods on at the end of the load order. A file with the same name is replaced; the old one goes to the Trash." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déposez des fichiers .pak ou des archives (.zip, .7z, .rar) sur la fenêtre, ou utilisez **Installer des mods…** (⌘O). Tadpole copie chaque .pak trouvé dans le dossier Mods et active les nouveaux mods à la fin de l’ordre de chargement. Un fichier du même nom est remplacé ; l’ancien va dans la corbeille."
           }
         }
       }
     },
-    "Couldn't Reach Nexus": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Impossible de joindre Nexus"
+    "Druid" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druide"
           }
         }
       }
     },
-    "Couldn't Restore": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Impossible de restaurer"
+    "Each change keeps the previous file as **modsettings.lsx.bak** next to it." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chaque changement garde le fichier précédent sous le nom **modsettings.lsx.bak**, juste à côté."
           }
         }
       }
     },
-    "Couldn't Save the API Key": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Impossible d’enregistrer la clé d’API"
+    "Everything Is Installed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout est installé"
           }
         }
       }
     },
-    "Couldn't Save the Load Order": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Impossible d’enregistrer l’ordre de chargement"
+    "Everything Is Up to Date" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout est à jour"
           }
         }
       }
     },
-    "Dark": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sombre"
+    "Explorer" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explorateur"
           }
         }
       }
     },
-    "Details": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Détails"
+    "Fighter" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guerrier"
           }
         }
       }
     },
-    "Done": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Terminé"
+    "File" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichier"
           }
         }
       }
     },
-    "Download and install every update": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Télécharger et installer toutes les mises à jour"
+    "Find “%@” on Nexus Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trouver « %@ » sur Nexus Mods"
           }
         }
       }
     },
-    "Download and install the new version from Nexus": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Télécharger et installer la nouvelle version depuis Nexus"
+    "Find mods on Nexus Mods, or drop .pak files and archives (.zip, .7z, .rar) on this window." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trouvez des mods sur Nexus Mods, ou déposez des fichiers .pak et des archives (.zip, .7z, .rar) sur cette fenêtre."
           }
         }
       }
     },
-    "Download Failed": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Échec du téléchargement"
+    "Find on Nexus…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trouver sur Nexus…"
           }
         }
       }
     },
-    "Downloading… %@": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Téléchargement… %@"
+    "Folder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dossier"
           }
         }
       }
     },
-    "Downloads": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Téléchargements"
+    "Folders" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dossiers"
           }
         }
       }
     },
-    "Downloads don't start": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les téléchargements ne démarrent pas"
+    "Forward" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suivant"
           }
         }
       }
     },
-    "Drop .pak files or archives (.zip, .7z, .rar) on the window, or use **Install Mods…** (⌘O). Tadpole copies every .pak it finds into the Mods folder and turns the new mods on at the end of the load order. A file with the same name is replaced; the old one goes to the Trash.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Déposez des fichiers .pak ou des archives (.zip, .7z, .rar) sur la fenêtre, ou utilisez **Installer des mods…** (⌘O). Tadpole copie chaque .pak trouvé dans le dossier Mods et active les nouveaux mods à la fin de l’ordre de chargement. Un fichier du même nom est remplacé ; l’ancien va dans la corbeille."
+    "Free accounts download through the Nexus website. Sign in once in Tadpole's Nexus browser (the sign-in is remembered), then click **Mod Manager Download** and **Slow download**: the mod installs automatically." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les comptes gratuits téléchargent via le site de Nexus. Connectez-vous une fois dans le navigateur Nexus de Tadpole (la connexion est mémorisée), puis cliquez sur **Mod Manager Download** et **Slow download** : le mod s’installe tout seul."
           }
         }
       }
     },
-    "Druid": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Druide"
+    "Free and Premium accounts" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comptes gratuits et Premium"
           }
         }
       }
     },
-    "Each change keeps the previous file as **modsettings.lsx.bak** next to it.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Chaque changement garde le fichier précédent sous le nom **modsettings.lsx.bak**, juste à côté."
+    "From files you downloaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depuis des fichiers téléchargés"
           }
         }
       }
     },
-    "Everything Is Installed": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tout est installé"
+    "Game" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeu"
           }
         }
       }
     },
-    "Everything Is Up to Date": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tout est à jour"
+    "Game version %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version du jeu %@"
           }
         }
       }
     },
-    "Explorer": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Explorateur"
+    "General" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Général"
           }
         }
       }
     },
-    "Fighter": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guerrier"
+    "Get Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obtenir des mods"
           }
         }
       }
     },
-    "File": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fichier"
+    "Getting Started" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premiers pas"
           }
         }
       }
     },
-    "Find “%@” on Nexus Mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trouver « %@ » sur Nexus Mods"
+    "Hide Details" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masquer les détails"
           }
         }
       }
     },
-    "Find mods on Nexus Mods, or drop .pak files and archives (.zip, .7z, .rar) on this window.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trouvez des mods sur Nexus Mods, ou déposez des fichiers .pak et des archives (.zip, .7z, .rar) sur cette fenêtre."
+    "Hide key" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masquer la clé"
           }
         }
       }
     },
-    "Find on Nexus…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trouver sur Nexus…"
+    "Honour" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Honneur"
           }
         }
       }
     },
-    "Folder": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dossier"
+    "In the Game" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans le jeu"
           }
         }
       }
     },
-    "Folders": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dossiers"
+    "Install" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer"
           }
         }
       }
     },
-    "Forward": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suivant"
+    "Install .pak files or archives (or drop them on the window)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer des fichiers .pak ou des archives (ou les déposer sur la fenêtre)"
           }
         }
       }
     },
-    "Free accounts download through the Nexus website. Sign in once in Tadpole's Nexus browser (the sign-in is remembered), then click **Mod Manager Download** and **Slow download**: the mod installs automatically.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les comptes gratuits téléchargent via le site de Nexus. Connectez-vous une fois dans le navigateur Nexus de Tadpole (la connexion est mémorisée), puis cliquez sur **Mod Manager Download** et **Slow download** : le mod s’installe tout seul."
+    "Install %lld Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer %lld mods"
           }
         }
       }
     },
-    "Free and Premium accounts": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comptes gratuits et Premium"
+    "Install Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer des mods"
           }
         }
       }
     },
-    "From files you downloaded": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Depuis des fichiers téléchargés"
+    "Install Mods…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer des mods…"
           }
         }
       }
     },
-    "Game": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jeu"
+    "Installed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installé"
           }
         }
       }
     },
-    "Game version %@": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Version du jeu %@"
+    "Installed and turned on: %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installé et activé : %@"
           }
         }
       }
     },
-    "General": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Général"
+    "Installed but not loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installé mais pas chargé"
           }
         }
       }
     },
-    "Get Mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obtenir des mods"
+    "Installed Twice" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installés en double"
           }
         }
       }
     },
-    "Getting Started": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Premiers pas"
+    "Installed, Not Loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installés, non chargés"
           }
         }
       }
     },
-    "Hide Details": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Masquer les détails"
+    "Installing Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer des mods"
           }
         }
       }
     },
-    "Hide key": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Masquer la clé"
+    "Installing…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installation…"
           }
         }
       }
     },
-    "Honour": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Honneur"
+    "Its Nexus page lists Norbyte's Script Extender (Windows only) as a requirement. Its scripted features won't work on a Mac." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sa page Nexus cite le Script Extender de Norbyte (Windows uniquement) comme prérequis. Ses fonctions scriptées ne marcheront pas sur Mac."
           }
         }
       }
     },
-    "In the Game": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dans le jeu"
+    "Keep Newest" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garder le plus récent"
           }
         }
       }
     },
-    "Install": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installer"
+    "Keep the copy with the highest version and move the others to the Trash" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garder la copie de la version la plus haute et placer les autres dans la corbeille"
           }
         }
       }
     },
-    "Install .pak files or archives (or drop them on the window)": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installer des fichiers .pak ou des archives (ou les déposer sur la fenêtre)"
+    "Kept in “Documents/Larian Studios/Tadpole Save Backups”." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conservées dans « Documents/Larian Studios/Tadpole Save Backups »."
           }
         }
       }
     },
-    "Install %lld Mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installer %lld mods"
+    "Keyboard Shortcuts" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raccourcis clavier"
           }
         }
       }
     },
-    "Install Mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installer des mods"
+    "Keychain error %d" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur du trousseau %d"
           }
         }
       }
     },
-    "Install Mods…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installer des mods…"
+    "Language" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langue"
           }
         }
       }
     },
-    "Installed": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installé"
+    "Latest version: %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dernière version : %@"
           }
         }
       }
     },
-    "Installed and turned on: %@": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installé et activé : %@"
+    "Launch Baldur's Gate 3 through Steam" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lancer Baldur’s Gate 3 via Steam"
           }
         }
       }
     },
-    "Installed but not loaded": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installé mais pas chargé"
+    "Library" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bibliothèque"
           }
         }
       }
     },
-    "Installed Twice": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installés en double"
+    "Light" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clair"
           }
         }
       }
     },
-    "Installed, Not Loaded": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installés, non chargés"
+    "Link" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lier"
           }
         }
       }
     },
-    "Installing Mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installer des mods"
+    "Link to Another Nexus Mod…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lier à un autre mod Nexus…"
           }
         }
       }
     },
-    "Installing…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Installation…"
+    "Linking a mod lets Tadpole show its Nexus page, its optional files and, later, its updates." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lier un mod permet à Tadpole d’afficher sa page Nexus, ses fichiers optionnels et, plus tard, ses mises à jour."
           }
         }
       }
     },
-    "Keep Newest": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Garder le plus récent"
+    "Listed, but its .pak isn't in the Mods folder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listé, mais son .pak n’est pas dans le dossier Mods"
           }
         }
       }
     },
-    "Keep the copy with the highest version and move the others to the Trash": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Garder la copie de la version la plus haute et placer les autres dans la corbeille"
+    "Load More" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher plus"
           }
         }
       }
     },
-    "Kept in “Documents/Larian Studios/Tadpole Save Backups”.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conservées dans « Documents/Larian Studios/Tadpole Save Backups »."
+    "Load Order" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordre de chargement"
           }
         }
       }
     },
-    "Keychain error %d": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erreur du trousseau %d"
+    "Load order file" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichier d’ordre de chargement"
           }
         }
       }
     },
-    "Keyboard Shortcuts": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Raccourcis clavier"
+    "Load Order, Updates, Browse Nexus, Collections, Saves" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordre de chargement, Mises à jour, Parcourir Nexus, Collections, Sauvegardes"
           }
         }
       }
     },
-    "Language": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Langue"
+    "Loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chargé"
           }
         }
       }
     },
-    "Latest version: %@": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dernière version : %@"
+    "Loads after this mod: use Order by Requirements" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chargé après ce mod : utilisez Trier selon les prérequis"
           }
         }
       }
     },
-    "Launch Baldur's Gate 3 through Steam": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lancer Baldur’s Gate 3 via Steam"
+    "Look for a warning badge: a missing or late requirement can stop a mod from loading." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cherchez un badge d’avertissement : un prérequis manquant ou chargé trop tard peut empêcher un mod de se charger."
           }
         }
       }
     },
-    "Library": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bibliothèque"
+    "Main Files" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichiers principaux"
           }
         }
       }
     },
-    "Light": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clair"
+    "Many Baldur's Gate 3 mods use Norbyte's **Script Extender**, which only exists for Windows. On a Mac, those mods install and load, but whatever they do through scripts doesn't happen: new spells may do nothing, menus may not appear." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beaucoup de mods de Baldur’s Gate 3 utilisent le **Script Extender** de Norbyte, qui n’existe que pour Windows. Sur Mac, ces mods s’installent et se chargent, mais ce qu’ils font par script n’a pas lieu : de nouveaux sorts peuvent ne rien faire, des menus peuvent ne pas apparaître."
           }
         }
       }
     },
-    "Link": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lier"
+    "Menu Bar" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barre des menus"
           }
         }
       }
     },
-    "Link to Another Nexus Mod…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lier à un autre mod Nexus…"
+    "Miscellaneous" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Divers"
           }
         }
       }
     },
-    "Linking a mod lets Tadpole show its Nexus page, its optional files and, later, its updates.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lier un mod permet à Tadpole d’afficher sa page Nexus, ses fichiers optionnels et, plus tard, ses mises à jour."
+    "Mod manager for Baldur's Gate 3 on macOS." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestionnaire de mods pour Baldur’s Gate 3 sur macOS."
           }
         }
       }
     },
-    "Listed, but its .pak isn't in the Mods folder": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Listé, mais son .pak n’est pas dans le dossier Mods"
+    "Mod name" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom du mod"
           }
         }
       }
     },
-    "Load More": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher plus"
+    "Mod pages, files and collections come from Nexus Mods. Not affiliated with Larian Studios or Nexus Mods." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les pages de mods, fichiers et collections viennent de Nexus Mods. Sans lien avec Larian Studios ni Nexus Mods."
           }
         }
       }
     },
-    "Load Order": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ordre de chargement"
+    "Mod Updates" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mises à jour des mods"
           }
         }
       }
     },
-    "Load order file": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fichier d’ordre de chargement"
+    "Mod updates not checked yet" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mises à jour des mods pas encore vérifiées"
           }
         }
       }
     },
-    "Load Order, Updates, Browse Nexus, Collections, Saves": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ordre de chargement, Mises à jour, Parcourir Nexus, Collections, Sauvegardes"
+    "Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mods"
           }
         }
       }
     },
-    "Loaded": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Chargé"
+    "Mods (%lld)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mods (%lld)"
           }
         }
       }
     },
-    "Loads after this mod: use Order by Requirements": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Chargé après ce mod : utilisez Trier selon les prérequis"
+    "Mods are waiting to be turned on" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Des mods attendent d’être activés"
           }
         }
       }
     },
-    "Look for a warning badge: a missing or late requirement can stop a mod from loading.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cherchez un badge d’avertissement : un prérequis manquant ou chargé trop tard peut empêcher un mod de se charger."
+    "Mods can need other mods. A warning badge shows when a requirement is missing, turned off, or loads after the mod that needs it. **Order by Requirements** moves each requirement above the mods that need it, keeping the rest of your order." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Des mods peuvent avoir besoin d’autres mods. Un badge d’avertissement apparaît quand un prérequis manque, est désactivé, ou se charge après le mod qui en a besoin. **Trier selon les prérequis** place chaque prérequis au-dessus des mods qui en ont besoin, en gardant le reste de votre ordre."
           }
         }
       }
     },
-    "Main Files": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fichiers principaux"
+    "Mods folder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dossier Mods"
           }
         }
       }
     },
-    "Many Baldur's Gate 3 mods use Norbyte's **Script Extender**, which only exists for Windows. On a Mac, those mods install and load, but whatever they do through scripts doesn't happen: new spells may do nothing, menus may not appear.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beaucoup de mods de Baldur’s Gate 3 utilisent le **Script Extender** de Norbyte, qui n’existe que pour Windows. Sur Mac, ces mods s’installent et se chargent, mais ce qu’ils font par script n’a pas lieu : de nouveaux sorts peuvent ne rien faire, des menus peuvent ne pas apparaître."
+    "Mods installed from files, or linked by hand, can't be checked: Tadpole doesn't know which version you have. Install them from Nexus once. Checking works without an API key; installing updates needs one." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les mods installés depuis des fichiers, ou liés à la main, ne peuvent pas être vérifiés : Tadpole ne sait pas quelle version vous avez. Installez-les une fois depuis Nexus. La vérification fonctionne sans clé d’API ; l’installation des mises à jour en demande une."
           }
         }
       }
     },
-    "Miscellaneous": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Divers"
+    "Mods load from top to bottom; drag to reorder." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les mods se chargent de haut en bas ; faites-les glisser pour changer l’ordre."
           }
         }
       }
     },
-    "Mod manager for Baldur's Gate 3 on macOS.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gestionnaire de mods pour Baldur’s Gate 3 sur macOS."
+    "Mods made for an older version of the game can stop working after a game update. Check the mod's Nexus page." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Des mods faits pour une ancienne version du jeu peuvent cesser de marcher après une mise à jour du jeu. Vérifiez la page Nexus du mod."
           }
         }
       }
     },
-    "Mod name": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nom du mod"
+    "Monk" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Moine"
           }
         }
       }
     },
-    "Mod pages, files and collections come from Nexus Mods. Not affiliated with Larian Studios or Nexus Mods.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les pages de mods, fichiers et collections viennent de Nexus Mods. Sans lien avec Larian Studios ni Nexus Mods."
+    "Most Downloaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les plus téléchargés"
           }
         }
       }
     },
-    "Mod Updates": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mises à jour des mods"
+    "Most Endorsed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les plus appréciés"
           }
         }
       }
     },
-    "Mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mods"
+    "Move “%@” to the Trash?" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Placer « %@ » dans la corbeille ?"
           }
         }
       }
     },
-    "Mods (%lld)": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mods (%lld)"
+    "Move %lld saves to the Trash?" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Placer %lld sauvegardes dans la corbeille ?"
           }
         }
       }
     },
-    "Mods are waiting to be turned on": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Des mods attendent d’être activés"
+    "Move each mod's requirements before it, keeping the rest of the order" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Placer les prérequis de chaque mod avant lui, sans changer le reste de l’ordre"
           }
         }
       }
     },
-    "Mods can need other mods. A warning badge shows when a requirement is missing, turned off, or loads after the mod that needs it. **Order by Requirements** moves each requirement above the mods that need it, keeping the rest of your order.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Des mods peuvent avoir besoin d’autres mods. Un badge d’avertissement apparaît quand un prérequis manque, est désactivé, ou se charge après le mod qui en a besoin. **Trier selon les prérequis** place chaque prérequis au-dessus des mods qui en ont besoin, en gardant le reste de votre ordre."
+    "Move to Trash" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Placer dans la corbeille"
           }
         }
       }
     },
-    "Mods folder": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dossier Mods"
+    "Move to Trash…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Placer dans la corbeille…"
           }
         }
       }
     },
-    "Mods installed from files, or linked by hand, can't be checked: Tadpole doesn't know which version you have. Install them from Nexus once. Checking works without an API key; installing updates needs one.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les mods installés depuis des fichiers, ou liés à la main, ne peuvent pas être vérifiés : Tadpole ne sait pas quelle version vous avez. Installez-les une fois depuis Nexus. La vérification fonctionne sans clé d’API ; l’installation des mises à jour en demande une."
+    "Needed to download mods. Sign in to Nexus, open your account's API Keys page, and copy the “Personal API Key” at the bottom. It's kept in a file only your account can read." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nécessaire pour télécharger des mods. Connectez-vous à Nexus, ouvrez la page « API Keys » de votre compte et copiez la « Personal API Key » tout en bas. Elle est conservée dans un fichier que seul votre compte peut lire."
           }
         }
       }
     },
-    "Mods load from top to bottom; drag to reorder.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les mods se chargent de haut en bas ; faites-les glisser pour changer l’ordre."
+    "Needs “%@”, which needs Norbyte's Script Extender (Windows only). Its scripted features won't work on a Mac." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A besoin de « %@ », qui a besoin du Script Extender de Norbyte (Windows uniquement). Ses fonctions scriptées ne marcheront pas sur Mac."
           }
         }
       }
     },
-    "Mods made for an older version of the game can stop working after a game update. Check the mod's Nexus page.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Des mods faits pour une ancienne version du jeu peuvent cesser de marcher après une mise à jour du jeu. Vérifiez la page Nexus du mod."
+    "Newest" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les plus récents"
           }
         }
       }
     },
-    "Monk": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Moine"
+    "Nexus API Key Needed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé d’API Nexus nécessaire"
           }
         }
       }
     },
-    "Most Downloaded": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les plus téléchargés"
+    "Nexus didn't return a download link for this file." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nexus n’a renvoyé aucun lien de téléchargement pour ce fichier."
           }
         }
       }
     },
-    "Most Endorsed": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les plus appréciés"
+    "Nexus mod %lld" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mod Nexus %lld"
           }
         }
       }
     },
-    "Move “%@” to the Trash?": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Placer « %@ » dans la corbeille ?"
+    "Nexus Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nexus Mods"
           }
         }
       }
     },
-    "Move %lld saves to the Trash?": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Placer %lld sauvegardes dans la corbeille ?"
+    "Nexus Mods & Collections" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nexus Mods et collections"
           }
         }
       }
     },
-    "Move each mod's requirements before it, keeping the rest of the order": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Placer les prérequis de chaque mod avant lui, sans changer le reste de l’ordre"
+    "Nexus Mods API Key" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé d’API Nexus Mods"
           }
         }
       }
     },
-    "Move to Trash": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Placer dans la corbeille"
+    "Nexus Mods browser" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigateur Nexus Mods"
           }
         }
       }
     },
-    "Move to Trash…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Placer dans la corbeille…"
+    "Nexus only allows direct downloads for Premium members. Use “Mod Manager Download” on the website instead." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nexus ne permet le téléchargement direct qu’aux membres Premium. Utilisez plutôt « Mod Manager Download » sur le site."
           }
         }
       }
     },
-    "Needed to download mods. Sign in to Nexus, open your account's API Keys page, and copy the “Personal API Key” at the bottom. It's kept in a file only your account can read.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nécessaire pour télécharger des mods. Connectez-vous à Nexus, ouvrez la page « API Keys » de votre compte et copiez la « Personal API Key » tout en bas. Elle est conservée dans un fichier que seul votre compte peut lire."
+    "Nexus rate limit reached. Try again in a little while." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limite de requêtes Nexus atteinte. Réessayez dans un moment."
           }
         }
       }
     },
-    "Newest": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les plus récents"
+    "Nexus request failed (HTTP %lld)." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La requête à Nexus a échoué (HTTP %lld)."
           }
         }
       }
     },
-    "Nexus API Key Needed": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clé d’API Nexus nécessaire"
+    "No .pak file in this download. Mods made of loose files or for the Script Extender can't be installed by Tadpole." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun fichier .pak dans ce téléchargement. Tadpole ne peut pas installer les mods faits de fichiers libres ni ceux pour le Script Extender."
           }
         }
       }
     },
-    "Nexus didn't return a download link for this file.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nexus n’a renvoyé aucun lien de téléchargement pour ce fichier."
+    "No .pak file was found in: %@. Mods made of loose files or for the Script Extender can't be installed this way." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun fichier .pak trouvé dans : %@. Les mods faits de fichiers séparés ou pour le Script Extender ne peuvent pas être installés ainsi."
           }
         }
       }
     },
-    "Nexus mod %lld": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mod Nexus %lld"
+    "No current files on Nexus." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun fichier actuel sur Nexus."
           }
         }
       }
     },
-    "Nexus Mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nexus Mods"
+    "No match. Try another name, or paste the mod's link below." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun résultat. Essayez un autre nom, ou collez le lien du mod ci-dessous."
           }
         }
       }
     },
-    "Nexus Mods & Collections": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nexus Mods et collections"
+    "No mod description inside: the game always loads these. Move one to the Trash to stop it." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sans description de mod : le jeu les charge toujours. Placez-en un dans la corbeille pour l’arrêter."
           }
         }
       }
     },
-    "Nexus Mods API Key": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clé d’API Nexus Mods"
+    "No mod description inside: the game always loads this file. Move it to the Trash to stop it." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sans description de mod : le jeu charge toujours ce fichier. Placez-le dans la corbeille pour l’arrêter."
           }
         }
       }
     },
-    "Nexus Mods browser": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Navigateur Nexus Mods"
+    "No mod here lists the Script Extender as a requirement, so this collection should work on a Mac. A few mods use it without saying so: Tadpole marks them once they're installed." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun mod ici ne cite le Script Extender comme prérequis : cette collection devrait marcher sur Mac. Quelques mods l’utilisent sans le dire : Tadpole les signale une fois installés."
           }
         }
       }
     },
-    "Nexus only allows direct downloads for Premium members. Use “Mod Manager Download” on the website instead.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nexus ne permet le téléchargement direct qu’aux membres Premium. Utilisez plutôt « Mod Manager Download » sur le site."
+    "No Mod Selected" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun mod sélectionné"
           }
         }
       }
     },
-    "Nexus rate limit reached. Try again in a little while.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite de requêtes Nexus atteinte. Réessayez dans un moment."
+    "No Mods Yet" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun mod pour l’instant"
           }
         }
       }
     },
-    "Nexus request failed (HTTP %lld).": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La requête à Nexus a échoué (HTTP %lld)."
+    "No Saves Yet" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune sauvegarde pour l’instant"
           }
         }
       }
     },
-    "No .pak file in this download. Mods made of loose files or for the Script Extender can't be installed by Tadpole.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aucun fichier .pak dans ce téléchargement. Tadpole ne peut pas installer les mods faits de fichiers libres ni ceux pour le Script Extender."
+    "Not a Baldur's Gate 3 Mod" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas un mod de Baldur’s Gate 3"
           }
         }
       }
     },
-    "No .pak file was found in: %@. Mods made of loose files or for the Script Extender can't be installed this way.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aucun fichier .pak trouvé dans : %@. Les mods faits de fichiers séparés ou pour le Script Extender ne peuvent pas être installés ainsi."
+    "Not checked yet." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas encore vérifié."
           }
         }
       }
     },
-    "No current files on Nexus.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aucun fichier actuel sur Nexus."
+    "Not connected" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non connecté"
           }
         }
       }
     },
-    "No match. Try another name, or paste the mod's link below.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aucun résultat. Essayez un autre nom, ou collez le lien du mod ci-dessous."
+    "Not found. Install it with Steam." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introuvable. Installez-le avec Steam."
           }
         }
       }
     },
-    "No mod description inside: the game always loads these. Move one to the Trash to stop it.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sans description de mod : le jeu les charge toujours. Placez-en un dans la corbeille pour l’arrêter."
+    "Not installed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas installé"
           }
         }
       }
     },
-    "No mod description inside: the game always loads this file. Move it to the Trash to stop it.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sans description de mod : le jeu charge toujours ce fichier. Placez-le dans la corbeille pour l’arrêter."
+    "Not linked to a Nexus mod yet. Linking shows its page and optional files here." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas encore lié à un mod Nexus. Le lier affiche ici sa page et ses fichiers optionnels."
           }
         }
       }
     },
-    "No Mod Selected": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aucun mod sélectionné"
+    "Nothing to Install" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rien à installer"
           }
         }
       }
     },
-    "No Mods Yet": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aucun mod pour l’instant"
+    "Notify me when updates are found" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M’avertir quand des mises à jour sont trouvées"
           }
         }
       }
     },
-    "No Saves Yet": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aucune sauvegarde pour l’instant"
+    "OK" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
           }
         }
       }
     },
-    "Not a Baldur's Gate 3 Mod": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pas un mod de Baldur’s Gate 3"
+    "Old Versions" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anciennes versions"
           }
         }
       }
     },
-    "Not checked yet.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pas encore vérifié."
+    "On Nexus Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sur Nexus Mods"
           }
         }
       }
     },
-    "Not connected": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Non connecté"
+    "Once a download starts, the browser closes and the download goes on in the sidebar's **Downloads** list. You can keep the browser open in **Settings → Nexus Mods**." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dès qu’un téléchargement démarre, le navigateur se ferme et le téléchargement continue dans la liste **Téléchargements** de la barre latérale. Vous pouvez garder le navigateur ouvert dans **Réglages → Nexus Mods**."
           }
         }
       }
     },
-    "Not found. Install it with Steam.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Introuvable. Installez-le avec Steam."
+    "Open in Default Browser" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir dans le navigateur par défaut"
           }
         }
       }
     },
-    "Not installed": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pas installé"
+    "Open Mods Folder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le dossier Mods"
           }
         }
       }
     },
-    "Not linked to a Nexus mod yet. Linking shows its page and optional files here.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pas encore lié à un mod Nexus. Le lier affiche ici sa page et ses fichiers optionnels."
+    "Open Nexus Mods in Tadpole's browser" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir Nexus Mods dans le navigateur de Tadpole"
           }
         }
       }
     },
-    "Notify me when updates are found": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "M’avertir quand des mises à jour sont trouvées"
+    "Open Save Backups Folder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le dossier des copies de sauvegarde"
           }
         }
       }
     },
-    "OK": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "OK"
+    "Open Saves Folder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le dossier des sauvegardes"
           }
         }
       }
     },
-    "Old Versions": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Anciennes versions"
+    "Open Tadpole" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir Tadpole"
           }
         }
       }
     },
-    "On Nexus Mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sur Nexus Mods"
+    "Open the folder with your save backups" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le dossier de vos copies de sauvegarde"
           }
         }
       }
     },
-    "Once a download starts, the browser closes and the download goes on in the sidebar's **Downloads** list. You can keep the browser open in **Settings → Nexus Mods**.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dès qu’un téléchargement démarre, le navigateur se ferme et le téléchargement continue dans la liste **Téléchargements** de la barre latérale. Vous pouvez garder le navigateur ouvert dans **Réglages → Nexus Mods**."
+    "Open the Mods folder in Finder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le dossier Mods dans le Finder"
           }
         }
       }
     },
-    "Open in Default Browser": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir dans le navigateur par défaut"
+    "Open the Nexus API Keys page…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir la page des clés d’API Nexus…"
           }
         }
       }
     },
-    "Open Mods Folder": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir le dossier Mods"
+    "Open the Nexus Website" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le site de Nexus"
           }
         }
       }
     },
-    "Open Nexus Mods in Tadpole's browser": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir Nexus Mods dans le navigateur de Tadpole"
+    "Open this page in your default browser" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir cette page dans votre navigateur par défaut"
           }
         }
       }
     },
-    "Open Save Backups Folder": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir le dossier des copies de sauvegarde"
+    "Optional (%lld)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optionnels (%lld)"
           }
         }
       }
     },
-    "Open Saves Folder": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir le dossier des sauvegardes"
+    "Optional files" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichiers optionnels"
           }
         }
       }
     },
-    "Open the folder with your save backups": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir le dossier de vos copies de sauvegarde"
+    "Optional Files" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichiers optionnels"
           }
         }
       }
     },
-    "Open the Mods folder in Finder": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir le dossier Mods dans le Finder"
+    "Or paste a Nexus link or mod number" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ou collez un lien Nexus ou un numéro de mod"
           }
         }
       }
     },
-    "Open the Nexus API Keys page…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir la page des clés d’API Nexus…"
+    "Order by Requirements" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trier selon les prérequis"
           }
         }
       }
     },
-    "Open the Nexus Website": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir le site de Nexus"
+    "Other sections" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autres sections"
           }
         }
       }
     },
-    "Open this page in your default browser": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir cette page dans votre navigateur par défaut"
+    "Paladin" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paladin"
           }
         }
       }
     },
-    "Optional (%lld)": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Optionnels (%lld)"
+    "Paste" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coller"
           }
         }
       }
     },
-    "Optional files": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fichiers optionnels"
+    "Paste your personal API key" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collez votre clé d’API personnelle"
           }
         }
       }
     },
-    "Optional Files": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fichiers optionnels"
+    "Play" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jouer"
           }
         }
       }
     },
-    "Or paste a Nexus link or mod number": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ou collez un lien Nexus ou un numéro de mod"
+    "Play Baldur's Gate 3" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jouer à Baldur’s Gate 3"
           }
         }
       }
     },
-    "Order by Requirements": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trier selon les prérequis"
+    "Premium accounts download directly. Free accounts download through the Nexus website: Tadpole opens the file's page, you click **Slow download**, and Tadpole catches the download and installs it. With several mods, the next page opens by itself." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les comptes Premium téléchargent directement. Les comptes gratuits passent par le site de Nexus : Tadpole ouvre la page du fichier, vous cliquez sur **Slow download**, et Tadpole récupère le téléchargement et l’installe. Avec plusieurs mods, la page suivante s’ouvre toute seule."
           }
         }
       }
     },
-    "Other sections": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autres sections"
+    "Premium: mods download and install right away." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium : les mods se téléchargent et s’installent tout de suite."
           }
         }
       }
     },
-    "Paladin": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Paladin"
+    "Quicksave" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarde rapide"
           }
         }
       }
     },
-    "Paste": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Coller"
+    "Quit Baldur's Gate 3 First" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quittez d’abord Baldur’s Gate 3"
           }
         }
       }
     },
-    "Paste your personal API key": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Collez votre clé d’API personnelle"
+    "Quit Tadpole" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quitter Tadpole"
           }
         }
       }
     },
-    "Play": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jouer"
+    "Quit the game before changing the load order: it rewrites its mod list when it quits." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quittez le jeu avant de changer l’ordre de chargement : il réécrit sa liste de mods en quittant."
           }
         }
       }
     },
-    "Play Baldur's Gate 3": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jouer à Baldur’s Gate 3"
+    "Ranger" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rôdeur"
           }
         }
       }
     },
-    "Premium accounts download directly. Free accounts download through the Nexus website: Tadpole opens the file's page, you click **Slow download**, and Tadpole catches the download and installs it. With several mods, the next page opens by itself.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les comptes Premium téléchargent directement. Les comptes gratuits passent par le site de Nexus : Tadpole ouvre la page du fichier, vous cliquez sur **Slow download**, et Tadpole récupère le téléchargement et l’installe. Avec plusieurs mods, la page suivante s’ouvre toute seule."
+    "Read the Mods folder and the load order again" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relire le dossier Mods et l’ordre de chargement"
           }
         }
       }
     },
-    "Premium: mods download and install right away.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Premium : les mods se téléchargent et s’installent tout de suite."
+    "Read the saves again" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relire les sauvegardes"
           }
         }
       }
     },
-    "Quicksave": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sauvegarde rapide"
+    "Recently Updated" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mis à jour récemment"
           }
         }
       }
     },
-    "Quit Baldur's Gate 3 First": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Quittez d’abord Baldur’s Gate 3"
+    "Reload" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recharger"
           }
         }
       }
     },
-    "Quit the game before changing the load order: it rewrites its mod list when it quits.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Quittez le jeu avant de changer l’ordre de chargement : il réécrit sa liste de mods en quittant."
+    "Reload Files" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recharger les fichiers"
           }
         }
       }
     },
-    "Ranger": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rôdeur"
+    "Remove" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer"
           }
         }
       }
     },
-    "Read the Mods folder and the load order again": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Relire le dossier Mods et l’ordre de chargement"
+    "Removing mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer des mods"
           }
         }
       }
     },
-    "Read the saves again": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Relire les sauvegardes"
+    "Replace" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remplacer"
           }
         }
       }
     },
-    "Recently Updated": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mis à jour récemment"
+    "Replace “%@”?" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remplacer « %@ » ?"
           }
         }
       }
     },
-    "Reload": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recharger"
+    "Requirements" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prérequis"
           }
         }
       }
     },
-    "Reload Files": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recharger les fichiers"
+    "Requires" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nécessite"
           }
         }
       }
     },
-    "Remove": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Retirer"
+    "Restart Now" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redémarrer maintenant"
           }
         }
       }
     },
-    "Removing mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Supprimer des mods"
+    "Restore" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurer"
           }
         }
       }
     },
-    "Replace": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Remplacer"
+    "Restore saves while the game isn't running, so it sees them." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurez les sauvegardes quand le jeu est fermé, pour qu’il les voie."
           }
         }
       }
     },
-    "Replace “%@”?": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Remplacer « %@ » ?"
+    "Right-click a mod and choose **Move to Trash**. It leaves the load order too. You can restore it from the Trash in Finder." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faites un clic droit sur un mod et choisissez **Placer dans la corbeille**. Il quitte aussi l’ordre de chargement. Vous pouvez le récupérer dans la corbeille depuis le Finder."
           }
         }
       }
     },
-    "Requirements": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Prérequis"
+    "Rogue" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roublard"
           }
         }
       }
     },
-    "Requires": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nécessite"
+    "Run Baldur's Gate 3 Once" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lancez Baldur’s Gate 3 une fois"
           }
         }
       }
     },
-    "Restart Now": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Redémarrer maintenant"
+    "Run the game once and reach the main menu: that creates the folders Tadpole needs." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lancez le jeu une fois jusqu’au menu principal : cela crée les dossiers dont Tadpole a besoin."
           }
         }
       }
     },
-    "Restore": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Restaurer"
+    "Save & Verify" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer et vérifier"
           }
         }
       }
     },
-    "Restore saves while the game isn't running, so it sees them.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Restaurez les sauvegardes quand le jeu est fermé, pour qu’il les voie."
+    "Save backups" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copies de sauvegarde"
           }
         }
       }
     },
-    "Right-click a mod and choose **Move to Trash**. It leaves the load order too. You can restore it from the Trash in Finder.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faites un clic droit sur un mod et choisissez **Placer dans la corbeille**. Il quitte aussi l’ordre de chargement. Vous pouvez le récupérer dans la corbeille depuis le Finder."
+    "Saves" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegardes"
           }
         }
       }
     },
-    "Rogue": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Roublard"
+    "Saves & Backups" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegardes et copies"
           }
         }
       }
     },
-    "Run Baldur's Gate 3 Once": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lancez Baldur’s Gate 3 une fois"
+    "Saves appear here once you've played Baldur's Gate 3." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les sauvegardes apparaissent ici une fois que vous avez joué à Baldur’s Gate 3."
           }
         }
       }
     },
-    "Run the game once and reach the main menu: that creates the folders Tadpole needs.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lancez le jeu une fois jusqu’au menu principal : cela crée les dossiers dont Tadpole a besoin."
+    "Script Extender" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Extender"
           }
         }
       }
     },
-    "Save & Verify": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enregistrer et vérifier"
+    "Script Extender on a Mac" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Script Extender sur Mac"
           }
         }
       }
     },
-    "Save backups": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copies de sauvegarde"
+    "Search" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher"
           }
         }
       }
     },
-    "Saves": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sauvegardes"
+    "Search collections" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher des collections"
           }
         }
       }
     },
-    "Saves & Backups": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sauvegardes et copies"
+    "Search mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher des mods"
           }
         }
       }
     },
-    "Saves appear here once you've played Baldur's Gate 3.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les sauvegardes apparaissent ici une fois que vous avez joué à Baldur’s Gate 3."
+    "Select a mod to see what it needs." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez un mod pour voir ce dont il a besoin."
           }
         }
       }
     },
-    "Script Extender": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Script Extender"
+    "Select an installed mod: its details show its Nexus page and every current file there, main and optional, with **Install** next to the ones you don't have." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez un mod installé : ses détails montrent sa page Nexus et tous ses fichiers actuels, principaux et optionnels, avec **Installer** à côté de ceux que vous n’avez pas."
           }
         }
       }
     },
-    "Script Extender on a Mac": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le Script Extender sur Mac"
+    "Settings" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglages"
           }
         }
       }
     },
-    "Search": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechercher"
+    "Settings…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglages…"
           }
         }
       }
     },
-    "Search collections": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechercher des collections"
+    "Show Backups in Finder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher les copies dans le Finder"
           }
         }
       }
     },
-    "Search mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechercher des mods"
+    "Show Details" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher les détails"
           }
         }
       }
     },
-    "Select a mod to see what it needs.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sélectionnez un mod pour voir ce dont il a besoin."
+    "Show icon in the menu bar" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher l’icône dans la barre des menus"
           }
         }
       }
     },
-    "Select an installed mod: its details show its Nexus page and every current file there, main and optional, with **Install** next to the ones you don't have.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sélectionnez un mod installé : ses détails montrent sa page Nexus et tous ses fichiers actuels, principaux et optionnels, avec **Installer** à côté de ceux que vous n’avez pas."
+    "Show in Finder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher dans le Finder"
           }
         }
       }
     },
-    "Settings": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Réglages"
+    "Show key" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher la clé"
           }
         }
       }
     },
-    "Settings…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Réglages…"
+    "Show Load Order File" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher le fichier d’ordre de chargement"
           }
         }
       }
     },
-    "Show Backups in Finder": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher les copies dans le Finder"
+    "Show old files" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher les anciens fichiers"
           }
         }
       }
     },
-    "Show Details": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher les détails"
+    "Show or hide details" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher ou masquer les détails"
           }
         }
       }
     },
-    "Show in Finder": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher dans le Finder"
+    "Show or hide mod details" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher ou masquer les détails du mod"
           }
         }
       }
     },
-    "Show key": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher la clé"
+    "Show this mod's page" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher la page de ce mod"
           }
         }
       }
     },
-    "Show Load Order File": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher le fichier d’ordre de chargement"
+    "Sign In to Nexus…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se connecter à Nexus…"
           }
         }
       }
     },
-    "Show old files": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher les anciens fichiers"
+    "Skip" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passer"
           }
         }
       }
     },
-    "Show or hide details": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher ou masquer les détails"
+    "Skip Script Extender mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer les mods Script Extender"
           }
         }
       }
     },
-    "Show or hide mod details": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher ou masquer les détails du mod"
+    "Some authors don't list it. Once a mod is installed, Tadpole looks inside it for Script Extender scripts and marks it too." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certains auteurs ne le citent pas. Une fois un mod installé, Tadpole cherche des scripts du Script Extender à l’intérieur et le signale aussi."
           }
         }
       }
     },
-    "Show this mod's page": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher la page de ce mod"
+    "Some Files Weren't Installed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certains fichiers n’ont pas été installés"
           }
         }
       }
     },
-    "Sign In to Nexus…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Se connecter à Nexus…"
+    "Sorcerer" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ensorceleur"
           }
         }
       }
     },
-    "Skip": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Passer"
+    "Sort" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trier"
           }
         }
       }
     },
-    "Some Files Weren't Installed": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Certains fichiers n’ont pas été installés"
+    "Stop" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrêter"
           }
         }
       }
     },
-    "Sorcerer": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ensorceleur"
+    "System" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Système"
           }
         }
       }
     },
-    "Sort": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trier"
+    "System (%@)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Système (%@)"
           }
         }
       }
     },
-    "Stop": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Arrêter"
+    "Tactician" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tacticien"
           }
         }
       }
     },
-    "System": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Système"
+    "Tadpole" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole"
           }
         }
       }
     },
-    "System (%@)": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Système (%@)"
+    "Tadpole catches **Mod Manager Download** links only in its own browser, so it doesn't take them from Starseed or another mod manager in Safari or Chrome." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole ne récupère les liens **Mod Manager Download** que dans son propre navigateur : il ne les prend pas à Starseed ni à un autre gestionnaire de mods dans Safari ou Chrome."
           }
         }
       }
     },
-    "Tactician": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tacticien"
+    "Tadpole checks Nexus for new versions of the mods it downloaded, at launch and every 6 hours, and notifies you when it finds some. **Updates** lists them with what changed; **Update** or **Update All** installs them. The old .pak goes to the Trash and the mod keeps its place in the load order." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole cherche sur Nexus de nouvelles versions des mods qu’il a téléchargés, au lancement et toutes les 6 heures, et vous avertit quand il en trouve. **Mises à jour** les liste avec leurs nouveautés ; **Mettre à jour** ou **Tout mettre à jour** les installe. L’ancien .pak va dans la corbeille et le mod garde sa place dans l’ordre de chargement."
           }
         }
       }
     },
-    "Tadpole": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tadpole"
+    "Tadpole Help" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aide de Tadpole"
           }
         }
       }
     },
-    "Tadpole catches **Mod Manager Download** links only in its own browser, so it doesn't take them from Starseed or another mod manager in Safari or Chrome.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tadpole ne récupère les liens **Mod Manager Download** que dans son propre navigateur : il ne les prend pas à Starseed ni à un autre gestionnaire de mods dans Safari ou Chrome."
+    "Tadpole installs Baldur's Gate 3 mods and sets the order they load in. It works with the game's own files in **Documents/Larian Studios/Baldur's Gate 3**, so the game's mod list and Tadpole's are always the same." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole installe des mods de Baldur’s Gate 3 et règle l’ordre dans lequel ils se chargent. Il travaille avec les fichiers du jeu lui-même, dans **Documents/Larian Studios/Baldur's Gate 3** : la liste de mods du jeu et celle de Tadpole sont donc toujours les mêmes."
           }
         }
       }
     },
-    "Tadpole checks Nexus for new versions of the mods it downloaded, at launch and every 6 hours, and notifies you when it finds some. **Updates** lists them with what changed; **Update** or **Update All** installs them. The old .pak goes to the Trash and the mod keeps its place in the load order.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tadpole cherche sur Nexus de nouvelles versions des mods qu’il a téléchargés, au lancement et toutes les 6 heures, et vous avertit quand il en trouve. **Mises à jour** les liste avec leurs nouveautés ; **Mettre à jour** ou **Tout mettre à jour** les installe. L’ancien .pak va dans la corbeille et le mod garde sa place dans l’ordre de chargement."
+    "Tadpole installs mods packaged as .pak files, which is how most Baldur's Gate 3 mods come. Mods made of loose files that go into the game's own folders, and tools for Windows (.dll, .exe), aren't installed: the download list says so." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole installe les mods fournis en fichiers .pak, la forme de la plupart des mods de Baldur’s Gate 3. Les mods faits de fichiers libres à mettre dans les dossiers du jeu, et les outils pour Windows (.dll, .exe), ne sont pas installés : la liste des téléchargements le signale."
           }
         }
       }
     },
-    "Tadpole Help": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aide de Tadpole"
+    "Tadpole knows which Nexus mod an installed mod comes from when it was downloaded through Tadpole. For mods you installed from files, select the mod and click **Find on Nexus…** in its details: once linked, it counts as installed in collections." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole sait de quel mod Nexus vient un mod installé quand il a été téléchargé par Tadpole. Pour les mods installés depuis des fichiers, sélectionnez le mod et cliquez sur **Trouver sur Nexus…** dans ses détails : une fois lié, il compte comme installé dans les collections."
           }
         }
       }
     },
-    "Tadpole installs Baldur's Gate 3 mods and sets the order they load in. It works with the game's own files in **Documents/Larian Studios/Baldur's Gate 3**, so the game's mod list and Tadpole's are always the same.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tadpole installe des mods de Baldur’s Gate 3 et règle l’ordre dans lequel ils se chargent. Il travaille avec les fichiers du jeu lui-même, dans **Documents/Larian Studios/Baldur's Gate 3** : la liste de mods du jeu et celle de Tadpole sont donc toujours les mêmes."
+    "Tadpole manages the mods in “Documents/Larian Studios/Baldur's Gate 3”. The game creates that folder the first time it runs: start it, reach the main menu, quit, then come back." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole gère les mods dans « Documents/Larian Studios/Baldur’s Gate 3 ». Le jeu crée ce dossier à son premier lancement : lancez-le, allez jusqu’au menu principal, quittez, puis revenez."
           }
         }
       }
     },
-    "Tadpole installs mods packaged as .pak files, which is how most Baldur's Gate 3 mods come. Mods made of loose files that go into the game's own folders, and tools for Windows (.dll, .exe), aren't installed: the download list says so.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tadpole installe les mods fournis en fichiers .pak, la forme de la plupart des mods de Baldur’s Gate 3. Les mods faits de fichiers libres à mettre dans les dossiers du jeu, et les outils pour Windows (.dll, .exe), ne sont pas installés : la liste des téléchargements le signale."
+    "Tadpole marks those mods with a **Script Extender** badge. Mods that only change looks, items, hair, dice or text don't need it and work normally." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tadpole marque ces mods d’un badge **Script Extender**. Les mods qui changent seulement l’apparence, des objets, des coiffures, des dés ou du texte n’en ont pas besoin et marchent normalement."
           }
         }
       }
     },
-    "Tadpole knows which Nexus mod an installed mod comes from when it was downloaded through Tadpole. For mods you installed from files, select the mod and click **Find on Nexus…** in its details: once linked, it counts as installed in collections.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tadpole sait de quel mod Nexus vient un mod installé quand il a été téléchargé par Tadpole. Pour les mods installés depuis des fichiers, sélectionnez le mod et cliquez sur **Trouver sur Nexus…** dans ses détails : une fois lié, il compte comme installé dans les collections."
+    "Tadpole Release Notes" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes de version de Tadpole"
           }
         }
       }
     },
-    "Tadpole manages the mods in “Documents/Larian Studios/Baldur's Gate 3”. The game creates that folder the first time it runs: start it, reach the main menu, quit, then come back.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tadpole gère les mods dans « Documents/Larian Studios/Baldur’s Gate 3 ». Le jeu crée ce dossier à son premier lancement : lancez-le, allez jusqu’au menu principal, quittez, puis revenez."
+    "Tadpole Updates" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mises à jour de Tadpole"
           }
         }
       }
     },
-    "Tadpole marks those mods with a **Script Extender** badge. Mods that only change looks, items, hair, dice or text don't need it and work normally.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tadpole marque ces mods d’un badge **Script Extender**. Les mods qui changent seulement l’apparence, des objets, des coiffures, des dés ou du texte n’en ont pas besoin et marchent normalement."
+    "Take it out of the load order" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le retirer de l’ordre de chargement"
           }
         }
       }
     },
-    "Tadpole Release Notes": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Notes de version de Tadpole"
+    "The download and install go on in the main window's sidebar. With several mods to download, the browser stays open until the last one." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le téléchargement et l’installation continuent dans la barre latérale de la fenêtre principale. Avec plusieurs mods à télécharger, le navigateur reste ouvert jusqu’au dernier."
           }
         }
       }
     },
-    "Tadpole Updates": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mises à jour de Tadpole"
+    "The game can remove mods it can't load from its list. Open **Load Order**, tick them again, and check their requirements. The previous file is kept as **modsettings.lsx.bak** (**Settings → Game** shows where)." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jeu peut retirer de sa liste les mods qu’il n’arrive pas à charger. Ouvrez **Ordre de chargement**, cochez-les de nouveau et vérifiez leurs prérequis. Le fichier précédent est gardé sous le nom **modsettings.lsx.bak** (**Réglages → Jeu** indique où)."
           }
         }
       }
     },
-    "Take it out of the load order": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le retirer de l’ordre de chargement"
+    "The game decides where these are; Tadpole works with them where they are. Each change to the load order keeps the previous file as modsettings.lsx.bak." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C’est le jeu qui décide de leur emplacement ; Tadpole travaille avec eux là où ils sont. Chaque changement de l’ordre de chargement garde le fichier précédent sous le nom modsettings.lsx.bak."
           }
         }
       }
     },
-    "The download and install go on in the main window's sidebar. With several mods to download, the browser stays open until the last one.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le téléchargement et l’installation continuent dans la barre latérale de la fenêtre principale. Avec plusieurs mods à télécharger, le navigateur reste ouvert jusqu’au dernier."
+    "The game is running: Tadpole won't change the load order until you quit it." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jeu est lancé : Tadpole ne changera pas l’ordre de chargement tant que vous ne l’aurez pas quitté."
           }
         }
       }
     },
-    "The game can remove mods it can't load from its list. Open **Load Order**, tick them again, and check their requirements. The previous file is kept as **modsettings.lsx.bak** (**Settings → Game** shows where).": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le jeu peut retirer de sa liste les mods qu’il n’arrive pas à charger. Ouvrez **Ordre de chargement**, cochez-les de nouveau et vérifiez leurs prérequis. Le fichier précédent est gardé sous le nom **modsettings.lsx.bak** (**Réglages → Jeu** indique où)."
+    "The game loads only one copy of a mod, and it may not be the newest one." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jeu ne charge qu’une copie d’un mod, et ce n’est peut-être pas la plus récente."
           }
         }
       }
     },
-    "The game decides where these are; Tadpole works with them where they are. Each change to the load order keeps the previous file as modsettings.lsx.bak.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "C’est le jeu qui décide de leur emplacement ; Tadpole travaille avec eux là où ils sont. Chaque changement de l’ordre de chargement garde le fichier précédent sous le nom modsettings.lsx.bak."
+    "The game loads the mods listed in its load order file, from top to bottom, after its own modules. A mod in the Mods folder that isn't listed doesn't load." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jeu charge les mods listés dans son fichier d’ordre de chargement, de haut en bas, après ses propres modules. Un mod du dossier Mods qui n’y est pas listé n’est pas chargé."
           }
         }
       }
     },
-    "The game is running: Tadpole won't change the load order until you quit it.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le jeu est lancé : Tadpole ne changera pas l’ordre de chargement tant que vous ne l’aurez pas quitté."
+    "The game reset my mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jeu a réinitialisé mes mods"
           }
         }
       }
     },
-    "The game loads only one copy of a mod, and it may not be the newest one.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le jeu ne charge qu’une copie d’un mod, et ce n’est peut-être pas la plus récente."
+    "The game rewrites its mod list when it quits, which would undo this change." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jeu réécrit sa liste de mods en quittant, ce qui annulerait ce changement."
           }
         }
       }
     },
-    "The game loads the mods listed in its load order file, from top to bottom, after its own modules. A mod in the Mods folder that isn't listed doesn't load.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le jeu charge les mods listés dans son fichier d’ordre de chargement, de haut en bas, après ses propres modules. Un mod du dossier Mods qui n’y est pas listé n’est pas chargé."
+    "The Load Order" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’ordre de chargement"
           }
         }
       }
     },
-    "The game reset my mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le jeu a réinitialisé mes mods"
+    "The menu bar icon" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’icône de la barre des menus"
           }
         }
       }
     },
-    "The game rewrites its mod list when it quits, which would undo this change.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le jeu réécrit sa liste de mods en quittant, ce qui annulerait ce changement."
+    "The new language applies after a restart." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La nouvelle langue s’applique après un redémarrage."
           }
         }
       }
     },
-    "The Load Order": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "L’ordre de chargement"
+    "The pages" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les pages"
           }
         }
       }
     },
-    "The new language applies after a restart.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La nouvelle langue s’applique après un redémarrage."
+    "The tadpole in the menu bar shows the game's version, how many mods load, and the number of mod updates. From it you can play, update your mods, and back up your saves. While it's shown, closing the window keeps Tadpole running so it can keep checking for updates: quit from its menu. Turn it off in **Settings → General**." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le têtard dans la barre des menus affiche la version du jeu, le nombre de mods chargés et le nombre de mises à jour. Depuis son menu, vous pouvez jouer, mettre à jour vos mods et sauvegarder vos parties. Tant qu’il est affiché, fermer la fenêtre laisse Tadpole ouvert pour qu’il continue à vérifier les mises à jour : quittez depuis son menu. Désactivez-le dans **Réglages → Général**."
           }
         }
       }
     },
-    "The pages": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les pages"
+    "Theme" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thème"
           }
         }
       }
     },
-    "Theme": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Thème"
+    "Then click **Mod Manager Download** on a mod's Files tab: Tadpole downloads and installs it." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ensuite, cliquez sur **Mod Manager Download** dans l’onglet Files d’un mod : Tadpole le télécharge et l’installe."
           }
         }
       }
     },
-    "Then click **Mod Manager Download** on a mod's Files tab: Tadpole downloads and installs it.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ensuite, cliquez sur **Mod Manager Download** dans l’onglet Files d’un mod : Tadpole le télécharge et l’installe."
+    "This link is for “%@”. Only Baldur's Gate 3 mods can be installed here." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce lien est pour « %@ ». Seuls les mods de Baldur’s Gate 3 peuvent être installés ici."
           }
         }
       }
     },
-    "This link is for “%@”. Only Baldur's Gate 3 mods can be installed here.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ce lien est pour « %@ ». Seuls les mods de Baldur’s Gate 3 peuvent être installés ici."
+    "This mod is in the load order. Quit the game before removing it." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce mod est dans l’ordre de chargement. Quittez le jeu avant de le supprimer."
           }
         }
       }
     },
-    "This mod is in the load order. Quit the game before removing it.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ce mod est dans l’ordre de chargement. Quittez le jeu avant de le supprimer."
+    "This mod uses Norbyte's Script Extender, which isn't available on macOS. Its scripted features won't work." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce mod utilise le Script Extender de Norbyte, qui n’existe pas sur macOS. Ses fonctions scriptées ne marcheront pas."
           }
         }
       }
     },
-    "This mod uses Norbyte's Script Extender, which isn't available on macOS. Its scripted features won't work.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ce mod utilise le Script Extender de Norbyte, qui n’existe pas sur macOS. Ses fonctions scriptées ne marcheront pas."
+    "This save is still in the game. Restoring puts the backed-up version in its place; the current one goes to the Trash." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette sauvegarde est toujours dans le jeu. La restauration met la copie à sa place ; l’actuelle va dans la corbeille."
           }
         }
       }
     },
-    "This save is still in the game. Restoring puts the backed-up version in its place; the current one goes to the Trash.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cette sauvegarde est toujours dans le jeu. La restauration met la copie à sa place ; l’actuelle va dans la corbeille."
+    "Tick a mod to add it to the end of the load order; untick it to take it out. It stays installed either way, under **Installed, Not Loaded**. Drag mods to change their order." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cochez un mod pour l’ajouter à la fin de l’ordre de chargement ; décochez-le pour l’en retirer. Il reste installé dans les deux cas, sous **Installés, non chargés**. Faites glisser les mods pour changer leur ordre."
           }
         }
       }
     },
-    "Tick a mod to add it to the end of the load order; untick it to take it out. It stays installed either way, under **Installed, Not Loaded**. Drag mods to change their order.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cochez un mod pour l’ajouter à la fin de l’ordre de chargement ; décochez-le pour l’en retirer. Il reste installé dans les deux cas, sous **Installés, non chargés**. Faites glisser les mods pour changer leur ordre."
+    "To download from Nexus Mods inside Tadpole, add your personal API key in **Settings → Nexus Mods** (⌘,)." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour télécharger depuis Nexus Mods dans Tadpole, ajoutez votre clé d’API personnelle dans **Réglages → Nexus Mods** (⌘,)."
           }
         }
       }
     },
-    "To download from Nexus Mods inside Tadpole, add your personal API key in **Settings → Nexus Mods** (⌘,).": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pour télécharger depuis Nexus Mods dans Tadpole, ajoutez votre clé d’API personnelle dans **Réglages → Nexus Mods** (⌘,)."
+    "Troubleshooting" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dépannage"
           }
         }
       }
     },
-    "Troubleshooting": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dépannage"
+    "Try Again" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réessayer"
           }
         }
       }
     },
-    "Try Again": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Réessayer"
+    "Turn this mod on to check" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activez ce mod pour vérifier"
           }
         }
       }
     },
-    "Turn this mod on to check": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activez ce mod pour vérifier"
+    "Turning mods on and off" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activer et désactiver des mods"
           }
         }
       }
     },
-    "Turning mods on and off": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activer et désactiver des mods"
+    "Unlink" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Délier"
           }
         }
       }
     },
-    "Unlink": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Délier"
+    "Unsupported Link" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lien non pris en charge"
           }
         }
       }
     },
-    "Unsupported Link": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lien non pris en charge"
+    "Update" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mettre à jour"
           }
         }
       }
     },
-    "Update": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mettre à jour"
+    "Update All" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout mettre à jour"
           }
         }
       }
     },
-    "Update All": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tout mettre à jour"
+    "Update All (%lld)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout mettre à jour (%lld)"
           }
         }
       }
     },
-    "Update All (%lld)": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tout mettre à jour (%lld)"
+    "Update to %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passer à %@"
           }
         }
       }
     },
-    "Update to %@": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Passer à %@"
+    "Updates" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mises à jour"
           }
         }
       }
     },
-    "Updates": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mises à jour"
+    "Updates show what's new before they install. They're checked against Tadpole's own signing key." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les mises à jour montrent les nouveautés avant de s’installer. Elles sont vérifiées avec la clé de signature propre à Tadpole."
           }
         }
       }
     },
-    "Updates show what's new before they install. They're checked against Tadpole's own signing key.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les mises à jour montrent les nouveautés avant de s’installer. Elles sont vérifiées avec la clé de signature propre à Tadpole."
+    "Uses Norbyte's Script Extender, which is only available on Windows. Its scripted features won't work on a Mac; parts that don't need it may still work." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilise le Script Extender de Norbyte, qui n’existe que sur Windows. Ses fonctions scriptées ne marcheront pas sur Mac ; les parties qui n’en ont pas besoin peuvent fonctionner."
           }
         }
       }
     },
-    "Uses Norbyte's Script Extender, which is only available on Windows. Its scripted features won't work on a Mac; parts that don't need it may still work.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Utilise le Script Extender de Norbyte, qui n’existe que sur Windows. Ses fonctions scriptées ne marcheront pas sur Mac ; les parties qui n’en ont pas besoin peuvent fonctionner."
+    "UUID" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UUID"
           }
         }
       }
     },
-    "UUID": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UUID"
+    "Version" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version"
           }
         }
       }
     },
-    "Version": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Version"
+    "Version %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %@"
           }
         }
       }
     },
-    "Version %@": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Version %@"
+    "View on Nexus Mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir sur Nexus Mods"
           }
         }
       }
     },
-    "View on Nexus Mods": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Voir sur Nexus Mods"
+    "Waiting for another download to finish…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En attente de la fin d’un autre téléchargement…"
           }
         }
       }
     },
-    "Waiting for another download to finish…": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "En attente de la fin d’un autre téléchargement…"
+    "Warlock" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Occultiste"
           }
         }
       }
     },
-    "Warlock": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Occultiste"
+    "What can't be installed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce qui ne peut pas être installé"
           }
         }
       }
     },
-    "What can't be installed": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ce qui ne peut pas être installé"
+    "What's New" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveautés"
           }
         }
       }
     },
-    "What's New": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nouveautés"
+    "With the menu bar icon, closing the window keeps Tadpole running so it can keep checking for mod updates. Quit from the icon's menu." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avec l’icône dans la barre des menus, fermer la fenêtre laisse Tadpole ouvert pour qu’il continue à vérifier les mises à jour des mods. Quittez depuis le menu de l’icône."
           }
         }
       }
     },
-    "Wizard": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Magicien"
+    "Wizard" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magicien"
           }
         }
       }
     },
-    "You can get it back from the Trash in Finder.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vous pouvez la récupérer dans la corbeille depuis le Finder."
+    "You can get it back from the Trash in Finder." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous pouvez la récupérer dans la corbeille depuis le Finder."
           }
         }
       }
     },
-    "Your Nexus Mods API key was rejected. Check it in Settings.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Votre clé d’API Nexus Mods a été refusée. Vérifiez-la dans les Réglages."
+    "Your Nexus Mods API key was rejected. Check it in Settings." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre clé d’API Nexus Mods a été refusée. Vérifiez-la dans les Réglages."
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

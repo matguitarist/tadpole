@@ -62,6 +62,11 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
 - [x] Notification when updates are found (checked at launch and every 6
       hours).
 - [ ] Updates for mods linked by hand (which file is installed isn't known).
+- [x] **Menu bar icon**: game version, mods loaded, Play, mod updates and
+      downloads; closing the window keeps Tadpole running (Settings → General).
+- [x] **Script Extender in collections**: mods whose Nexus requirements list
+      it (directly or through another mod) are marked before installing, with
+      an option to skip them.
 - [ ] Download progress and errors in a status bar at the bottom of every page.
 
 ## 0.3: Profiles and saves
