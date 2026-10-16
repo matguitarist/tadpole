@@ -3,23 +3,20 @@
     <channel>
         <title>Tadpole</title>
         <item>
-            <title>0.2</title>
-            <pubDate>Fri, 16 Oct 2026 10:06:52 -0400</pubDate>
-            <sparkle:version>2</sparkle:version>
-            <sparkle:shortVersionString>0.2</sparkle:shortVersionString>
+            <title>0.2.1</title>
+            <pubDate>Fri, 16 Oct 2026 12:50:40 -0400</pubDate>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>0.2.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[## Updates and the Script Extender
+            <description sparkle:format="markdown"><![CDATA[## A clearer Script Extender log
 
-- **Updates**: a new page lists newer versions of your Nexus mods, with what changed. **Update** or **Update All** replaces the old file and keeps the mod's place in the load order. Tadpole checks at launch and every 6 hours, and notifies you.
-- **Script Extender for macOS**: install [bg3se-macos](https://github.com/tdimino/bg3se-macos), an independent rebuild of Norbyte's Script Extender for Apple silicon, from Settings → Script Extender. Tadpole checks the download, keeps it up to date, and applies it again after game updates. It's unofficial, and each release is made for one game build: Tadpole tells you when yours isn't supported yet. Back up your saves first.
-- **Script Extender Log** (⌘6): what the Script Extender loaded and what went wrong, with errors grouped by mod, updating while you play.
-- **Collections** show which mods need the Script Extender before you install them, with an option to skip them.
-- **Mod details** show the mod's picture from Nexus, its status, size, and every file on its Nexus page, main and optional. Mods installed from files can be linked to Nexus with **Find on Nexus…**.
-- **Install All** for mods split into several files.
-- **Menu bar icon** with the game's version, Play, mod updates and downloads. Turn it off in Settings → General.
-- A bar at the bottom of the window shows the game's and the Script Extender's versions.
+- Each part of the Script Extender (Lua, Osiris, Stats…) has its own color in the log.
+- On a game build the Script Extender wasn't made for, an orange **Limited mode** banner says which features are turned off. Warnings the Script Extender writes as ordinary lines now count as warnings.
+- Mods the Script Extender lists by mistake (it sometimes matches a mod to another mod's scripts) are noted and no longer counted as Script Extender mods.
+- Clicking a mod or part under **Problems** shows exactly its warnings and errors, with **Show All** to go back.
+- Help covers the bar at the bottom, badges, mod details, and what to do when a Script Extender mod doesn't work.
 ]]></description>
-            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.2/Tadpole-0.2.zip" length="5028890" type="application/octet-stream" sparkle:edSignature="ttSQVJoOfhxkTX9AhQKo4r4Z5PcgFCGbiT6hWbCWAXADaDUZ9BFWl6DrhGdGjjxUlVKnek+FlujjYbNzvlKMDg=="/>
+            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.2.1/Tadpole-0.2.1.zip" length="5098597" type="application/octet-stream" sparkle:edSignature="4booDjDhFUn/Ex/O1egS84ZuWgvO2l9CT42vVWo6bKr7dy5Vg5wdHAxz8pjuEQUNHdBPy5ad1Yr+HoPrLGAYCg=="/>
         </item>
     </channel>
 </rss>
