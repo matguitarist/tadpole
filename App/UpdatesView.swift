@@ -41,7 +41,7 @@ struct UpdatesView: View {
                         Text(model.isCheckingUpdates ? "Checking Nexus…" : "Not checked yet.")
                     }
                     if !model.uncheckableMods.isEmpty {
-                        Text("\(model.uncheckableMods.count) mods can't be checked: Tadpole only knows the version of mods downloaded through it. Install them from Nexus once to get their updates.")
+                        Text("\(model.uncheckableMods.count) mods can't be checked: they aren't linked to Nexus. Select one in Load Order and click Find on Nexus… in its details.")
                     }
                 }
             } actions: {
@@ -58,7 +58,7 @@ struct UpdatesView: View {
                     ForEach(model.updates) { UpdateRow(update: $0) }
                 } footer: {
                     if !model.uncheckableMods.isEmpty {
-                        Text("\(model.uncheckableMods.count) mods can't be checked: Tadpole only knows the version of mods downloaded through it. Install them from Nexus once to get their updates.")
+                        Text("\(model.uncheckableMods.count) mods can't be checked: they aren't linked to Nexus. Select one in Load Order and click Find on Nexus… in its details.")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -153,6 +153,11 @@ private struct UpdateRow: View {
                     }
                     .font(.caption)
                     .foregroundStyle(.secondary)
+                    if update.isGuess {
+                        Label("Your version was guessed from when you installed it: check before updating.", systemImage: "questionmark.circle")
+                            .font(.caption)
+                            .foregroundStyle(.orange)
+                    }
                 }
                 Spacer()
                 Button("Update") { model.install([update]) }

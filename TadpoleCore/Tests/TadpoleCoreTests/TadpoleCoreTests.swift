@@ -747,3 +747,31 @@ import Testing
         #expect(throws: LoadOrderFile.ReadError.notALoadOrder) { try LoadOrderFile.read(Data("not a load order".utf8)) }
     }
 }
+
+@Suite struct InstalledFileGuessTests {
+    let files = [
+        NexusFile(fileId: 1, name: "Spells", version: "2.4.2", category: "OLD_VERSION", date: 1_000, groupId: 7),
+        NexusFile(fileId: 2, name: "Spells", version: "v2.4.3", category: "MAIN", date: 2_000, groupId: 7),
+        NexusFile(fileId: 3, name: "Patch", version: "2.4.3", category: "OPTIONAL", date: 2_500, groupId: 8),
+        NexusFile(fileId: 4, name: "Spells", version: "2.5", category: "MAIN", date: 3_000, groupId: 7),
+    ]
+
+    @Test func matchesThePaksVersion() {
+        // The main file, not the optional one with the same version.
+        #expect(InstalledFileGuess.find(version: "2.4.3.0", installedOn: nil, in: files) == .matched(files[1]))
+        #expect(InstalledFileGuess.find(version: "2.4.2.0", installedOn: nil, in: files) == .matched(files[0]))
+    }
+
+    @Test func otherwiseGuessesFromTheInstallDate() {
+        let installed = Date(timeIntervalSince1970: 2_600)
+        // "1.0.0.0" is what most .paks say whatever their version: not a match.
+        #expect(InstalledFileGuess.find(version: "1.0.0.0", installedOn: installed, in: files) == .guessed(files[1]))
+        #expect(InstalledFileGuess.find(version: nil, installedOn: Date(timeIntervalSince1970: 500), in: files) == nil)
+    }
+
+    @Test func normalizesVersions() {
+        #expect(InstalledFileGuess.normalized("v2.4.3.0") == "2.4.3")
+        #expect(InstalledFileGuess.normalized("1.0") == "1")
+        #expect(InstalledFileGuess.normalized(" ") == nil)
+    }
+}

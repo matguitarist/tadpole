@@ -32,3 +32,38 @@ public struct NexusUpdate: Sendable, Hashable {
         return NexusUpdate(installed: installed, latest: latest, changes: changes)
     }
 }
+
+/// For a mod linked by hand (which Nexus file it came from isn't known):
+/// which of the mod's files is probably installed.
+public enum InstalledFileGuess {
+    public enum Result: Equatable, Sendable {
+        /// A file's version is the .pak's own version: that's the one.
+        case matched(NexusFile)
+        /// The newest main file uploaded before the .pak was installed.
+        case guessed(NexusFile)
+    }
+
+    public static func find(version: String?, installedOn date: Date?, in files: [NexusFile]) -> Result? {
+        // The mod itself: main files and their older versions, not optional
+        // files (which can share the version).
+        let main = files.filter { ["MAIN", "UPDATE", "OLD_VERSION", "ARCHIVED"].contains($0.category) }
+        if let version, let wanted = normalized(version), wanted != "1", wanted != "0" {
+            let matches = main.filter { $0.version.flatMap(normalized) == wanted }
+            if let match = matches.max(by: { $0.date < $1.date }) { return .matched(match) }
+        }
+        guard let date else { return nil }
+        // Main files only (an optional file isn't the mod itself): the newest
+        // one already out when the .pak arrived.
+        return main.filter { $0.uploadedAt <= date && $0.groupId != nil }.max { $0.date < $1.date }.map { .guessed($0) }
+    }
+
+    /// "v2.4.3", "2.4.3.0" → "2.4.3"; nil for empty.
+    static func normalized(_ version: String) -> String? {
+        var text = version.trimmingCharacters(in: .whitespaces).lowercased()
+        if text.hasPrefix("v") { text.removeFirst() }
+        var parts = text.split(separator: ".").map(String.init)
+        while parts.count > 1, parts.last.flatMap(Int.init) == 0 { parts.removeLast() }
+        let result = parts.joined(separator: ".")
+        return result.isEmpty ? nil : result
+    }
+}

@@ -14,6 +14,9 @@ struct ModUpdate: Identifiable, Equatable {
     /// The installed .pak files that came from the old file.
     let paks: [String]
     let update: NexusUpdate
+    /// The mod was linked by hand and its version didn't match a Nexus file:
+    /// the installed file was guessed from when it was installed.
+    var isGuess = false
 
     var id: Int { update.latest.fileId }
 }
@@ -21,10 +24,9 @@ struct ModUpdate: Identifiable, Equatable {
 extension AppModel {
     static let updateCheckInterval: Duration = .seconds(6 * 60 * 60)
 
-    /// Mods that can't be checked: not linked to Nexus, or linked by hand
-    /// (which file is installed isn't known).
+    /// Mods that can't be checked: not linked to Nexus.
     var uncheckableMods: [PakMod] {
-        mods.filter { $0.info != nil }.filter { mod in (nexusOrigin(of: mod)?.fileID ?? 0) == 0 }
+        mods.filter { $0.info != nil && nexusOrigin(of: $0) == nil }
     }
 
     func update(forPak name: String) -> ModUpdate? {
@@ -50,13 +52,19 @@ extension AppModel {
         isCheckingUpdates = true
         defer { isCheckingUpdates = false }
 
-        // Installed .pak files by the Nexus file they came from.
+        // Installed .pak files by the Nexus file they came from; mods linked
+        // by hand (file unknown) are matched to a file below.
         let installed = Set(mods.map(\.file.lastPathComponent))
         var paksByFile: [NexusOrigins.Origin: [String]] = [:]
-        for (pak, origin) in origins.byPak where installed.contains(pak) && origin.fileID != 0 {
-            paksByFile[NexusOrigins.Origin(modID: origin.modID, fileID: origin.fileID), default: []].append(pak)
+        var handLinked: [(pak: String, modID: Int)] = []
+        for (pak, origin) in origins.byPak where installed.contains(pak) {
+            if origin.fileID != 0 {
+                paksByFile[NexusOrigins.Origin(modID: origin.modID, fileID: origin.fileID), default: []].append(pak)
+            } else {
+                handLinked.append((pak, origin.modID))
+            }
         }
-        let modIDs = Set(paksByFile.keys.map(\.modID))
+        let modIDs = Set(paksByFile.keys.map(\.modID) + handLinked.map(\.modID))
         let client = nexusClient
 
         // A few mods at a time, gently on Nexus.
@@ -75,13 +83,34 @@ extension AppModel {
         }
         for (modID, files) in filesByMod { nexusFiles[modID] = files }
 
+        // Mods linked by hand: a file with the .pak's version is the
+        // installed one (remembered from now on); otherwise the newest main
+        // file from before it was installed, for this check only.
+        var guessedPaks: Set<String> = []
+        for (pak, modID) in handLinked {
+            guard let files = filesByMod[modID], let mod = mods.first(where: { $0.file.lastPathComponent == pak }) else { continue }
+            let installedOn = (try? mod.file.resourceValues(forKeys: [.creationDateKey]))?.creationDate
+            switch InstalledFileGuess.find(version: mod.info?.version.description, installedOn: installedOn, in: files) {
+            case .matched(let file):
+                origins.byPak[pak] = NexusOrigins.Origin(modID: modID, fileID: file.fileId, version: file.version)
+                try? origins.save(to: Self.originsFile)
+                paksByFile[NexusOrigins.Origin(modID: modID, fileID: file.fileId), default: []].append(pak)
+            case .guessed(let file):
+                paksByFile[NexusOrigins.Origin(modID: modID, fileID: file.fileId), default: []].append(pak)
+                guessedPaks.insert(pak)
+            case nil:
+                continue
+            }
+        }
+
         var found: [ModUpdate] = []
         for (origin, paks) in paksByFile {
             guard let files = filesByMod[origin.modID],
                   let update = NexusUpdate.find(installedFileID: origin.fileID, in: files) else { continue }
             if nexusMods[origin.modID] == nil { nexusMods[origin.modID] = try? await client.mod(id: origin.modID) }
             let name = nexusMods[origin.modID]?.name ?? mods.first { paks.contains($0.file.lastPathComponent) }?.name ?? update.installed.name
-            found.append(ModUpdate(modID: origin.modID, modName: name, paks: paks.sorted(), update: update))
+            found.append(ModUpdate(modID: origin.modID, modName: name, paks: paks.sorted(), update: update,
+                                   isGuess: paks.allSatisfy(guessedPaks.contains)))
         }
         found.sort { $0.modName.localizedStandardCompare($1.modName) == .orderedAscending }
 
