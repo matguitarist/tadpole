@@ -30,6 +30,24 @@ public struct NexusFile: Identifiable, Hashable, Sendable, Decodable {
     public let sizeInBytes: String?  // BigInt comes back as a string
     public let date: Int             // unix seconds
     public let description: String?
+    /// Files in the same group are versions of the same file: the newest
+    /// current one replaces the others.
+    public let groupId: Int?
+    /// What changed in this version, as the author wrote it on the file.
+    public let changelogText: [String]?
+
+    public init(fileId: Int, name: String, version: String?, category: String, sizeInBytes: String? = nil, date: Int,
+                description: String? = nil, groupId: Int?, changelogText: [String]? = nil) {
+        self.fileId = fileId
+        self.name = name
+        self.version = version
+        self.category = category
+        self.sizeInBytes = sizeInBytes
+        self.date = date
+        self.description = description
+        self.groupId = groupId
+        self.changelogText = changelogText
+    }
 
     public var id: Int { fileId }
     public var uploadedAt: Date { Date(timeIntervalSince1970: TimeInterval(date)) }
@@ -161,7 +179,9 @@ extension NexusClient {
         let response: Response = try await graphQL(
             """
             query Files($modId: ID!, $gameId: ID!) {
-              modFiles(modId: $modId, gameId: $gameId) { fileId name version category sizeInBytes date description }
+              modFiles(modId: $modId, gameId: $gameId) {
+                fileId name version category sizeInBytes date description groupId changelogText
+              }
             }
             """,
             variables: ["modId": String(modID), "gameId": String(Self.gameID)])

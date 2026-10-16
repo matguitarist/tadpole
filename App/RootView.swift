@@ -2,7 +2,7 @@ import SwiftUI
 import TadpoleCore
 
 enum SidebarItem: Hashable {
-    case loadOrder, browse, collections, saves
+    case loadOrder, updates, browse, collections, saves
 }
 
 /// The main window: sidebar and the selected page, plus the app-wide drop
@@ -20,6 +20,7 @@ struct RootView: View {
         } detail: {
             switch model.sidebarSelection ?? .loadOrder {
             case .loadOrder: LoadOrderView()
+            case .updates: UpdatesView()
             case .browse: BrowseView()
             case .collections: CollectionsView()
             case .saves: SavesView()
@@ -64,6 +65,9 @@ private struct Sidebar: View {
                 Label("Load Order", systemImage: "list.number")
                     .badge(model.enabledMods.count)
                     .tag(SidebarItem.loadOrder)
+                Label("Updates", systemImage: "arrow.down.circle")
+                    .badge(model.updates.count)
+                    .tag(SidebarItem.updates)
             }
             Section("Get Mods") {
                 Label("Browse Nexus", systemImage: "globe")

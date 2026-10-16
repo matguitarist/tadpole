@@ -250,6 +250,15 @@ private struct ModRow: View {
                 Badge(text: String(localized: "Script Extender"), color: .purple)
                     .help("This mod uses Norbyte's Script Extender, which isn't available on macOS. Its scripted features won't work.")
             }
+            if let update = model.update(forPak: mod.file.lastPathComponent) {
+                Button {
+                    model.install([update])
+                } label: {
+                    Badge(text: String(localized: "Update to \(update.update.latest.version ?? "")"), color: .blue)
+                }
+                .buttonStyle(.plain)
+                .help("Download and install the new version from Nexus")
+            }
             if !problems.isEmpty {
                 Badge(text: problems.count == 1 ? String(localized: "1 requirement issue") : String(localized: "\(problems.count) requirement issues"), color: .orange)
             }

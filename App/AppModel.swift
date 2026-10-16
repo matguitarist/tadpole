@@ -52,6 +52,13 @@ final class AppModel {
     /// Nexus pages and file lists already fetched, by mod number.
     var nexusMods: [Int: NexusMod] = [:]
     var nexusFiles: [Int: [NexusFile]] = [:]
+
+    // Mod updates (AppModel+Updates.swift)
+    var updates: [ModUpdate] = []
+    var lastUpdateCheck: Date?
+    var isCheckingUpdates = false
+    var updateCheckFailed = false
+    @ObservationIgnored var updateCheckTask: Task<Void, Never>?
     var collectionSheet: CollectionRequest?
 
     // Saves (AppModel+Saves.swift)
@@ -225,9 +232,14 @@ final class AppModel {
             return
         }
         var entries = settings.modEntries
-        for info in infos where !entries.contains(where: { $0.uuid == info.uuid }) {
-            entries.append(ModuleShortDesc(info))
+        for info in infos {
+            if let index = entries.firstIndex(where: { $0.uuid == info.uuid }) {
+                entries[index] = ModuleShortDesc(info)  // an update: same place, new version
+            } else {
+                entries.append(ModuleShortDesc(info))
+            }
         }
+        guard entries != settings.modEntries else { return }
         settings.setEnabledMods(entries)
         save(settings)
     }

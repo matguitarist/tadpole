@@ -79,9 +79,10 @@ struct HelpView: View {
             HelpSection("The pages") {
                 HelpBullets([
                     "**Load Order** (⌘1): your mods, which ones load, and in what order.",
-                    "**Browse Nexus** (⌘2): search Baldur's Gate 3 mods and install them.",
-                    "**Collections** (⌘3): curated mod packs from Nexus.",
-                    "**Saves** (⌘4): your saves, and backups of them.",
+                    "**Updates** (⌘2): new versions of your mods on Nexus, with what changed.",
+                    "**Browse Nexus** (⌘3): search Baldur's Gate 3 mods and install them.",
+                    "**Collections** (⌘4): curated mod packs from Nexus.",
+                    "**Saves** (⌘5): your saves, and backups of them.",
                 ])
             }
             HelpSection("Play") {
@@ -124,6 +125,10 @@ struct HelpView: View {
                 HelpText("Once a download starts, the browser closes and the download goes on in the sidebar's **Downloads** list. You can keep the browser open in **Settings → Nexus Mods**.")
                 HelpText("Tadpole catches **Mod Manager Download** links only in its own browser, so it doesn't take them from Starseed or another mod manager in Safari or Chrome.")
             }
+            HelpSection("Updates") {
+                HelpText("Tadpole checks Nexus for new versions of the mods it downloaded, at launch and every 6 hours, and notifies you when it finds some. **Updates** lists them with what changed; **Update** or **Update All** installs them. The old .pak goes to the Trash and the mod keeps its place in the load order.")
+                HelpText("Mods installed from files, or linked by hand, can't be checked: Tadpole doesn't know which version you have. Install them from Nexus once. Checking works without an API key; installing updates needs one.")
+            }
             HelpSection("Optional files") {
                 HelpText("Select an installed mod: its details show its Nexus page and every current file there, main and optional, with **Install** next to the ones you don't have.")
             }
@@ -162,7 +167,8 @@ struct HelpView: View {
 
         case .shortcuts:
             HelpShortcuts([
-                ("⌘1 – ⌘4", "Load Order, Browse Nexus, Collections, Saves"),
+                ("⌘1 – ⌘5", "Load Order, Updates, Browse Nexus, Collections, Saves"),
+                ("⇧⌘U", "Check for mod updates"),
                 ("⌘O", "Install Mods…"),
                 ("⌘R", "Reload"),
                 ("⇧⌘O", "Open Mods Folder"),

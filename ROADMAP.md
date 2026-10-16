@@ -53,13 +53,18 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
 - [x] **Optional files for installed mods**: the details panel lists the
       mod's Nexus files by category (main, optional, miscellaneous), with
       **Install** for the ones you don't have.
-- [ ] **Updates page**: compare installed mods with their latest Nexus
-      version (needs the Nexus origin, see above), with **Update** and
-      **Update All**, and the mod's changelog from Nexus.
+- [x] **Updates page**: the newest version of each installed Nexus file
+      (Nexus file groups), with **Update** and **Update All** and each
+      version's changelog. The old .pak goes to the Trash; the mod keeps its
+      place in the load order.
 - [ ] **Requirements from Nexus**: list a mod's required mods from its Nexus
       page and offer to install the missing ones in the same step.
-- [ ] Notification when updates are found (checked at launch and every few
-      hours, like Starseed).
+- [x] Notification when updates are found (checked at launch and every 6
+      hours).
+- [x] **No more Keychain prompts**: the Nexus API key moved to a private file
+      (the Keychain asked again after every build, without an Apple
+      Developer ID).
+- [ ] Updates for mods linked by hand (which file is installed isn't known).
 - [ ] Download progress and errors in a status bar at the bottom of every page.
 
 ## 0.3: Profiles and saves

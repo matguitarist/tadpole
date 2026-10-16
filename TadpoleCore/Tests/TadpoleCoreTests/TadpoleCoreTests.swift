@@ -285,3 +285,31 @@ import Testing
         #expect(PakMod.newestFirst([old, new, newer]).map(\.file.lastPathComponent) == ["Newer.pak", "New.pak", "Old.pak"])
     }
 }
+
+@Suite struct UpdateTests {
+    func file(_ id: Int, _ version: String, _ category: String, date: Int, group: Int? = 1, changes: [String] = []) -> NexusFile {
+        NexusFile(fileId: id, name: "Hairpack", version: version, category: category, date: date, groupId: group, changelogText: changes)
+    }
+
+    @Test func findsTheNewestVersionInTheSameGroup() throws {
+        let files = [
+            file(10, "1.0", "OLD_VERSION", date: 100),
+            file(11, "1.1", "ARCHIVED", date: 200, changes: ["Fixed the bun"]),
+            file(12, "1.2", "MAIN", date: 300, changes: ["New pigtails", "[b]Patch 8[/b] support"]),
+            file(20, "2.0", "OPTIONAL", date: 400, group: 2),  // another file
+        ]
+        let update = try #require(NexusUpdate.find(installedFileID: 10, in: files))
+        #expect(update.latest.fileId == 12)
+        #expect(update.changes.map(\.version) == ["1.2", "1.1"])
+        #expect(update.changes.first?.lines == ["New pigtails", "Patch 8 support"])
+    }
+
+    @Test func noUpdateWhenCurrentUnknownOrUngrouped() {
+        let files = [file(10, "1.0", "OLD_VERSION", date: 100), file(12, "1.2", "MAIN", date: 300), file(30, "1", "MAIN", date: 50, group: nil)]
+        #expect(NexusUpdate.find(installedFileID: 12, in: files) == nil)  // already the newest
+        #expect(NexusUpdate.find(installedFileID: 99, in: files) == nil)  // deleted from Nexus
+        #expect(NexusUpdate.find(installedFileID: 30, in: files) == nil)  // no group
+        // A newer version that was archived again isn't offered.
+        #expect(NexusUpdate.find(installedFileID: 10, in: [file(10, "1.0", "MAIN", date: 100), file(11, "1.1", "ARCHIVED", date: 200)]) == nil)
+    }
+}

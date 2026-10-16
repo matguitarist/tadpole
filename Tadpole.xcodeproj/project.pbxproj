@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0748C3E5A09F335C1AB6A085 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC5678F2040BBA6B1D3A835 /* Keychain.swift */; };
 		1FB1D92914D23D77799C1DEB /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 7981A16453E3F60C895EA775 /* Sparkle */; };
 		281DB6A04875095CB815B109 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */; };
 		325218FC30F98914C997C547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B1E77A4C31B78A5A52EF957 /* Assets.xcassets */; };
 		3EBC1DE41E8CD533C56ACB6D /* ModDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */; };
 		44FB3DF4D98632AD329D284C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */; };
 		53E4F1BF012EEA3A6155ADC1 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33E80D078054887EDFAC9C9 /* CollectionsView.swift */; };
+		62ED7C3BDF3C42A5EF8032B1 /* NexusKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C90330F4A0AE6DC85BAFC1 /* NexusKeyStore.swift */; };
 		69171DB21B19277C2C3F6EB0 /* TadpoleCore in Frameworks */ = {isa = PBXBuildFile; productRef = EBB45E710700B5463F0A3482 /* TadpoleCore */; };
 		6BE89967EAAD84EFD37CF73C /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A14F14F59621F35B8ACBFBE /* AppUpdater.swift */; };
 		6EF5CFC40D58997B66221F5D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B367FD056A0FE67493C5F008 /* Localizable.xcstrings */; };
 		810F32673BC3A3BA313C4D0B /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED628E94AA4479EADA1DFF /* AppModel.swift */; };
+		9D25929846D6FCF2BD586609 /* AppModel+Updates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15455984FAE55A6E7C5B4CC5 /* AppModel+Updates.swift */; };
 		A43B77CEF63008F2BE7618A0 /* AppModel+Saves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CB159921A67A21F95BBBB /* AppModel+Saves.swift */; };
 		B226CCA138D7CEBD0397D135 /* SavesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200CC654C7BA034F75D9FAB1 /* SavesView.swift */; };
 		B39B519F29FE20F07F8C0404 /* NexusFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A7217F6B42E131E1AC649 /* NexusFiles.swift */; };
@@ -30,10 +31,13 @@
 		E689F8C0142837009C6A5AAC /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF049D60674E4F843F145D5 /* RootView.swift */; };
 		E70D74C9814DBBD646224F82 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B782ED5F40424102BB728CA5 /* BrowseView.swift */; };
 		EAFB730EED4EBE1AE843F49E /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E8142B91713F9E679D936 /* Preferences.swift */; };
+		FC9D23C7DEFA664BDE3DC377 /* UpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A95924B5FFC84EF2324C9 /* UpdatesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		147A95924B5FFC84EF2324C9 /* UpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesView.swift; sourceTree = "<group>"; };
 		14ED628E94AA4479EADA1DFF /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		15455984FAE55A6E7C5B4CC5 /* AppModel+Updates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Updates.swift"; sourceTree = "<group>"; };
 		1C1A9B5FE8B11271CEDBDB4B /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		200CC654C7BA034F75D9FAB1 /* SavesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavesView.swift; sourceTree = "<group>"; };
 		2A14F14F59621F35B8ACBFBE /* AppUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdater.swift; sourceTree = "<group>"; };
@@ -43,7 +47,7 @@
 		3BAF40FB04F9897722528FBF /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		52712E02D25288AD3401FEFB /* LoadOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadOrderView.swift; sourceTree = "<group>"; };
 		5B9A7217F6B42E131E1AC649 /* NexusFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusFiles.swift; sourceTree = "<group>"; };
-		5CC5678F2040BBA6B1D3A835 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		62C90330F4A0AE6DC85BAFC1 /* NexusKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusKeyStore.swift; sourceTree = "<group>"; };
 		63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModDetails.swift; sourceTree = "<group>"; };
 		6FF049D60674E4F843F145D5 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		84F71A329F8DF8CA9FFAD525 /* Tadpole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadpole.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +109,7 @@
 				14ED628E94AA4479EADA1DFF /* AppModel.swift */,
 				A7409FB401E6011ADF7EC422 /* AppModel+Nexus.swift */,
 				2E9CB159921A67A21F95BBBB /* AppModel+Saves.swift */,
+				15455984FAE55A6E7C5B4CC5 /* AppModel+Updates.swift */,
 				2A14F14F59621F35B8ACBFBE /* AppUpdater.swift */,
 				9B1E77A4C31B78A5A52EF957 /* Assets.xcassets */,
 				A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */,
@@ -113,17 +118,18 @@
 				3BAF40FB04F9897722528FBF /* HelpView.swift */,
 				E2536676208960BA56A8528F /* Info.plist */,
 				1C1A9B5FE8B11271CEDBDB4B /* InfoPlist.xcstrings */,
-				5CC5678F2040BBA6B1D3A835 /* Keychain.swift */,
 				52712E02D25288AD3401FEFB /* LoadOrderView.swift */,
 				B367FD056A0FE67493C5F008 /* Localizable.xcstrings */,
 				63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */,
 				5B9A7217F6B42E131E1AC649 /* NexusFiles.swift */,
+				62C90330F4A0AE6DC85BAFC1 /* NexusKeyStore.swift */,
 				8F8E8142B91713F9E679D936 /* Preferences.swift */,
 				6FF049D60674E4F843F145D5 /* RootView.swift */,
 				200CC654C7BA034F75D9FAB1 /* SavesView.swift */,
 				A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */,
 				C88DE7BB747321F48EAE48F0 /* Tadpole.entitlements */,
 				36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */,
+				147A95924B5FFC84EF2324C9 /* UpdatesView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -211,21 +217,23 @@
 				C9D01ED84BDC9B05AC71A206 /* AppCommands.swift in Sources */,
 				C612E085EA8CC69FE662C3FE /* AppModel+Nexus.swift in Sources */,
 				A43B77CEF63008F2BE7618A0 /* AppModel+Saves.swift in Sources */,
+				9D25929846D6FCF2BD586609 /* AppModel+Updates.swift in Sources */,
 				810F32673BC3A3BA313C4D0B /* AppModel.swift in Sources */,
 				6BE89967EAAD84EFD37CF73C /* AppUpdater.swift in Sources */,
 				E70D74C9814DBBD646224F82 /* BrowseView.swift in Sources */,
 				281DB6A04875095CB815B109 /* BrowserView.swift in Sources */,
 				53E4F1BF012EEA3A6155ADC1 /* CollectionsView.swift in Sources */,
 				DEFA51D8F5E45F024256EB31 /* HelpView.swift in Sources */,
-				0748C3E5A09F335C1AB6A085 /* Keychain.swift in Sources */,
 				C7DE3D50457244BD93696B02 /* LoadOrderView.swift in Sources */,
 				3EBC1DE41E8CD533C56ACB6D /* ModDetails.swift in Sources */,
 				B39B519F29FE20F07F8C0404 /* NexusFiles.swift in Sources */,
+				62ED7C3BDF3C42A5EF8032B1 /* NexusKeyStore.swift in Sources */,
 				EAFB730EED4EBE1AE843F49E /* Preferences.swift in Sources */,
 				E689F8C0142837009C6A5AAC /* RootView.swift in Sources */,
 				B226CCA138D7CEBD0397D135 /* SavesView.swift in Sources */,
 				44FB3DF4D98632AD329D284C /* SettingsView.swift in Sources */,
 				D240846B996329B3F045F716 /* TadpoleApp.swift in Sources */,
+				FC9D23C7DEFA664BDE3DC377 /* UpdatesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

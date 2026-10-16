@@ -8,6 +8,8 @@ enum Preferences {
     static let theme = "theme"
     static let closeBrowserAfterDownload = "closeBrowserAfterDownload"
     static let settingsTab = "settingsTab"
+    static let checkModUpdates = "checkModUpdates"
+    static let notifyModUpdates = "notifyModUpdates"
 }
 
 /// Light, dark, or whatever macOS uses.

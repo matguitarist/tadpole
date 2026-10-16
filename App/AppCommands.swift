@@ -58,7 +58,7 @@ private struct ViewMenuItems: View {
     @Environment(\.openWindow) private var openWindow
 
     private static let pages: [(item: SidebarItem, title: LocalizedStringKey)] = [
-        (.loadOrder, "Load Order"), (.browse, "Browse Nexus"), (.collections, "Collections"), (.saves, "Saves"),
+        (.loadOrder, "Load Order"), (.updates, "Updates"), (.browse, "Browse Nexus"), (.collections, "Collections"), (.saves, "Saves"),
     ]
 
     var body: some View {
@@ -85,6 +85,17 @@ private struct ModsMenuItems: View {
             .keyboardShortcut("r")
         Button("Order by Requirements") { model.sortByDependencies() }
             .disabled(model.enabledMods.count < 2)
+        Divider()
+        Button("Check for Mod Updates") {
+            showPage(.updates, model: model, openWindow: openWindow)
+            Task { await model.checkForUpdates() }
+        }
+        .keyboardShortcut("u", modifiers: [.command, .shift])
+        .disabled(model.isCheckingUpdates)
+        Button(model.updates.isEmpty ? String(localized: "Update All") : String(localized: "Update All (\(model.updates.count))")) {
+            model.install(model.updates)
+        }
+        .disabled(model.updates.isEmpty)
         Divider()
         Button("Browse Nexus") { showPage(.browse, model: model, openWindow: openWindow) }
         Button("Collections") { showPage(.collections, model: model, openWindow: openWindow) }

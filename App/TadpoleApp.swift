@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 @main
 struct TadpoleApp: App {
@@ -16,6 +17,8 @@ struct TadpoleApp: App {
                     model.load()
                     model.startWatching()
                     model.loadNexusAccount()
+                    UNUserNotificationCenter.current().delegate = NotificationDelegate.shared
+                    model.startUpdateChecks()
                 }
         }
         .commands { AppCommands(model: model) }

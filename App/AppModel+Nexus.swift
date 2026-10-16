@@ -7,7 +7,7 @@ import AppKit
 import TadpoleCore
 
 extension AppModel {
-    /// Nexus account state, from the API key in the Keychain.
+    /// Nexus account state, from the saved API key.
     enum NexusAccount: Equatable {
         case none
         case checking
@@ -35,11 +35,11 @@ extension AppModel {
     // MARK: API key
 
     func loadNexusAccount() {
-        // Test copies (TADPOLE_SKIP_KEYCHAIN=1) don't ask for the key.
+        // Test copies (TADPOLE_SKIP_KEYCHAIN=1) don't read the key.
         guard ProcessInfo.processInfo.environment["TADPOLE_SKIP_KEYCHAIN"] == nil else { return }
         nexusAccount = .checking
         Task {
-            nexusAPIKey = await Task.detached { Keychain.readNexusAPIKey() }.value
+            nexusAPIKey = await Task.detached { NexusKeyStore.read() }.value
             await validateNexusKey()
         }
     }
@@ -48,7 +48,7 @@ extension AppModel {
         let trimmed = key.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
         do {
-            try Keychain.saveNexusAPIKey(trimmed)
+            try NexusKeyStore.save(trimmed)
         } catch {
             show("Couldn't Save the API Key", error.localizedDescription)
             return
@@ -58,7 +58,7 @@ extension AppModel {
     }
 
     func removeNexusAPIKey() {
-        Keychain.deleteNexusAPIKey()
+        NexusKeyStore.delete()
         nexusAPIKey = nil
         nexusAccount = .none
     }
@@ -132,7 +132,7 @@ extension AppModel {
             return show("Nexus API Key Needed", String(localized: "Add your personal Nexus Mods API key in Settings to download mods."))
         }
         if nexusAccount.user?.isPremium == true {
-            for file in files { download(modID: file.modID, fileID: file.fileID, title: file.title) }
+            for file in files { download(modID: file.modID, fileID: file.fileID, title: file.title, replacing: file.replacing) }
         } else {
             let queued = Set(browserQueue.map(\.fileID))
             browserQueue += files.filter { !queued.contains($0.fileID) }
@@ -153,7 +153,8 @@ extension AppModel {
             return show("Not a Baldur's Gate 3 Mod", String(localized: "This link is for “\(link.gameDomain)”. Only Baldur's Gate 3 mods can be installed here."))
         }
         let queued = browserQueue.first { $0.fileID == link.fileID }
-        download(modID: link.modID, fileID: link.fileID, title: queued?.title, key: link.key, expires: link.expires)
+        download(modID: link.modID, fileID: link.fileID, title: queued?.title, key: link.key, expires: link.expires,
+                 replacing: queued?.replacing ?? [])
         browserQueue.removeAll { $0.fileID == link.fileID }
         if let next = browserQueue.first {
             openNexusBrowser(next.pageURL)
@@ -180,7 +181,7 @@ extension AppModel {
         browserQueue = []
     }
 
-    private func download(modID: Int, fileID: Int, title: String?, key: String? = nil, expires: String? = nil) {
+    private func download(modID: Int, fileID: Int, title: String?, key: String? = nil, expires: String? = nil, replacing: [String] = []) {
         guard nexusAPIKey != nil else {
             return show("Nexus API Key Needed", String(localized: "Add your personal Nexus Mods API key in Settings to download mods."))
         }
@@ -210,7 +211,7 @@ extension AppModel {
                     Task { @MainActor in item.progress = fraction }
                 }
                 try Task.checkCancellation()
-                await installDownloaded(file, item: item, origin: NexusOrigins.Origin(modID: modID, fileID: fileID))
+                await installDownloaded(file, item: item, origin: NexusOrigins.Origin(modID: modID, fileID: fileID), replacing: replacing)
             } catch is CancellationError {
                 item.state = .cancelled
             } catch let error as URLError where error.code == .cancelled {
@@ -229,7 +230,7 @@ extension AppModel {
         Task { await installDownloaded(file, item: item, origin: nil) }
     }
 
-    private func installDownloaded(_ file: URL, item: DownloadItem, origin: NexusOrigins.Origin?) async {
+    private func installDownloaded(_ file: URL, item: DownloadItem, origin: NexusOrigins.Origin?, replacing: [String] = []) async {
         item.state = .installing
         let outcome = await install([file], quiet: true).value
         try? FileManager.default.removeItem(at: file.deletingLastPathComponent())
@@ -239,6 +240,7 @@ extension AppModel {
             if let origin {
                 for mod in mods { origins.byPak[mod.file.lastPathComponent] = origin }
                 try? origins.save(to: Self.originsFile)
+                if !replacing.isEmpty { finishUpdate(replacing: replacing, installed: mods, fileID: origin.fileID) }
             }
         case .nothingToInstall:
             item.state = .failed(String(localized: "No .pak file in this download. Mods made of loose files or for the Script Extender can't be installed by Tadpole."))
@@ -280,6 +282,8 @@ struct BrowserQueueItem: Identifiable, Equatable {
     let modID: Int
     let fileID: Int
     let title: String
+    /// For an update: the installed .pak files the new version replaces.
+    var replacing: [String] = []
 
     var id: Int { fileID }
     var pageURL: URL { NexusClient.modManagerDownloadPageURL(modID: modID, fileID: fileID) }

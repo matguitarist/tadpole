@@ -160,6 +160,8 @@ private struct NexusSettings: View {
     @Environment(AppModel.self) private var model
     @Environment(\.openWindow) private var openWindow
     @AppStorage(Preferences.closeBrowserAfterDownload) private var closeBrowserAfterDownload = true
+    @AppStorage(Preferences.checkModUpdates) private var checkModUpdates = true
+    @AppStorage(Preferences.notifyModUpdates) private var notifyModUpdates = true
     @State private var keyDraft = ""
     @State private var revealKey = false
     @State private var changingKey = false
@@ -181,7 +183,7 @@ private struct NexusSettings: View {
                 Text("Nexus Mods API Key")
             } footer: {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Needed to download mods. Sign in to Nexus, open your account's API Keys page, and copy the “Personal API Key” at the bottom. It's stored in your Keychain.")
+                    Text("Needed to download mods. Sign in to Nexus, open your account's API Keys page, and copy the “Personal API Key” at the bottom. It's kept in a file only your account can read.")
                     Link("Open the Nexus API Keys page…", destination: NexusClient.apiKeyPageURL)
                 }
                 .font(.caption)
@@ -202,6 +204,17 @@ private struct NexusSettings: View {
                 }
                 Toggle("Close the Nexus browser once a download starts", isOn: $closeBrowserAfterDownload)
                 Text("The download and install go on in the main window's sidebar. With several mods to download, the browser stays open until the last one.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            Section {
+                Toggle("Check for mod updates at launch and every 6 hours", isOn: $checkModUpdates)
+                Toggle("Notify me when updates are found", isOn: $notifyModUpdates)
+                    .disabled(!checkModUpdates)
+            } header: {
+                Text("Mod Updates")
+            } footer: {
+                Text("Checking uses Nexus's public information and works without an API key; installing updates needs one.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
