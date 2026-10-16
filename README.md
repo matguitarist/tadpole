@@ -42,7 +42,9 @@ Everything is explained in **Help → Tadpole Help** (⌘?).
   edits the game's own mod list (`modsettings.lsx`) and keeps the previous
   one as a backup.
 - **Profiles.** Named load orders to switch between: one per playthrough,
-  one per collection. Your changes are kept in the profile in use.
+  one per collection. Your changes are kept in the profile in use. Import a
+  friend's load order (BG3 Mod Manager's .json, or a modsettings.lsx) and
+  export yours.
 - **Requirements.** Warns when a mod needs another mod that's missing,
   turned off or loading too late, and fixes the order with **Order by
   Requirements**. Installing from Nexus offers the mods a mod's page says it
@@ -94,7 +96,9 @@ tells you about errors or a crash.
 ### And also
 
 - **Saves.** Your saves with the game's picture, your party and the
-  difficulty. Back them up as .zip files and restore them.
+  difficulty, and the mods each one was made with: load exactly those in
+  one click. Back them up as .zip files and restore them; Play backs up your
+  latest save when your mods changed.
 - **Menu bar icon** with the game's version, **Play**, mod updates and
   downloads.
 - A bar at the bottom of the window shows the game's and the Script
