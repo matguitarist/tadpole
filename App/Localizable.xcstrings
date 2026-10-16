@@ -134,6 +134,16 @@
         }
       }
     },
+    "#%lld" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "#%lld"
+          }
+        }
+      }
+    },
     "%@ — %lld left" : {
       "localizations" : {
         "en" : {
@@ -406,6 +416,16 @@
         }
       }
     },
+    "Always loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toujours chargé"
+          }
+        }
+      }
+    },
     "Always Loaded" : {
       "localizations" : {
         "fr" : {
@@ -462,6 +482,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Demande à Nexus…"
+          }
+        }
+      }
+    },
+    "Author" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auteur"
           }
         }
       }
@@ -732,6 +762,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "par %@"
+          }
+        }
+      }
+    },
+    "Can't be read" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Illisible"
           }
         }
       }
@@ -1316,6 +1356,16 @@
         }
       }
     },
+    "Files on Nexus" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichiers sur Nexus"
+          }
+        }
+      }
+    },
     "Find “%@” on Nexus Mods" : {
       "localizations" : {
         "fr" : {
@@ -1342,16 +1392,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trouver sur Nexus…"
-          }
-        }
-      }
-    },
-    "Folder" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dossier"
           }
         }
       }
@@ -1582,6 +1622,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Installés en double"
+          }
+        }
+      }
+    },
+    "Installed, not loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installé, non chargé"
           }
         }
       }
@@ -2116,6 +2166,16 @@
         }
       }
     },
+    "Nexus" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nexus"
+          }
+        }
+      }
+    },
     "Nexus API Key Needed" : {
       "localizations" : {
         "fr" : {
@@ -2412,16 +2472,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anciennes versions"
-          }
-        }
-      }
-    },
-    "On Nexus Mods" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sur Nexus Mods"
           }
         }
       }
@@ -3156,6 +3206,16 @@
         }
       }
     },
+    "Size" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taille"
+          }
+        }
+      }
+    },
     "Skip" : {
       "localizations" : {
         "fr" : {
@@ -3626,6 +3686,16 @@
         }
       }
     },
+    "Turns on when the game quits" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S’active quand le jeu se ferme"
+          }
+        }
+      }
+    },
     "Unlink" : {
       "localizations" : {
         "fr" : {
@@ -3742,6 +3812,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version %@"
+          }
+        }
+      }
+    },
+    "Version %@ available" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %@ disponible"
           }
         }
       }

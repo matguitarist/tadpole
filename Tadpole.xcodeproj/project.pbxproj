@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04F020E7053FECCCD87FB2EE /* Pictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F40E2D996A82221043F75 /* Pictures.swift */; };
 		0748C3E5A09F335C1AB6A085 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC5678F2040BBA6B1D3A835 /* Keychain.swift */; };
 		1FB1D92914D23D77799C1DEB /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 7981A16453E3F60C895EA775 /* Sparkle */; };
 		281DB6A04875095CB815B109 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */; };
@@ -53,6 +54,7 @@
 		63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModDetails.swift; sourceTree = "<group>"; };
 		6FF049D60674E4F843F145D5 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		84F71A329F8DF8CA9FFAD525 /* Tadpole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadpole.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A9F40E2D996A82221043F75 /* Pictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictures.swift; sourceTree = "<group>"; };
 		8F8E8142B91713F9E679D936 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		9B1E77A4C31B78A5A52EF957 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				54342D908BE7F55F92B180AC /* MenuBar.swift */,
 				63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */,
 				5B9A7217F6B42E131E1AC649 /* NexusFiles.swift */,
+				8A9F40E2D996A82221043F75 /* Pictures.swift */,
 				8F8E8142B91713F9E679D936 /* Preferences.swift */,
 				6FF049D60674E4F843F145D5 /* RootView.swift */,
 				200CC654C7BA034F75D9FAB1 /* SavesView.swift */,
@@ -232,6 +235,7 @@
 				5C215760DDDC2E75D01BF36C /* MenuBar.swift in Sources */,
 				3EBC1DE41E8CD533C56ACB6D /* ModDetails.swift in Sources */,
 				B39B519F29FE20F07F8C0404 /* NexusFiles.swift in Sources */,
+				04F020E7053FECCCD87FB2EE /* Pictures.swift in Sources */,
 				EAFB730EED4EBE1AE843F49E /* Preferences.swift in Sources */,
 				E689F8C0142837009C6A5AAC /* RootView.swift in Sources */,
 				B226CCA138D7CEBD0397D135 /* SavesView.swift in Sources */,

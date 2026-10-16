@@ -14,16 +14,59 @@ struct ModDetails: View {
     }
 
     private func details(_ mod: PakMod) -> some View {
-        ScrollView {
+        let modID = model.nexusOrigin(of: mod)?.modID
+        let page = modID.flatMap { model.nexusMods[$0] }
+        return ScrollView {
             VStack(alignment: .leading, spacing: 14) {
+                if let url = page?.pictureURL ?? page?.thumbnailURL {
+                    ShapedPicture(url: url)
+                }
                 VStack(alignment: .leading, spacing: 4) {
                     Text(mod.name).font(.title2.bold()).textSelection(.enabled)
-                    if let author = mod.info?.author, !author.isEmpty {
-                        Text("by \(author)").foregroundStyle(.secondary)
+                    let status = status(of: mod)
+                    Label(status.text, systemImage: "circle.fill")
+                        .font(.callout)
+                        .foregroundStyle(status.color)
+                }
+                if let update = model.update(forPak: mod.file.lastPathComponent) {
+                    HStack {
+                        Label("Version \(update.update.latest.version ?? update.update.latest.name) available", systemImage: "arrow.down.circle.fill")
+                            .foregroundStyle(.blue)
+                        Spacer()
+                        Button("Update") { model.install([update]) }
+                    }
+                    .font(.callout)
+                    .padding(8)
+                    .background(.blue.opacity(0.1), in: RoundedRectangle(cornerRadius: 6))
+                }
+
+                Grid(alignment: .leading, horizontalSpacing: 10, verticalSpacing: 6) {
+                    if let info = mod.info {
+                        row("Version", info.version.description)
+                    }
+                    if let author = mod.info?.author.nonEmpty ?? page?.author {
+                        row("Author", author)
+                    }
+                    if let info = mod.info {
+                        row("UUID", info.uuid)
+                    }
+                    row("File", mod.file.lastPathComponent)
+                    if let size = fileSize(mod) {
+                        row("Size", size.formatted(.byteCount(style: .file)))
+                    }
+                    if let modID {
+                        GridRow {
+                            Text("Nexus").foregroundStyle(.secondary)
+                            Button("#\(modID)") { model.openNexusBrowser(NexusClient.modPageURL(modID)) }
+                                .buttonStyle(.link)
+                                .help("Show this mod's page")
+                        }
                     }
                 }
-                if let description = mod.info?.description, !description.isEmpty {
-                    Text(description).fixedSize(horizontal: false, vertical: true)
+                .font(.callout)
+
+                if let description = mod.info?.description.nonEmpty ?? page?.summary?.strippingNexusMarkup.nonEmpty {
+                    Text(description).fixedSize(horizontal: false, vertical: true).textSelection(.enabled)
                 }
                 if mod.usesScriptExtender {
                     Label("Uses Norbyte's Script Extender, which is only available on Windows. Its scripted features won't work on a Mac; parts that don't need it may still work.", systemImage: "exclamationmark.triangle.fill")
@@ -38,19 +81,8 @@ struct ModDetails: View {
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
-
                 if let info = mod.info {
-                    Grid(alignment: .leading, horizontalSpacing: 10, verticalSpacing: 6) {
-                        row("Version", info.version.description)
-                        row("Folder", info.folder)
-                        row("UUID", info.uuid)
-                        row("File", mod.file.lastPathComponent)
-                    }
-                    .font(.callout)
                     requirements(info)
-                }
-
-                if mod.info != nil {
                     NexusSection(mod: mod)
                 }
 
@@ -62,6 +94,18 @@ struct ModDetails: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
         }
+    }
+
+    private func status(of mod: PakMod) -> (text: String, color: Color) {
+        if mod.error != nil { return (String(localized: "Can't be read"), .orange) }
+        if mod.info == nil { return (String(localized: "Always loaded"), .green) }
+        if model.enabledMods.contains(where: { $0.id == mod.id }) { return (String(localized: "Loaded"), .green) }
+        if model.pendingEnable.contains(mod.id) { return (String(localized: "Turns on when the game quits"), .orange) }
+        return (String(localized: "Installed, not loaded"), .secondary)
+    }
+
+    private func fileSize(_ mod: PakMod) -> Int64? {
+        (try? mod.file.resourceValues(forKeys: [.fileSizeKey]).fileSize).map(Int64.init)
     }
 
     @ViewBuilder
@@ -132,11 +176,9 @@ private struct NexusSection: View {
     @ViewBuilder
     private func linked(_ modID: Int) -> some View {
         let page = model.nexusMods[modID]
-        HStack(spacing: 10) {
-            RemotePicture(url: page?.thumbnailURL, cornerRadius: 4).frame(width: 72, height: 44)
+        HStack(alignment: .firstTextBaseline) {
             VStack(alignment: .leading, spacing: 1) {
-                Text("On Nexus Mods").font(.caption).foregroundStyle(.secondary)
-                Text(page?.name ?? String(localized: "Nexus mod \(modID)")).font(.headline).lineLimit(2)
+                Text("Files on Nexus").font(.headline)
                 if let version = page?.version, !version.isEmpty {
                     Text("Latest version: \(version)").font(.caption).foregroundStyle(.secondary)
                 }
@@ -154,6 +196,7 @@ private struct NexusSection: View {
             .menuStyle(.borderlessButton)
             .fixedSize()
         }
+        .task(id: modID) { await load(modID) }  // the page (picture) and files, whichever is missing
         if let files = model.nexusFiles[modID] {
             if files.contains(where: \.isCurrent) {
                 NexusFileSections(modID: modID, files: files, compact: true)
@@ -164,7 +207,6 @@ private struct NexusSection: View {
             Text(error).font(.callout).foregroundStyle(.red)
         } else {
             ProgressView().controlSize(.small)
-                .task(id: modID) { await load(modID) }
         }
     }
 
@@ -176,4 +218,8 @@ private struct NexusSection: View {
             self.error = AppModel.describe(error)
         }
     }
+}
+
+private extension String {
+    var nonEmpty: String? { isEmpty ? nil : self }
 }
