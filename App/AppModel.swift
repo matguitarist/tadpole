@@ -23,6 +23,7 @@ final class AppModel {
     /// Updated when the game starts and quits (for the banner); checks
     /// before writing use `isGameRunning`, which asks macOS.
     private(set) var gameIsRunning = false
+    private(set) var gameVersion: String?
     /// Mods installed while the game ran, by UUID: turned on once it quits
     /// (it would undo the change otherwise).
     private(set) var pendingEnable: [String] = []
@@ -105,6 +106,7 @@ final class AppModel {
 
     func load() {
         loadedSignature = filesSignature()
+        gameVersion = readGameVersion()
         guard paths.gameHasRun else {
             blocker = .gameNeverRan
             mods = PakMod.scan(paths.modsFolder)
@@ -154,7 +156,8 @@ final class AppModel {
         observers.append(NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: nil, queue: .main) { _ in
             MainActor.assumeIsolated {
                 AppModel.shared.reloadIfChanged()
-                AppModel.shared.refreshScriptExtenderState()  // Steam may have updated the game
+                AppModel.shared.gameVersion = AppModel.shared.readGameVersion()  // Steam may have updated the game
+                AppModel.shared.refreshScriptExtenderState()
             }
         })
     }
@@ -369,7 +372,8 @@ final class AppModel {
         NSWorkspace.shared.urlForApplication(withBundleIdentifier: GamePaths.bundleIdentifier)
     }
 
-    var gameVersion: String? {
+    /// Read again by load(): the status bar shows it on every page.
+    private func readGameVersion() -> String? {
         gameApp.flatMap { Bundle(url: $0)?.infoDictionary?["CFBundleShortVersionString"] as? String }
     }
 

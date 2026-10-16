@@ -60,7 +60,9 @@ Everything is explained in **Help → Tadpole Help** (⌘?).
   rebuild for Apple silicon (Settings → Script Extender): it checks each
   release's SHA-256, keeps it up to date from its GitHub releases, applies it
   again after game updates, and tells you when a release wasn't made for your
-  game build. It's unofficial and not every feature works yet.
+  game build. It's unofficial and not every feature works yet. Its log has
+  its own page, like SMAPI's in Starseed: errors grouped by mod, filters and
+  search, updated live while you play.
 
 ![Collections from Nexus Mods](docs/screenshots/collections.png)
 

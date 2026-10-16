@@ -2,7 +2,7 @@ import SwiftUI
 import TadpoleCore
 
 enum SidebarItem: Hashable {
-    case loadOrder, updates, browse, collections, saves
+    case loadOrder, updates, browse, collections, saves, scriptExtenderLog
 }
 
 /// The main window: sidebar and the selected page, plus the app-wide drop
@@ -18,13 +18,17 @@ struct RootView: View {
             Sidebar(selection: $model.sidebarSelection)
                 .navigationSplitViewColumnWidth(min: 180, ideal: 200, max: 260)
         } detail: {
-            switch model.sidebarSelection ?? .loadOrder {
-            case .loadOrder: LoadOrderView()
-            case .updates: UpdatesView()
-            case .browse: BrowseView()
-            case .collections: CollectionsView()
-            case .saves: SavesView()
+            Group {
+                switch model.sidebarSelection ?? .loadOrder {
+                case .loadOrder: LoadOrderView()
+                case .updates: UpdatesView()
+                case .browse: BrowseView()
+                case .collections: CollectionsView()
+                case .saves: SavesView()
+                case .scriptExtenderLog: ScriptExtenderLogView()
+                }
             }
+            .safeAreaInset(edge: .bottom, spacing: 0) { StatusBar() }
         }
         .sheet(item: $model.nexusSheet) { NexusModSheet(request: $0) }
         .sheet(item: $model.collectionSheet) { CollectionSheet(request: $0) }
@@ -78,6 +82,8 @@ private struct Sidebar: View {
             Section("Game") {
                 Label("Saves", systemImage: "externaldrive")
                     .tag(SidebarItem.saves)
+                Label("Script Extender Log", systemImage: "doc.text.magnifyingglass")
+                    .tag(SidebarItem.scriptExtenderLog)
             }
             if !model.downloads.isEmpty {
                 Section {

@@ -24,6 +24,8 @@
 		9866CB54B977050F40B310AE /* ScriptExtenderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168391B24282BA83A1A6F2BC /* ScriptExtenderSettings.swift */; };
 		9D25929846D6FCF2BD586609 /* AppModel+Updates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15455984FAE55A6E7C5B4CC5 /* AppModel+Updates.swift */; };
 		A43B77CEF63008F2BE7618A0 /* AppModel+Saves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CB159921A67A21F95BBBB /* AppModel+Saves.swift */; };
+		A8C842707202500EBE58095C /* ScriptExtenderLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F4451924A81D4D008C4C91 /* ScriptExtenderLogView.swift */; };
+		AC261FAF5B0E1064B0B5F4D2 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00361286CF9CA21383A4CF1E /* StatusBar.swift */; };
 		B226CCA138D7CEBD0397D135 /* SavesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200CC654C7BA034F75D9FAB1 /* SavesView.swift */; };
 		B39B519F29FE20F07F8C0404 /* NexusFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A7217F6B42E131E1AC649 /* NexusFiles.swift */; };
 		B6CB902A2D7BF38A18F54F29 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A9B5FE8B11271CEDBDB4B /* InfoPlist.xcstrings */; };
@@ -39,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00361286CF9CA21383A4CF1E /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		147A95924B5FFC84EF2324C9 /* UpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesView.swift; sourceTree = "<group>"; };
 		14ED628E94AA4479EADA1DFF /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		15455984FAE55A6E7C5B4CC5 /* AppModel+Updates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Updates.swift"; sourceTree = "<group>"; };
@@ -50,6 +53,7 @@
 		36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadpoleApp.swift; sourceTree = "<group>"; };
 		36AAAAE6A42734509344D9B7 /* AppCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCommands.swift; sourceTree = "<group>"; };
 		3BAF40FB04F9897722528FBF /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		48F4451924A81D4D008C4C91 /* ScriptExtenderLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptExtenderLogView.swift; sourceTree = "<group>"; };
 		52712E02D25288AD3401FEFB /* LoadOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadOrderView.swift; sourceTree = "<group>"; };
 		54342D908BE7F55F92B180AC /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		5B9A7217F6B42E131E1AC649 /* NexusFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusFiles.swift; sourceTree = "<group>"; };
@@ -137,8 +141,10 @@
 				8F8E8142B91713F9E679D936 /* Preferences.swift */,
 				6FF049D60674E4F843F145D5 /* RootView.swift */,
 				200CC654C7BA034F75D9FAB1 /* SavesView.swift */,
+				48F4451924A81D4D008C4C91 /* ScriptExtenderLogView.swift */,
 				168391B24282BA83A1A6F2BC /* ScriptExtenderSettings.swift */,
 				A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */,
+				00361286CF9CA21383A4CF1E /* StatusBar.swift */,
 				C88DE7BB747321F48EAE48F0 /* Tadpole.entitlements */,
 				36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */,
 				147A95924B5FFC84EF2324C9 /* UpdatesView.swift */,
@@ -246,8 +252,10 @@
 				EAFB730EED4EBE1AE843F49E /* Preferences.swift in Sources */,
 				E689F8C0142837009C6A5AAC /* RootView.swift in Sources */,
 				B226CCA138D7CEBD0397D135 /* SavesView.swift in Sources */,
+				A8C842707202500EBE58095C /* ScriptExtenderLogView.swift in Sources */,
 				9866CB54B977050F40B310AE /* ScriptExtenderSettings.swift in Sources */,
 				44FB3DF4D98632AD329D284C /* SettingsView.swift in Sources */,
+				AC261FAF5B0E1064B0B5F4D2 /* StatusBar.swift in Sources */,
 				D240846B996329B3F045F716 /* TadpoleApp.swift in Sources */,
 				FC9D23C7DEFA664BDE3DC377 /* UpdatesView.swift in Sources */,
 			);

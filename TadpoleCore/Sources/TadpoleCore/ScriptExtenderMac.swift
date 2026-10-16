@@ -36,8 +36,12 @@ public enum ScriptExtenderMac {
     /// The same name as install.sh's, so either can undo the other.
     public static let backupSuffix = ".bg3se-original"
     /// Where the Script Extender writes its log.
+    /// TADPOLE_BG3SE_LOGS points at another folder (for testing).
     public static var logsFolder: URL {
-        URL.applicationSupportDirectory.appending(path: "BG3SE/logs", directoryHint: .isDirectory)
+        if let override = ProcessInfo.processInfo.environment["TADPOLE_BG3SE_LOGS"], !override.isEmpty {
+            return URL(filePath: override, directoryHint: .isDirectory)
+        }
+        return URL.applicationSupportDirectory.appending(path: "BG3SE/logs", directoryHint: .isDirectory)
     }
 
     public enum InstallError: LocalizedError {

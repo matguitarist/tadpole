@@ -134,6 +134,16 @@
         }
       }
     },
+    "**Script Extender Log** (⌘6): what the Script Extender did in your last game, and what went wrong." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Journal du Script Extender** (⌘6) : ce que le Script Extender a fait pendant votre dernière partie, et ce qui a échoué."
+          }
+        }
+      }
+    },
     "**Updates** (⌘2): new versions of your mods on Nexus, with what changed." : {
       "localizations" : {
         "fr" : {
@@ -216,6 +226,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld"
+          }
+        }
+      }
+    },
+    "%lld lines" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld lignes"
           }
         }
       }
@@ -456,6 +476,16 @@
         }
       }
     },
+    "All Parts" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toutes les parties"
+          }
+        }
+      }
+    },
     "Always loaded" : {
       "localizations" : {
         "fr" : {
@@ -676,6 +706,16 @@
         }
       }
     },
+    "Baldur's Gate 3 %@ · Running" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baldur's Gate 3 %@ · En cours"
+          }
+        }
+      }
+    },
     "Baldur's Gate 3 is running" : {
       "localizations" : {
         "fr" : {
@@ -782,6 +822,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avant d’installer une collection, Tadpole indique lesquels de ses mods ont besoin du Script Extender : ceux dont la page Nexus le cite comme prérequis, et ceux qui ont besoin d’un tel mod. Cochez **Ignorer les mods Script Extender** pour les laisser de côté."
+          }
+        }
+      }
+    },
+    "BG3SE-macOS" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BG3SE-macOS"
+          }
+        }
+      }
+    },
+    "BG3SE-macOS %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BG3SE-macOS %@"
           }
         }
       }
@@ -1246,6 +1306,16 @@
         }
       }
     },
+    "Debug" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Débogage"
+          }
+        }
+      }
+    },
     "Details" : {
       "localizations" : {
         "fr" : {
@@ -1396,6 +1466,36 @@
         }
       }
     },
+    "Each time the game runs with it, the Script Extender writes a log, like SMAPI's for Stardew Valley. **Script Extender Log** (⌘6) shows the latest one, updating while you play: which mods it loaded, and errors and warnings grouped by mod. Click a mod under **Problems** to see its lines; **Sessions** shows earlier games. Attach the log file (**Show in Finder**) when you report a problem to a mod's author." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chaque fois que le jeu tourne avec lui, le Script Extender écrit un journal, comme celui de SMAPI pour Stardew Valley. **Journal du Script Extender** (⌘6) affiche le dernier, mis à jour pendant que vous jouez : les mods qu’il a chargés, et les erreurs et avertissements regroupés par mod. Cliquez sur un mod sous **Problèmes** pour voir ses lignes ; **Sessions** affiche les parties précédentes. Joignez le fichier du journal (**Afficher dans le Finder**) quand vous signalez un problème à l’auteur d’un mod."
+          }
+        }
+      }
+    },
+    "errors" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "erreurs"
+          }
+        }
+      }
+    },
+    "Errors" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreurs"
+          }
+        }
+      }
+    },
     "Everything Is Installed" : {
       "localizations" : {
         "fr" : {
@@ -1492,6 +1592,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dossiers"
+          }
+        }
+      }
+    },
+    "Follow" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suivre"
           }
         }
       }
@@ -1626,6 +1736,26 @@
         }
       }
     },
+    "Hide messages the log repeats more than %lld times" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masquer les messages que le journal répète plus de %lld fois"
+          }
+        }
+      }
+    },
+    "Hide repeated lines" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masquer les lignes répétées"
+          }
+        }
+      }
+    },
     "Honour" : {
       "localizations" : {
         "fr" : {
@@ -1652,6 +1782,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dans le jeu"
+          }
+        }
+      }
+    },
+    "Info" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Infos"
           }
         }
       }
@@ -1732,6 +1872,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Installez d’abord le jeu avec Steam."
+          }
+        }
+      }
+    },
+    "Install the game through Steam, then run it once." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installez le jeu avec Steam, puis lancez-le une fois."
+          }
+        }
+      }
+    },
+    "Install…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer…"
           }
         }
       }
@@ -1936,6 +2096,16 @@
         }
       }
     },
+    "Latest Session" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dernière session"
+          }
+        }
+      }
+    },
     "Latest version: %@" : {
       "localizations" : {
         "fr" : {
@@ -1972,6 +2142,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clair"
+          }
+        }
+      }
+    },
+    "limited mode" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mode limité"
           }
         }
       }
@@ -2046,12 +2226,12 @@
         }
       }
     },
-    "Load Order, Updates, Browse Nexus, Collections, Saves" : {
+    "Load Order, Updates, Browse Nexus, Collections, Saves, Script Extender Log" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ordre de chargement, Mises à jour, Parcourir Nexus, Collections, Sauvegardes"
+            "value" : "Ordre de chargement, Mises à jour, Parcourir Nexus, Collections, Sauvegardes, Journal du Script Extender"
           }
         }
       }
@@ -2272,6 +2452,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les mods se chargent de haut en bas ; faites-les glisser pour changer l’ordre."
+          }
+        }
+      }
+    },
+    "mods loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mods chargés"
           }
         }
       }
@@ -2626,6 +2816,16 @@
         }
       }
     },
+    "No Script Extender Log Yet" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas encore de journal du Script Extender"
+          }
+        }
+      }
+    },
     "Not a Baldur's Gate 3 Mod" : {
       "localizations" : {
         "fr" : {
@@ -2746,6 +2946,16 @@
         }
       }
     },
+    "Open Logs Folder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le dossier des journaux"
+          }
+        }
+      }
+    },
     "Open Mods Folder" : {
       "localizations" : {
         "fr" : {
@@ -2782,6 +2992,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ouvrir le dossier des sauvegardes"
+          }
+        }
+      }
+    },
+    "Open Script Extender Settings" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir les réglages du Script Extender"
           }
         }
       }
@@ -2916,6 +3136,16 @@
         }
       }
     },
+    "Part" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partie"
+          }
+        }
+      }
+    },
     "Paste" : {
       "localizations" : {
         "fr" : {
@@ -2956,6 +3186,16 @@
         }
       }
     },
+    "Play once with the Script Extender: its log appears here, updating while you play." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jouez une fois avec le Script Extender : son journal apparaît ici, mis à jour pendant que vous jouez."
+          }
+        }
+      }
+    },
     "Premium accounts download directly. Free accounts download through the Nexus website: Tadpole opens the file's page, you click **Slow download**, and Tadpole catches the download and installs it. With several mods, the next page opens by itself." : {
       "localizations" : {
         "fr" : {
@@ -2972,6 +3212,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Premium : les mods se téléchargent et s’installent tout de suite."
+          }
+        }
+      }
+    },
+    "Problems:" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problèmes :"
           }
         }
       }
@@ -3326,6 +3576,26 @@
         }
       }
     },
+    "Script Extender %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Extender %@"
+          }
+        }
+      }
+    },
+    "Script Extender %@ · removed by a game update" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Extender %@ · retiré par une mise à jour du jeu"
+          }
+        }
+      }
+    },
     "Script Extender %@ is available" : {
       "localizations" : {
         "fr" : {
@@ -3346,6 +3616,46 @@
         }
       }
     },
+    "Script Extender Log" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Journal du Script Extender"
+          }
+        }
+      }
+    },
+    "Script Extender mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mods Script Extender"
+          }
+        }
+      }
+    },
+    "Script Extender mods need it for their scripted features. Install the macOS version in Settings." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les mods Script Extender en ont besoin pour leurs fonctions scriptées. Installez la version macOS dans les réglages."
+          }
+        }
+      }
+    },
+    "Script Extender not installed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Extender non installé"
+          }
+        }
+      }
+    },
     "Script Extender Not Installed" : {
       "localizations" : {
         "fr" : {
@@ -3362,6 +3672,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le Script Extender sur Mac"
+          }
+        }
+      }
+    },
+    "Scroll to new lines as the game writes them" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Défiler jusqu’aux nouvelles lignes à mesure que le jeu les écrit"
           }
         }
       }
@@ -3396,6 +3716,16 @@
         }
       }
     },
+    "Search the log" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher dans le journal"
+          }
+        }
+      }
+    },
     "Select a mod to see what it needs." : {
       "localizations" : {
         "fr" : {
@@ -3412,6 +3742,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionnez un mod installé : ses détails montrent sa page Nexus et tous ses fichiers actuels, principaux et optionnels, avec **Installer** à côté de ceux que vous n’avez pas."
+          }
+        }
+      }
+    },
+    "Session started %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Session commencée le %@"
+          }
+        }
+      }
+    },
+    "Sessions" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessions"
           }
         }
       }
@@ -3536,6 +3886,26 @@
         }
       }
     },
+    "Show the log file in Finder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher le fichier du journal dans le Finder"
+          }
+        }
+      }
+    },
+    "Show the log of an earlier game session" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher le journal d’une partie précédente"
+          }
+        }
+      }
+    },
     "Show this mod's page" : {
       "localizations" : {
         "fr" : {
@@ -3632,6 +4002,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "État"
+          }
+        }
+      }
+    },
+    "Steam replaced the game's program. Tadpole applies the Script Extender again when you press Play." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steam a remplacé le programme du jeu. Tadpole réapplique le Script Extender quand vous appuyez sur Jouer."
           }
         }
       }
@@ -3836,6 +4216,16 @@
         }
       }
     },
+    "The bar at the bottom of the window shows the game's version and the Script Extender's: green when all is well, yellow when it needs something (an update, applying again after a game update, or a release made for another game build)." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La barre en bas de la fenêtre affiche la version du jeu et celle du Script Extender : vert quand tout va bien, jaune quand il faut faire quelque chose (une mise à jour, le réappliquer après une mise à jour du jeu, ou une version faite pour un autre build du jeu)."
+          }
+        }
+      }
+    },
     "The download and install go on in the main window's sidebar. With several mods to download, the browser stays open until the last one." : {
       "localizations" : {
         "fr" : {
@@ -3936,12 +4326,32 @@
         }
       }
     },
+    "The game's version, from Steam." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La version du jeu, d’après Steam."
+          }
+        }
+      }
+    },
     "The Load Order" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "L’ordre de chargement"
+          }
+        }
+      }
+    },
+    "The log" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le journal"
           }
         }
       }
@@ -3992,6 +4402,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le Script Extender s’installe dans le jeu, qui ne peut pas être modifié pendant qu’il tourne."
+          }
+        }
+      }
+    },
+    "The Script Extender is installed." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Script Extender est installé."
+          }
+        }
+      }
+    },
+    "The Script Extender writes a log each time the game runs with it, like SMAPI's for Stardew Valley: which mods it loaded and what went wrong. Install it in Settings first." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le Script Extender écrit un journal chaque fois que le jeu tourne avec lui, comme celui de SMAPI pour Stardew Valley : les mods qu’il a chargés et ce qui a échoué. Installez-le d’abord dans les réglages."
           }
         }
       }
@@ -4082,6 +4512,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ce mod utilise le Script Extender, qui est installé. Ses fonctions scriptées marchent dans la mesure où la version macOS les prend en charge."
+          }
+        }
+      }
+    },
+    "This release was made for game build %@, not %@: some features are off until a release supports it." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This release was made for game build %1$@, not %2$@: some features are off until a release supports it."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette version a été faite pour le build du jeu %@, pas %@ : certaines fonctions sont désactivées jusqu’à ce qu’une version le prenne en charge."
           }
         }
       }
@@ -4326,6 +4772,16 @@
         }
       }
     },
+    "Version %@ is available." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La version %@ est disponible."
+          }
+        }
+      }
+    },
     "Version %@ was made for game build %@, not yours. It may run in a limited mode, with some features off, until a release supports your build." : {
       "localizations" : {
         "en" : {
@@ -4368,6 +4824,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Occultiste"
+          }
+        }
+      }
+    },
+    "warnings" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "avertissements"
+          }
+        }
+      }
+    },
+    "Warnings" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avertissements"
           }
         }
       }

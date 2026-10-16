@@ -72,7 +72,13 @@ Current version: **0.1** ([released](https://github.com/matguitarist/tadpole/rel
       install.sh does (backup kept), updates it from the Updates page, applies
       it again after game updates (banner, and before Play), and warns when a
       release wasn't made for the game's build.
-- [ ] Download progress and errors in a status bar at the bottom of every page.
+- [x] **Status bar** under every page: the game's and the Script
+      Extender's versions with a colored dot and a button when something
+      needs doing (install, update, apply again).
+- [x] **Script Extender Log** page (⌘6), like Starseed's SMAPI log:
+      session summary, problems grouped by mod, level and part filters,
+      search, repeated lines hidden, earlier sessions, follows the game live.
+- [ ] Download progress and errors in the status bar.
 
 ## 0.3: Profiles and saves
 

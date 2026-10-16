@@ -59,6 +59,7 @@ private struct ViewMenuItems: View {
 
     private static let pages: [(item: SidebarItem, title: LocalizedStringKey)] = [
         (.loadOrder, "Load Order"), (.updates, "Updates"), (.browse, "Browse Nexus"), (.collections, "Collections"), (.saves, "Saves"),
+        (.scriptExtenderLog, "Script Extender Log"),
     ]
 
     var body: some View {

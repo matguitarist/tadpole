@@ -450,3 +450,52 @@ import Testing
         #expect(ScriptExtenderMac.version(fromTag: "v0.44.0") == "0.44.0")
     }
 }
+
+@Suite struct ScriptExtenderLogTests {
+    static let sample = """
+        ========================================
+        === BG3SE-macOS v0.44.0 ===
+        Session: 2026-10-16 08:00:00
+        Log file: /Users/me/Library/Application Support/BG3SE/logs/bg3se_2026-10-16_08-00-00.log
+        Log level: DEBUG
+        ========================================
+        [2026-10-16 08:00:01.000] [INFO ] [Mod    ] === Enabled Mods ===
+        [2026-10-16 08:00:01.001] [INFO ] [Mod    ]   [1] GustavX (base game)
+        [2026-10-16 08:00:01.002] [INFO ] [Mod    ]   [2] Mod Configuration Menu
+        [2026-10-16 08:00:01.003] [INFO ] [Mod    ]   [3] Tav's Hairpack
+        [2026-10-16 08:00:01.004] [INFO ] [Mod    ] Total mods: 3 (2 user mods)
+        [2026-10-16 08:00:01.005] [INFO ] [Mod    ] ====================
+        [2026-10-16 08:00:01.006] [INFO ] [Mod    ] === Scanning for SE Mods ===
+        [2026-10-16 08:00:01.007] [INFO ] [Mod    ]   [SE] MCM
+        [2026-10-16 08:00:01.008] [INFO ] [Mod    ] ============================
+        [2026-10-16 08:00:02.000] [DEBUG] [Console] ! identity
+        [2026-10-16 08:00:03.000] [ERROR] [Lua    ] PAK compile error (Mods/MCM/ScriptExtender/Lua/BootstrapServer.lua): attempt to index nil
+        stack traceback:
+        \t[C]: in ?
+        [2026-10-16 08:00:04.000] [WARN ] [Stats  ] Stats not available on this build
+        [2026-10-16 08:00:05.000] [ERROR] [Lua    ] PAK load error (Mods/MCM/ScriptExtender/Lua/Shared.lua): oops
+        """
+
+    @Test func readsTheHeaderEntriesAndModLists() {
+        let log = ScriptExtenderLog(Self.sample)
+        #expect(log.version == "0.44.0")
+        #expect(log.session == "2026-10-16 08:00:00")
+        #expect(log.entries.count == 13)
+        #expect(log.enabledMods == ["Mod Configuration Menu", "Tav's Hairpack"])
+        #expect(log.scriptExtenderMods == ["MCM"])
+        let error = log.entries.first { $0.level == .error }
+        #expect(error?.module == "Lua")
+        #expect(error?.time == "08:00:03.000")
+        #expect(error?.message.hasSuffix("\tin ?") == false)
+        #expect(error?.message.contains("stack traceback:") == true)  // continuation lines kept
+        #expect(error?.modFolder == "MCM")
+    }
+
+    @Test func groupsProblemsByMod() {
+        let groups = ScriptExtenderLog(Self.sample).problemGroups
+        #expect(groups.map(\.source) == ["MCM", "Stats"])
+        #expect(groups.first?.isMod == true)
+        #expect(groups.first?.errors == 2)
+        #expect(groups.last?.warnings == 1)
+    }
+}
