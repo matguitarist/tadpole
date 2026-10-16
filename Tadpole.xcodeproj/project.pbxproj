@@ -10,6 +10,7 @@
 		0748C3E5A09F335C1AB6A085 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC5678F2040BBA6B1D3A835 /* Keychain.swift */; };
 		1FB1D92914D23D77799C1DEB /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 7981A16453E3F60C895EA775 /* Sparkle */; };
 		281DB6A04875095CB815B109 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */; };
+		325218FC30F98914C997C547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B1E77A4C31B78A5A52EF957 /* Assets.xcassets */; };
 		3EBC1DE41E8CD533C56ACB6D /* ModDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */; };
 		44FB3DF4D98632AD329D284C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */; };
 		53E4F1BF012EEA3A6155ADC1 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33E80D078054887EDFAC9C9 /* CollectionsView.swift */; };
@@ -45,6 +46,7 @@
 		6FF049D60674E4F843F145D5 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		84F71A329F8DF8CA9FFAD525 /* Tadpole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadpole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8E8142B91713F9E679D936 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		9B1E77A4C31B78A5A52EF957 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
 		A10200E2F5FEB3C90CE52F6C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A7409FB401E6011ADF7EC422 /* AppModel+Nexus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Nexus.swift"; sourceTree = "<group>"; };
@@ -52,7 +54,7 @@
 		B782ED5F40424102BB728CA5 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
 		C88DE7BB747321F48EAE48F0 /* Tadpole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tadpole.entitlements; sourceTree = "<group>"; };
 		D33E80D078054887EDFAC9C9 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
-		D7D93916D4D9F61E0D136820 /* TadpoleCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TadpoleCore; path = TadpoleCore; sourceTree = SOURCE_ROOT; };
+		D7D93916D4D9F61E0D136820 /* TadpoleCore */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TadpoleCore; sourceTree = SOURCE_ROOT; };
 		E2536676208960BA56A8528F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 				A7409FB401E6011ADF7EC422 /* AppModel+Nexus.swift */,
 				2E9CB159921A67A21F95BBBB /* AppModel+Saves.swift */,
 				2A14F14F59621F35B8ACBFBE /* AppUpdater.swift */,
+				9B1E77A4C31B78A5A52EF957 /* Assets.xcassets */,
 				A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */,
 				B782ED5F40424102BB728CA5 /* BrowseView.swift */,
 				D33E80D078054887EDFAC9C9 /* CollectionsView.swift */,
@@ -189,6 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				325218FC30F98914C997C547 /* Assets.xcassets in Resources */,
 				B6CB902A2D7BF38A18F54F29 /* InfoPlist.xcstrings in Resources */,
 				6EF5CFC40D58997B66221F5D /* Localizable.xcstrings in Resources */,
 			);

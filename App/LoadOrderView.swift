@@ -8,6 +8,11 @@ struct LoadOrderView: View {
     var body: some View {
         @Bindable var model = model
         content
+            .safeAreaInset(edge: .top, spacing: 0) {
+                if model.gameIsRunning || !model.pendingEnable.isEmpty {
+                    GameRunningBanner()
+                }
+            }
             .navigationTitle("Load Order")
             .navigationSubtitle(subtitle)
             .toolbar { toolbar }
@@ -110,6 +115,38 @@ private struct ModList: View {
         @Bindable var model = model
         let problems = model.problems
         List(selection: $model.selection) {
+            let duplicates = model.duplicates
+            if !duplicates.isEmpty {
+                Section {
+                    ForEach(duplicates.keys.sorted(), id: \.self) { uuid in
+                        let copies = duplicates[uuid] ?? []
+                        HStack {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(copies.first?.name ?? uuid).fontWeight(.medium)
+                                Text(copies.map { mod in
+                                    let version = mod.info.map { $0.version.description } ?? ""
+                                    return "\(mod.file.lastPathComponent) (\(version))"
+                                }.joined(separator: " · "))
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            Button("Keep Newest") { model.keepNewest(copies) }
+                                .help("Keep the copy with the highest version and move the others to the Trash")
+                        }
+                        .contextMenu {
+                            Button("Show in Finder") { NSWorkspace.shared.activateFileViewerSelecting(copies.map(\.file)) }
+                        }
+                    }
+                } header: {
+                    Label("Installed Twice", systemImage: "exclamationmark.triangle.fill")
+                        .foregroundStyle(.orange)
+                } footer: {
+                    Text("The game loads only one copy of a mod, and it may not be the newest one.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
             Section {
                 ForEach(Array(model.loadOrder.enumerated()), id: \.element.id) { index, row in
                     if let mod = row.mod {
@@ -260,5 +297,33 @@ struct Badge: View {
             .padding(.vertical, 2)
             .background(color.opacity(0.18), in: Capsule())
             .foregroundStyle(color)
+    }
+}
+
+/// The game is running (changes to the load order wait), or mods are
+/// waiting to be turned on once it quits.
+private struct GameRunningBanner: View {
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: "gamecontroller.fill").foregroundStyle(.orange)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(model.gameIsRunning ? "Baldur's Gate 3 is running" : "Mods are waiting to be turned on")
+                    .font(.headline)
+                if model.pendingEnable.isEmpty {
+                    Text("Quit the game before changing the load order: it rewrites its mod list when it quits.")
+                        .font(.callout).foregroundStyle(.secondary)
+                } else {
+                    Text("\(model.pendingEnable.count) new mods will be turned on when you quit the game.")
+                        .font(.callout).foregroundStyle(.secondary)
+                }
+            }
+            Spacer()
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 10)
+        .background(.bar)
+        .overlay(alignment: .bottom) { Divider() }
     }
 }

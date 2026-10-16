@@ -40,3 +40,14 @@ public struct PakMod: Sendable, Identifiable, Hashable {
             .map(read)
     }
 }
+
+extension PakMod {
+    /// Copies of the same mod, best first: the highest version, then the
+    /// newest file.
+    public static func newestFirst(_ copies: [PakMod]) -> [PakMod] {
+        func date(_ mod: PakMod) -> Date {
+            (try? mod.file.resourceValues(forKeys: [.contentModificationDateKey]))?.contentModificationDate ?? .distantPast
+        }
+        return copies.sorted { ($0.info?.version64 ?? 0, date($0)) > ($1.info?.version64 ?? 0, date($1)) }
+    }
+}

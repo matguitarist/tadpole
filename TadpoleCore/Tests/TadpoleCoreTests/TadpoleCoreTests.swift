@@ -258,3 +258,21 @@ import Testing
         #expect(again.installedModIDs(installedPaks: ["Hair.pak"]) == [213])
     }
 }
+
+@Suite struct DuplicateTests {
+    @Test func prefersTheHighestVersionThenTheNewestFile() throws {
+        let folder = FileManager.default.temporaryDirectory.appending(path: "tadpole-\(UUID().uuidString)")
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        func pak(_ name: String, version: String, age: TimeInterval) throws -> PakMod {
+            let meta = Samples.metaLSX.replacingOccurrences(of: "36169534507319297", with: version)
+            let url = folder.appending(path: name)
+            try PakBuilder.make([.init(path: "Mods/TestMod/meta.lsx", data: Data(meta.utf8))]).write(to: url)
+            try FileManager.default.setAttributes([.modificationDate: Date.now.addingTimeInterval(-age)], ofItemAtPath: url.path(percentEncoded: false))
+            return PakMod.read(url)
+        }
+        let old = try pak("Old.pak", version: "36028797018963968", age: 0)       // 1.0, newest file
+        let new = try pak("New.pak", version: "36169534507319297", age: 1000)    // 1.1
+        let newer = try pak("Newer.pak", version: "36169534507319297", age: 10)  // 1.1, newer file
+        #expect(PakMod.newestFirst([old, new, newer]).map(\.file.lastPathComponent) == ["Newer.pak", "New.pak", "Old.pak"])
+    }
+}

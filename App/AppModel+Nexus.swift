@@ -30,6 +30,8 @@ extension AppModel {
     // MARK: API key
 
     func loadNexusAccount() {
+        // Test copies (TADPOLE_SKIP_KEYCHAIN=1) don't ask for the key.
+        guard ProcessInfo.processInfo.environment["TADPOLE_SKIP_KEYCHAIN"] == nil else { return }
         nexusAccount = .checking
         Task {
             nexusAPIKey = await Task.detached { Keychain.readNexusAPIKey() }.value
@@ -150,16 +152,33 @@ extension AppModel {
         if title == nil {
             Task { if let name = try? await client.modName(modID) { item.title = name } }
         }
-        Task {
+        let slots = downloadSlots
+        item.task = Task {
+            // A few at a time: a big collection would otherwise hit Nexus's
+            // rate limit.
             do {
+                try await slots.acquire()
+            } catch {
+                item.state = .cancelled
+                return
+            }
+            defer { slots.release() }
+            do {
+                item.state = .starting
                 let url = try await client.downloadURL(modID: modID, fileID: fileID, key: key, expires: expires)
+                try Task.checkCancellation()
                 item.state = .downloading
                 let file = try await FileDownloader.download(url) { fraction in
                     Task { @MainActor in item.progress = fraction }
                 }
+                try Task.checkCancellation()
                 await installDownloaded(file, item: item, origin: NexusOrigins.Origin(modID: modID, fileID: fileID))
+            } catch is CancellationError {
+                item.state = .cancelled
+            } catch let error as URLError where error.code == .cancelled {
+                item.state = .cancelled
             } catch {
-                item.state = .failed(Self.describe(error))
+                item.state = Task.isCancelled ? .cancelled : .failed(Self.describe(error))
             }
         }
     }
@@ -245,15 +264,26 @@ struct CollectionRequest: Identifiable, Equatable {
 @Observable
 final class DownloadItem: Identifiable {
     enum State: Equatable {
-        case starting, downloading, installing
+        case waiting, starting, downloading, installing
         case installed([String])
         case failed(String)
+        case cancelled
     }
 
     let id = UUID()
     var title: String
-    var state: State = .starting
+    var state: State = .waiting
     var progress = 0.0
+    @ObservationIgnored var task: Task<Void, Never>?
+
+    /// Until it starts installing (an install isn't stopped halfway).
+    var canCancel: Bool {
+        task != nil && [.waiting, .starting, .downloading].contains(state)
+    }
+
+    func cancel() {
+        task?.cancel()
+    }
 
     init(title: String) {
         self.title = title
@@ -261,8 +291,49 @@ final class DownloadItem: Identifiable {
 
     var isFinished: Bool {
         switch state {
-        case .installed, .failed: true
+        case .installed, .failed, .cancelled: true
         default: false
         }
+    }
+}
+
+/// Lets a few downloads run at once; the others wait their turn.
+@MainActor
+final class DownloadSlots {
+    private let limit: Int
+    private var used = 0
+    private var waiters: [(id: UUID, continuation: CheckedContinuation<Void, Error>)] = []
+
+    init(limit: Int) {
+        self.limit = limit
+    }
+
+    func acquire() async throws {
+        if used < limit {
+            used += 1
+            return
+        }
+        let id = UUID()
+        try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                waiters.append((id, continuation))
+            }
+        } onCancel: {
+            Task { @MainActor in self.cancelWaiter(id) }
+        }
+    }
+
+    /// Hands the slot to the next waiting download, if any.
+    func release() {
+        if waiters.isEmpty {
+            used -= 1
+        } else {
+            waiters.removeFirst().continuation.resume()
+        }
+    }
+
+    private func cancelWaiter(_ id: UUID) {
+        guard let index = waiters.firstIndex(where: { $0.id == id }) else { return }
+        waiters.remove(at: index).continuation.resume(throwing: CancellationError())
     }
 }

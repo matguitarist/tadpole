@@ -14,6 +14,7 @@ struct TadpoleApp: App {
                 .task {
                     AppTheme.current.apply()
                     model.load()
+                    model.startWatching()
                     model.loadNexusAccount()
                 }
         }

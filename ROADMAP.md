@@ -9,7 +9,7 @@ Current version: **0.1** (not published yet).
 
 - [ ] Create the GitHub repository (`matguitarist/tadpole`), push, and run
       `./release.sh`: Sparkle's feed and the downloads live there.
-- [ ] App icon. The update window and the Dock show a generic icon.
+- [x] App icon (`design/AppIcon.swift`, `design/make_icons.sh`).
 - [ ] End-to-end test with a real mod: install it from Nexus with a free
       account, launch the game, check it's loaded, quit, and check the game
       kept it in `modsettings.lsx`.
@@ -20,27 +20,27 @@ Current version: **0.1** (not published yet).
 
 ## Known bugs
 
-- [ ] **The load order goes stale when the game changes it.** The game rewrites
+- [x] **The load order goes stale when the game changes it.** The game rewrites
       `modsettings.lsx` when it quits (and can drop mods it couldn't load), but
       Tadpole only rereads it on ⌘R. Reload when the game quits
       (`NSWorkspace.didTerminateApplicationNotification`) and when Tadpole
       comes back to the front.
-- [ ] **Two copies of the same mod hide one of them.** Two .pak files with the
+- [x] **Two copies of the same mod hide one of them.** Two .pak files with the
       same UUID (e.g. an update with a different file name) show as one row;
       the other is invisible and can't be removed from the app. Show
       duplicates with a "Keep Newest" fix.
-- [ ] **Installing while the game runs leaves new mods off.** The .pak is
+- [x] **Installing while the game runs leaves new mods off.** The .pak is
       copied, but turning it on is refused (correctly), and nothing turns it on
       later. Remember the mods to turn on and do it once the game quits.
-- [ ] **Premium collection installs download everything at once.** A big
+- [x] **Premium collection installs download everything at once.** A big
       collection starts dozens of downloads together, which can hit Nexus's
       rate limit. Download a few at a time.
-- [ ] **The install spinner stops too early** when several installs overlap
+- [x] **The install spinner stops too early** when several installs overlap
       (one shared `isInstalling` flag). Count running installs instead.
 - [ ] **Mods installed from files show as missing in collections and on Nexus
       pages.** Tadpole only knows the Nexus origin of mods it downloaded. Match
       the others by name or UUID, or let the user link a mod to its Nexus page.
-- [ ] Downloads can't be cancelled, and the list is lost when the app quits.
+- [x] Downloads can't be cancelled. (The list is still lost when the app quits.)
 - [ ] Script Extender detection is a guess (a `ScriptExtender/` folder inside
       the .pak). Also check the `meta.lsx` requirements and the Nexus
       requirements list.

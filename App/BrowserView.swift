@@ -169,18 +169,33 @@ struct DownloadRow: View {
                         .lineLimit(3)
                 }
             }
+            Spacer(minLength: 0)
+            if item.canCancel {
+                Button {
+                    item.cancel()
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                }
+                .buttonStyle(.borderless)
+                .foregroundStyle(.secondary)
+                .help("Cancel this download")
+            }
         }
     }
 
     @ViewBuilder
     private var icon: some View {
         switch item.state {
+        case .waiting:
+            Image(systemName: "clock").foregroundStyle(.secondary)
         case .starting, .installing:
             ProgressView().controlSize(.mini)
         case .downloading:
             ProgressView(value: item.progress).progressViewStyle(.circular).controlSize(.mini)
         case .installed:
             Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
+        case .cancelled:
+            Image(systemName: "xmark.circle").foregroundStyle(.secondary)
         case .failed:
             Image(systemName: "exclamationmark.triangle.fill").foregroundStyle(.orange)
         }
@@ -188,6 +203,8 @@ struct DownloadRow: View {
 
     private var detail: String? {
         switch item.state {
+        case .waiting: String(localized: "Waiting for another download to finish…")
+        case .cancelled: String(localized: "Cancelled")
         case .starting: String(localized: "Asking Nexus…")
         case .downloading: String(localized: "Downloading… \(item.progress.formatted(.percent.precision(.fractionLength(0))))")
         case .installing: String(localized: "Installing…")

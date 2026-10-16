@@ -18,12 +18,24 @@ final class AppModel {
     private(set) var blocker: Blocker?
     var selection: String?
     var message: UserMessage?
-    var isInstalling = false
+    private var runningInstalls = 0
+    var isInstalling: Bool { runningInstalls > 0 }
+    /// Updated when the game starts and quits (for the banner); checks
+    /// before writing use `isGameRunning`, which asks macOS.
+    private(set) var gameIsRunning = false
+    /// Mods installed while the game ran, by UUID: turned on once it quits
+    /// (it would undo the change otherwise).
+    private(set) var pendingEnable: [String] = []
+    /// What the files looked like at the last load, to reload only when
+    /// they changed.
+    private var loadedSignature = ""
+    @ObservationIgnored private var observers: [NSObjectProtocol] = []
 
     // Nexus (AppModel+Nexus.swift)
     var nexusAPIKey: String?
     var nexusAccount: NexusAccount = .none
     var downloads: [DownloadItem] = []
+    @ObservationIgnored let downloadSlots = DownloadSlots(limit: 3)
     /// A page to show in the Nexus browser window.
     var browserRequest: BrowserRequest?
     /// Free accounts: Nexus file pages to click "Slow download" on, in turn.
@@ -70,6 +82,7 @@ final class AppModel {
     // MARK: Loading
 
     func load() {
+        loadedSignature = filesSignature()
         guard paths.gameHasRun else {
             blocker = .gameNeverRan
             mods = PakMod.scan(paths.modsFolder)
@@ -82,6 +95,62 @@ final class AppModel {
             blocker = .unreadableSettings(error.localizedDescription)
         }
         mods = PakMod.scan(paths.modsFolder)
+    }
+
+    /// Reloads if modsettings.lsx or the Mods folder changed since the last
+    /// load (the game, Finder, another app…).
+    func reloadIfChanged() {
+        if filesSignature() != loadedSignature { load() }
+    }
+
+    /// modsettings.lsx's date, and each .pak's name, size and date.
+    private func filesSignature() -> String {
+        let fm = FileManager.default
+        let keys: Set<URLResourceKey> = [.contentModificationDateKey, .fileSizeKey]
+        func describe(_ url: URL) -> String {
+            let values = try? url.resourceValues(forKeys: keys)
+            return "\(url.lastPathComponent):\(values?.fileSize ?? -1):\(values?.contentModificationDate?.timeIntervalSince1970 ?? 0)"
+        }
+        let paks = (try? fm.contentsOfDirectory(at: paths.modsFolder, includingPropertiesForKeys: Array(keys))) ?? []
+        return ([describe(paths.modSettings)] + paks.map(describe).sorted()).joined(separator: "|")
+    }
+
+    /// Watches the game starting and quitting, and Tadpole coming back to
+    /// the front.
+    func startWatching() {
+        guard observers.isEmpty else { return }
+        gameIsRunning = isGameRunning
+        let workspace = NSWorkspace.shared.notificationCenter
+        observers.append(workspace.addObserver(forName: NSWorkspace.didLaunchApplicationNotification, object: nil, queue: .main) { note in
+            guard AppModel.isGame(note) else { return }
+            MainActor.assumeIsolated { AppModel.shared.gameIsRunning = true }
+        })
+        observers.append(workspace.addObserver(forName: NSWorkspace.didTerminateApplicationNotification, object: nil, queue: .main) { note in
+            guard AppModel.isGame(note) else { return }
+            MainActor.assumeIsolated { AppModel.shared.gameDidQuit() }
+        })
+        observers.append(NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: nil, queue: .main) { _ in
+            MainActor.assumeIsolated { AppModel.shared.reloadIfChanged() }
+        })
+    }
+
+    private nonisolated static func isGame(_ note: Notification) -> Bool {
+        let app = note.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication
+        return app?.bundleIdentifier == GamePaths.bundleIdentifier || app?.localizedName == "Baldur's Gate 3"
+    }
+
+    /// The game has just rewritten its mod list: read it again, then turn on
+    /// the mods installed while it ran.
+    private func gameDidQuit() {
+        gameIsRunning = false
+        Task {
+            try? await Task.sleep(for: .seconds(1))  // let the last writes land
+            load()
+            let waiting = pendingEnable
+            pendingEnable = []
+            let byID = modsByID
+            enable(waiting.compactMap { byID[$0] })
+        }
     }
 
     private var modsByID: [String: PakMod] {
@@ -98,13 +167,29 @@ final class AppModel {
 
     /// Installed mods that aren't in the load order.
     var disabledMods: [PakMod] {
-        let listed = Set(settings?.modEntries.map(\.uuid) ?? [])
-        return mods.filter { mod in mod.info.map { !listed.contains($0.uuid) } ?? false }
+        // Duplicates have their own section.
+        let skipped = Set(settings?.modEntries.map(\.uuid) ?? []).union(duplicates.keys)
+        return mods.filter { mod in mod.info.map { !skipped.contains($0.uuid) } ?? false }
     }
 
     /// .pak files without a meta.lsx: the game loads them all the time.
     var overrideMods: [PakMod] { mods.filter { $0.info == nil && $0.error == nil } }
     var unreadableMods: [PakMod] { mods.filter { $0.error != nil } }
+
+    /// Mods installed more than once (the same UUID in several .pak files),
+    /// by UUID. The game loads only one of them.
+    var duplicates: [String: [PakMod]] {
+        Dictionary(grouping: mods.filter { $0.info != nil }, by: { $0.info!.uuid }).filter { $0.value.count > 1 }
+    }
+
+    /// Keeps the copy with the highest version (the newest file on a tie)
+    /// and moves the others to the Trash.
+    func keepNewest(_ copies: [PakMod]) {
+        for extra in PakMod.newestFirst(copies).dropFirst() {
+            try? FileManager.default.trashItem(at: extra.file, resultingItemURL: nil)
+        }
+        load()
+    }
 
     var problems: [String: [ModRules.Problem]] {
         ModRules.problems(enabled: enabledMods.compactMap(\.info), installed: mods.compactMap(\.info))
@@ -120,6 +205,23 @@ final class AppModel {
             entries.append(ModuleShortDesc(info))
         } else {
             entries.removeAll { $0.uuid == info.uuid }
+        }
+        settings.setEnabledMods(entries)
+        save(settings)
+    }
+
+    /// Turns on several mods at once, at the end of the load order. While
+    /// the game runs, they wait until it quits.
+    func enable(_ mods: [PakMod]) {
+        let infos = mods.compactMap(\.info)
+        guard !infos.isEmpty, var settings else { return }
+        if isGameRunning {
+            pendingEnable += infos.map(\.uuid).filter { !pendingEnable.contains($0) }
+            return
+        }
+        var entries = settings.modEntries
+        for info in infos where !entries.contains(where: { $0.uuid == info.uuid }) {
+            entries.append(ModuleShortDesc(info))
         }
         settings.setEnabledMods(entries)
         save(settings)
@@ -176,16 +278,16 @@ final class AppModel {
     /// returned (downloads show them in their own row).
     @discardableResult
     func install(_ urls: [URL], quiet: Bool = false) -> Task<InstallOutcome, Never> {
-        isInstalling = true
+        runningInstalls += 1
         let folder = paths.modsFolder
         return Task {
-            defer { isInstalling = false }
+            defer { runningInstalls -= 1 }
             do {
                 let result = try await Task.detached { try ModInstaller.install(urls, into: folder) }.value
                 load()
                 // New mods are turned on, at the end of the load order.
                 let installed = result.installed.map(PakMod.read)
-                for mod in installed where mod.info != nil { setEnabled(mod, true) }
+                enable(installed)
                 if !result.skipped.isEmpty, !quiet {
                     show("Some Files Weren't Installed",
                          String(localized: "No .pak file was found in: \(result.skipped.formatted(.list(type: .and))). Mods made of loose files or for the Script Extender can't be installed this way."))
@@ -201,6 +303,10 @@ final class AppModel {
 
     func trash(_ mod: PakMod) {
         if let info = mod.info, settings?.modEntries.contains(where: { $0.uuid == info.uuid }) == true {
+            // The game would keep listing a mod whose file is gone.
+            guard !isGameRunning else {
+                return show("Quit Baldur's Gate 3 First", String(localized: "This mod is in the load order. Quit the game before removing it."))
+            }
             setEnabled(mod, false)
         }
         do {
