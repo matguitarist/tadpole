@@ -5,13 +5,13 @@
 #
 # Usage: ./notarize.sh path/to/Tadpole.app | path/to/Tadpole.dmg
 # Needs the credentials saved once with:
-#   xcrun notarytool store-credentials tadpole-notary --apple-id <you> --team-id <TEAMID>
+#   xcrun notarytool store-credentials ares-notary --apple-id <you> --team-id <TEAMID>
 # (NOTARY_PROFILE picks another name.)
 set -euo pipefail
 cd "${0:A:h}"
 
 TARGET="$1"
-PROFILE="${NOTARY_PROFILE:-tadpole-notary}"
+PROFILE="${NOTARY_PROFILE:-ares-notary}"
 
 # notarytool takes a zip, a disk image or a package: an app goes as a zip.
 UPLOAD="$TARGET"
