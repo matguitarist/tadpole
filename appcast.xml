@@ -3,22 +3,17 @@
     <channel>
         <title>Tadpole</title>
         <item>
-            <title>0.4</title>
-            <pubDate>Fri, 16 Oct 2026 15:08:14 -0400</pubDate>
-            <sparkle:version>5</sparkle:version>
-            <sparkle:shortVersionString>0.4</sparkle:shortVersionString>
+            <title>0.4.1</title>
+            <pubDate>Mon, 19 Oct 2026 08:12:19 -0400</pubDate>
+            <sparkle:version>6</sparkle:version>
+            <sparkle:shortVersionString>0.4.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[## Pictures, undo, and links from your browser
+            <description sparkle:format="markdown"><![CDATA[## Signed and notarized by Apple
 
-- **Load order**: each mod's picture from Nexus, a filter by name or author, and **Undo** / **Redo** (⌘Z, ⇧⌘Z) for your changes.
-- **Links from Safari and Chrome**: **Mod Manager Download** links work from your usual browser. With Starseed installed, the two apps pass each other the links for their game (Settings → Nexus Mods).
-- **Updates for mods installed from files**: once linked to Nexus, Tadpole finds which version you have and checks for updates, and tells you when it had to guess.
-- **Endorse and track** mods on Nexus from their window or details.
-- **The game's own mod manager**: mods it installed (mod.io) are marked, and Tadpole warns about folders in the Mods folder, which can make the game reset your load order.
-- **Downloads** show their progress, and any failure, in the bar at the bottom of the window.
-- A **setup assistant** welcomes new users (Help → Setup Assistant… opens it again).
+- Tadpole is now signed with an Apple Developer ID and notarized by Apple: new installs open without the "Open Anyway" step.
+- After this update, macOS may ask once for Keychain access to your Nexus API key (the app's signature changed). Click **Always Allow**.
 ]]></description>
-            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.4/Tadpole-0.4.zip" length="5856823" type="application/octet-stream" sparkle:edSignature="nLcH0oQTRSFqT25GVe6a/EUda3tmLwPXpG6nDTk4DiJXl/ZRmoiU9jhLGorsZN3hPSbtttCx7AYm7st9wT23Ag=="/>
+            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.4.1/Tadpole-0.4.1.zip" length="5901715" type="application/octet-stream" sparkle:edSignature="NumsfgLkbipX+QXb999uzwcPIgCXuu66v0yB2r6oX5+Pcnf3YeDfYs0HhHlm7TlgrRiCTwyezrfeKrJ0fIBKDA=="/>
         </item>
     </channel>
 </rss>
