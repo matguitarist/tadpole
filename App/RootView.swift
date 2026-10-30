@@ -28,6 +28,7 @@ struct RootView: View {
                 case .scriptExtenderLog: ScriptExtenderLogView()
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .safeAreaInset(edge: .bottom, spacing: 0) { StatusBar() }
         }
         .sheet(item: $model.nexusSheet) { NexusModSheet(request: $0) }
