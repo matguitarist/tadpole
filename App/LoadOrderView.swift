@@ -27,7 +27,10 @@ struct LoadOrderView: View {
 
     private var subtitle: String {
         let on = model.enabledMods.count
-        return model.mods.isEmpty ? "" : String(localized: "\(model.mods.count) mods · \(on) loaded")
+        guard !model.mods.isEmpty else { return "" }
+        let installed = model.mods.count == 1 ? String(localized: "1 mod") : String(localized: "\(model.mods.count) mods")
+        let loaded = on == 1 ? String(localized: "1 loaded") : on == 0 ? String(localized: "None loaded") : String(localized: "\(on) loaded")
+        return "\(installed) · \(loaded)"
     }
 
     @ViewBuilder
@@ -158,13 +161,10 @@ private struct ModList: View {
                             Button("Show in Finder") { NSWorkspace.shared.activateFileViewerSelecting(copies.map(\.file)) }
                         }
                     }
+                    ListNote(text: Text("The game loads only one copy of a mod, and it may not be the newest one."))
                 } header: {
                     Label("Installed Twice", systemImage: "exclamationmark.triangle.fill")
                         .foregroundStyle(.orange)
-                } footer: {
-                    Text("The game loads only one copy of a mod, and it may not be the newest one.")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
                 }
             }
             Section {
@@ -179,6 +179,7 @@ private struct ModList: View {
                 }
                 // Moving rows of a filtered list would move the wrong ones.
                 .onMove(perform: isFiltering ? nil : { model.move(fromOffsets: $0, toOffset: $1) })
+                ListNote(text: Text("Mods load from top to bottom; drag to reorder."))
             } header: {
                 HStack {
                     Text("Load Order")
@@ -190,11 +191,6 @@ private struct ModList: View {
                             .help("Move each mod's requirements before it, keeping the rest of the order")
                     }
                 }
-            } footer: {
-                Text("Mods load from top to bottom; drag to reorder.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
             }
             if !model.disabledMods.isEmpty {
                 Section("Installed, Not Loaded") {
@@ -208,13 +204,9 @@ private struct ModList: View {
                     ForEach(model.overrideMods.filter { matches($0) }) { mod in
                         ModRow(mod: mod, position: nil, isOn: nil, problems: []).tag(mod.id)
                     }
+                    ListNote(text: Text("No mod description inside: the game always loads these. Move one to the Trash to stop it."))
                 } header: {
                     Text("Always Loaded")
-                } footer: {
-                    Text("No mod description inside: the game always loads these. Move one to the Trash to stop it.")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
             let subfolders = model.modsSubfolders
@@ -228,14 +220,10 @@ private struct ModList: View {
                             Button("Show in Finder") { NSWorkspace.shared.activateFileViewerSelecting([folder]) }
                         }
                     }
+                    ListNote(text: Text("Folders here can make the game reset your load order. Move their .pak files out, then the folders away."))
                 } header: {
                     Label("Folders in the Mods Folder", systemImage: "exclamationmark.triangle.fill")
                         .foregroundStyle(.orange)
-                } footer: {
-                    Text("Folders here can make the game reset your load order. Move their .pak files out, then the folders away.")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
             if !model.unreadableMods.isEmpty {
@@ -280,43 +268,65 @@ private struct ModRow: View {
                     .frame(width: 48, height: 30)
             }
             VStack(alignment: .leading, spacing: 1) {
+                Text(mod.name).fontWeight(.medium)
+                    .lineLimit(2)
+                    .help(mod.name)
+                // One line for the small print, so a narrow list keeps the name readable.
                 HStack(spacing: 6) {
-                    Text(mod.name).fontWeight(.medium)
                     if let version = mod.info?.version, version.packed != 0 {
-                        Text(version.description).font(.caption).foregroundStyle(.secondary)
+                        Text(version.description).fixedSize()
+                    }
+                    if let author = mod.info?.author, !author.isEmpty {
+                        Text(author).lineLimit(1).help(author)
                     }
                 }
-                if let author = mod.info?.author, !author.isEmpty {
-                    Text(author).font(.caption).foregroundStyle(.secondary)
-                } else if let error = mod.error {
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                if let error = mod.error {
                     Text(error).font(.caption).foregroundStyle(.orange).lineLimit(1)
                 }
-            }
-            Spacer()
-            if model.isFromModIO(mod) {
-                Badge(text: "mod.io", color: .teal)
-                    .help("Installed by the game's own mod manager (mod.io). Update or remove it there: the game manages its file.")
-            }
-            if mod.usesScriptExtender {
-                ScriptExtenderBadge(mod: mod)
-            }
-            if let update = model.update(forPak: mod.file.lastPathComponent) {
-                Button {
-                    model.install([update])
-                } label: {
-                    Badge(text: String(localized: "Update to \(update.update.latest.version ?? "")"), color: .blue)
+                if hasBadges {
+                    ViewThatFits(in: .horizontal) {
+                        HStack(spacing: 4) { badges }
+                        VStack(alignment: .leading, spacing: 2) { badges }
+                    }
+                    .padding(.top, 2)
                 }
-                .buttonStyle(.plain)
-                .help("Download and install the new version from Nexus")
             }
-            if !problems.isEmpty {
-                Badge(text: problems.count == 1 ? String(localized: "1 requirement issue") : String(localized: "\(problems.count) requirement issues"), color: .orange)
-            }
+            Spacer(minLength: 0)
         }
         .padding(.vertical, 2)
         .contextMenu {
             Button("Show in Finder") { NSWorkspace.shared.activateFileViewerSelecting([mod.file]) }
             Button("Move to Trash", role: .destructive) { model.trash(mod) }
+        }
+    }
+
+    private var hasBadges: Bool {
+        model.isFromModIO(mod) || mod.usesScriptExtender || !problems.isEmpty
+            || model.update(forPak: mod.file.lastPathComponent) != nil
+    }
+
+    @ViewBuilder
+    private var badges: some View {
+        if model.isFromModIO(mod) {
+            Badge(text: "mod.io", color: .teal)
+                .help("Installed by the game's own mod manager (mod.io). Update or remove it there: the game manages its file.")
+        }
+        if mod.usesScriptExtender {
+            ScriptExtenderBadge(mod: mod)
+        }
+        if let update = model.update(forPak: mod.file.lastPathComponent) {
+            Button {
+                model.install([update])
+            } label: {
+                Badge(text: String(localized: "Update to \(update.update.latest.version ?? "")"), color: .blue)
+            }
+            .buttonStyle(.plain)
+            .help("Download and install the new version from Nexus")
+        }
+        if !problems.isEmpty {
+            Badge(text: problems.count == 1 ? String(localized: "1 requirement issue") : String(localized: "\(problems.count) requirement issues"), color: .orange)
         }
     }
 }
@@ -381,6 +391,20 @@ private struct ScriptExtenderBadge: View {
     }
 }
 
+/// A note at the end of a list section. A section footer stays on one line
+/// on macOS and cuts its text off; a row wraps.
+struct ListNote: View {
+    let text: Text
+
+    var body: some View {
+        text
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .fixedSize(horizontal: false, vertical: true)
+            .listRowSeparator(.hidden)
+    }
+}
+
 struct Badge: View {
     let text: String
     let color: Color
@@ -388,6 +412,7 @@ struct Badge: View {
     var body: some View {
         Text(text)
             .font(.caption2.bold())
+            .fixedSize()
             .padding(.horizontal, 6)
             .padding(.vertical, 2)
             .background(color.opacity(0.18), in: Capsule())

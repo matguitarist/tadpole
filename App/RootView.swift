@@ -16,7 +16,7 @@ struct RootView: View {
         @Bindable var model = model
         NavigationSplitView {
             Sidebar(selection: $model.sidebarSelection)
-                .navigationSplitViewColumnWidth(min: 180, ideal: 200, max: 260)
+                .navigationSplitViewColumnWidth(min: 180, ideal: 240, max: 280)
         } detail: {
             Group {
                 switch model.sidebarSelection ?? .loadOrder {
@@ -118,15 +118,18 @@ struct RemotePicture: View {
     var cornerRadius: CGFloat = 6
 
     var body: some View {
-        AsyncImage(url: url) { phase in
-            if let image = phase.image {
-                image.resizable().aspectRatio(contentMode: .fill)
-            } else {
-                Rectangle().fill(.quaternary)
-                    .overlay { Image(systemName: "photo").foregroundStyle(.tertiary) }
+        // An overlay takes the frame's size, so wide pictures are cropped.
+        Rectangle().fill(.quaternary)
+            .overlay {
+                AsyncImage(url: url) { phase in
+                    if let image = phase.image {
+                        image.resizable().aspectRatio(contentMode: .fill)
+                    } else {
+                        Image(systemName: "photo").foregroundStyle(.tertiary)
+                    }
+                }
             }
-        }
-        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
     }
 }
 

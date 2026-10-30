@@ -202,7 +202,11 @@ struct SetupAssistant: View {
     }
 
     private func bullet(_ symbol: String, _ text: LocalizedStringKey) -> some View {
-        Label(text, systemImage: symbol)
+        // A fixed width for the symbol, so the three lines of text start together.
+        HStack(spacing: 8) {
+            Image(systemName: symbol).frame(width: 22)
+            Text(text)
+        }
     }
 
     private func finish() {

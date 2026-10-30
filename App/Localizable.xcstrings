@@ -6895,6 +6895,116 @@
           }
         }
       }
+    },
+    "Not Checked Yet" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas encore vérifié"
+          }
+        }
+      }
+    },
+    "No Mods to Check" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun mod à vérifier"
+          }
+        }
+      }
+    },
+    "Linked Mods Are Up to Date" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les mods liés sont à jour"
+          }
+        }
+      }
+    },
+    "1 mod can't be checked: it isn't linked to Nexus. Select it in Load Order and click Find on Nexus… in its details." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 mod ne peut pas être vérifié : il n’est pas lié à Nexus. Sélectionnez-le dans l’ordre de chargement et cliquez sur Trouver sur Nexus… dans ses détails."
+          }
+        }
+      }
+    },
+    "1 loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 chargé"
+          }
+        }
+      }
+    },
+    "None loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun chargé"
+          }
+        }
+      }
+    },
+    "%lld loaded" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld chargés"
+          }
+        }
+      }
+    },
+    "Made with 1 mod, which isn't installed. Right-click → Show Mods." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faite avec 1 mod, qui n’est pas installé. Clic droit → Afficher les mods."
+          }
+        }
+      }
+    },
+    "Made with 1 mod, which is installed. Right-click → Use This Save's Mods to load it." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faite avec 1 mod, qui est installé. Clic droit → Utiliser les mods de cette sauvegarde pour le charger."
+          }
+        }
+      }
+    },
+    "Made with %lld mods; 1 isn't installed. Right-click → Show Mods." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faite avec %lld mods ; 1 n’est pas installé. Clic droit → Afficher les mods."
+          }
+        }
+      }
+    },
+    "“%@” lists a mod that isn't in the Mods folder: %@. Install it to load it; the profile keeps it." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "« %1$@ » liste un mod qui n’est pas dans le dossier Mods : %2$@. Installez-le pour le charger ; le profil le garde."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

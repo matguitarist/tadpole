@@ -185,7 +185,8 @@ struct ManageProfilesSheet: View {
         let missing = profile.mods.filter { !installed.contains($0.uuid) }.count
         return HStack {
             Image(systemName: profile.name == model.activeProfileName ? "checkmark.circle.fill" : "person.2")
-                .foregroundStyle(profile.name == model.activeProfileName ? Color.accentColor : .secondary)
+                // Not the accent color: it would vanish on the selected row.
+                .foregroundStyle(profile.name == model.activeProfileName ? .primary : .secondary)
                 .frame(width: 18)
             VStack(alignment: .leading, spacing: 1) {
                 Text(verbatim: profile.name).fontWeight(profile.name == model.activeProfileName ? .semibold : .regular)

@@ -20,7 +20,7 @@ struct BrowseView: View {
     var body: some View {
         content
             .navigationTitle("Browse Nexus")
-            .navigationSubtitle(totalCount > 0 ? String(localized: "\(totalCount.formatted()) mods") : "")
+            .navigationSubtitle(totalCount == 0 ? "" : totalCount == 1 ? String(localized: "1 mod") : String(localized: "\(totalCount.formatted()) mods"))
             .searchable(text: $query, placement: .toolbar, prompt: "Search mods")
             .onSubmit(of: .search) { submittedQuery = query }
             .toolbar {
@@ -124,6 +124,7 @@ private struct NexusModRow: View {
         }
         .padding(.vertical, 4)
         .contentShape(Rectangle())
+        .alignmentGuide(.listRowSeparatorLeading) { _ in 0 }
     }
 }
 

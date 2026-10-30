@@ -81,12 +81,9 @@ struct SavesView: View {
                                     Button("Move to Trash", role: .destructive) { model.trash(backup) }
                                 }
                         }
+                        ListNote(text: Text("Kept in “Documents/Larian Studios/Tadpole Save Backups”."))
                     } header: {
                         Text("Backups")
-                    } footer: {
-                        Text("Kept in “Documents/Larian Studios/Tadpole Save Backups”.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
                     }
                 }
             }
@@ -143,7 +140,13 @@ private struct SaveRow: View {
                         let missing = model.missingMods(of: save).count
                         Badge(text: mods.count == 1 ? String(localized: "1 mod") : String(localized: "\(mods.count) mods"),
                               color: missing > 0 ? .orange : .green)
-                            .help(missing > 0
+                            .help(mods.count == 1
+                                  ? (missing > 0
+                                     ? String(localized: "Made with 1 mod, which isn't installed. Right-click → Show Mods.")
+                                     : String(localized: "Made with 1 mod, which is installed. Right-click → Use This Save's Mods to load it."))
+                                  : missing == 1
+                                  ? String(localized: "Made with \(mods.count) mods; 1 isn't installed. Right-click → Show Mods.")
+                                  : missing > 0
                                   ? String(localized: "Made with \(mods.count) mods; \(missing) aren't installed. Right-click → Show Mods.")
                                   : String(localized: "Made with \(mods.count) mods, all installed. Right-click → Use This Save's Mods to load them."))
                     }

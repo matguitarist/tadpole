@@ -36,6 +36,7 @@ struct TadpoleApp: App {
                     model.startUpdateChecks()
                 }
         }
+        .defaultSize(width: 1040, height: 656)
         .commands { AppCommands(model: model) }
 
         Window("Tadpole Help", id: HelpView.windowID) {

@@ -107,6 +107,7 @@ private struct CollectionRow: View {
         }
         .padding(.vertical, 4)
         .contentShape(Rectangle())
+        .alignmentGuide(.listRowSeparatorLeading) { _ in 0 }
     }
 }
 
@@ -116,7 +117,7 @@ private struct CollectionStats: View {
     var body: some View {
         HStack(spacing: 12) {
             if let author = collection.author { Text(author) }
-            if let count = collection.modCount { Label(String(localized: "\(count) mods"), systemImage: "shippingbox") }
+            if let count = collection.modCount { Label(count == 1 ? String(localized: "1 mod") : String(localized: "\(count) mods"), systemImage: "shippingbox") }
             if let size = collection.totalSize { Label(size.formatted(.byteCount(style: .file)), systemImage: "internaldrive") }
             if let endorsements = collection.endorsements { Label(endorsements.formatted(.number.notation(.compactName)), systemImage: "hand.thumbsup") }
         }

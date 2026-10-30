@@ -29,20 +29,31 @@ struct UpdatesView: View {
         return String(localized: "Checked \(date.formatted(.relative(presentation: .named)))")
     }
 
+    private var uncheckableNote: String {
+        let count = model.uncheckableMods.count
+        return count == 1
+            ? String(localized: "1 mod can't be checked: it isn't linked to Nexus. Select it in Load Order and click Find on Nexus… in its details.")
+            : String(localized: "\(count) mods can't be checked: they aren't linked to Nexus. Select one in Load Order and click Find on Nexus… in its details.")
+    }
+
     @ViewBuilder
     private var content: some View {
         if model.updates.isEmpty, model.scriptExtenderUpdate == nil {
             ContentUnavailableView {
-                Label(model.updateCheckFailed ? "Couldn't Reach Nexus" : "Everything Is Up to Date",
-                      systemImage: model.updateCheckFailed ? "wifi.exclamationmark" : "checkmark.circle")
+                if model.updateCheckFailed {
+                    Label("Couldn't Reach Nexus", systemImage: "wifi.exclamationmark")
+                } else if model.lastUpdateCheck == nil {
+                    Label(model.isCheckingUpdates ? "Checking Nexus…" : "Not Checked Yet", systemImage: "arrow.clockwise")
+                } else if model.mods.filter({ $0.info != nil }).count == model.uncheckableMods.count {
+                    Label("No Mods to Check", systemImage: "link")
+                } else if model.uncheckableMods.isEmpty {
+                    Label("Everything Is Up to Date", systemImage: "checkmark.circle")
+                } else {
+                    Label("Linked Mods Are Up to Date", systemImage: "checkmark.circle")
+                }
             } description: {
-                VStack(spacing: 8) {
-                    if model.lastUpdateCheck == nil {
-                        Text(model.isCheckingUpdates ? "Checking Nexus…" : "Not checked yet.")
-                    }
-                    if !model.uncheckableMods.isEmpty {
-                        Text("\(model.uncheckableMods.count) mods can't be checked: they aren't linked to Nexus. Select one in Load Order and click Find on Nexus… in its details.")
-                    }
+                if !model.uncheckableMods.isEmpty {
+                    Text(uncheckableNote)
                 }
             } actions: {
                 Button("Check Now") { Task { await model.checkForUpdates() } }
@@ -56,11 +67,8 @@ struct UpdatesView: View {
                 if !model.updates.isEmpty {
                 Section {
                     ForEach(model.updates) { UpdateRow(update: $0) }
-                } footer: {
                     if !model.uncheckableMods.isEmpty {
-                        Text("\(model.uncheckableMods.count) mods can't be checked: they aren't linked to Nexus. Select one in Load Order and click Find on Nexus… in its details.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                        ListNote(text: Text(uncheckableNote))
                     }
                 }
                 }

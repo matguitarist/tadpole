@@ -66,8 +66,11 @@ extension AppModel {
         save(settings)
         clearUndoHistory()
         if !missing.isEmpty {
+            let names = missing.map(\.name).formatted(.list(type: .and))
             show("Some Mods Aren't Installed",
-                 String(localized: "“\(name)” lists \(missing.count) mods that aren't in the Mods folder: \(missing.map(\.name).formatted(.list(type: .and))). Install them to load them; the profile keeps them."))
+                 missing.count == 1
+                 ? String(localized: "“\(name)” lists a mod that isn't in the Mods folder: \(names). Install it to load it; the profile keeps it.")
+                 : String(localized: "“\(name)” lists \(missing.count) mods that aren't in the Mods folder: \(names). Install them to load them; the profile keeps them."))
         }
     }
 
