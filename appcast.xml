@@ -3,17 +3,16 @@
     <channel>
         <title>Tadpole</title>
         <item>
-            <title>0.4.1</title>
-            <pubDate>Mon, 19 Oct 2026 08:12:19 -0400</pubDate>
-            <sparkle:version>6</sparkle:version>
-            <sparkle:shortVersionString>0.4.1</sparkle:shortVersionString>
+            <title>0.4.2</title>
+            <pubDate>Fri, 30 Oct 2026 07:45:06 -0400</pubDate>
+            <sparkle:version>7</sparkle:version>
+            <sparkle:shortVersionString>0.4.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[## Signed and notarized by Apple
+            <description sparkle:format="markdown"><![CDATA[## Bug fix
 
-- Tadpole is now signed with an Apple Developer ID and notarized by Apple: new installs open without the "Open Anyway" step.
-- After this update, macOS may ask once for Keychain access to your Nexus API key (the app's signature changed). Click **Always Allow**.
+- The status bar stays at the bottom of the window on pages with little to show (Updates, Saves and the Script Extender log), instead of floating up under their content.
 ]]></description>
-            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.4.1/Tadpole-0.4.1.zip" length="5901715" type="application/octet-stream" sparkle:edSignature="NumsfgLkbipX+QXb999uzwcPIgCXuu66v0yB2r6oX5+Pcnf3YeDfYs0HhHlm7TlgrRiCTwyezrfeKrJ0fIBKDA=="/>
+            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.4.2/Tadpole-0.4.2.zip" length="5902399" type="application/octet-stream" sparkle:edSignature="ZeqpG/M/dHUYri4Y8Ip9+w/a3oQly4bJoUt7uWTFiSrhoYYCV6ryrAh3p6JbwOsM/VXXDLWrlRw5cYswunxXAg=="/>
         </item>
     </channel>
 </rss>
