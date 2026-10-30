@@ -3,16 +3,22 @@
     <channel>
         <title>Tadpole</title>
         <item>
-            <title>0.4.2</title>
-            <pubDate>Fri, 30 Oct 2026 07:45:06 -0400</pubDate>
-            <sparkle:version>7</sparkle:version>
-            <sparkle:shortVersionString>0.4.2</sparkle:shortVersionString>
+            <title>0.4.3</title>
+            <pubDate>Fri, 30 Oct 2026 08:17:57 -0400</pubDate>
+            <sparkle:version>8</sparkle:version>
+            <sparkle:shortVersionString>0.4.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[## Bug fix
+            <description sparkle:format="markdown"><![CDATA[## Tidier lists and clearer messages
 
-- The status bar stays at the bottom of the window on pages with little to show (Updates, Saves and the Script Extender log), instead of floating up under their content.
+- Load Order rows keep mod names readable in a narrow window: the version and author share one line, with badges under them.
+- Notes under the lists wrap instead of being cut off, including the warning about folders in the Mods folder.
+- Browse and Collections: pictures stay inside their frames, and the lines between rows line up.
+- Updates says "No Mods to Check" or "Not Checked Yet" instead of "Everything Is Up to Date" when nothing was actually checked.
+- Counts read correctly for a single mod ("1 mod · 1 loaded").
+- The sidebar is wider, so its labels fit in French, and new windows open a little larger.
+- Smaller fixes: aligned icons in the setup assistant, a visible check mark on the profile in use, and the Nexus API key link in Settings looks like a link.
 ]]></description>
-            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.4.2/Tadpole-0.4.2.zip" length="5902399" type="application/octet-stream" sparkle:edSignature="ZeqpG/M/dHUYri4Y8Ip9+w/a3oQly4bJoUt7uWTFiSrhoYYCV6ryrAh3p6JbwOsM/VXXDLWrlRw5cYswunxXAg=="/>
+            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.4.3/Tadpole-0.4.3.zip" length="5928780" type="application/octet-stream" sparkle:edSignature="WvsPccCMnlkugiPV0uoLgleOXbRPETfiCFsqQmi5NGI48N8bxpGdW+nhQxDrFzH0zBeenXL5jlaZmsVC5Ll1CQ=="/>
         </item>
     </channel>
 </rss>
