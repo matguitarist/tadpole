@@ -18,7 +18,7 @@ settings:
 packages:
   TadpoleCore:
     path: TadpoleCore
-  # Self-updates for the app (release.sh publishes them).
+  # Self-updates for the app (tools/release.sh publishes them).
   Sparkle:
     url: https://github.com/sparkle-project/Sparkle
     exactVersion: 2.10.0
@@ -53,7 +53,7 @@ targets:
             CFBundleURLSchemes: [nxm]
             CFBundleTypeRole: Viewer
         NSHumanReadableCopyright: ""
-        # App updates (Sparkle): release.sh publishes the zip on GitHub
+        # App updates (Sparkle): tools/release.sh publishes the zip on GitHub
         # Releases and the feed (appcast.xml) on the main branch. The key
         # checks that updates were signed with the private key in the
         # maintainer's Keychain (account "tadpole", not Starseed's).

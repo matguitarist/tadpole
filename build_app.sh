@@ -31,7 +31,7 @@ BUILT="$DERIVED/Build/Products/Release/$APP_NAME"
 # Signed with your Developer ID (or else the "Tadpole Self-Signed"
 # certificate, make_signing_identity.sh), so the app's identity stays the
 # same from build to build and macOS asks for Keychain access (the Nexus API
-# key) once. REQUIRE_SIGNING=1 (release.sh) stops without one. Signing
+# key) once. REQUIRE_SIGNING=1 stops without one. Signing
 # happens here in Caches: this folder may sync with iCloud Drive, which puts
 # Finder attributes back on files and makes codesign fail.
 STAGED="$DERIVED/Signed/$APP_NAME"
@@ -40,8 +40,6 @@ mkdir -p "${STAGED:h}"
 ditto --noextattr --norsrc "$BUILT" "$STAGED"
 if [[ -n "$(./signing_identity.sh)" ]]; then
     ./sign_app.sh "$STAGED" 2>&1 | grep -v "replacing existing signature"
-    # Notarized here, in Caches, for the same reason (release.sh asks).
-    if [[ -n "${NOTARIZE:-}" ]]; then ./notarize.sh "$STAGED"; fi
 elif [[ -n "${REQUIRE_SIGNING:-}" ]]; then
     echo "No signing certificate: add your Developer ID in Xcode, or run ./make_signing_identity.sh." >&2
     exit 1
