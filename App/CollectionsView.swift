@@ -154,7 +154,7 @@ struct CollectionSheet: View {
 
     private var header: some View {
         HStack(alignment: .top, spacing: 14) {
-            RemotePicture(url: collection.tileImageURL, cornerRadius: 8)
+            RemotePicture(url: collection.tileImageURL, cornerRadius: Radius.control)
                 .frame(width: 96, height: 120)
             VStack(alignment: .leading, spacing: 4) {
                 Text(collection.name).font(.title2.bold()).lineLimit(2)

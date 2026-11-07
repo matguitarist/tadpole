@@ -33,7 +33,7 @@ final class ImageCache {
 /// copy of themselves.
 struct ShapedPicture: View {
     let url: URL
-    var cornerRadius: CGFloat = 8
+    var cornerRadius: CGFloat = Radius.control
     @State private var image: NSImage?
 
     /// Tallest box for portrait pictures (width / height).
@@ -78,7 +78,7 @@ struct ModThumbnail: View {
 
     var body: some View {
         // An overlay takes the frame's size, so wide pictures are cropped.
-        RoundedRectangle(cornerRadius: 4)
+        RoundedRectangle(cornerRadius: Radius.thumbnail)
             .fill(.quaternary.opacity(0.5))
             .overlay {
                 if let image {
@@ -87,7 +87,7 @@ struct ModThumbnail: View {
                     Image(systemName: "puzzlepiece.extension").foregroundStyle(.tertiary).imageScale(.small)
                 }
             }
-            .clipShape(RoundedRectangle(cornerRadius: 4))
+            .clipShape(RoundedRectangle(cornerRadius: Radius.thumbnail))
             .task(id: url) {
                 guard let url else { image = nil; return }
                 image = ImageCache.shared.cached(url)

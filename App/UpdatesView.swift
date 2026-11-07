@@ -143,7 +143,7 @@ private struct UpdateRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(alignment: .top, spacing: 10) {
-                RemotePicture(url: model.nexusMods[update.modID]?.thumbnailURL, cornerRadius: 4)
+                RemotePicture(url: model.nexusMods[update.modID]?.thumbnailURL, cornerRadius: Radius.thumbnail)
                     .frame(width: 80, height: 50)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(update.modName).font(.headline)

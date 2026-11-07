@@ -185,7 +185,7 @@ struct NexusModSheet: View {
     private var header: some View {
         let shown = mod ?? request.preview
         return HStack(alignment: .top, spacing: 14) {
-            RemotePicture(url: shown?.pictureURL ?? shown?.thumbnailURL, cornerRadius: 8)
+            RemotePicture(url: shown?.pictureURL ?? shown?.thumbnailURL, cornerRadius: Radius.control)
                 .frame(width: 200, height: 120)
             VStack(alignment: .leading, spacing: 4) {
                 Text(shown?.name ?? String(localized: "Nexus mod \(request.modID)")).font(.title2.bold()).lineLimit(2)

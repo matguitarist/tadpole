@@ -19,6 +19,7 @@
 		5C215760DDDC2E75D01BF36C /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54342D908BE7F55F92B180AC /* MenuBar.swift */; };
 		5FA851D45F5C574FF4D72ADD /* SetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E5A6578E7CC8040AF03A3 /* SetupAssistant.swift */; };
 		65E810B669DD7311FB02651F /* AppModel+Requirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED19FD627256BC0582B3DB9 /* AppModel+Requirements.swift */; };
+		6666BB89437CCFC44E12DB80 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8DD69904D0D1092A02D6CE /* Grid.swift */; };
 		69171DB21B19277C2C3F6EB0 /* TadpoleCore in Frameworks */ = {isa = PBXBuildFile; productRef = EBB45E710700B5463F0A3482 /* TadpoleCore */; };
 		6BE89967EAAD84EFD37CF73C /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A14F14F59621F35B8ACBFBE /* AppUpdater.swift */; };
 		6DF9CD1020C94C26A97B4B44 /* RequirementsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E714D6DED9434A9B7F9D7DAE /* RequirementsViews.swift */; };
@@ -64,6 +65,7 @@
 		4EB27333159DA9C843DF0FD3 /* AppModel+Profiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Profiles.swift"; sourceTree = "<group>"; };
 		52712E02D25288AD3401FEFB /* LoadOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadOrderView.swift; sourceTree = "<group>"; };
 		54342D908BE7F55F92B180AC /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		5B8DD69904D0D1092A02D6CE /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		5B9A7217F6B42E131E1AC649 /* NexusFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusFiles.swift; sourceTree = "<group>"; };
 		5CC5678F2040BBA6B1D3A835 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		63C6AFA9CD28D4CDE673C0B9 /* ModDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModDetails.swift; sourceTree = "<group>"; };
@@ -118,6 +120,14 @@
 			);
 			sourceTree = "<group>";
 		};
+		4AF67B88E5C92D22E86C05B1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5B8DD69904D0D1092A02D6CE /* Grid.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		4F7D2B9A059AF76ADEA891F8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +176,7 @@
 				C88DE7BB747321F48EAE48F0 /* Tadpole.entitlements */,
 				36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */,
 				147A95924B5FFC84EF2324C9 /* UpdatesView.swift */,
+				4AF67B88E5C92D22E86C05B1 /* UI */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -263,6 +274,7 @@
 				E70D74C9814DBBD646224F82 /* BrowseView.swift in Sources */,
 				281DB6A04875095CB815B109 /* BrowserView.swift in Sources */,
 				53E4F1BF012EEA3A6155ADC1 /* CollectionsView.swift in Sources */,
+				6666BB89437CCFC44E12DB80 /* Grid.swift in Sources */,
 				DEFA51D8F5E45F024256EB31 /* HelpView.swift in Sources */,
 				0748C3E5A09F335C1AB6A085 /* Keychain.swift in Sources */,
 				C7DE3D50457244BD93696B02 /* LoadOrderView.swift in Sources */,
