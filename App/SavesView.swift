@@ -128,7 +128,7 @@ private struct SaveRow: View {
                 }
             }
             .frame(width: 128, height: 72)
-            .clipShape(RoundedRectangle(cornerRadius: 6))
+            .clipShape(RoundedRectangle(cornerRadius: Radius.control))
 
             VStack(alignment: .leading, spacing: 3) {
                 HStack(spacing: 6) {

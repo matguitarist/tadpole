@@ -38,7 +38,7 @@ struct ModDetails: View {
                     }
                     .font(.callout)
                     .padding(8)
-                    .background(.blue.opacity(0.1), in: RoundedRectangle(cornerRadius: 6))
+                    .background(.blue.opacity(0.1), in: RoundedRectangle(cornerRadius: Radius.banner))
                 }
 
                 Grid(alignment: .leading, horizontalSpacing: 10, verticalSpacing: 6) {

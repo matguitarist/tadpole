@@ -166,7 +166,7 @@ struct ScriptExtenderLogView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(10)
-        .background(.orange.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
+        .background(.orange.opacity(0.1), in: RoundedRectangle(cornerRadius: Radius.banner))
         .padding(.horizontal, 14)
         .padding(.bottom, 8)
     }
@@ -214,7 +214,7 @@ struct ScriptExtenderLogView: View {
                     }
                     .buttonStyle(.bordered)
                     .tint(isOn ? .accentColor : nil)
-                    .background(isOn ? Color.accentColor.opacity(0.25) : .clear, in: RoundedRectangle(cornerRadius: 6))
+                    .background(isOn ? Color.accentColor.opacity(0.25) : .clear, in: RoundedRectangle(cornerRadius: Radius.control))
                     .help(isOn ? String(localized: "Show all lines again") : group.first.message)
                 }
             }
@@ -381,7 +381,7 @@ private struct EntryRow: View {
                 .foregroundStyle(scriptExtenderModuleColor(entry.module))
                 .padding(.horizontal, 5)
                 .padding(.vertical, 1)
-                .background(scriptExtenderModuleColor(entry.module).opacity(0.15), in: RoundedRectangle(cornerRadius: 4))
+                .background(scriptExtenderModuleColor(entry.module).opacity(0.15), in: RoundedRectangle(cornerRadius: Radius.chip))
                 .frame(width: 70, alignment: .leading)
             Text(verbatim: entry.message)
                 .foregroundStyle(entry.level == .debug ? .secondary : entry.level.color)

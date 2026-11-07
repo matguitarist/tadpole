@@ -50,7 +50,7 @@ struct RootView: View {
         }
         .overlay {
             if isDropTargeted {
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: Radius.control)
                     .strokeBorder(Color.accentColor, lineWidth: 3)
                     .padding(4)
                     .allowsHitTesting(false)
@@ -115,7 +115,7 @@ private struct Sidebar: View {
 /// A picture from Nexus that fills its frame, with a placeholder.
 struct RemotePicture: View {
     let url: URL?
-    var cornerRadius: CGFloat = 6
+    var cornerRadius: CGFloat = Radius.control
 
     var body: some View {
         // An overlay takes the frame's size, so wide pictures are cropped.
