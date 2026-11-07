@@ -18,6 +18,10 @@ settings:
 packages:
   TadpoleCore:
     path: TadpoleCore
+  # The log viewer the apps share (the Script Extender Log page).
+  LogKit:
+    url: https://github.com/matguitarist/LogKit
+    from: 0.3.0
   # Self-updates for the app (tools/release.sh publishes them).
   Sparkle:
     url: https://github.com/sparkle-project/Sparkle
@@ -30,6 +34,8 @@ targets:
       - App
     dependencies:
       - package: TadpoleCore
+      - package: LogKit
+        product: LogKitUI
       - package: Sparkle
     # A self-signed app with the hardened runtime can't load separately
     # signed frameworks (Sparkle) without this.

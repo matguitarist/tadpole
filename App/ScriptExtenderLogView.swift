@@ -1,39 +1,13 @@
-// The Script Extender's log, like Starseed's SMAPI log: the session's
-// version and mods, problems grouped by mod, and every line with level and
-// module filters and search. Follows the file while the game runs.
+// The Script Extender's log, like Starseed's SMAPI log: LogKit's viewer
+// (levels, problems by part, search, Clear, follow live, sessions, copy and
+// export) with what only Tadpole knows: the session's version and mods,
+// problems grouped by mod, the game build it doesn't support, and mods
+// listed with another mod's scripts.
 
 import AppKit
+import LogKitUI
 import SwiftUI
 import TadpoleCore
-
-extension ScriptExtenderLog.Level {
-    var color: Color {
-        switch self {
-        case .debug: .gray
-        case .info: .primary
-        case .warn: .orange
-        case .error: .red
-        }
-    }
-
-    var symbol: String {
-        switch self {
-        case .debug: "ladybug"
-        case .info: "info.circle"
-        case .warn: "exclamationmark.triangle.fill"
-        case .error: "xmark.octagon.fill"
-        }
-    }
-
-    var title: LocalizedStringKey {
-        switch self {
-        case .debug: "Debug"
-        case .info: "Info"
-        case .warn: "Warnings"
-        case .error: "Errors"
-        }
-    }
-}
 
 /// A color per part of the Script Extender, so lines from the same part
 /// are easy to follow.
@@ -56,339 +30,152 @@ func scriptExtenderModuleColor(_ module: String) -> Color {
     }
 }
 
+extension LogViewerModel {
+    /// The latest session (followed as new sessions start) and the earlier
+    /// ones in the Script Extender's logs folder.
+    static func scriptExtender() -> LogViewerModel {
+        let model = LogViewerModel(file: LogFileSource(
+            files: [.init(String(localized: "Latest Session"), url: ScriptExtenderLog.latestURL)],
+            folder: ScriptExtenderMac.logsFolder,
+            sessionPrefix: "bg3se_",
+            parser: ScriptExtenderLog.parser(describe: ScriptExtenderLogText.describe)))
+        // Debug lines start hidden, as they always have.
+        model.filter.levels = [.info, .warning, .error, .critical]
+        model.filter.collapseRepeats = UserDefaults.standard.object(forKey: hideRepeatsKey) as? Bool ?? true
+        // Show All Messages comes back here, with Debug still hidden.
+        model.defaultFilter = model.filter
+        return model
+    }
+
+    static let hideRepeatsKey = "hideRepeatedLogLines"
+}
+
 struct ScriptExtenderLogView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.openSettings) private var openSettings
-
-    /// nil: the latest session (followed as new sessions start).
-    @State private var chosenFile: URL?
-    @State private var shownFile: URL?
-    @State private var log: ScriptExtenderLog?
-    @State private var loadedDate: Date?
-    @State private var levels: Set<ScriptExtenderLog.Level> = [.info, .warn, .error]
-    @State private var module: String?
-    @State private var searchText = ""
-    /// A problem chip that's on: only its warnings and errors are shown.
-    @State private var problem: ScriptExtenderLog.ProblemGroup?
-    @State private var follow = true
-    @AppStorage("hideRepeatedLogLines") private var hideRepeated = true
-    /// Messages logged more than this many times are noise ("Lua context
-    /// changed" comes ten times a second).
-    private static let repeatLimit = 50
+    /// What Tadpole reads from the session shown, computed off the main
+    /// thread once per change of the log.
+    @State private var facts = ScriptExtenderLog(entries: [])
 
     var body: some View {
-        Group {
-            if let log {
-                VStack(spacing: 0) {
-                    header(log)
-                    if let build = log.unsupportedBuild { limitedModeBanner(log, build: build) }
-                    if !log.misattributed.isEmpty { misattributedNote(log) }
-                    let groups = log.problemGroups
-                    if !groups.isEmpty { problems(groups) }
-                    Divider()
-                    entries(log)
-                }
-            } else {
-                ContentUnavailableView {
-                    Label("No Script Extender Log Yet", systemImage: "doc.text.magnifyingglass")
-                } description: {
-                    Text(model.scriptExtenderState == .notInstalled
-                         ? "The Script Extender writes a log each time the game runs with it, like SMAPI's for Stardew Valley: which mods it loaded and what went wrong. Install it in Settings first."
-                         : "Play once with the Script Extender: its log appears here, updating while you play.")
-                } actions: {
-                    if model.scriptExtenderState == .notInstalled {
-                        Button("Open Script Extender Settings") {
-                            UserDefaults.standard.set("scriptExtender", forKey: Preferences.settingsTab)
-                            openSettings()
-                        }
-                    }
-                }
+        let log = model.scriptLogViewer
+        LogViewer(model: log, options: options)
+            .navigationTitle("Script Extender Log")
+            .navigationSubtitle(log.fileURL?.resolvingSymlinksInPath().lastPathComponent ?? "")
+            .task(id: documentKey) { await updateFacts() }
+            .onChange(of: log.filter.collapseRepeats) { _, hide in
+                UserDefaults.standard.set(hide, forKey: LogViewerModel.hideRepeatsKey)
             }
-        }
-        .navigationTitle("Script Extender Log")
-        .navigationSubtitle(shownFile?.lastPathComponent ?? "")
-        .searchable(text: $searchText, placement: .toolbar, prompt: Text("Search the log"))
-        .toolbar {
-            ToolbarItemGroup(placement: .primaryAction) {
-                sessionMenu
-                Button {
-                    if let shownFile { NSWorkspace.shared.activateFileViewerSelecting([shownFile]) }
-                } label: {
-                    Label("Show in Finder", systemImage: "folder")
-                }
-                .help("Show the log file in Finder")
-                .disabled(shownFile == nil)
-            }
-        }
-        // Reads the file again when it changes: every 2 seconds, cheaply
-        // (its date first).
-        .task(id: chosenFile) {
-            loadedDate = nil
-            problem = nil
-            while !Task.isCancelled {
-                await reloadIfChanged()
-                try? await Task.sleep(for: .seconds(2))
-            }
-        }
     }
 
-    // MARK: Parts
-
-    private func header(_ log: ScriptExtenderLog) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: 16) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(log.version.map { "BG3SE-macOS \($0)" } ?? "BG3SE-macOS").font(.headline)
-                if let session = log.session {
-                    Text("Session started \(session)").font(.caption).foregroundStyle(.secondary)
-                }
-            }
-            Spacer()
-            stat(log.enabledMods.count, "mods loaded", color: .secondary)
-            stat(log.scriptExtenderMods.count, "Script Extender mods", color: .purple)
-            stat(log.warningCount, "warnings", color: log.warningCount > 0 ? .orange : .secondary)
-            stat(log.errorCount, "errors", color: log.errorCount > 0 ? .red : .secondary)
-        }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 10)
+    private var options: LogViewerOptions {
+        let notInstalled = model.scriptExtenderState == .notInstalled
+        return LogViewerOptions(
+            emptyTitle: String(localized: "No Script Extender Log Yet"),
+            emptyMessage: notInstalled
+                ? String(localized: "The Script Extender writes a log each time the game runs with it, like SMAPI's for Stardew Valley: which mods it loaded and what went wrong. Install it in Settings first.")
+                : String(localized: "Play once with the Script Extender: its log appears here, updating while you play."),
+            emptyActions: notInstalled ? {
+                AnyView(Button("Open Script Extender Settings") {
+                    UserDefaults.standard.set("scriptExtender", forKey: Preferences.settingsTab)
+                    openSettings()
+                })
+            } : nil,
+            insightsTitle: String(localized: "What the Script Extender is telling you"),
+            insightActions: { insight in AnyView(ModProblemActions(insight: insight)) },
+            banner: { _ in AnyView(LimitedModeBanner(facts: facts)) },
+            sourceColor: scriptExtenderModuleColor)
     }
 
-    /// The game build isn't one this release supports: what's off.
-    private func limitedModeBanner(_ log: ScriptExtenderLog, build: (detected: String, expected: String)) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Label("Limited mode: this release was made for game build \(build.expected), and yours is \(build.detected).", systemImage: "exclamationmark.triangle.fill")
-                .font(.callout.weight(.medium))
-                .foregroundStyle(.orange)
-            if !log.disabledFeatures.isEmpty {
-                Text("Turned off: \(log.disabledFeatures.formatted(.list(type: .and))). Mods that use these won't fully work until a release supports your build.")
-                    .font(.callout)
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(10)
-        .background(.orange.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
-        .padding(.horizontal, 14)
-        .padding(.bottom, 8)
+    /// Changes when the log shown changes: another file, a new session, new lines.
+    private var documentKey: String {
+        let log = model.scriptLogViewer
+        let entries = log.document?.entries
+        return "\(log.fileURL?.path ?? "") \(entries?.first?.id ?? -1) \(entries?.count ?? -1) \(entries?.last?.id ?? -1)"
     }
 
-    /// The Script Extender listed mods with another mod's scripts.
-    private func misattributedNote(_ log: ScriptExtenderLog) -> some View {
-        let pairs = log.misattributed.sorted { $0.key < $1.key }
-        return Label {
-            Text("The Script Extender also listed \(pairs.map(\.key).formatted(.list(type: .and))) as Script Extender mods, by mistake: it matched them to the scripts of \(Set(pairs.map(\.value)).sorted().formatted(.list(type: .and))). They don't use the Script Extender and aren't counted.")
-        } icon: {
-            Image(systemName: "info.circle")
-        }
-        .font(.callout)
-        .foregroundStyle(.secondary)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, 14)
-        .padding(.bottom, 8)
-    }
-
-    private func stat(_ count: Int, _ label: LocalizedStringKey, color: Color) -> some View {
-        VStack(spacing: 0) {
-            Text(count, format: .number).font(.title3.bold()).foregroundStyle(color).monospacedDigit()
-            Text(label).font(.caption2).foregroundStyle(.secondary)
-        }
-    }
-
-    /// One chip per mod (or part of the Script Extender) with problems;
-    /// clicking one shows only its warnings and errors (again: everything).
-    private func problems(_ groups: [ScriptExtenderLog.ProblemGroup]) -> some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                Text("Problems:").font(.callout).foregroundStyle(.secondary)
-                ForEach(groups) { group in
-                    let isOn = problem?.id == group.id
-                    Button {
-                        problem = isOn ? nil : group
-                    } label: {
-                        HStack(spacing: 4) {
-                            Image(systemName: group.isMod ? "shippingbox" : "gearshape")
-                            Text(group.source).fontWeight(.medium)
-                            if group.errors > 0 { Text("\(group.errors)").foregroundStyle(.red) }
-                            if group.warnings > 0 { Text("\(group.warnings)").foregroundStyle(.orange) }
-                        }
-                        .font(.callout)
-                    }
-                    .buttonStyle(.bordered)
-                    .tint(isOn ? .accentColor : nil)
-                    .background(isOn ? Color.accentColor.opacity(0.25) : .clear, in: RoundedRectangle(cornerRadius: 6))
-                    .help(isOn ? String(localized: "Show all lines again") : group.first.message)
-                }
-            }
-            .padding(.horizontal, 14)
-            .padding(.bottom, 8)
-        }
-    }
-
-    private func entries(_ log: ScriptExtenderLog) -> some View {
-        let shown = filtered(log)
-        return VStack(spacing: 0) {
-            HStack(spacing: 10) {
-                ForEach(ScriptExtenderLog.Level.allCases, id: \.self) { level in
-                    Toggle(isOn: Binding(get: { levels.contains(level) },
-                                         set: { if $0 { levels.insert(level) } else { levels.remove(level) } })) {
-                        Label(level.title, systemImage: level.symbol)
-                    }
-                    .toggleStyle(.button)
-                    .controlSize(.small)
-                }
-                Picker("Part", selection: $module) {
-                    Text("All Parts").tag(String?.none)
-                    Divider()
-                    ForEach(Array(Set(log.entries.map(\.module))).filter { !$0.isEmpty }.sorted(), id: \.self) { part in
-                        Label {
-                            Text(verbatim: part)
-                        } icon: {
-                            Image(systemName: "circle.fill").foregroundStyle(scriptExtenderModuleColor(part))
-                        }
-                        .tag(String?.some(part))
-                    }
-                }
-                .fixedSize()
-                .controlSize(.small)
-                Spacer()
-                Toggle("Hide repeated lines", isOn: $hideRepeated)
-                    .toggleStyle(.checkbox)
-                    .controlSize(.small)
-                    .help("Hide messages the log repeats more than \(Self.repeatLimit) times")
-                Text("\(shown.count) lines").font(.caption).foregroundStyle(.secondary).monospacedDigit()
-                Toggle("Follow", isOn: $follow)
-                    .toggleStyle(.checkbox)
-                    .controlSize(.small)
-                    .help("Scroll to new lines as the game writes them")
-            }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 6)
-            .disabled(problem != nil)  // a problem chip decides what's shown
-            if let problem {
-                HStack {
-                    Image(systemName: "line.3.horizontal.decrease.circle.fill").foregroundStyle(Color.accentColor)
-                    Text("Showing the \(shown.count) warnings and errors from \(problem.source).")
-                    Spacer()
-                    Button("Show All") { self.problem = nil }
-                        .controlSize(.small)
-                }
-                .font(.callout)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 6)
-                .background(Color.accentColor.opacity(0.08))
-            }
-            Divider()
-            ScrollViewReader { proxy in
-                List(shown) { entry in
-                    EntryRow(entry: entry)
-                }
-                .listStyle(.plain)
-                .onChange(of: shown.last?.id) { _, last in
-                    if follow, problem == nil, let last { proxy.scrollTo(last, anchor: .bottom) }
-                }
-                .onChange(of: problem) { _, problem in
-                    // The first problem, or back to the end.
-                    if problem != nil, let first = shown.first?.id {
-                        proxy.scrollTo(first, anchor: .top)
-                    } else if let last = shown.last?.id {
-                        proxy.scrollTo(last, anchor: .bottom)
-                    }
-                }
-                .onAppear {
-                    if follow, let last = shown.last?.id { proxy.scrollTo(last, anchor: .bottom) }
-                }
-            }
-        }
-    }
-
-    private func filtered(_ log: ScriptExtenderLog) -> [ScriptExtenderLog.Entry] {
-        let query = searchText.trimmingCharacters(in: .whitespaces)
-        if let problem {
-            // The same grouping as the chips' counts.
-            return log.entries.filter { entry in
-                entry.level >= .warn
-                    && (problem.isMod ? entry.modFolder == problem.source : entry.modFolder == nil && entry.module == problem.source)
-                    && (query.isEmpty || entry.message.localizedCaseInsensitiveContains(query))
-            }
-        }
-        var counts: [String: Int] = [:]
-        if hideRepeated {
-            for entry in log.entries where entry.level < .warn { counts[entry.message, default: 0] += 1 }
-        }
-        return log.entries.filter { entry in
-            (counts[entry.message] ?? 0) <= Self.repeatLimit
-                && levels.contains(entry.level)
-                && (module == nil || entry.module == module)
-                && (query.isEmpty || entry.message.localizedCaseInsensitiveContains(query))
-        }
-    }
-
-    private var sessionMenu: some View {
-        Menu {
-            Button("Latest Session") { chosenFile = nil }
-            let sessions = ScriptExtenderLog.sessionLogs()
-            if !sessions.isEmpty {
-                Divider()
-                ForEach(sessions.prefix(20), id: \.self) { file in
-                    Button(file.deletingPathExtension().lastPathComponent.replacingOccurrences(of: "bg3se_", with: "")) {
-                        chosenFile = file
-                    }
-                }
-            }
-            Divider()
-            Button("Open Logs Folder") {
-                let folder = ScriptExtenderMac.logsFolder
-                try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
-                NSWorkspace.shared.open(folder)
-            }
-        } label: {
-            Label("Sessions", systemImage: "clock.arrow.circlepath")
-        }
-        .help("Show the log of an earlier game session")
-    }
-
-    // MARK: Loading
-
-    private func reloadIfChanged() async {
-        // latest.log is a link to the newest session's file.
-        let file = (chosenFile ?? ScriptExtenderLog.latestURL).resolvingSymlinksInPath()
-        let date = (try? file.resourceValues(forKeys: [.contentModificationDateKey]))?.contentModificationDate
-        guard let date else {
-            if chosenFile == nil { log = nil; shownFile = nil }
+    private func updateFacts() async {
+        guard let entries = model.scriptLogViewer.document?.entries else {
+            facts = ScriptExtenderLog(entries: [])
             return
         }
-        guard file != shownFile || date != loadedDate else { return }
-        let parsed = await Task.detached(priority: .utility) { try? ScriptExtenderLog(contentsOf: file) }.value
-        guard !Task.isCancelled else { return }
-        log = parsed
-        shownFile = file
-        loadedDate = date
+        facts = await Task.detached { ScriptExtenderLog(entries: entries) }.value
     }
 }
 
-private struct EntryRow: View {
-    let entry: ScriptExtenderLog.Entry
+// MARK: Header and insights
+
+/// The header's facts and the insights, in the person's language. Runs while
+/// the log is parsed, off the main thread.
+enum ScriptExtenderLogText {
+    nonisolated static func describe(_ log: ScriptExtenderLog) -> (metadata: [LogMetadata], insights: [LogInsight]) {
+        var metadata = [LogMetadata(log.version.map { "BG3SE-macOS \($0)" } ?? "BG3SE-macOS", symbol: "puzzlepiece.extension")]
+        if let session = log.session {
+            metadata.append(LogMetadata(String(localized: "Session started \(session)"), symbol: "clock"))
+        }
+        metadata.append(LogMetadata(String(localized: "\(log.enabledMods.count) mods loaded"), symbol: "shippingbox"))
+        metadata.append(LogMetadata(String(localized: "\(log.scriptExtenderMods.count) Script Extender mods"), symbol: "curlybraces"))
+
+        // Problems by part are LogKit's own; by mod, they're Tadpole's.
+        var insights = log.problemGroups.filter(\.isMod).map { group in
+            LogInsight(id: group.id,
+                       level: group.errors > 0 ? .error : .warning,
+                       title: group.errors > 0
+                           ? String(localized: "Errors in \(group.source) (\(group.errors))")
+                           : String(localized: "Warnings in \(group.source) (\(group.warnings))"),
+                       detail: group.first.message.split(separator: "\n").first.map(String.init) ?? "")
+        }
+        if !log.misattributed.isEmpty {
+            let pairs = log.misattributed.sorted { $0.key < $1.key }
+            insights.append(LogInsight(
+                id: "misattributed", level: .info,
+                title: String(localized: "Some mods were listed with another mod's scripts"),
+                detail: String(localized: "The Script Extender also listed \(pairs.map(\.key).formatted(.list(type: .and))) as Script Extender mods, by mistake: it matched them to the scripts of \(Set(pairs.map(\.value)).sorted().formatted(.list(type: .and))). They don't use the Script Extender and aren't counted.")))
+        }
+        return (metadata, insights)
+    }
+}
+
+/// Shows a mod's warnings and errors: the lines whose message names a file in its folder.
+private struct ModProblemActions: View {
+    @Environment(AppModel.self) private var model
+    let insight: LogInsight
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Text(verbatim: entry.time)
-                .foregroundStyle(.tertiary)
-                .monospacedDigit()
-            Image(systemName: entry.level.symbol)
-                .foregroundStyle(entry.level.color)
-                .frame(width: 14)
-            Text(verbatim: entry.module)
-                .font(.system(.caption, design: .monospaced).weight(.medium))
-                .foregroundStyle(scriptExtenderModuleColor(entry.module))
-                .padding(.horizontal, 5)
-                .padding(.vertical, 1)
-                .background(scriptExtenderModuleColor(entry.module).opacity(0.15), in: RoundedRectangle(cornerRadius: 4))
-                .frame(width: 70, alignment: .leading)
-            Text(verbatim: entry.message)
-                .foregroundStyle(entry.level == .debug ? .secondary : entry.level.color)
-                .textSelection(.enabled)
-                .fixedSize(horizontal: false, vertical: true)
+        if insight.id.hasPrefix("mod:") {
+            let folder = String(insight.id.dropFirst(4))
+            Button("Show Messages") {
+                let log = model.scriptLogViewer
+                log.filter.source = nil
+                log.filter.levels = [.warning, .error, .critical]
+                log.filter.query = "Mods/\(folder)"
+            }
+            .help("Show only the warnings and errors from \(folder)")
         }
-        .font(.system(.callout, design: .monospaced))
-        .id(entry.id)
+    }
+}
+
+/// The game build isn't one this release supports: what's off.
+private struct LimitedModeBanner: View {
+    let facts: ScriptExtenderLog
+
+    var body: some View {
+        if let build = facts.unsupportedBuild {
+            VStack(alignment: .leading, spacing: 4) {
+                Label("Limited mode: this release was made for game build \(build.expected), and yours is \(build.detected).", systemImage: "exclamationmark.triangle.fill")
+                    .font(.callout.weight(.medium))
+                    .foregroundStyle(.orange)
+                if !facts.disabledFeatures.isEmpty {
+                    Text("Turned off: \(facts.disabledFeatures.formatted(.list(type: .and))). Mods that use these won't fully work until a release supports your build.")
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
+            .background(.orange.opacity(0.12))
+            Divider()
+        }
     }
 }
