@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		04F020E7053FECCCD87FB2EE /* Pictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F40E2D996A82221043F75 /* Pictures.swift */; };
 		0748C3E5A09F335C1AB6A085 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC5678F2040BBA6B1D3A835 /* Keychain.swift */; };
-		1FB1D92914D23D77799C1DEB /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 7981A16453E3F60C895EA775 /* Sparkle */; };
+		1FB1D92914D23D77799C1DEB /* LogKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = ADAE32C670FEEB98DCF57D4C /* LogKitUI */; };
 		281DB6A04875095CB815B109 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C7D2CCEEA1DE01560B79A4 /* BrowserView.swift */; };
 		325218FC30F98914C997C547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B1E77A4C31B78A5A52EF957 /* Assets.xcassets */; };
 		33311F9622D0B1CE00A9F090 /* AppModel+Profiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB27333159DA9C843DF0FD3 /* AppModel+Profiles.swift */; };
@@ -43,6 +43,7 @@
 		E70D74C9814DBBD646224F82 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B782ED5F40424102BB728CA5 /* BrowseView.swift */; };
 		E8AF53F79234B35CB85A8840 /* AppModel+PlayReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781B4CEF8667B5CC1BF5A2CF /* AppModel+PlayReport.swift */; };
 		EAFB730EED4EBE1AE843F49E /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8E8142B91713F9E679D936 /* Preferences.swift */; };
+		EC856301A057A0CCC5DD0337 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 7981A16453E3F60C895EA775 /* Sparkle */; };
 		FC9D23C7DEFA664BDE3DC377 /* UpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A95924B5FFC84EF2324C9 /* UpdatesView.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,7 +95,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				69171DB21B19277C2C3F6EB0 /* TadpoleCore in Frameworks */,
-				1FB1D92914D23D77799C1DEB /* Sparkle in Frameworks */,
+				1FB1D92914D23D77799C1DEB /* LogKitUI in Frameworks */,
+				EC856301A057A0CCC5DD0337 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +190,7 @@
 			name = Tadpole;
 			packageProductDependencies = (
 				EBB45E710700B5463F0A3482 /* TadpoleCore */,
+				ADAE32C670FEEB98DCF57D4C /* LogKitUI */,
 				7981A16453E3F60C895EA775 /* Sparkle */,
 			);
 			productName = Tadpole;
@@ -219,6 +222,7 @@
 			mainGroup = 471555BBAAFAC766D22BDFCB;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				F921670EABB399622651AF20 /* XCRemoteSwiftPackageReference "LogKit" */,
 				DF5EDEFB6AFCA27929BD14B6 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				4E3BB8D2A2755FF92FD9BFA0 /* XCLocalSwiftPackageReference "TadpoleCore" */,
 			);
@@ -498,6 +502,14 @@
 				version = 2.10.0;
 			};
 		};
+		F921670EABB399622651AF20 /* XCRemoteSwiftPackageReference "LogKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/matguitarist/LogKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -505,6 +517,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DF5EDEFB6AFCA27929BD14B6 /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
+		};
+		ADAE32C670FEEB98DCF57D4C /* LogKitUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F921670EABB399622651AF20 /* XCRemoteSwiftPackageReference "LogKit" */;
+			productName = LogKitUI;
 		};
 		EBB45E710700B5463F0A3482 /* TadpoleCore */ = {
 			isa = XCSwiftPackageProductDependency;

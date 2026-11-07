@@ -1,4 +1,5 @@
 import Foundation
+import LogKit
 import Testing
 @testable import TadpoleCore
 
@@ -484,11 +485,52 @@ import Testing
         #expect(log.enabledMods == ["Mod Configuration Menu", "Tav's Hairpack"])
         #expect(log.scriptExtenderMods == ["MCM"])
         let error = log.entries.first { $0.level == .error }
-        #expect(error?.module == "Lua")
+        #expect(error?.source == "Lua")
         #expect(error?.time == "08:00:03.000")
         #expect(error?.message.hasSuffix("\tin ?") == false)
         #expect(error?.message.contains("stack traceback:") == true)  // continuation lines kept
         #expect(error?.modFolder == "MCM")
+    }
+
+    @Test func keepsTheHeaderAsAHiddenFirstEntryThatNamesTheSession() {
+        let document = ScriptExtenderLog.parser { _ in ([], []) }.parse(Self.sample)
+        let header = document.entries.first
+        #expect(header?.time == nil)
+        #expect(header?.level == .trace)  // shown only with Trace on, like before
+        #expect(header?.message.contains("Session: 2026-10-16 08:00:00") == true)
+        // A new session changes the first entry, so an earlier Clear no longer applies.
+        let next = ScriptExtenderLog.parser { _ in ([], []) }
+            .parse(Self.sample.replacingOccurrences(of: "08:00:00\n", with: "09:30:00\n"))
+        #expect(next.sessionKey != document.sessionKey)
+    }
+
+    @Test func keepsTheLogsOwnLevelWord() {
+        let entry = ScriptExtenderLog.parseLine("[2026-10-16 11:29:48.323] [INFO ] [Core   ] [WARN] GAME VERSION MISMATCH DETECTED")
+        #expect(entry?.level == .warning)
+        #expect(entry?.code == "INFO")
+        #expect(entry?.source == "Core")
+        #expect(ScriptExtenderLog.parseLine("[2026-10-16 08:00:00.000] [TRACE] [Core] unknown level") == nil)
+        #expect(ScriptExtenderLog.parseLine("stack traceback:") == nil)
+    }
+
+    @Test func leavesRepeatedHeaderLinesOutOfMessages() {
+        let log = ScriptExtenderLog("""
+            [2026-10-16 08:00:01.000] [INFO ] [Core   ] Ready
+            ========================================
+            Log level: DEBUG
+            [2026-10-16 08:00:02.000] [ERROR] [Lua    ] attempt to index nil
+            stack traceback:
+            """)
+        #expect(log.entries.map(\.message) == ["Ready", "attempt to index nil\nstack traceback:"])
+    }
+
+    @Test func describesTheLogForTheViewer() {
+        let document = ScriptExtenderLog.parser { log in
+            ([LogMetadata("BG3SE-macOS \(log.version ?? "")", symbol: "puzzlepiece.extension")],
+             log.problemGroups.map { LogInsight(id: $0.id, level: .error, title: $0.source) })
+        }.parse(Self.sample)
+        #expect(document.metadata.map(\.label) == ["BG3SE-macOS 0.44.0"])
+        #expect(document.insights.map(\.id) == ["mod:MCM", "module:Stats"])
     }
 
     @Test func groupsProblemsByMod() {

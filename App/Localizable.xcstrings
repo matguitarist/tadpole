@@ -7005,6 +7005,76 @@
           }
         }
       }
+    },
+    "%lld Script Extender mods" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mods Script Extender"
+          }
+        }
+      }
+    },
+    "What the Script Extender is telling you" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce que le Script Extender vous dit"
+          }
+        }
+      }
+    },
+    "Errors in %@ (%lld)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreurs dans %1$@ (%2$lld)"
+          }
+        }
+      }
+    },
+    "Warnings in %@ (%lld)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avertissements dans %1$@ (%2$lld)"
+          }
+        }
+      }
+    },
+    "Some mods were listed with another mod's scripts" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Des mods ont été listés avec les scripts d’un autre mod"
+          }
+        }
+      }
+    },
+    "Show Messages" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher les messages"
+          }
+        }
+      }
+    },
+    "Show only the warnings and errors from %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N’afficher que les avertissements et erreurs de %@"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

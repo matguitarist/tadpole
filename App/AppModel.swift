@@ -2,6 +2,7 @@
 // which says which of them load and in what order.
 
 import AppKit
+import LogKitUI
 import Observation
 import TadpoleCore
 import UniformTypeIdentifiers
@@ -54,6 +55,9 @@ final class AppModel {
     /// (AppModel+PlayReport).
     var lastScriptLog: ScriptExtenderLog?
     var lastScriptLogDate: Date?
+    /// The Script Extender Log page: kept here so its filters, Clear and the
+    /// session shown survive moving between pages.
+    let scriptLogViewer = LogViewerModel.scriptExtender()
     var lastPlayReport: PlayReport?
     private(set) var gameStartedAt: Date?
     /// Named load orders, one in use (AppModel+Profiles).
