@@ -12,7 +12,7 @@ collections, load order, updates, Script Extender, save backups.
 
 ## Build and check
 
-- Build: `./build_app.sh` → `dist/Tadpole.app` (builds in ~/Library/Caches, away from iCloud).
+- Build: `./build.sh` → `dist/Tadpole.app` (builds in ~/Library/Caches, away from iCloud).
 - Tests: `swift test --package-path TadpoleCore --scratch-path ~/Library/Developer/Tadpole/test-build`.
 - Never test against a real game install or real saves.
 - Release: `tools/release.sh <version>` (settings in `release.conf`). Use the mac-release skill.

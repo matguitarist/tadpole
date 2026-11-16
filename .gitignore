@@ -3,7 +3,6 @@
 .swiftpm/
 dist/
 DerivedData/
-releases/
 
 # Xcode per-user state
 xcuserdata/
