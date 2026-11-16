@@ -3,6 +3,9 @@
 A native macOS mod manager for Baldur's Gate 3: Nexus browsing and
 collections, load order, updates, Script Extender, save backups.
 
+Shared rules for how every project is laid out and named:
+@~/.claude/project-layout.md
+
 ## Layout
 
 - `project.yml` is the XcodeGen spec for `Tadpole.xcodeproj`. Edit it, then `xcodegen generate`; never edit the `.xcodeproj`. The version is `MARKETING_VERSION` there.
