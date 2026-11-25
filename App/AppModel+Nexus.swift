@@ -307,7 +307,7 @@ extension AppModel {
                 let url = try await client.downloadURL(modID: modID, fileID: fileID, key: key, expires: expires)
                 try Task.checkCancellation()
                 item.state = .downloading
-                let file = try await FileDownloader.download(url) { fraction in
+                let file = try await FileDownloader.download(url, userAgent: "Tadpole-macOS/\(Self.appVersion)") { fraction in
                     Task { @MainActor in item.progress = fraction }
                 }
                 try Task.checkCancellation()

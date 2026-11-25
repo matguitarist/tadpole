@@ -1,4 +1,5 @@
 import ArchiveKit
+import DownloadKit
 import Foundation
 import ProcessKit
 import Testing
@@ -443,7 +444,29 @@ import Testing
         #expect(ScriptExtenderMac.isNewer("0.45.0", than: "0.44.0"))
         #expect(ScriptExtenderMac.isNewer("0.44.10", than: "0.44.9"))
         #expect(!ScriptExtenderMac.isNewer("0.44.0", than: "0.44.0"))
-        #expect(ScriptExtenderMac.version(fromTag: "v0.44.0") == "0.44.0")
+    }
+
+    @Test func picksTheZipAndItsChecksumFromARelease() throws {
+        let base = URL(string: "https://github.com/tdimino/bg3se-macos/releases/download/v0.44.0/")!
+        let github = GitHubRelease(id: 1, tag: "v0.44.0", name: "v0.44.0", notes: "Notes", assets: [
+            .init(id: 1, name: "notes.txt", url: base.appending(path: "notes.txt"), size: 1),
+            .init(id: 2, name: "bg3se-macos.zip", url: base.appending(path: "bg3se-macos.zip"), size: 10),
+            .init(id: 3, name: "bg3se-macos.zip.sha256", url: base.appending(path: "bg3se-macos.zip.sha256"), size: 1),
+        ])
+        let release = try ScriptExtenderMac.release(from: github)
+        #expect(release.version == "0.44.0")
+        #expect(release.zipURL.lastPathComponent == "bg3se-macos.zip")
+        #expect(release.checksumURL?.lastPathComponent == "bg3se-macos.zip.sha256")
+        #expect(release.pageURL == ScriptExtenderMac.releasesURL)
+        #expect(throws: ScriptExtenderMac.InstallError.self) {
+            try ScriptExtenderMac.release(from: GitHubRelease(id: 2, tag: "v1", name: "v1"))
+        }
+    }
+
+    @Test func readsReleasesCachedBeforeTheDigest() throws {
+        let json = #"{"version":"0.44.0","publishedAt":0,"pageURL":"https://github.com","notes":"","zipURL":"https://github.com/a.zip"}"#
+        let release = try JSONDecoder().decode(ScriptExtenderRelease.self, from: Data(json.utf8))
+        #expect(release.sha256 == nil && release.checksumURL == nil)
     }
 }
 

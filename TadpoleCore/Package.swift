@@ -12,15 +12,19 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/matguitarist/ProcessKit", from: "0.1.1"),
         .package(url: "https://github.com/matguitarist/ArchiveKit", from: "0.1.1"),
+        .package(url: "https://github.com/matguitarist/DownloadKit", from: "0.1.0"),
     ],
     targets: [
         .target(name: "TadpoleCore", dependencies: [
             .product(name: "ProcessKit", package: "ProcessKit"),
             .product(name: "ArchiveKit", package: "ArchiveKit"),
+            .product(name: "DownloadKit", package: "DownloadKit"),
         ]),
         .testTarget(name: "TadpoleCoreTests", dependencies: [
             "TadpoleCore",
             .product(name: "ProcessKit", package: "ProcessKit"),
+            .product(name: "ArchiveKit", package: "ArchiveKit"),
+            .product(name: "DownloadKit", package: "DownloadKit"),
         ]),
     ]
 )

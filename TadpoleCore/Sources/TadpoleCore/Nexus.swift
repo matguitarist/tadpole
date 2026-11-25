@@ -8,6 +8,7 @@
 // Nexus API acceptable use policy:
 // https://help.nexusmods.com/article/114-api-acceptable-use-policy
 
+import DownloadKit
 import Foundation
 
 public struct NexusUser: Sendable, Equatable, Decodable {
@@ -249,73 +250,26 @@ public struct NexusClient: Sendable {
     }
 }
 
-/// Downloads a file with progress. URLSession's async download API doesn't
-/// report progress, so this wraps a delegate-based download task.
+/// Downloads a file with progress through DownloadKit (retried from where it
+/// stopped when the connection drops, checked against `sha256` when given),
+/// with the server's failures in Nexus's words.
 public enum FileDownloader {
     /// Downloads `url` into a new temporary folder, keeping the server's
     /// file name (so the archive's extension is kept).
-    public static func download(_ url: URL, progress: @escaping @Sendable (Double) -> Void) async throws -> URL {
-        let delegate = Delegate(progress: progress)
-        let session = URLSession(configuration: .default, delegate: delegate, delegateQueue: nil)
-        defer { session.finishTasksAndInvalidate() }
-
-        let (tempFile, response) = try await withTaskCancellationHandler {
-            try await withCheckedThrowingContinuation { continuation in
-                delegate.continuation = continuation
-                session.downloadTask(with: url).resume()
+    public static func download(_ url: URL, userAgent: String, sha256: String? = nil,
+                                progress: @escaping @Sendable (Double) -> Void) async throws -> URL {
+        let folder = try Download.temporaryFolder(prefix: "tadpole-download")
+        do {
+            return try await Download.file(url, into: folder, sha256: sha256, options: DownloadOptions(userAgent: userAgent)) { step in
+                if let fraction = step.fraction { progress(fraction) }
             }
-        } onCancel: {
-            session.invalidateAndCancel()
-        }
-
-        if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
-            throw NexusError.failed(status: http.statusCode, serverMessage: nil)
-        }
-        let name = response.suggestedFilename.flatMap { $0.isEmpty ? nil : $0 }
-            ?? url.lastPathComponent.removingPercentEncoding
-            ?? "download.zip"
-        let folder = FileManager.default.temporaryDirectory.appending(path: "tadpole-download-\(UUID().uuidString)", directoryHint: .isDirectory)
-        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
-        let destination = folder.appending(path: name)
-        try FileManager.default.moveItem(at: tempFile, to: destination)
-        return destination
-    }
-
-    private final class Delegate: NSObject, URLSessionDownloadDelegate, @unchecked Sendable {
-        // Only touched from the session's serial delegate queue.
-        var continuation: CheckedContinuation<(URL, URLResponse), Error>?
-        let progress: @Sendable (Double) -> Void
-
-        init(progress: @escaping @Sendable (Double) -> Void) {
-            self.progress = progress
-        }
-
-        func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64,
-                        totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-            guard totalBytesExpectedToWrite > 0 else { return }
-            progress(Double(totalBytesWritten) / Double(totalBytesExpectedToWrite))
-        }
-
-        func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-            // `location` is deleted when this method returns, so move it first.
-            let keep = FileManager.default.temporaryDirectory.appending(path: "tadpole-dl-\(UUID().uuidString)")
-            do {
-                try FileManager.default.moveItem(at: location, to: keep)
-                if let response = downloadTask.response {
-                    continuation?.resume(returning: (keep, response))
-                } else {
-                    continuation?.resume(throwing: NexusError.failed(status: 0, serverMessage: nil))
-                }
-            } catch {
-                continuation?.resume(throwing: error)
-            }
-            continuation = nil
-        }
-
-        func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-            if let error {
-                continuation?.resume(throwing: error)
-                continuation = nil
+        } catch {
+            try? FileManager.default.removeItem(at: folder)
+            switch error as? DownloadError {
+            case .http(let status, _): throw NexusError.failed(status: status, serverMessage: nil)
+            case .rateLimited: throw NexusError.rateLimited
+            case .badResponse, .rangesNotSupported: throw NexusError.failed(status: 0, serverMessage: nil)
+            case .checksumMismatch, .invalidChecksum, nil: throw error
             }
         }
     }

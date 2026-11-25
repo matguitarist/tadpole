@@ -4,7 +4,7 @@
 // (the library next to the game's executable, the executable patched to load
 // it and signed again ad hoc, the original kept as a backup).
 
-import CryptoKit
+import DownloadKit
 import Foundation
 import ProcessKit
 
@@ -15,6 +15,9 @@ public struct ScriptExtenderRelease: Codable, Hashable, Sendable {
     public let notes: String
     public let zipURL: URL
     public let checksumURL: URL?
+    /// The zip's SHA-256 when GitHub publishes its digest (releases cached
+    /// before Tadpole read it have none, and use `checksumURL`).
+    public var sha256: String? = nil
 
     /// Game builds the release notes name ("4.1.1.7398727"): the builds it
     /// was made and tested for.
@@ -29,7 +32,10 @@ public struct ScriptExtenderRelease: Codable, Hashable, Sendable {
 }
 
 public enum ScriptExtenderMac {
-    public static let repository = "tdimino/bg3se-macos"
+    public static let owner = "tdimino", repositoryName = "bg3se-macos"
+    public static let repository = "\(owner)/\(repositoryName)"
+    /// Sent with every request to GitHub.
+    static let userAgent = "Tadpole-macOS"
     public static let projectURL = URL(string: "https://github.com/\(repository)")!
     public static let releasesURL = URL(string: "https://github.com/\(repository)/releases")!
     public static let libraryName = "libbg3se.dylib"
@@ -65,49 +71,46 @@ public enum ScriptExtenderMac {
 
     /// The newest release on GitHub (drafts and pre-releases aren't listed
     /// as latest).
-    public static func latestRelease(session: URLSession = .shared) async throws -> ScriptExtenderRelease {
-        struct Release: Decodable {
-            struct Asset: Decodable { let name: String; let browser_download_url: URL }
-            let tag_name: String
-            let html_url: URL
-            let body: String?
-            let published_at: Date
-            let assets: [Asset]
-        }
-        var request = URLRequest(url: URL(string: "https://api.github.com/repos/\(repository)/releases/latest")!)
-        request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
-        request.setValue("Tadpole-macOS", forHTTPHeaderField: "User-Agent")
-        let (data, response) = try await session.data(for: request)
-        if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
+    public static func latestRelease() async throws -> ScriptExtenderRelease {
+        let release: GitHubRelease
+        do {
+            release = try await GitHubRelease.latest(owner: owner, repo: repositoryName, options: DownloadOptions(userAgent: userAgent))
+        } catch is DownloadError {
             throw URLError(.badServerResponse)
         }
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        let release = try decoder.decode(Release.self, from: data)
-        guard let zip = release.assets.first(where: { $0.name.hasSuffix(".zip") }) else { throw InstallError.noDownload }
-        let checksum = release.assets.first { $0.name == zip.name + ".sha256" }
-        return ScriptExtenderRelease(version: version(fromTag: release.tag_name), publishedAt: release.published_at,
-                                     pageURL: release.html_url, notes: release.body ?? "",
-                                     zipURL: zip.browser_download_url, checksumURL: checksum?.browser_download_url)
+        return try self.release(from: release)
     }
 
-    static func version(fromTag tag: String) -> String {
-        tag.hasPrefix("v") ? String(tag.dropFirst()) : tag
+    /// Tadpole's pick from a GitHub release: its zip, and the zip's
+    /// "<name>.sha256" file or digest.
+    static func release(from release: GitHubRelease) throws -> ScriptExtenderRelease {
+        guard let zip = release.assets.first(where: { $0.name.hasSuffix(".zip") }) else { throw InstallError.noDownload }
+        let checksum = release.asset(named: zip.name + ".sha256")
+        return ScriptExtenderRelease(version: release.version, publishedAt: release.published ?? .now,
+                                     pageURL: release.page ?? releasesURL, notes: release.notes,
+                                     zipURL: zip.url, checksumURL: checksum?.url, sha256: zip.sha256)
     }
 
     /// Whether `version` is newer than `installed` ("0.45.0" > "0.44.1").
     public static func isNewer(_ version: String, than installed: String) -> Bool {
-        version.compare(installed, options: .numeric) == .orderedDescending
+        ReleaseVersion.isNewer(version, than: installed)
     }
 
     /// Downloads the release, checks it against its published SHA-256, and
     /// returns its libbg3se.dylib (in a temporary folder).
     public static func download(_ release: ScriptExtenderRelease, progress: @escaping @Sendable (Double) -> Void) async throws -> URL {
-        let zip = try await FileDownloader.download(release.zipURL, progress: progress)
-        if let checksumURL = release.checksumURL {
-            let (data, _) = try await URLSession.shared.data(from: checksumURL)
-            let expected = String(decoding: data, as: UTF8.self).split(whereSeparator: \.isWhitespace).first.map(String.init)?.lowercased()
-            guard let expected, try sha256(of: zip) == expected else { throw InstallError.checksumMismatch }
+        var expected = release.sha256
+        if expected == nil, let checksumURL = release.checksumURL {
+            let text = String(decoding: try await Download.data(from: checksumURL, options: DownloadOptions(userAgent: userAgent)), as: UTF8.self)
+            expected = SHA256Hex.find(for: release.zipURL.lastPathComponent, in: text)
+                ?? text.split(whereSeparator: \.isWhitespace).first.flatMap { SHA256Hex.normalized(String($0)) }
+            guard expected != nil else { throw InstallError.checksumMismatch }
+        }
+        let zip: URL
+        do {
+            zip = try await FileDownloader.download(release.zipURL, userAgent: userAgent, sha256: expected, progress: progress)
+        } catch is DownloadError {
+            throw InstallError.checksumMismatch  // the only DownloadError FileDownloader passes on
         }
         let folder = zip.deletingLastPathComponent().appending(path: "unpacked", directoryHint: .isDirectory)
         try await ModInstaller.unpack(zip, to: folder)
@@ -116,14 +119,6 @@ public enum ScriptExtenderMac {
             if url.lastPathComponent == libraryName, !url.pathComponents.contains("__MACOSX") { return url }
         }
         throw InstallError.libraryMissing
-    }
-
-    static func sha256(of file: URL) throws -> String {
-        let handle = try FileHandle(forReadingFrom: file)
-        defer { try? handle.close() }
-        var hasher = SHA256()
-        while let chunk = try handle.read(upToCount: 1 << 20), !chunk.isEmpty { hasher.update(data: chunk) }
-        return hasher.finalize().map { String(format: "%02x", $0) }.joined()
     }
 
     // MARK: The game
