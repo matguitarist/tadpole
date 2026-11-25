@@ -3,6 +3,21 @@
     <channel>
         <title>Tadpole</title>
         <item>
+            <title>0.5.0</title>
+            <pubDate>Wed, 25 Nov 2026 17:02:05 -0500</pubDate>
+            <sparkle:version>10</sparkle:version>
+            <sparkle:shortVersionString>0.5.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[## The same Help menu as every app
+
+- **What's New in Tadpole** opens the latest release notes.
+- **Report a Problem…** opens a new GitHub issue with the app version, build and macOS version already filled in.
+- **Check for Updates…** is always in the Tadpole menu, greyed out when updates aren't available.
+- **Tadpole on GitHub** is in the Help menu.
+]]></description>
+            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.5.0/Tadpole-0.5.0.zip" length="6705903" type="application/octet-stream" sparkle:edSignature="9jNMHoBWUJdwSUI3+/+b0AdWkagzGuxlGHD152Tw3BiOi/XKNL19ABCYachwGvoaNu3IEhuY375wzdWRigKaBQ=="/>
+        </item>
+        <item>
             <title>0.4.4</title>
             <pubDate>Wed, 25 Nov 2026 10:26:41 -0500</pubDate>
             <sparkle:version>9</sparkle:version>
