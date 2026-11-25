@@ -6,6 +6,7 @@
 
 import CryptoKit
 import Foundation
+import ProcessKit
 
 public struct ScriptExtenderRelease: Codable, Hashable, Sendable {
     public let version: String       // "0.44.0"
@@ -210,18 +211,11 @@ public enum ScriptExtenderMac {
         }
 
         static func signAdHoc(_ file: URL, identifier: String?) throws {
-            let process = Process()
-            process.executableURL = URL(filePath: "/usr/bin/codesign")
-            process.arguments = ["--force", "--sign", "-"] + (identifier.map { ["--identifier", $0] } ?? []) + [file.path(percentEncoded: false)]
-            process.standardOutput = FileHandle.nullDevice
-            let errors = Pipe()
-            process.standardError = errors
-            try process.run()
-            let message = String(decoding: errors.fileHandleForReading.readDataToEndOfFile(), as: UTF8.self)
-            process.waitUntilExit()
-            guard process.terminationStatus == 0 else {
-                throw NSError(domain: "codesign", code: Int(process.terminationStatus),
-                              userInfo: [NSLocalizedDescriptionKey: message.trimmingCharacters(in: .whitespacesAndNewlines)])
+            let arguments = ["--force", "--sign", "-"] + (identifier.map { ["--identifier", $0] } ?? []) + [file.path(percentEncoded: false)]
+            let output = try Shell.runSync("/usr/bin/codesign", arguments, options: Shell.Options(stdout: .discard))
+            guard output.succeeded else {
+                throw NSError(domain: "codesign", code: Int(output.status),
+                              userInfo: [NSLocalizedDescriptionKey: output.errorText.trimmingCharacters(in: .whitespacesAndNewlines)])
             }
         }
     }

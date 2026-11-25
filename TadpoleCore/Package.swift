@@ -9,8 +9,16 @@ let package = Package(
     products: [
         .library(name: "TadpoleCore", targets: ["TadpoleCore"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/matguitarist/ProcessKit", from: "0.1.1"),
+    ],
     targets: [
-        .target(name: "TadpoleCore"),
-        .testTarget(name: "TadpoleCoreTests", dependencies: ["TadpoleCore"]),
+        .target(name: "TadpoleCore", dependencies: [
+            .product(name: "ProcessKit", package: "ProcessKit"),
+        ]),
+        .testTarget(name: "TadpoleCoreTests", dependencies: [
+            "TadpoleCore",
+            .product(name: "ProcessKit", package: "ProcessKit"),
+        ]),
     ]
 )

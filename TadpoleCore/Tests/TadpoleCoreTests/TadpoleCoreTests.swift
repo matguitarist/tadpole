@@ -1,4 +1,5 @@
 import Foundation
+import ProcessKit
 import Testing
 @testable import TadpoleCore
 
@@ -149,10 +150,7 @@ import Testing
         try Data("pak".utf8).write(to: source.appending(path: "SomeMod.pak"))
         try Data("{}".utf8).write(to: source.appending(path: "info.json"))
         let zip = root.appending(path: "SomeMod-123.zip")
-        let ditto = Process()
-        ditto.executableURL = URL(filePath: "/usr/bin/ditto")
-        ditto.arguments = ["-c", "-k", "--keepParent", source.path(percentEncoded: false), zip.path(percentEncoded: false)]
-        try ditto.run(); ditto.waitUntilExit()
+        try Shell.runSync("/usr/bin/ditto", ["-c", "-k", "--keepParent", source.path(percentEncoded: false), zip.path(percentEncoded: false)]).check()
         let loose = root.appending(path: "Other.pak")
         try Data("other".utf8).write(to: loose)
         let readme = root.appending(path: "readme.txt")
@@ -172,10 +170,7 @@ import Testing
         try fm.createDirectory(at: source, withIntermediateDirectories: true)
         try Data("pak".utf8).write(to: source.appending(path: "Seven.pak"))
         let archive = root.appending(path: "Seven-1.7z")
-        let tar = Process()
-        tar.executableURL = URL(filePath: "/usr/bin/tar")
-        tar.arguments = ["--format", "7zip", "-cf", archive.path(percentEncoded: false), "-C", root.path(percentEncoded: false), "Seven"]
-        try tar.run(); tar.waitUntilExit()
+        try Shell.runSync("/usr/bin/tar", ["--format", "7zip", "-cf", archive.path(percentEncoded: false), "-C", root.path(percentEncoded: false), "Seven"]).check()
 
         let result = try ModInstaller.install([archive], into: root.appending(path: "Mods"))
         #expect(result.installed.map(\.lastPathComponent) == ["Seven.pak"])
@@ -416,16 +411,9 @@ import Testing
 
     @discardableResult
     func run(_ tool: String, _ arguments: [String]) throws -> String {
-        let process = Process()
-        process.executableURL = URL(filePath: tool)
-        process.arguments = arguments
-        let output = Pipe()
-        process.standardOutput = output
-        try process.run()
-        let data = output.fileHandleForReading.readDataToEndOfFile()
-        process.waitUntilExit()
-        #expect(process.terminationStatus == 0, "\(tool) failed")
-        return String(decoding: data, as: UTF8.self)
+        let output = try Shell.runSync(tool, arguments)
+        #expect(output.succeeded, "\(tool) failed")
+        return output.text
     }
 }
 
