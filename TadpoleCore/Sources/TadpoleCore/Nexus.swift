@@ -252,15 +252,19 @@ public struct NexusClient: Sendable {
 
 /// Downloads a file with progress through DownloadKit (retried from where it
 /// stopped when the connection drops, checked against `sha256` when given),
-/// with the server's failures in Nexus's words.
+/// with the server's failures in Nexus's words. It sends the system's own
+/// User-Agent, as Tadpole's downloads always did.
 public enum FileDownloader {
+    static let options = DownloadOptions(usesSystemUserAgent: true, prefersSuggestedFilename: true)
+
     /// Downloads `url` into a new temporary folder, keeping the server's
-    /// file name (so the archive's extension is kept).
-    public static func download(_ url: URL, userAgent: String, sha256: String? = nil,
+    /// file name (so the archive's extension is kept): URLSession's suggested
+    /// name first, as before DownloadKit.
+    public static func download(_ url: URL, sha256: String? = nil,
                                 progress: @escaping @Sendable (Double) -> Void) async throws -> URL {
         let folder = try Download.temporaryFolder(prefix: "tadpole-download")
         do {
-            return try await Download.file(url, into: folder, sha256: sha256, options: DownloadOptions(userAgent: userAgent)) { step in
+            return try await Download.file(url, into: folder, sha256: sha256, options: options) { step in
                 if let fraction = step.fraction { progress(fraction) }
             }
         } catch {

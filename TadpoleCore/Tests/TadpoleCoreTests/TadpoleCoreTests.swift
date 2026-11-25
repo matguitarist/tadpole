@@ -803,4 +803,9 @@ import Testing
         #expect(NXMRouting.route(URL(string: "nxm://skyrimspecialedition/mods/1/files/2")!) == .unsupported(gameDomain: "skyrimspecialedition"))
         #expect(NXMRouting.route(URL(string: "https://www.nexusmods.com")!) == nil)
     }
+
+    @Test func downloadsSendTheSystemUserAgentAndKeepTheSuggestedName() {
+        #expect(FileDownloader.options.usesSystemUserAgent)
+        #expect(FileDownloader.options.prefersSuggestedFilename)
+    }
 }

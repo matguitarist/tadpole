@@ -101,14 +101,14 @@ public enum ScriptExtenderMac {
     public static func download(_ release: ScriptExtenderRelease, progress: @escaping @Sendable (Double) -> Void) async throws -> URL {
         var expected = release.sha256
         if expected == nil, let checksumURL = release.checksumURL {
-            let text = String(decoding: try await Download.data(from: checksumURL, options: DownloadOptions(userAgent: userAgent)), as: UTF8.self)
+            let text = String(decoding: try await Download.data(from: checksumURL, options: FileDownloader.options), as: UTF8.self)
             expected = SHA256Hex.find(for: release.zipURL.lastPathComponent, in: text)
                 ?? text.split(whereSeparator: \.isWhitespace).first.flatMap { SHA256Hex.normalized(String($0)) }
             guard expected != nil else { throw InstallError.checksumMismatch }
         }
         let zip: URL
         do {
-            zip = try await FileDownloader.download(release.zipURL, userAgent: userAgent, sha256: expected, progress: progress)
+            zip = try await FileDownloader.download(release.zipURL, sha256: expected, progress: progress)
         } catch is DownloadError {
             throw InstallError.checksumMismatch  // the only DownloadError FileDownloader passes on
         }
