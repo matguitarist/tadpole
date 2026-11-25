@@ -14,6 +14,16 @@
         }
       }
     },
+    "This archive tries to write outside its folder (“%@”), so nothing was unpacked." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette archive essaie d’écrire hors de son dossier (« %@ »), alors rien n’a été décompressé."
+          }
+        }
+      }
+    },
     "“%@” lists %lld mods that aren't in the Mods folder: %@. Install them to load them; the profile keeps them." : {
       "localizations" : {
         "en" : {

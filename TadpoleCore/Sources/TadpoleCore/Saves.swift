@@ -6,6 +6,7 @@
 // Backups are zips of save folders, kept next to the game's folder in
 // "Larian Studios/Tadpole Save Backups".
 
+import ArchiveKit
 import Foundation
 
 public struct SaveInfo: Sendable, Hashable, Decodable {
@@ -122,36 +123,42 @@ public struct SaveBackup: Sendable, Identifiable, Hashable {
     public var id: URL { file }
     /// The save's name, without the date the backup adds.
     public var saveName: String {
-        let base = file.deletingPathExtension().lastPathComponent
-        let folder = base.replacing(/\ \d{4}-\d{2}-\d{2}\ \d{6}$/, with: "")
+        let folder = SaveBackups.folderName(in: self)
         return folder.split(separator: "__", maxSplits: 1).last.map(String.init) ?? folder
     }
 }
 
+/// Backups are ArchiveKit's `BackupFolder`: zipped beside the backups
+/// folder and moved into place when whole, restored beside the saves and
+/// swapped in only when the zip held the save.
 public enum SaveBackups {
-    /// Zips a save folder into `backups` as "<folder> <date>.zip".
+    /// Zips a save folder into `backups` as "<folder> <date>.zip" (" 2" when
+    /// one was made the same second).
     @discardableResult
-    public static func backUp(_ save: SaveGame, into backups: URL, now: Date = .now) throws -> URL {
-        try FileManager.default.createDirectory(at: backups, withIntermediateDirectories: true)
+    public static func backUp(_ save: SaveGame, into backups: URL, now: Date = .now) async throws -> URL {
         let stamp = now.formatted(.verbatim("\(year: .defaultDigits)-\(month: .twoDigits)-\(day: .twoDigits) \(hour: .twoDigits(clock: .twentyFourHour, hourCycle: .zeroBased))\(minute: .twoDigits)\(second: .twoDigits)",
                                            timeZone: .current, calendar: Calendar(identifier: .gregorian)))
-        let zip = backups.appending(path: "\(save.folder.lastPathComponent) \(stamp).zip")
-        try run("/usr/bin/ditto", ["-c", "-k", "--keepParent", save.folder.path(percentEncoded: false), zip.path(percentEncoded: false)])
-        return zip
+        do {
+            return try await BackupFolder(root: backups)
+                .backUp(from: save.folder, keepParent: true, name: "\(save.folder.lastPathComponent) \(stamp)", date: now).url
+        } catch let error as ArchiveError {
+            throw CocoaError(.fileWriteUnknown, userInfo: [NSFilePathErrorKey: save.folder.path(percentEncoded: false),
+                                                           NSLocalizedFailureReasonErrorKey: error.localizedDescription])
+        }
     }
 
+    /// Every backup, newest first, dated when it was made.
     public static func list(_ backups: URL) -> [SaveBackup] {
-        let files = (try? FileManager.default.contentsOfDirectory(at: backups, includingPropertiesForKeys: [.creationDateKey, .fileSizeKey],
-                                                                  options: .skipsHiddenFiles)) ?? []
-        return files.filter { $0.pathExtension.lowercased() == "zip" }.map { file in
-            let values = try? file.resourceValues(forKeys: [.creationDateKey, .fileSizeKey])
-            return SaveBackup(file: file, date: values?.creationDate ?? .distantPast, size: Int64(values?.fileSize ?? 0))
+        BackupFolder(root: backups).list().map { backup in
+            let created = try? backup.url.resourceValues(forKeys: [.creationDateKey]).creationDate
+            return SaveBackup(file: backup.url, date: created ?? backup.date, size: backup.size)
         }.sorted { $0.date > $1.date }
     }
 
-    /// The save folder a backup holds (its name inside the zip).
+    /// The save folder a backup holds (its name inside the zip): the file
+    /// name without the date, and without the " 2" a same-second twin got.
     static func folderName(in backup: SaveBackup) -> String {
-        backup.file.deletingPathExtension().lastPathComponent.replacing(/\ \d{4}-\d{2}-\d{2}\ \d{6}$/, with: "")
+        backup.file.deletingPathExtension().lastPathComponent.replacing(/\ \d{4}-\d{2}-\d{2}\ \d{6}(\ \d+)?$/, with: "")
     }
 
     /// Whether restoring would replace a save that's there now.
@@ -159,33 +166,24 @@ public enum SaveBackups {
         FileManager.default.fileExists(atPath: saves.appending(path: folderName(in: backup)).path(percentEncoded: false))
     }
 
-    /// Puts the save back. A save with the same folder goes to the Trash first.
-    public static func restore(_ backup: SaveBackup, into saves: URL) throws {
-        let fm = FileManager.default
-        let work = fm.temporaryDirectory.appending(path: "tadpole-restore-\(UUID().uuidString)", directoryHint: .isDirectory)
-        try fm.createDirectory(at: work, withIntermediateDirectories: true)
-        defer { try? fm.removeItem(at: work) }
-        try run("/usr/bin/ditto", ["-x", "-k", backup.file.path(percentEncoded: false), work.path(percentEncoded: false)])
-        let folders = (try? fm.contentsOfDirectory(at: work, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)) ?? []
-        guard let folder = folders.first(where: { $0.hasDirectoryPath }) else {
-            throw CocoaError(.fileReadCorruptFile, userInfo: [NSFilePathErrorKey: backup.file.path(percentEncoded: false)])
-        }
-        try fm.createDirectory(at: saves, withIntermediateDirectories: true)
-        let destination = saves.appending(path: folder.lastPathComponent)
-        if fm.fileExists(atPath: destination.path(percentEncoded: false)) {
-            try fm.trashItem(at: destination, resultingItemURL: nil)
-        }
-        try fm.moveItem(at: folder, to: destination)
-    }
-
-    static func run(_ tool: String, _ arguments: [String]) throws {
-        let process = Process()
-        process.executableURL = URL(filePath: tool)
-        process.arguments = arguments
-        try process.run()
-        process.waitUntilExit()
-        guard process.terminationStatus == 0 else {
-            throw CocoaError(.fileWriteUnknown, userInfo: [NSLocalizedFailureReasonErrorKey: "\(tool) failed (\(process.terminationStatus))"])
+    /// Puts the save back. A save with the same folder goes to `disposal`
+    /// (the Trash) once the restored one is in place; a damaged zip changes
+    /// nothing.
+    public static func restore(_ backup: SaveBackup, into saves: URL, disposal: Disposal = .trash) async throws {
+        let corrupt = CocoaError(.fileReadCorruptFile, userInfo: [NSFilePathErrorKey: backup.file.path(percentEncoded: false)])
+        do {
+            // The folder the zip holds, whatever the file is called now.
+            guard let folder = try Zip.topLevelNames(Zip.entries(backup.file)).first(where: { !$0.hasPrefix(".") }) else { throw corrupt }
+            try FileManager.default.createDirectory(at: saves, withIntermediateDirectories: true)
+            let backups = BackupFolder(root: backup.file.deletingLastPathComponent(), disposal: disposal)
+            try await backups.restore(backups.backup(at: backup.file), into: saves, items: [folder], accept: { content in
+                var isFolder: ObjCBool = false
+                return FileManager.default.fileExists(atPath: content.appending(path: folder).path(percentEncoded: false), isDirectory: &isFolder)
+                    && isFolder.boolValue
+            })
+        } catch let error as ArchiveError {
+            if case .unsafeEntry(let name) = error { throw ArchiveProblem.unsafeEntry(name) }
+            throw corrupt
         }
     }
 }

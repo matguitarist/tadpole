@@ -110,7 +110,7 @@ public enum ScriptExtenderMac {
             guard let expected, try sha256(of: zip) == expected else { throw InstallError.checksumMismatch }
         }
         let folder = zip.deletingLastPathComponent().appending(path: "unpacked", directoryHint: .isDirectory)
-        try ModInstaller.unpack(zip, to: folder)
+        try await ModInstaller.unpack(zip, to: folder)
         let walker = FileManager.default.enumerator(at: folder, includingPropertiesForKeys: nil)
         while let url = walker?.nextObject() as? URL {
             if url.lastPathComponent == libraryName, !url.pathComponents.contains("__MACOSX") { return url }

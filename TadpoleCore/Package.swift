@@ -11,10 +11,12 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/matguitarist/ProcessKit", from: "0.1.1"),
+        .package(url: "https://github.com/matguitarist/ArchiveKit", from: "0.1.1"),
     ],
     targets: [
         .target(name: "TadpoleCore", dependencies: [
             .product(name: "ProcessKit", package: "ProcessKit"),
+            .product(name: "ArchiveKit", package: "ArchiveKit"),
         ]),
         .testTarget(name: "TadpoleCoreTests", dependencies: [
             "TadpoleCore",

@@ -423,7 +423,7 @@ final class AppModel {
         return Task {
             defer { runningInstalls -= 1 }
             do {
-                let result = try await Task.detached { try ModInstaller.install(urls, into: folder) }.value
+                let result = try await Task.detached { try await ModInstaller.install(urls, into: folder) }.value
                 load()
                 // New mods are turned on, at the end of the load order.
                 let installed = result.installed.map(PakMod.read)

@@ -1,3 +1,4 @@
+import ArchiveKit
 import Foundation
 import ProcessKit
 import Testing
@@ -142,7 +143,7 @@ import Testing
 }
 
 @Suite struct InstallerTests {
-    @Test func installsPaksFromZipsAndFiles() throws {
+    @Test func installsPaksFromZipsAndFiles() async throws {
         let fm = FileManager.default
         let root = fm.temporaryDirectory.appending(path: "tadpole-\(UUID().uuidString)")
         let source = root.appending(path: "download/Some Mod")
@@ -157,13 +158,13 @@ import Testing
         try Data().write(to: readme)
 
         let mods = root.appending(path: "Mods")
-        let result = try ModInstaller.install([zip, loose, readme], into: mods)
+        let result = try await ModInstaller.install([zip, loose, readme], into: mods)
         #expect(result.installed.map(\.lastPathComponent) == ["SomeMod.pak", "Other.pak"])
         #expect(result.skipped == ["readme.txt"])
         #expect(fm.fileExists(atPath: mods.appending(path: "SomeMod.pak").path(percentEncoded: false)))
     }
 
-    @Test func installsPaksFrom7z() throws {
+    @Test func installsPaksFrom7z() async throws {
         let fm = FileManager.default
         let root = fm.temporaryDirectory.appending(path: "tadpole-\(UUID().uuidString)")
         let source = root.appending(path: "Seven")
@@ -172,7 +173,7 @@ import Testing
         let archive = root.appending(path: "Seven-1.7z")
         try Shell.runSync("/usr/bin/tar", ["--format", "7zip", "-cf", archive.path(percentEncoded: false), "-C", root.path(percentEncoded: false), "Seven"]).check()
 
-        let result = try ModInstaller.install([archive], into: root.appending(path: "Mods"))
+        let result = try await ModInstaller.install([archive], into: root.appending(path: "Mods"))
         #expect(result.installed.map(\.lastPathComponent) == ["Seven.pak"])
     }
 }
@@ -235,20 +236,27 @@ import Testing
         #expect(save.info?.party.first?.isPlayerMade == true)
     }
 
-    @Test func backsUpAndRestores() throws {
+    @Test func backsUpAndRestores() async throws {
         let root = FileManager.default.temporaryDirectory.appending(path: "tadpole-\(UUID().uuidString)")
         let saves = root.appending(path: "Story"), backups = root.appending(path: "Backups")
         let dir = try makeSave(in: saves)
         let save = try #require(SaveGame.scan(saves).first)
-        try SaveBackups.backUp(save, into: backups)
+        let now = Date.now
+        try await SaveBackups.backUp(save, into: backups, now: now)
+        try await SaveBackups.backUp(save, into: backups, now: now)  // the same second: " 2", not written over
+        #expect(SaveBackups.list(backups).count == 2)
         let backup = try #require(SaveBackups.list(backups).first)
+        #expect(Calendar.current.isDate(backup.date, inSameDayAs: now))
         #expect(backup.saveName == "A Nautiloid in Hell - 1h 10m")
         #expect(SaveBackups.wouldReplace(backup, in: saves))
 
         try FileManager.default.removeItem(at: dir)
         #expect(!SaveBackups.wouldReplace(backup, in: saves))
-        try SaveBackups.restore(backup, into: saves)
+        try await SaveBackups.restore(backup, into: saves, disposal: .delete)
         #expect(SaveGame.scan(saves).first?.info?.saveName == "A Nautiloid in Hell - 1h 10m")
+        #expect(SaveBackups.wouldReplace(backup, in: saves))
+        try await SaveBackups.restore(backup, into: saves, disposal: .delete)  // over the save that's there
+        #expect(SaveGame.scan(saves).count == 1)
     }
 
     @Test func remembersWhereModsCameFrom() throws {

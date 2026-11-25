@@ -24,7 +24,7 @@ extension AppModel {
             do {
                 try await Task.detached {
                     let now = Date.now
-                    for save in saves { try SaveBackups.backUp(save, into: folder, now: now) }
+                    for save in saves { try await SaveBackups.backUp(save, into: folder, now: now) }
                 }.value
             } catch {
                 show("Couldn't Back Up", error.localizedDescription)
@@ -49,7 +49,7 @@ extension AppModel {
         do {
             let backup = try await Task.detached { () -> URL? in
                 guard let latest = SaveGame.scan(paths.saves).first else { return nil }
-                return try SaveBackups.backUp(latest, into: paths.saveBackups)
+                return try await SaveBackups.backUp(latest, into: paths.saveBackups)
             }.value
             if backup != nil { lastAutoBackup = .now }
         } catch {
@@ -75,7 +75,7 @@ extension AppModel {
         let folder = paths.saves
         Task {
             do {
-                try await Task.detached { try SaveBackups.restore(backup, into: folder) }.value
+                try await SaveBackups.restore(backup, into: folder)
             } catch {
                 show("Couldn't Restore", error.localizedDescription)
             }
