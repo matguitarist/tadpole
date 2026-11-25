@@ -13,6 +13,7 @@ struct TadpoleApp: App {
         Window("Tadpole", id: "main") {
             RootView()
                 .environment(model)
+                .whatsNew(app: "Tadpole", repository: "matguitarist/tadpole")
                 .frame(minWidth: 820, minHeight: 480)
                 .task {
                     // Once: the window can be closed and reopened while

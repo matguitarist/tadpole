@@ -23,6 +23,7 @@
 		6BE89967EAAD84EFD37CF73C /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A14F14F59621F35B8ACBFBE /* AppUpdater.swift */; };
 		6DF9CD1020C94C26A97B4B44 /* RequirementsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E714D6DED9434A9B7F9D7DAE /* RequirementsViews.swift */; };
 		6EF5CFC40D58997B66221F5D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B367FD056A0FE67493C5F008 /* Localizable.xcstrings */; };
+		7785E81B82FA3416F77D7338 /* release-notes in Resources */ = {isa = PBXBuildFile; fileRef = 835B0CCBB246EF1DE111194D /* release-notes */; };
 		810F32673BC3A3BA313C4D0B /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED628E94AA4479EADA1DFF /* AppModel.swift */; };
 		95161D86CAF76783DDB28604 /* AppModel+ScriptExtender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B6D6AF9472BF19AFB575A4 /* AppModel+ScriptExtender.swift */; };
 		9866CB54B977050F40B310AE /* ScriptExtenderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168391B24282BA83A1A6F2BC /* ScriptExtenderSettings.swift */; };
@@ -73,6 +74,7 @@
 		6FF049D60674E4F843F145D5 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		73B6D6AF9472BF19AFB575A4 /* AppModel+ScriptExtender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+ScriptExtender.swift"; sourceTree = "<group>"; };
 		781B4CEF8667B5CC1BF5A2CF /* AppModel+PlayReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+PlayReport.swift"; sourceTree = "<group>"; };
+		835B0CCBB246EF1DE111194D /* release-notes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "release-notes"; sourceTree = SOURCE_ROOT; };
 		84F71A329F8DF8CA9FFAD525 /* Tadpole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadpole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A9F40E2D996A82221043F75 /* Pictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictures.swift; sourceTree = "<group>"; };
 		8F8E8142B91713F9E679D936 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		471555BBAAFAC766D22BDFCB = {
 			isa = PBXGroup;
 			children = (
+				835B0CCBB246EF1DE111194D /* release-notes */,
 				E9EA8A4BB9BAAB944036D505 /* App */,
 				31634EC7748990C8682F60F5 /* Packages */,
 				4F7D2B9A059AF76ADEA891F8 /* Products */,
@@ -247,6 +250,7 @@
 				325218FC30F98914C997C547 /* Assets.xcassets in Resources */,
 				B6CB902A2D7BF38A18F54F29 /* InfoPlist.xcstrings in Resources */,
 				6EF5CFC40D58997B66221F5D /* Localizable.xcstrings in Resources */,
+				7785E81B82FA3416F77D7338 /* release-notes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

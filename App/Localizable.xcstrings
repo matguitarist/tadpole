@@ -44,6 +44,16 @@
         }
       }
     },
+    "All Releases" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toutes les versions"
+          }
+        }
+      }
+    },
     "Report a Problem…" : {
       "localizations" : {
         "fr" : {
@@ -70,6 +80,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouveautés de %@"
+          }
+        }
+      }
+    },
+    "What’s New in %@ %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveautés de %1$@ %2$@"
           }
         }
       }
