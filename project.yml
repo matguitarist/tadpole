@@ -18,6 +18,10 @@ settings:
 packages:
   TadpoleCore:
     path: TadpoleCore
+  # Secrets in the Keychain (the Nexus API key).
+  FileKit:
+    url: https://github.com/matguitarist/FileKit
+    from: 0.1.0
   # Self-updates for the app (tools/release.sh publishes them).
   Sparkle:
     url: https://github.com/sparkle-project/Sparkle
@@ -30,6 +34,7 @@ targets:
       - App
     dependencies:
       - package: TadpoleCore
+      - package: FileKit
       - package: Sparkle
     # A self-signed app with the hardened runtime can't load separately
     # signed frameworks (Sparkle) without this.
