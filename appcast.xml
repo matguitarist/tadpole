@@ -3,6 +3,18 @@
     <channel>
         <title>Tadpole</title>
         <item>
+            <title>0.5.1</title>
+            <pubDate>Wed, 25 Nov 2026 18:57:02 -0500</pubDate>
+            <sparkle:version>11</sparkle:version>
+            <sparkle:shortVersionString>0.5.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[## See what changed after an update
+
+- The first time you open a new version, a sheet shows what's new in it, with a link to every release.
+]]></description>
+            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.5.1/Tadpole-0.5.1.zip" length="6768530" type="application/octet-stream" sparkle:edSignature="8uEmi2UwUbpxfY2VnJcDJH/nnm6N5Ve4B/wPpEhV8ZlTjvhfBUXWujSoLFT9fDh7eWJEDLoh2wujQeU8o0ulAw=="/>
+        </item>
+        <item>
             <title>0.5.0</title>
             <pubDate>Wed, 25 Nov 2026 17:02:05 -0500</pubDate>
             <sparkle:version>10</sparkle:version>
