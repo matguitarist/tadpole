@@ -3,6 +3,22 @@
     <channel>
         <title>Tadpole</title>
         <item>
+            <title>0.4.4</title>
+            <pubDate>Wed, 25 Nov 2026 10:26:41 -0500</pubDate>
+            <sparkle:version>9</sparkle:version>
+            <sparkle:shortVersionString>0.4.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[## Sturdier downloads and installs
+
+- A mod or Script Extender download that drops picks up where it stopped instead of starting over.
+- The Script Extender is checked against the checksum GitHub publishes before it is installed.
+- A mod archive or save backup that would write outside its folder is refused, and a failed install or restore leaves nothing half-done.
+- Saving a new Nexus API key updates the one in the Keychain instead of deleting it first.
+- Signing the game for the Script Extender can no longer hang on codesign's output.
+]]></description>
+            <enclosure url="https://github.com/matguitarist/tadpole/releases/download/v0.4.4/Tadpole-0.4.4.zip" length="6655939" type="application/octet-stream" sparkle:edSignature="GXGaNgxnu/bOBLoikAVJdPTcbSuMl1D6o81PTZpMS0n7/eQGzJNUDx1yOfU6bSjZM4zbAQXZc/O0lX+uitJ+Cg=="/>
+        </item>
+        <item>
             <title>0.4.3</title>
             <pubDate>Fri, 30 Oct 2026 08:17:57 -0400</pubDate>
             <sparkle:version>8</sparkle:version>
