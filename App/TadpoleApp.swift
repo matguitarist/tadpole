@@ -37,7 +37,16 @@ struct TadpoleApp: App {
                 }
         }
         .defaultSize(width: 1040, height: 656)
-        .commands { AppCommands(model: model) }
+        .commands {
+            StandardCommands(app: "Tadpole", repository: "matguitarist/tadpole",
+                             updates: AppUpdates(isAvailable: appUpdater.canCheckForUpdates) { appUpdater.checkForUpdates() },
+                             about: { AboutPanel.show(TadpoleAbout.credits) },
+                             help: .window(HelpView.windowID)) {
+                TadpoleHelpItems()
+            }
+            PageCommands(pages: SidebarItem.menuPages, title: \.menuTitle) { model.sidebarSelection = $0 }
+            AppMenus(model: model)
+        }
 
         Window("Tadpole Help", id: HelpView.windowID) {
             HelpView()

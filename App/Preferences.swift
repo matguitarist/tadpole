@@ -1,5 +1,5 @@
 // User preferences (UserDefaults keys), the app's language and theme, and
-// the About panel.
+// the About panel's credits.
 
 import AppKit
 import SwiftUI
@@ -104,25 +104,18 @@ struct AppLanguage: Hashable {
     }
 }
 
-/// The standard About panel, with a short credit line.
+/// About Tadpole's credits, under the shared About panel's icon, name and version.
 @MainActor
-enum AboutPanel {
-    static func show() {
-        let small = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
-        let credits = NSMutableAttributedString(
-            string: String(localized: "Mod manager for Baldur's Gate 3 on macOS.") + "\n\n"
-                + String(localized: "Mod pages, files and collections come from Nexus Mods. Not affiliated with Larian Studios or Nexus Mods."),
-            attributes: [.font: small, .foregroundColor: NSColor.secondaryLabelColor])
-        let style = NSMutableParagraphStyle()
-        style.alignment = .center
-        credits.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: credits.length))
-        NSApp.orderFrontStandardAboutPanel(options: [.credits: credits])
-        NSApp.activate()
+enum TadpoleAbout {
+    static var credits: [AboutPanel.Credit] {
+        [
+            .text(String(localized: "Mod manager for Baldur's Gate 3 on macOS.")),
+            .text(String(localized: "Mod pages, files and collections come from Nexus Mods. Not affiliated with Larian Studios or Nexus Mods.")),
+        ]
     }
 }
 
 enum AppLinks {
     static let scriptExtender = URL(string: "https://github.com/Norbyte/bg3se")!
     static let nexusBG3 = URL(string: "https://www.nexusmods.com/baldursgate3")!
-    static let releases = URL(string: "https://github.com/matguitarist/tadpole/releases")!
 }

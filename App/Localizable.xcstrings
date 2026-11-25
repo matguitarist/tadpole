@@ -14,12 +14,62 @@
         }
       }
     },
+    "%@ Help" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aide de %@"
+          }
+        }
+      }
+    },
+    "%@ on GitHub" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ sur GitHub"
+          }
+        }
+      }
+    },
+    "About %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À propos de %@"
+          }
+        }
+      }
+    },
+    "Report a Problem…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signaler un problème…"
+          }
+        }
+      }
+    },
     "This archive tries to write outside its folder (“%@”), so nothing was unpacked." : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cette archive essaie d’écrire hors de son dossier (« %@ »), alors rien n’a été décompressé."
+          }
+        }
+      }
+    },
+    "What’s New in %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveautés de %@"
           }
         }
       }
@@ -744,16 +794,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "À propos de bg3se-macos (le Script Extender pour Mac)"
-          }
-        }
-      }
-    },
-    "About Tadpole" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "À propos de Tadpole"
           }
         }
       }
@@ -5808,16 +5848,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tadpole marque ces mods d’un badge **Script Extender**. Les mods qui changent seulement l’apparence, des objets, des coiffures, des dés ou du texte n’en ont pas besoin et marchent normalement."
-          }
-        }
-      }
-    },
-    "Tadpole Release Notes" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Notes de version de Tadpole"
           }
         }
       }

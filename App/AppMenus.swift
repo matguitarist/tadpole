@@ -1,0 +1,171 @@
+// The app's own menus: File → Install Mods, Undo, View (details), Mods, Game, Window and
+// Tadpole's own Help items. About, Check for Updates…, the rest of Help and the pages
+// (⌘1–⌘6) are the shared AppCommands.swift.
+
+import AppKit
+import SwiftUI
+import TadpoleCore
+
+struct AppMenus: Commands {
+    let model: AppModel
+
+    var body: some Commands {
+        // The items are views: unlike a Commands body, a view body is
+        // re-evaluated when the model changes, so titles and enabled states
+        // stay current.
+        CommandGroup(replacing: .newItem) { FileMenuItems(model: model) }
+        CommandGroup(replacing: .undoRedo) { UndoMenuItems(model: model) }
+        CommandGroup(before: .sidebar) { ViewMenuItems(model: model) }
+        CommandMenu("Mods") { ModsMenuItems(model: model) }
+        CommandMenu("Game") { GameMenuItems(model: model) }
+        CommandGroup(after: .windowArrangement) { WindowMenuItems() }
+    }
+}
+
+extension SidebarItem {
+    /// The sidebar's pages, in its order, for View's ⌘1–⌘6 (PageCommands).
+    static let menuPages: [SidebarItem] = [.loadOrder, .updates, .browse, .collections, .saves, .scriptExtenderLog]
+
+    var menuTitle: String {
+        switch self {
+        case .loadOrder: String(localized: "Load Order")
+        case .updates: String(localized: "Updates")
+        case .browse: String(localized: "Browse Nexus")
+        case .collections: String(localized: "Collections")
+        case .saves: String(localized: "Saves")
+        case .scriptExtenderLog: String(localized: "Script Extender Log")
+        }
+    }
+}
+
+/// Selects a page, reopening the main window if it was closed.
+@MainActor
+private func showPage(_ item: SidebarItem, model: AppModel, openWindow: OpenWindowAction) {
+    model.sidebarSelection = item
+    openWindow(id: "main")
+}
+
+private struct FileMenuItems: View {
+    let model: AppModel
+
+    var body: some View {
+        Button("Install Mods…") { model.presentInstallPanel() }
+            .keyboardShortcut("o")
+    }
+}
+
+private struct ViewMenuItems: View {
+    let model: AppModel
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some View {
+        Button(model.showInspector ? "Hide Details" : "Show Details") {
+            showPage(.loadOrder, model: model, openWindow: openWindow)
+            model.showInspector.toggle()
+        }
+        .keyboardShortcut("i", modifiers: [.command, .option])
+        Divider()
+    }
+}
+
+private struct ModsMenuItems: View {
+    let model: AppModel
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some View {
+        Button("Reload") { model.load() }
+            .keyboardShortcut("r")
+        Button("Order by Requirements") { model.sortByDependencies() }
+        Menu("Profiles") {
+            ProfileMenuItems(model: model)
+        }
+            .disabled(model.enabledMods.count < 2)
+        Divider()
+        Button("Check for Mod Updates") {
+            showPage(.updates, model: model, openWindow: openWindow)
+            Task { await model.checkForUpdates() }
+        }
+        .keyboardShortcut("u", modifiers: [.command, .shift])
+        .disabled(model.isCheckingUpdates)
+        Button(model.updates.isEmpty ? String(localized: "Update All") : String(localized: "Update All (\(model.updates.count))")) {
+            model.install(model.updates)
+        }
+        .disabled(model.updates.isEmpty)
+        Divider()
+        Button("Browse Nexus") { showPage(.browse, model: model, openWindow: openWindow) }
+        Button("Collections") { showPage(.collections, model: model, openWindow: openWindow) }
+        Divider()
+        Button("Open Mods Folder") { model.openModsFolder() }
+            .keyboardShortcut("o", modifiers: [.command, .shift])
+        Button("Show Load Order File") { NSWorkspace.shared.activateFileViewerSelecting([model.paths.modSettings]) }
+            .disabled(!model.paths.gameHasRun)
+    }
+}
+
+private struct GameMenuItems: View {
+    let model: AppModel
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some View {
+        Button("Play Baldur's Gate 3") { model.launchGame() }
+            .keyboardShortcut("l")
+        Divider()
+        Button("Saves") { showPage(.saves, model: model, openWindow: openWindow) }
+        Button("Back Up All Saves") {
+            showPage(.saves, model: model, openWindow: openWindow)
+            model.backUpAllSaves()
+        }
+        Button("Open Saves Folder") {
+            try? FileManager.default.createDirectory(at: model.paths.saves, withIntermediateDirectories: true)
+            NSWorkspace.shared.open(model.paths.saves)
+        }
+        Button("Open Save Backups Folder") { model.openSaveBackupsFolder() }
+    }
+}
+
+private struct WindowMenuItems: View {
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some View {
+        Button("Nexus Mods") { openWindow(id: BrowserWindow.id) }
+            .keyboardShortcut("n", modifiers: [.command, .shift])
+    }
+}
+
+/// Tadpole's own Help items, under Tadpole Help (StandardCommands has the rest).
+struct TadpoleHelpItems: View {
+    var body: some View {
+        Button("Setup Assistant…") { AppModel.shared.showSetupAssistant = true }
+        Divider()
+        Link("Baldur's Gate 3 Mods on Nexus Mods", destination: AppLinks.nexusBG3)
+        Link("About the Script Extender", destination: AppLinks.scriptExtender)
+        Link("About bg3se-macos (the Script Extender for Macs)", destination: ScriptExtenderMac.projectURL)
+    }
+}
+
+/// Undo and Redo: the load order's, unless a text field is being edited
+/// (then its own, through the responder chain).
+private struct UndoMenuItems: View {
+    let model: AppModel
+
+    private var editingText: Bool { NSApp.keyWindow?.firstResponder is NSText }
+
+    var body: some View {
+        Button(model.canUndo ? String(localized: "Undo Load Order Change") : String(localized: "Undo")) {
+            if editingText {
+                NSApp.sendAction(Selector(("undo:")), to: nil, from: nil)
+            } else {
+                model.undo()
+            }
+        }
+        .keyboardShortcut("z")
+        Button(model.canRedo ? String(localized: "Redo Load Order Change") : String(localized: "Redo")) {
+            if editingText {
+                NSApp.sendAction(Selector(("redo:")), to: nil, from: nil)
+            } else {
+                model.redo()
+            }
+        }
+        .keyboardShortcut("z", modifiers: [.command, .shift])
+    }
+}

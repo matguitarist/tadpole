@@ -38,6 +38,7 @@
 		C9D01ED84BDC9B05AC71A206 /* AppCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AAAAE6A42734509344D9B7 /* AppCommands.swift */; };
 		D240846B996329B3F045F716 /* TadpoleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36174C53F93B04A0EC3C4486 /* TadpoleApp.swift */; };
 		D91E4B84D45D003E872E6A43 /* ProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FCE6388438684079BCF58D /* ProfilesView.swift */; };
+		DEEFB95A8A65FD8160332F63 /* AppMenus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA14DF102BC1312B051ADDB /* AppMenus.swift */; };
 		DEFA51D8F5E45F024256EB31 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAF40FB04F9897722528FBF /* HelpView.swift */; };
 		E689F8C0142837009C6A5AAC /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF049D60674E4F843F145D5 /* RootView.swift */; };
 		E70D74C9814DBBD646224F82 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B782ED5F40424102BB728CA5 /* BrowseView.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		00361286CF9CA21383A4CF1E /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		0CA14DF102BC1312B051ADDB /* AppMenus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMenus.swift; sourceTree = "<group>"; };
 		0D4E5A6578E7CC8040AF03A3 /* SetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupAssistant.swift; sourceTree = "<group>"; };
 		147A95924B5FFC84EF2324C9 /* UpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesView.swift; sourceTree = "<group>"; };
 		14ED628E94AA4479EADA1DFF /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				36AAAAE6A42734509344D9B7 /* AppCommands.swift */,
+				0CA14DF102BC1312B051ADDB /* AppMenus.swift */,
 				14ED628E94AA4479EADA1DFF /* AppModel.swift */,
 				A7409FB401E6011ADF7EC422 /* AppModel+Nexus.swift */,
 				781B4CEF8667B5CC1BF5A2CF /* AppModel+PlayReport.swift */,
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9D01ED84BDC9B05AC71A206 /* AppCommands.swift in Sources */,
+				DEEFB95A8A65FD8160332F63 /* AppMenus.swift in Sources */,
 				C612E085EA8CC69FE662C3FE /* AppModel+Nexus.swift in Sources */,
 				E8AF53F79234B35CB85A8840 /* AppModel+PlayReport.swift in Sources */,
 				33311F9622D0B1CE00A9F090 /* AppModel+Profiles.swift in Sources */,
